@@ -114,7 +114,6 @@
 	
 	</dependencies>
 
-	<!-- lemon云的common子平台的插件配置 -->
 	<build>
 		<plugins>
 			<plugin>

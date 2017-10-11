@@ -4,11 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.ranji.lemon</groupId>
-		<artifactId>lemon</artifactId>
+		<artifactId>clemon</artifactId>
 		<version>1.0</version>
 	</parent>
+	
 	<artifactId>jersey</artifactId>
 	<packaging>pom</packaging>
+	
 	<modules>
 		<module>jersey-common</module>
 		<module>jersey-model</module>

@@ -1,30 +1,28 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.ranji.lemon</groupId>
-    <artifactId>liquid</artifactId>
-    <version>1.0</version>
-  </parent>
-  <groupId>org.ranji.lemon</groupId>
-  <artifactId>liquid-web</artifactId>
-  <version>1.0</version>
-  <packaging>war</packaging>
-  <name>liquid-web Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-	  	<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>liquid-service</artifactId>
-				<version>${project.version}</version>
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.ranji.lemon</groupId>
+		<artifactId>liquid</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>liquid-web</artifactId>
+	<packaging>war</packaging>
+	<name>liquid-web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>liquid-service</artifactId>
+			<version>${project.version}</version>
 		</dependency>
-	    <dependency>
-	      <groupId>junit</groupId>
-	      <artifactId>junit</artifactId>
-	      <scope>test</scope>
-	    </dependency>
-    <!-- JavaEE -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<!-- JavaEE -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -47,13 +45,13 @@
 			<artifactId>shiro-web</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>net.sf.ehcache</groupId>
-		    <artifactId>ehcache</artifactId>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
 		</dependency>
 		<dependency>
-			    <groupId>org.apache.shiro</groupId>
-			    <artifactId>shiro-ehcache</artifactId>
-			</dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
@@ -67,9 +65,9 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
-  </dependencies>
-  <build>
-    <finalName>liquid-web</finalName>
+	</dependencies>
+	<build>
+		<finalName>liquid-web</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
