@@ -11,9 +11,9 @@ function roleListInit(){
 	$("#rolesList").LemonCreateTable({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    pageClassName:".tfoot",
-	   	trForm : function(index,value){
+	   	trForm : function(index,value,data,extend){
 			var Pname = value.rolePName == null ? '无':value.rolePName ;
-			var tr_data = '<tr role_id='+value.id+'>'+
+			var tr_data = '<tr role_id='+value.id+extend+'>'+
 				'<td class="checkboxtd">'+
 					'<label>'+
 						'<input  type="checkbox" name="layout">'+
@@ -22,8 +22,8 @@ function roleListInit(){
 				'<td>'+
 					(index+1) +
 				'</td>'+
-				'<td title="首页">'+
-					value.roleName +//${role.roleName}
+				'<td title="首页" class="asdf">'+
+					value.roleName +'[点我]'+//${role.roleName}
 				'</td>'+
 				'<td title="首页">'+
 				     Pname +
@@ -43,6 +43,12 @@ function roleListInit(){
 			'</tr>';
 	       	return tr_data; 
 	   		}
+		})
+		//获取到本地的某条数据 示例代码
+		$(document).on("click", ".asdf", function(e) {
+			var storage_name = $(this).closest('tr').attr('storage_name');
+			var storage_id = $(this).closest('tr').attr('storage_id');
+			console.log(getDataByStorage(storage_name,storage_id));
 		})
 }
 roleListInit();
