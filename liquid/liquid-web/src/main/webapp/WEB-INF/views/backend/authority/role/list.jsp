@@ -5,70 +5,64 @@
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
-<script >
-$("#rolesList").LemonCreateTable({
-    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
-   	trForm : function(index,value){
-		var Pname = value.rolePName == null ? '无':value.rolePName ;
-		var tr_data = '<tr role_id='+value.id+'>'+
-			'<td class="checkboxtd">'+
-				'<label>'+
-					'<input  type="checkbox" name="layout">'+
-				'</label>'+
-			'</td>'+
-			'<td>'+
-				(index+1) +
-			'</td>'+
-			'<td title="首页">'+
-				value.roleName +//${role.roleName}
-			'</td>'+
-			'<td title="首页">'+
-			     Pname +
-			'</td>'+
-			'<td>'+
-				'<span class="icon-eye-open iconact lookRole"></span> '+
-			'</td>'+
-			'<td>'+
-				'<span class="icon-pencil iconact editRole" n_id="1"></span>'+
-			'</td>'+
-			'<td>'+
-				'<span class="icon-trash iconact removeBtn"></span>'+
-			'</td>'+
-			'<td>'+
-				'<span class="icon-key iconact"></span>'+
-			'</td>'+
-		'</tr>';
-       	return tr_data; 
-   		}
-	})
-	
-</script>
 
 <script >
-	$(document).on("click", ".removeBtn", function(e) {
-		e.preventDefault();
-		var str = $(this).closest(".roleslist").length ?
-			"角色" : $(this).closest(".sourcelist").length ?
-			"资源" : $(this).closest(".userlist").length ?
-			"用户" : $(this).closest(".recoverlist").length ? "数据库备份" : "";
-		var strFoot = $(this).closest(".tfoot").length ? "这些" : "此";
-		$('#removeModal .modal').modal('show');
-		$.ajax({
-			dataType: "html",
-			url: '${pageContext.request.contextPath}/remove',
-			async: true,
-			success: function(data) {
-				$("#removeModal .modal-body").html(data);
-				if($("#removeModal .modal-body .removeName")) {
-					$("#removeModal .modal-body .removeName").html(strFoot + str);
-				}
-			},
-			error: function(data) {
-				console.log(data);
+function roleListInit(){
+	$("#rolesList").LemonCreateTable({
+	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
+	   	trForm : function(index,value){
+			var Pname = value.rolePName == null ? '无':value.rolePName ;
+			var tr_data = '<tr role_id='+value.id+'>'+
+				'<td class="checkboxtd">'+
+					'<label>'+
+						'<input  type="checkbox" name="layout">'+
+					'</label>'+
+				'</td>'+
+				'<td>'+
+					(index+1) +
+				'</td>'+
+				'<td title="首页">'+
+					value.roleName +//${role.roleName}
+				'</td>'+
+				'<td title="首页">'+
+				     Pname +
+				'</td>'+
+				'<td>'+
+					'<span class="icon-eye-open iconact lookRole"></span> '+
+				'</td>'+
+				'<td>'+
+					'<span class="icon-pencil iconact editRole" n_id="1"></span>'+
+				'</td>'+
+				'<td>'+
+					'<span class="icon-trash iconact removeBtn"></span>'+
+				'</td>'+
+				'<td>'+
+					'<span class="icon-key iconact"></span>'+
+				'</td>'+
+			'</tr>';
+	       	return tr_data; 
+	   		}
+		})
+}
+roleListInit();
+$('.removeBtn').bindDialogs({
+	content : '你确定删除这个角色吗？',
+	success:function(handle){
+		var roleId = $(handle).closest('tr').attr('role_id');
+		$.post("${pageContext.request.contextPath}/backend/authority/role/delete",{
+			id:roleId,
+		},function(data){
+			console.log(data.success)
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				roleListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
 			}
-		});
-
-	});
+		},'json') 
+	}
+});
 </script>
 
 <div class="rolelist roleslist">
@@ -94,11 +88,11 @@ $("#rolesList").LemonCreateTable({
 			</form>
 		</div>
 	</ol>
+	<div class="alertArea"></div>
 	<div class="alert alert-danger">
 		<i class="glyphicon glyphicon-hand-right"></i>
 
-		温馨提示：此页面展示角色列表，您可以对角色查看、编辑、删除、授权及批量删除和新建的操作。单击右方x号，可以关闭此条提示语！
-
+		<span class="alert_font">	温馨提示：此页面展示角色列表，您可以对角色查看、编辑、删除、授权及批量删除和新建的操作。单击右方x号，可以关闭此条提示语！</span>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	</div>
 	<div class="tablewrap">

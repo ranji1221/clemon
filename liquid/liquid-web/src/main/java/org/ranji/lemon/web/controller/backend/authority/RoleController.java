@@ -142,7 +142,6 @@ public class RoleController {
 	public String edit(Role role, HttpSession session) {
 		try {
 			roleService.update(role);
-			System.out.println(role.getId());
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -162,4 +161,16 @@ public class RoleController {
 		}
 		return null;
 	}
+		@ResponseBody
+		@RequestMapping(value = "/delete")
+		@SystemControllerLog(description="权限管理-删除角色")
+		public String deleteRole(int id) {
+			try {
+				roleService.delete(id);
+				return "{ \"success\" : true }";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "{ \"success\" : false }";
+			}
+		}
 }
