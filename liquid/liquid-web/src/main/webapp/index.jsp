@@ -81,7 +81,7 @@
 		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/database/progress.css">
 		<!-- <script src="${pageContext.request.contextPath}/js/database/progress.js"></script>
 		<!--难得数据备份-->
-		
+	
 	</head>
 
 	<body>
@@ -840,6 +840,7 @@
 			<script src="${pageContext.request.contextPath}/js/raphael/raphael.min.js"></script>
 			<script src="${pageContext.request.contextPath}/js/raphael/morris.js"></script>
 			<script src="${pageContext.request.contextPath}/js/index/index.js"></script>
+			<script src="${pageContext.request.contextPath}/js/common/remove.js"></script>
 	</body>
 
 </html>

@@ -10,13 +10,6 @@ $(function() {
 	var lookRoleUrl = "backend/authority/role/view/modal";
 	var lookUserUrl = "backend/authority/user/view/modal";
 	var lookSourceUrl = "backend/authority/resource/view/modal";
-	//var removeUrl = "backend/common/remove/remove";
-	//  $("#editUserModal").on('hide.bs.modal',function () {
-	//     $(this).removeData('bs.modal');
-	//  });
-	//  $("#removeModal").on('hide.bs.modal',function () {
-	//     $(this).removeData('bs.modal');
-	//  });
 	const maxLimitNum = 10;
 
 	function editRole(this_nid,id) {
@@ -34,16 +27,11 @@ $(function() {
 
 				var uStr, maxNum;
 				uStr = localStorage.getItem("this_role" + nId);
-//				console.log("uStr:" + uStr);
 				if(uStr) {
 
 					maxNum = JSON.parse(uStr)[3].value;
 				}
 
-				//					console.log("第一个"+maxNum+"maxNum");
-				//					console.log(maxNum==null);
-				//					console.log(maxNum==0);
-				//					console.log(maxNum==undefined);
 				//加减按钮
 				var limitNum;
 				if(parseInt(maxNum) == 0) {
@@ -53,7 +41,6 @@ $(function() {
 				} else {
 					limitNum = parseInt($("#limitNum").val()) || 0;
 				}
-//				console.log("第二个" + limitNum);
 
 				function judge(limitNum) {
 
@@ -75,12 +62,6 @@ $(function() {
 				var sub = $(".numCtr .icon-minus");
 				var grey = '#bdc3c7';
 				var blue = '#378ef8';
-				//                  $("#limitNum").ready(function(){
-				////                  	console.log($("#limitNum").val());
-				//                  $("#limitNum").val(limitNum);
-				//                  })
-
-				//                  judge(limitNum);
 				$(sub).click(function(e) {
 					e.preventDefault();
 					var numVal = parseInt($("#limitNum").val());
@@ -125,58 +106,39 @@ $(function() {
 		var uStr, maxNum;
 		var limitNum;
 		uStr = localStorage.getItem("this_role" + nId);
-//		console.log("uStr:" + uStr);
 		if(uStr&&JSON.parse(uStr)[3].value) {
 
 			maxNum = JSON.parse(uStr)[3].value;
-//			console.log("本地存储maxNum" + maxNum);
 		}
 		if(parseInt(maxNum) == 0) {
 			limitNum = 0;
 		} else if(parseInt(maxNum)) {
 			limitNum = parseInt(maxNum);
 		} else {
-//			console.log($("#limitNum").val());
 			limitNum = parseInt($("#limitNum").val()) || 0;
 		}
-//		console.log("show后的limitNum:" + limitNum);
 		var add = $(".numCtr .icon-plus");
 		var sub = $(".numCtr .icon-minus");
 		var grey = '#bdc3c7';
 		var blue = '#378ef8';
-		//                  console.log("第二个"+limitNum);
-		//                  console.log("1个limitNum"+limitNum);
-//		console.log("最后的limitNum"+limitNum);
 		$("#limitNum").val(limitNum);
 		
 
 		function judge(limitNum) {
-//			console.log(limitNum);
 			if(maxLimitNum <= limitNum) {
-
-//				console.log("条件1：" + maxLimitNum + "maxLimitNum;" + limitNum + "limitNum");
 				$(add).css("background", grey);
 				$(sub).css("background", blue);
 			} else if(limitNum < 1) {
-//				console.log("条件2：" + maxLimitNum + "maxLimitNum;" + limitNum + "limitNum");
-//				console.log($(sub));
 				$(sub).css("background", grey);
 				$(add).css("background", blue);
 			} else {
-//				console.log("条件3：" + maxLimitNum + "maxLimitNum;" + limitNum + "limitNum");
 				$(add).css("background", blue);
 				$(sub).css("background", blue);
 			}
-			//                  console.log("判断后的"+limitNum);
 		}
 
 		judge(limitNum);
-		//  	console.log("模态框"+$("#limitNum").val());
 	});
-//	$('.modal').on("hidden.bs.modal", '.modal', function() {
-//		$(this).removeData("bs.modal");
-//		$(".modal").children().remove();
-//	});
 
 	function editUser(this_nid) {
 
@@ -294,34 +256,8 @@ $(function() {
 		
 		lookSourceModal();
 	});
-	/*$(document).on("click", ".removeBtn", function(e) {
-		e.preventDefault();
-		var str = $(this).closest(".roleslist").length ?
-			"角色" : $(this).closest(".sourcelist").length ?
-			"资源" : $(this).closest(".userlist").length ?
-			"用户" : $(this).closest(".recoverlist").length ? "数据库备份" : "";
-		var strFoot = $(this).closest(".tfoot").length ? "这些" : "此";
-		$('#removeModal .modal').modal('show');
-		$.ajax({
-			dataType: "html",
-			url: removeUrl,
-			async: true,
-			success: function(data) {
-				$("#removeModal .modal-body").html(data);
-				if($("#removeModal .modal-body .removeName")) {
-					$("#removeModal .modal-body .removeName").html(strFoot + str);
-				}
-			},
-			error: function(data) {
-				console.log(data);
-			}
-		});
-
-	});*/
 	// 用户授权模态框的调用
 	$(document).on('click', '.user-aut', function() {
-		// console.log('启动授权模态框用户');
-		// $.ajax({cache: false});
 		$.ajaxSetup({
 			cache: false
 		});
@@ -331,12 +267,9 @@ $(function() {
 	})
 	// 角色授权模态框的调用
 	$(document).on('click', '.role-aut', function() {
-		// console.log('启动授权模态框');
-		// $.ajax({cache: false});
 		$.ajaxSetup({
 			cache: false
 		});
-		// console.log('尝试清除js');
 		$('#role-authorization .modal-content').html('');
 		$('#role-authorization .modal-content').load('backend/authority/role/auth/modal')
 		$('#role-authorization').modal('show');
@@ -349,8 +282,4 @@ function limitChangeLength(elm, limitLength) {
 		var length = $(elm).val().length;
 		$(elm).siblings(".wordNum").html(limitLength - length);
 	});
-	//方法二
-	// $(elm).on("input propertychange",function(){
-	//     console.log($(this).val().length);
-	// })
 }
