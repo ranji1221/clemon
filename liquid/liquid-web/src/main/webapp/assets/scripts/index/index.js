@@ -115,59 +115,6 @@ $(function() {
 			})
 		})
 	})
-	//编辑模态框
-	$("#editRoleModal").on("shown.bs.modal", function() {
-		var n_id = $(this).find(".modal-content").attr("n_id")
-		var u_str;
-		u_str = localStorage.getItem("this_role" + n_id)
-
-		if(u_str) {
-			u_str = JSON.parse(u_str)
-			//			console.log(u_str[3])
-			var input_form = $(this).find(".modal-body form :input")
-			//			console.log(input_form)
-			setinput(input_form, u_str)
-			$(".wordNum").html(15-$('.bg-grey').val().length)
-		}
-		var max_role = $(this).find(".external-link")
-
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			$("#editRoleModal").modal('hide')
-			$.ajax({
-				url: "backend/authority/role/edit/max/" + $("#roleId").val(),
-				dataType: "html"
-			}).done(function(data) {
-				$(".ajax_dom").show()
-				$(".ajax_dom").empty()
-				$(".ajax_dom").html(data)
-
-				var u_str;
-				u_str = localStorage.getItem("this_role" + n_id)
-				if(u_str) {
-					u_str = JSON.parse(u_str)
-					var input_form = $(".ajax_dom").find(".form_content form :input")
-					setinput(input_form, u_str)
-					$(".form_input").find(".form-control").val($(".form_input").find(".form-control").val().slice(0,$(".form_input").find(".minlimitNum").html()))
-				}
-				
-				$(".ajax_dom").find(".form_content").attr("n_id", n_id)
-				$(".ajax_dom").find(".hidmission p").attr("n_id", n_id)
-				if($(".input input").val() == 10) {
-
-					$(".add").removeClass("active")
-					$(".reduce").addClass("active")
-				} else if($(".input input").val() == 0) {
-					$(".add").addClass("active")
-					$(".reduce").removeClass("active")
-				} else {
-					$(".add").addClass("active")
-					$(".reduce").addClass("active")
-
-				}
-			})
-		})
-	})
 	//	用户查看
 	$("#lookUserModal").on("shown.bs.modal", function() {
 		var max_role = $(this).find(".external-link")
