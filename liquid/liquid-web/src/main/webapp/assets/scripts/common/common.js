@@ -9,12 +9,14 @@
 	 * @param value
 	 * @param storageType
 	 */
+	//把数据保持到缓存中
 	function setStorage(key,value,storageType) {
 		var storage = storageType || sessionStorage;
 		var value = JSON.stringify(value);
 		storage.setItem(key, value);
 	}
 	
+	//获取缓存中的数据
 	function getStorage(key,storageType) {
 		var storage = storageType || sessionStorage;
 		var valueString = storage.getItem(key);
@@ -26,6 +28,7 @@
 		}
 	}
 	
+	//删除缓存中的数据
 	function removeStorage(key,storageType) {
 		var storage = storageType || sessionStorage;
 		if(key) {
@@ -33,4 +36,15 @@
 		}else {
 			storage.clear();
 		}
+	}
+	
+	//获取某条具体的数据
+	function getDataByStorage(storageName,index){
+		var data = getStorage(storageName);
+		if(data && data.rows && data.rows[index]){
+			return data.rows[index];
+		}else{
+			return null;
+		}
+		
 	}

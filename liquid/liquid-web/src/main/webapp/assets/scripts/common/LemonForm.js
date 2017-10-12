@@ -91,13 +91,4 @@ $(function(){
 		}
 	}
 })
-//获取某条具体的数据
-function getDataByStorage(storageName,index){
-	var data = getStorage(storageName);
-	if(data && data.rows && data.rows[index]){
-		return data.rows[index];
-	}else{
-		return null;
-	}
-	
-}
+
