@@ -91,7 +91,7 @@
 					<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
 						<input type="hidden"  value="${role.id}" name="id" id="roleId">
 						<input type="text" class="form-control bg-grey2  form_input" value="${role.roleName}" name="roleName" id="roleName" placeholder="请输入角色名称">
-						<span class="wordNum">15</span>
+						<span class="minlimitNum">15</span>
 						<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 						<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
 					</div>
@@ -215,8 +215,8 @@ var minlimitNum = 5;
 					var ui_value = ui.value
 					$(".sliderInput").css("width", ui_value+"%");
 					$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
-					$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-					$(".sliderInput").find("input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
+					$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
+					$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
 					limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 				}
 			})

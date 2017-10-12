@@ -118,7 +118,6 @@ $(function() {
 		
 		var max_role = $(this).find(".external-link")
 		max_role.on("click", function(e) {
-			console.log(111)
 			e.preventDefault()
 			e.stopPropagation()
 			$(".modal-backdrop").hide()
