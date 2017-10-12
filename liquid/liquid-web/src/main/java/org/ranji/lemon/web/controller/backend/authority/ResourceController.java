@@ -110,4 +110,17 @@ public class ResourceController {
 			return "{ \"total\" : 0, \"rows\" : [] }";
 		}
 	}
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/delete")
+	public String deleteResource(int id) {
+		try {
+			resourceService.delete(id);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
+		}
+	}
 }

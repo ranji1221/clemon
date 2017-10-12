@@ -13,7 +13,7 @@ function roleListInit(){
 	    pageClassName:".tfoot",
 	   	trForm : function(index,value,data,extend){
 			var Pname = value.rolePName == null ? '无':value.rolePName ;
-			var tr_data = '<tr role_id='+value.id+extend+'>'+
+			var tr_data = '<tr role_id='+ value.id+extend +'>'+
 				'<td class="checkboxtd">'+
 					'<label>'+
 						'<input  type="checkbox" name="layout">'+
@@ -22,10 +22,10 @@ function roleListInit(){
 				'<td>'+
 					(index+1) +
 				'</td>'+
-				'<td title="首页" class="asdf">'+
+				'<td title='+ value.roleName +' class="roleName">'+
 					value.roleName +'[点我]'+//${role.roleName}
 				'</td>'+
-				'<td title="首页">'+
+				'<td title='+ Pname +'>'+
 				     Pname +
 				'</td>'+
 				'<td>'+
@@ -42,14 +42,14 @@ function roleListInit(){
 				'</td>'+
 			'</tr>';
 	       	return tr_data; 
-	   		}
-		})
-		//获取到本地的某条数据 示例代码
-		$(document).on("click", ".asdf", function(e) {
-			var storage_name = $(this).closest('tr').attr('storage_name');
-			var storage_id = $(this).closest('tr').attr('storage_id');
-			console.log(getDataByStorage(storage_name,storage_id));
-		})
+   		}
+	})
+	//获取到本地的某条数据 示例代码
+	$(document).on("click", ".roleName", function(e) {
+		var storage_name = $(this).closest('tr').attr('storage_name');
+		var storage_id = $(this).closest('tr').attr('storage_id');
+		console.log(getDataByStorage(storage_name,storage_id));
+	})
 }
 roleListInit();
 $('.removeBtn').bindDialogs({
@@ -59,7 +59,6 @@ $('.removeBtn').bindDialogs({
 		$.post("${pageContext.request.contextPath}/backend/authority/role/delete",{
 			id:roleId,
 		},function(data){
-			console.log(data.success)
 			if(data.success == true) {
 				$('.alertArea').showAlert({content:'删除成功'});
 				removeStorage();
@@ -67,7 +66,7 @@ $('.removeBtn').bindDialogs({
 			}else{
 				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
 			}
-		},'json') 
+		},'json');
 	}
 });
 </script>
@@ -91,7 +90,8 @@ $('.removeBtn').bindDialogs({
 						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
 			        </button>
 			        </span>
-			    </div><!-- /input-group -->
+			    </div>
+			    <!-- /input-group -->
 			</form>
 		</div>
 	</ol>
@@ -140,205 +140,7 @@ $('.removeBtn').bindDialogs({
 				</tr>
 			</thead>
 			<tbody id = "rolesList">
-			<%-- <c:forEach items="${roleList}" var = "role">
-				<tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						01
-					</td>
-					<td title="首页">
-						${role.roleName}
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole" n_id="1"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr>
-				</c:forEach> --%>
-				<!-- <tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						02
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole" n_id="2"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						03
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						04
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						05
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						06
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr>
-				<tr>
-					<td class='checkboxtd'>
-						<label>
-							<input  type="checkbox" name="layout">
-						</label>
-					</td>
-					<td>
-						07
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td title="首页">
-						首页
-					</td>
-					<td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td>
-					<td>
-						<span class="icon-pencil iconact editRole"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn"></span>
-					</td>
-					<td>
-						<span class="icon-key iconact"></span>
-					</td>
-				</tr> -->
-				
+
 			</tbody>
 		</table>
 		<div class="tfoot">

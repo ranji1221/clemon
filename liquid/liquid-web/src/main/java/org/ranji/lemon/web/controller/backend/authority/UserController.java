@@ -116,15 +116,6 @@ public class UserController {
 		return null;
 	}
 	
-	@RequiresPermissions("user:delete")
-	@RequestMapping(value = "/deleteuser")
-	@SystemControllerLog(description="权限管理-删除用户")
-	@ResponseBody
-	public String deleteUser() {
-		return "delete user success";
-	}
-	
-	
 	@ResponseBody
 	@RequestMapping(value = "/adduser")
 	public String add(User obj) {
@@ -139,8 +130,8 @@ public class UserController {
 
 
 	@ResponseBody
-	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable int id) {
+	@RequestMapping(value = "/delete")
+	public String deleteUser(int id) {
 		try {
 			userService.delete(id);
 			return "{ \"success\" : true }";
@@ -150,8 +141,8 @@ public class UserController {
 		}
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/delete")
+/*	@ResponseBody
+	@RequestMapping(value = "/deleteAll")
 	public String multiDelete(@RequestParam("ids[]") Integer[] ids) {
 		try {
 			userService.deleteByIDS(Arrays.asList(ids));
@@ -160,7 +151,7 @@ public class UserController {
 			e.printStackTrace();
 			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
 		}
-	}
+	}*/
 
 	@ResponseBody
 	@RequestMapping(value = "/get/{id}")
@@ -176,9 +167,9 @@ public class UserController {
 	}
 	
 	//@SystemControllerPermission("user:list")
+	@ResponseBody
 	@SystemControllerLog(description="权限管理-用户列表")
 	@RequestMapping(value = "/data")
-	@ResponseBody
 	public String data(String params,HttpSession session) {
 		try {
 			ObjectMapper om = new ObjectMapper();
@@ -199,5 +190,4 @@ public class UserController {
 			return "{ \"total\" : 0, \"rows\" : [] }";
 		}
 	}
-
 }

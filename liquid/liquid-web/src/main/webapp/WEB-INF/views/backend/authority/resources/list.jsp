@@ -5,10 +5,11 @@
 <script src="${pageContext.request.contextPath}/js/user/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
-<script >
-$("#dataList").LemonCreateTable({
-    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
-   	trForm : function(index,value){
+<script>
+function resourceListInit(){
+	$("#resourceList").LemonCreateTable({
+	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
+	   	trForm : function(index,value){
 	   		var thisType = '';
 	   		switch(value.resourceType){
 	   			case 1:
@@ -22,7 +23,7 @@ $("#dataList").LemonCreateTable({
 	   				break;
 	   		}
 	   		if(!value.resourcePName) value.resourcePName = '无';
-	   		var tr_data = '<tr>'+
+	   		var tr_data = '<tr resource_id='+ value.id +'>'+
 	   			'<td class="checkboxtd">'+
 	   				'<label>'+
 	   					'<input  type="checkbox" name="layout">'+
@@ -31,13 +32,13 @@ $("#dataList").LemonCreateTable({
 	   			'<td>'+
 	   				(index+1) +
 	   			'</td>'+
-	   			'<td title="资源类型">'+
+	   			'<td title='+ thisType +'>'+
 	   				thisType +
 	   			'</td>'+
-	   			'<td title="资源名">'+
+	   			'<td title='+ value.resourceName +'>'+
 	   				value.resourceName +
 	   			'</td>'+
-	   			'<td title="父资源名">'+
+	   			'<td title='+ value.resourcePName +'>'+
 	   				value.resourcePName +
 	   			'</td>'+
 	   			'<td>'+
@@ -56,34 +57,31 @@ $("#dataList").LemonCreateTable({
 	       	return tr_data; 
    		}
 	})
-	
-</script>
-
-<script>
-	$(document).on("click", ".removeBtn", function(e) {
-		e.preventDefault();
-		var str = $(this).closest(".roleslist").length ?
-			"角色" : $(this).closest(".sourcelist").length ?
-			"资源" : $(this).closest(".userlist").length ?
-			"用户" : $(this).closest(".recoverlist").length ? "数据库备份" : "";
-		var strFoot = $(this).closest(".tfoot").length ? "这些" : "此";
-		$('#removeModal .modal').modal('show');
-		$.ajax({
-			dataType: "html",
-			url: '${pageContext.request.contextPath}/remove',
-			async: true,
-			success: function(data) {
-				$("#removeModal .modal-body").html(data);
-				if($("#removeModal .modal-body .removeName")) {
-					$("#removeModal .modal-body .removeName").html(strFoot + str);
-				}
-			},
-			error: function(data) {
-				console.log(data);
+	//获取到本地的某条数据 示例代码
+	$(document).on("click", ".roleName", function(e) {
+		var storage_name = $(this).closest('tr').attr('storage_name');
+		var storage_id = $(this).closest('tr').attr('storage_id');
+		console.log(getDataByStorage(storage_name,storage_id));
+	})
+}
+resourceListInit();
+$('.removeBtn').bindDialogs({
+	content : '你确定删除这个用户吗？',
+	success:function(handle){
+		var resourceId = $(handle).closest('tr').attr('resource_id');
+		$.post("${pageContext.request.contextPath}/backend/authority/resource/delete",{
+			id:resourceId,
+		},function(data){
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				resourceListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
 			}
-		});
-
-	});
+		},'json');
+	}
+});
 </script>
 
 <div class="rolelist sourcelist">
@@ -105,10 +103,12 @@ $("#dataList").LemonCreateTable({
 						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
 			        </button>
 			        </span>
-                </div><!-- /input-group -->
+                </div>
+                <!-- /input-group -->
             </form>
         </div>
     </ol>
+    <div class="alertArea"></div>
     <div class="alert alert-danger">
         <i class="glyphicon glyphicon-hand-right"></i>
 
@@ -159,7 +159,7 @@ $("#dataList").LemonCreateTable({
                 <th style="width:1rem">删除</th>
             </tr>
             </thead>
-            <tbody id="dataList">
+            <tbody id="resourceList">
             
             </tbody>
         </table>
