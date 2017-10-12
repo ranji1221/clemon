@@ -45,7 +45,7 @@ function roleListInit(){
    		}
 	})
 	//获取到本地的某条数据 示例代码
-	$(document).on("click", ".roleName", function(e) {
+	$(document).on("click", ".roleName", function() {
 		var storage_name = $(this).closest('tr').attr('storage_name');
 		var storage_id = $(this).closest('tr').attr('storage_id');
 		console.log(getDataByStorage(storage_name,storage_id));
@@ -69,6 +69,11 @@ $('.removeBtn').bindDialogs({
 		},'json');
 	}
 });
+//刷新页面
+$(document).on("click",".renovate",function(){
+	removeStorage();
+	roleListInit();
+})
 </script>
 
 <div class="rolelist roleslist">
@@ -149,7 +154,7 @@ $('.removeBtn').bindDialogs({
 					<img src="${pageContext.request.contextPath}/img/sys/icons4.png" alt="">
 					新建
 				</span>
-				<span>
+				<span class="renovate">
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
