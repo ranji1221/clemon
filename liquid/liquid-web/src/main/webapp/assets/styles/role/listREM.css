@@ -1,4 +1,4 @@
-/*REM布局*/
+/*REM甯冨眬*/
 .rolelist{
 	/*margin:-0.15rem;*/
 	background:rgba(255,255,255,1);
@@ -23,14 +23,14 @@
 }
 .breadcrumb > li + li:before{
 	content:'>';
-	font-family: '宋体';
+	font-family: '瀹嬩綋';
 	color: rgb(153,153,153);
 	font-size:0.18rem;
 }
 .breadcrumb > .active{
 	color:rgb(55,142,248);
 }
-/*搜索*/
+/*鎼滅储*/
 div.nav-search{
 	position:absolute;
 	width:3.25rem;
@@ -242,10 +242,10 @@ div.tfoot .btns span img{
 	height:0.6rem;
 }
 
-/*分页*/
-div.tfoot div.pagination{
+/*鍒嗛〉*/
+div.tfoot .pagination{
 	height:0.22rem;
-	width:5.54rem;
+	width:auto;
 	position: absolute;
 	right:0;
 	bottom:50%;
@@ -253,19 +253,72 @@ div.tfoot div.pagination{
 	background:rgba(0,0,0,0);
 	/*padding-top:0.2px;*/
 }
-div.pagination a.pre{
+.pagination li{
 	float:left;
 	height:0.22rem;
 	width:0.27rem;
 	border-radius: 0.04rem;
 	margin-right:0.08rem;
 	background-color:rgb(55,141,248);
+	
+}
+
+
+.pagination li{
+	background-color:transparent;
+}
+.pagination li:first-child > a{
+	line-height:0.15rem;
+	font-size:0.16rem;
+	color:white;
+}
+.pagination > li > a:hover{
+	border-color:#378DF8;
+	background-color:transparent;
+}
+.pagination li:first-child {
+	background-color:#378DF8;
+}
+.pagination li.active a{
+	background-color:#378DF8;
+}
+.pagination li.active a:hover{
+	background-color:#378DF8;
+}
+.pagination li.disabled{
+	background-color:#378DF8;
+}
+.pagination li.disabled a{
+	background-color:transparent;
+}
+.pagination li a{
+	width:100%;
+	height:100%;
+	color:black;
+	font-size:0.16rem;
+	min-width:0 !important;
+	min-height:0 !important;
+	line-height:0.22rem;
+	padding:0 !important;
+	background-color:transparent;
+}
+.pagination li.next a{
+	line-height:0.15rem;
+}
+.pagination li.next{
+	background-color:#378DF8;
+}
+.pagination li.next a{
+	color:white;
+}
+.pagination li.pre a{
 	background-image:url(/img/sys/pagination-pre.png);
 	background-repeat:  no-repeat;
 	background-position:  center;
 	background-size:cover;
+	
 }
-div.pagination a.page{
+.pagination a.page{
 	float:left;
 	height:0.22rem;
 	width:0.22rem;
@@ -278,18 +331,18 @@ div.pagination a.page{
 	border-radius: 0.02rem;
 	margin-right:0.1rem;
 }
-div.pagination a.page:hover{
+.pagination a.page:hover{
 	border-color:rgb(55,141,248);
 }
-div.pagination a:hover{
+.pagination a:hover{
 	text-decoration: none;
 }
-div.pagination a.active{
+.pagination a.active{
 	background:rgb(55,141,248);
 	color:rgb(255,255,255);
 	border-color:rgb(55,141,248);
 }
-div.pagination a.shot{
+.pagination a.shot{
 	float:left;
 	height:0.24rem;
 	width:0.22rem;
@@ -302,7 +355,7 @@ div.pagination a.shot{
 	color:rgb(0,0,0);
 	font-size: 0.14rem;
 }
-div.pagination a.next{
+.pagination a.next{
 	float:left;
 	height:0.22rem;
 	width:0.27rem;
@@ -316,8 +369,22 @@ div.pagination a.next{
 	background-position:  center;
 	background-size:cover;
 }
-div.pagination span{
+.pagination .gotolist{
+	width:auto !important;
+	display:inline-block;
+}
+
+.pagination .gotolist span:hover{
+	background-color:transparent;
+	color:black;
+}
+.pagination .gotolist span{
 	float:left;
+	border:none;
+	background-color:transparent;
+	min-width:0 !important;
+	min-height:0 !important;
+	padding:0 !important;
 	margin-left:0.05rem;
 	text-align: center;
 	font-size: 0.12rem;
@@ -325,7 +392,7 @@ div.pagination span{
 	height:0.22rem;
 	line-height: 0.22rem;
 }
-div.pagination input{
+.pagination .gotolist  input{
 	float:left;
 	height:0.22rem;
 	width:0.27rem;
@@ -337,7 +404,7 @@ div.pagination input{
 	font-size: 0.12rem;
 	color:rgb(0,0,0);
 }
-div.pagination button.search{
+.pagination .gotolist  button.search{
 	float:left;
 	height:0.22rem;
 	line-height: 0.228rem;
@@ -407,7 +474,7 @@ div.tfoot2 div.pagination{
 	}
 
 }
-/*最大化容器*/
+/*鏈�澶у寲瀹瑰櫒*/
 .maxcontainer {
     position: absolute;
     /*top: 0.59rem;*/
@@ -430,12 +497,12 @@ div.tablewrap table tr td span.leading{
 	font-size:0.29rem;
 	vertical-align: -0.065rem;
 }
-/*查看备注*/
+/*鏌ョ湅澶囨敞*/
 div.tablewrap table tr td.remarks{
 	color:rgb(55,142,248);
 	cursor:pointer;
 }
-/*下边框补齐*/
+/*涓嬭竟妗嗚ˉ榻�*/
 .recoverlist div.tablewrap table{
 	border:solid 0.01rem rgba(215, 215, 215, 1);
 }
