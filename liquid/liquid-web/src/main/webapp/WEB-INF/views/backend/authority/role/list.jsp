@@ -8,6 +8,7 @@
 <script >
 $("#rolesList").LemonCreateTable({
     requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
+    pageClassName:".tfoot",
    	trForm : function(index,value){
 		var Pname = value.rolePName == null ? '无':value.rolePName ;
 		var tr_data = '<tr role_id='+value.id+'>'+
@@ -355,25 +356,7 @@ $("#rolesList").LemonCreateTable({
 					删除
 				</span>
 			</div>
-			<div class="pagination">
-				<button id="btn">按钮</button>
-				<a href="javascript:;" class="pre"></a>
-				<a href="javascript:;" class="page">1</a>
-				<a href="javascript:;" class="page active">2</a>
-				<a href="javascript:;" class="page">3</a>
-				<a href="javascript:;" class="page">4</a>
-				<a href="javascript:;" class="page">5</a>
-				<a href="javascript:;" class="page">6</a>
-				<a href="javascript:;" class="page">7</a>
-				<a href="javascript:;" class="shot">···</a>
-				<a href="javascript:;" class="page">46</a>
-				<a href="javascript:;" class="page">47</a>
-				<a href="javascript:;" class="next"></a>
-				<span>跳转到</span>
-				<input type="text">
-				<span>页</span>
-				<button class="search">GO</button>
-			</div>
+			
 		</div>
 	</div>
 

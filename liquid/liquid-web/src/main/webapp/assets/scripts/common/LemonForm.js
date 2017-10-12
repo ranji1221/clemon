@@ -66,11 +66,19 @@ $(
 				//生成分页
 				$(TableObj.pageClassName).twbsPagination({
 					totalPages : pageNum,
-					visiblePages : 5,
+//					firstClass:"pre",
+//					first:'第一页',
+					visiblePages : 10,
 					onPageClick : function (event, page) {
 						getData(TableObj.requestListUrl,page,false);
+						if(!page){
+							return 
+						}
+						$("<div class='gotolist'><span>跳转到</span><input type='text'><span>页</span><button class='search'>GO</button></div>").appendTo($(TableObj.pageClassName).find(".pagination"))
 					}
-				});
+				})
+//				$("<li class='gotolist'><span>跳转到</span><input type='text'><span>页</span><button class='search'>GO</button></li>").appendTo($(TableObj.pageClassName).find(".pagination"))
+				
 			}
 		}
 	}
