@@ -840,7 +840,7 @@
 			<script src="${pageContext.request.contextPath}/js/raphael/raphael.min.js"></script>
 			<script src="${pageContext.request.contextPath}/js/raphael/morris.js"></script>
 			<script src="${pageContext.request.contextPath}/js/index/index.js"></script>
-			<script src="${pageContext.request.contextPath}/js/common/remove.js"></script>
+			<script src="${pageContext.request.contextPath}/js/common/promptBox.js"></script>
 	</body>
 
 </html>
