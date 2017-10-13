@@ -53,7 +53,7 @@ public class UserDaoTest {
 	@Test
 	public void testAddUser(){
 			User u = new User();
-			u.setUserName("zhangsa");
+			u.setUserName("zhang111sa");
 			u.setUserPass("123456");
 			u.setPhone("13534211234");
 			u.setEmail("15423344@qq.com");
@@ -99,14 +99,14 @@ public class UserDaoTest {
 	}
 	//查询某个用户测试方法
 	@Test
-	public void testFindRole(){
-		User user = userDao.find(2);
+	public void testFindUser(){
+		User user = userDao.find(30000);
 		System.out.println(user.getUserName());
 	}
 	//按用户名查找用户
 	@Test
 	public void testFindUserByUserName(){
-		User user = userDao.findUserByUserName("zhangsan");
+		User user = userDao.findUserByUserName("222");
 		System.out.println(user.getUserName());
 	}
 	//按用户id查找关联角色测试

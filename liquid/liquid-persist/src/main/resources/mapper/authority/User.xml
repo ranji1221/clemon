@@ -77,9 +77,9 @@
 		SELECT
 			r.*
 		FROM
-			lemon_liquid_auth_user u
-		LEFT JOIN lemon_liquid_auth_user_role u_r ON u.id = u_r.userId
-		LEFT JOIN lemon_liquid_auth_role r ON r.id = u_r.roleId
+			lemon_liquid_auth_role r
+		LEFT JOIN lemon_liquid_auth_user_role u_r ON r.id = u_r.roleId
+		LEFT JOIN lemon_liquid_auth_user u ON u.id = u_r.userId
 		WHERE
 			u.id = #{id}
 	</select>

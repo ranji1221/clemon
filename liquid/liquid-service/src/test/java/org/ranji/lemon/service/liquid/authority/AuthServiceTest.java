@@ -44,7 +44,7 @@ public class AuthServiceTest {
 	//查询用户所有角色及父级角色测试
 	@Test
 	public void testFindRolesByUserId(){
-		List<Role> role = authService.findRolesByUserId(1);
+		List<Role> role = authService.findRolesByUserId(2);
 			System.out.println(JsonUtils.objectToJson(role));
 		
 	}
