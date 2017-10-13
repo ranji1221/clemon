@@ -2,10 +2,15 @@ package org.ranji.lemon.resource.jersey.user;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
@@ -69,4 +74,23 @@ public class UserResource {
 		
 		return userJsonData;
 	}
+	
+	@POST
+	@Consumes("application/x-www-form-urlencoded")
+	@Produces("application/json")
+	@Path("/save")
+	public Object saveUser(@FormParam("userName") String userName,@FormParam("userPass") String userPass){
+		
+		User u = new User();
+		u.setUserName(userName);
+		u.setUserPass(userPass);
+		try {
+			userService.save(u);
+		} catch (Exception e) {
+			return Response.ok("{\"access\":\"failure\"}").status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR ).header("Access-Control-Allow-Origin", "*").build();
+		}
+		
+		return Response.ok("{\"id\":"+u.getId()+"}").status(HttpServletResponse.SC_OK).header("Access-Control-Allow-Origin", "*").build();
+	}
+	
 }

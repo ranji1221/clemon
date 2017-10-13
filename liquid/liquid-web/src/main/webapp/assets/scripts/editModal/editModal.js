@@ -4,7 +4,7 @@
 
 $(function() {
 	var editModal = $("#editModal");
-	var editRoleUrl = "backend/authority/role/edit/modal";
+	//var editRoleUrl = "backend/authority/role/edit/modal";
 	var editUserUrl = "backend/authority/user/edit/modal";
 	var editSourceUrl = "backend/authority/resource/edit/modal";
 	var lookRoleUrl = "backend/authority/role/view/modal";
@@ -12,7 +12,7 @@ $(function() {
 	var lookSourceUrl = "backend/authority/resource/view/modal";
 	const maxLimitNum = 10;
 
-	function editRole(this_nid,id) {
+/*	function editRole(this_nid,id) {
 		$.ajax({
 			url: editRoleUrl + "/" + id,
 			async: true,
@@ -115,11 +115,10 @@ $(function() {
 		e.stopPropagation()
 	})
 	$("#editRoleModal").on("shown.bs.modal", function() {
-		console.log(11)
-		var max_role = $(document).find($(this))
-		$(this).on("click",".external-link", function(e) {
+		
+		var max_role = $(this).find(".external-link")
+		max_role.on("click", function(e) {
 			e.preventDefault()
-			console.log(222)
 			e.stopPropagation()
 			$(".modal-backdrop").hide()
 			$("#editRoleModal").appendTo($(".ajax_dom"))
@@ -143,7 +142,7 @@ $(function() {
 	})
 		})
 	});
-
+*/
 	function editUser(this_nid) {
 
 		$.ajax({
@@ -151,7 +150,7 @@ $(function() {
 			dataType: "html",
 			async: true,
 			success: function(data) {
-
+				console.log(data)
 				$("#editUserModal").html(data);
 				$('#editUserModal').modal('show');
 				var input = $("#userName");
