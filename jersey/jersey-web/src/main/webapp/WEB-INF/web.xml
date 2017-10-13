@@ -12,7 +12,7 @@
 			classpath:config/spring-persist.xml
 			classpath:config/spring-service.xml
 			classpath:config/spring-jersey.xml
-			classpath:config/spring-web.xml
+			classpath:config/spring-flowable.xml
 		</param-value>
 	</context-param>
 	

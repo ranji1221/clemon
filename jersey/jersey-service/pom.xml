@@ -16,7 +16,6 @@
 			<version>${project.version}</version>
 		</dependency>
 		
-		
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
