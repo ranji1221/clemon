@@ -3,9 +3,11 @@
  */
 
 $(function(){
-	
 	//确认信息框
 	$.fn.bindDialogs = function(params){
+		$(document).off("click.remove_click","**")
+		$('#removeModal').off("click.success_del",".delBtn")
+		$('#removeModal').off("click.cancel_clo",'.closeBtn')
 		var _this = this;
 		var lastClickElement = '';
 		var defaults = {
@@ -16,9 +18,10 @@ $(function(){
 			cancel:function(){}
 		};
 		var this_obj = $.extend(defaults,params);
-
+		
 		//去 后台 请求数据
-		$(document).on("click",_this.selector, function(e) {
+		$(document).on("click.remove_click",_this.selector, function(e) {
+			$(".remove_alert").detach()
 			lastClickElement = this;
 			e.stopPropagation();
 			e.preventDefault();		
@@ -44,11 +47,11 @@ $(function(){
 			);
 			
 		});
-		$('#removeModal').on("click",'.delBtn', function(e) {
+		$('#removeModal').on("click.success_del",'.delBtn', function(e) {
 			this_obj.success(lastClickElement);
 			hiddenModal();
 		});
-		$('#removeModal').on("click",'.closeBtn', function(e) {
+		$('#removeModal').on("click.cancel_clo",'.closeBtn', function(e) {
 			this_obj.cancel(lastClickElement);
 			hiddenModal();
 		});
@@ -63,16 +66,16 @@ $(function(){
 		var lastClickElement = '';
 		var defaults = {
 			content:'',
-			time:'2',
+			time:'5',
 			type:'success', //有4中状态，1,success(绿色) 2,info(蓝色) 3,warning(黄色) 4,danger(红色)
 		};
 		var this_obj = $.extend(defaults,params);
 		var uid = 'tem_alert_'+parseInt(Math.random()*9999);
-		var div = '<div class="'+uid+' alert alert-'+this_obj.type+' role="alert"><i class="glyphicon glyphicon-hand-right"></i>'+this_obj.content+'</div>';
+		var div = '<div class="remove_alert '+uid+' alert alert-'+this_obj.type+' role="alert"><i class="glyphicon glyphicon-hand-right"></i>'+this_obj.content+'</div>';
 
 		$(div).appendTo(_this.selector);
 		setTimeout(function(){
-			$(_this.selector+' .'+uid).fadeOut(0,function(){
+			$(_this.selector+' .'+uid).fadeOut(2000,function(){
 				$(_this.selector+' .'+uid).remove();
 			})
 		},this_obj.time*1000)

@@ -44,12 +44,6 @@ function roleListInit(){
 	       	return tr_data; 
    		}
 	})
-	//获取到本地的某条数据 示例代码
-	$(document).on("click", ".roleName", function() {
-		var storage_name = $(this).closest('tr').attr('storage_name');
-		var storage_id = $(this).closest('tr').attr('storage_id');
-		console.log(getDataByStorage(storage_name,storage_id));
-	})
 }
 roleListInit();
 $('.removeBtn').bindDialogs({
@@ -73,7 +67,16 @@ $('.removeBtn').bindDialogs({
 $(document).on("click",".renovate",function(){
 	removeStorage();
 	roleListInit();
-})
+});
+//添加编辑事件
+$(document).on("click", ".editRole", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	editRole(data);
+});
 </script>
 
 <div class="rolelist roleslist">
@@ -171,3 +174,5 @@ $(document).on("click",".renovate",function(){
 <div class="maxcontainer">
 	
 </div>
+<!-- 模态框加载  -->
+<%@ include file="editmodal.jsp" %>

@@ -85,10 +85,11 @@
 	</head>
 
 	<body>
+		<div id="bodyModalArea"></div>
 		<!--编辑模态框框部分-->
-		<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
+		<!-- <div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
 			
-		</div>
+		</div> -->
 		<div id="editUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>

@@ -131,53 +131,6 @@ $(function() {
 			})
 		})
 	})
-	//  用户编辑模态框
-	$("#editUserModal").on("shown.bs.modal", function() {
-		var n_id = $(this).find(".modal-content").attr("n_id")
-		var u_str;
-		u_str = localStorage.getItem("this_user" + n_id)
-		if(u_str) {
-			u_str = JSON.parse(u_str)
-			var input_form = $(this).find(".modal-body form :input")
-			setinput(input_form, u_str)
-			$(".wordNum").html(15-$('.bg-grey').val().length)
-		}
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			$("#editUserModal").modal('hide')
-			$.ajax({
-				url: "backend/authority/user/edit/max",
-				dataType: "html"
-			}).done(function(data) {
-				$(".ajax_dom").show()
-				$(".ajax_dom").empty()
-				$(".ajax_dom").html(data)
-				var u_str;
-				u_str = localStorage.getItem("this_user" + n_id)
-				if(u_str) {
-					u_str = JSON.parse(u_str)
-					var input_form = $(".ajax_dom").find(".form_content form :input")
-					setinput(input_form, u_str)
-					$(".form_input").find(".minnum").html(15-$(".form_input").find(".form-control").val().length)
-				}
-				$(".ajax_dom").find(".form_content").attr("n_id", n_id)
-				$(".ajax_dom").find(".hidmission p").attr("n_id", n_id)
-				if($(".input input").val() == 10) {
-
-					$(".add").removeClass("active")
-					$(".reduce").addClass("active")
-				} else if($(".input input").val() == 0) {
-					$(".add").addClass("active")
-					$(".reduce").removeClass("active")
-				} else {
-					$(".add").addClass("active")
-					$(".reduce").addClass("active")
-
-				}
-			})
-		})
-	})
 	//资源查看
 	$("#lookSourceModal").on("shown.bs.modal", function() {
 
@@ -192,57 +145,6 @@ $(function() {
 				$(".ajax_dom").show()
 				$(".ajax_dom").empty()
 				$(".ajax_dom").html(data)
-			})
-		})
-	})
-	//资源编辑模态框
-	$("#editSourceModal").on("shown.bs.modal", function() {
-
-		var n_id = $(this).find(".modal-content").attr("n_id")
-		var u_str;
-		u_str = localStorage.getItem("this_resources" + n_id)
-		if(u_str) {
-			u_str = JSON.parse(u_str)
-			var input_form = $(this).find(".modal-body form :input")
-			setinput(input_form, u_str)
-			$(".wordNum").html(15-$('.bg-grey').val().length)
-		}
-
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			$("#editSourceModal").modal('hide')
-			$.ajax({
-				url: "backend/authority/resource/edit/max",
-				dataType: "html"
-			}).done(function(data) {
-				$(".ajax_dom").show()
-				$(".ajax_dom").empty()
-				$(".ajax_dom").html(data)
-				var u_str;
-				u_str = localStorage.getItem("this_resources" + n_id)
-				if(u_str) {
-					u_str = JSON.parse(u_str)
-					var input_form = $(".ajax_dom").find(".form_content form :input")
-					setinput(input_form, u_str)
-//					$(".form_input").find(".minlimitNum").html($(".form_input").find(".resources_name").val().length)
-					$(".form_input").find(".resources_name").attr('maxlength',$(".form_input").find(".resources_name").val().length)
-				}
-				$(".ajax_dom").find(".form_content").attr("n_id", n_id)
-				$(".ajax_dom").find(".hidmission p").attr("n_id", n_id)
-				if($(".input input").val() == 10) {
-
-					$(".add").removeClass("active")
-					$(".reduce").addClass("active")
-				} else if($(".input input").val() == 0) {
-					$(".add").addClass("active")
-					$(".reduce").removeClass("active")
-				} else {
-					$(".add").addClass("active")
-					$(".reduce").addClass("active")
-
-				}
-
 			})
 		})
 	})
@@ -453,95 +355,30 @@ $(".reportBox").resize(function() {
 	lineChart();
 })
 //面包屑的所有
-$(document).on("click", ".breadcrumb", function(e) {
-	var el = e.target || window.event
-	e.preventDefault()
-	var url = $(el).attr("url")
-	var ajax_dom = $(".ajax_dom")
-	if($(el).attr('data')) {
-		window.location.reload()
-	} else {
-		if(url){
-			$.ajax({
-				url: url + ".html",
-				dataType: "html"
-			}).done(function(data) {
-				ajax_dom.empty()
-				ajax_dom.html(data)
-			})
+
+	
+	$(document).on("click", ".breadcrumb", function(e) {
+		var el = e.target || window.event
+		e.preventDefault()
+		var url = $(el).attr("url")
+		var ajax_dom = $(".ajax_dom")
+		if($(el).attr('data')) {
+			window.location.reload()
+		} else {
+			if(url){
+				$.ajax({
+					url: url + ".html",
+					dataType: "html"
+				}).done(function(data) {
+					ajax_dom.empty()
+					ajax_dom.html(data)
+				})
+			}
 		}
-	}
 
-})
-//设置本地数据
-function ifu_id(uid, nid, form) {
-	switch(uid) {
-		case "1":
-			var form_arr = form.serializeArray()
-			form_arr = JSON.stringify(form_arr)
-			localStorage.setItem("this_resources" + nid, form_arr)
-			break;
-		case "2":
-			var form_arr = form.serializeArray()
-			//			console.log(form_arr)
-			form_arr = JSON.stringify(form_arr)
-			localStorage.setItem("this_role" + nid, form_arr)
-			break;
-		case "3":
-			var form_arr = form.serializeArray()
-			//			console.log(form_arr)
-			form_arr = JSON.stringify(form_arr)
-			localStorage.setItem("this_user" + nid, form_arr)
-			break;
-		case "4":
-			var form_arr = form.serializeArray()
+	})
 
-			form_arr = JSON.stringify(form_arr)
-			localStorage.setItem("this_bulkadd" + nid, form_arr)
-			break;
-		case "5":
-			var form_arr = form.serializeArray()
-			form_arr = JSON.stringify(form_arr)
-			localStorage.setItem("this_database", form_arr)
-			break;
-	}
-}
-//最小化按钮本地存储
-$(document).on("click", ".dom_minimize", function() {
 
-	var form = $(this).closest(".container-fluid").find(".form_content form")
-	var u_id = $(this).closest(".container-fluid").find(".form_content").attr("u_id")
-	var n_id = $(this).closest(".container-fluid").find(".form_content").attr("n_id")
-	ifu_id(u_id, n_id, form)
-	getdom_module($(this))
-})
-//编辑页点击最大化
-$(document).on("click", ".blue_border", function(e) {
-	e.preventDefault()
-	var form = $(this).closest(".container-fluid").find(".form_content form")
-	var u_id = $(this).closest(".container-fluid").find(".form_content").attr("u_id")
-	var n_id = $(this).closest(".container-fluid").find(".form_content").attr("n_id")
-	ifu_id(u_id, n_id, form)
-
-	//	console.log(form,u_id,n_id)
-})
-//模态框点击最大化
-//$(document).on("click", ".external-link", function() {
-//	var form = $(this).closest(".modal-content").find(".modal-body form")
-//	var u_id = $(this).closest(".modal-content").attr("u_id")
-//	var n_id = $(this).closest(".modal-content").attr("n_id")
-//	ifu_id(u_id, n_id, form)
-//	$(this).closest(".modal").find("input").val(" ")
-//	//	console.log($(this).closest(".modal").find("input").val(" "))
-//})
-//模态框最小化按钮本地存储
-$(document).on("click", ".module_minimize", function() {
-	var form = $(this).closest(".modal-content").find(".modal-body form")
-	var u_id = $(this).closest(".modal-content").attr("u_id")
-	var n_id = $(this).closest(".modal-content").attr("n_id")
-	ifu_id(u_id, n_id, form)
-	getdom_module($(this))
-})
 
 function getdom_module(this_dom) {
 	$(".ajax_dom").empty().hide()
@@ -552,86 +389,6 @@ function getdom_module(this_dom) {
 }
 $(document).on("click", function() {
 	$(".mission").hide()
-})
-//缩小后需要放大的按钮
-
-$(".mission ol").on("click", "li", function(e) {
-	$(this).detach()
-	var u_id = $(this).find("p").attr("u_id")
-	var n_id = $(this).find("p").attr("n_id")
-	var u_str;
-	switch(u_id) {
-		case "1":
-			u_str = localStorage.getItem("this_resources" + n_id)
-			u_str = JSON.parse(u_str)
-			break;
-		case "2":
-			u_str = localStorage.getItem("this_role" + n_id)
-			u_str = JSON.parse(u_str)
-			break;
-		case "3":
-			u_str = localStorage.getItem("this_user" + n_id)
-			u_str = JSON.parse(u_str)
-			break;
-		case "4":
-			u_str = localStorage.getItem("this_bulkadd" + n_id)
-			u_str = JSON.parse(u_str)
-			break;
-		case "5":
-			u_str = localStorage.getItem("this_database")
-			u_str = JSON.parse(u_str)
-			break;
-
-	}
-	if($(this).find("p").attr("url")) {
-		var url = $(this).find("p").attr("url")
-		$(".ajax_dom").show()
-		$.ajax({
-			url: url + ".html",
-			dataType: "html"
-		}).done(function(data) {
-			$(".ajax_dom").empty()
-			$(".ajax_dom").html(data)
-			$(".ajax_dom").find(".hidmission p").attr("n_id", n_id)
-			$(".ajax_dom").find(".form_content").attr("n_id", n_id)
-			var input_form = $(".ajax_dom").find(".form_content form :input")
-			setinput(input_form, u_str)
-			if($(".input input").val() == 10) {
-
-				$(".add").removeClass("active")
-				$(".reduce").addClass("active")
-			} else if($(".input input").val() == 0) {
-				$(".add").addClass("active")
-				$(".reduce").removeClass("active")
-			} else {
-				$(".add").addClass("active")
-				$(".reduce").addClass("active")
-
-			}
-		})
-	} else {
-		//		var u_modul = $(this).find("p").attr("class")
-		//		u_modul = u_modul + "Modal"
-		//		if(u_modul == "editRoleModal" || u_modul == "editUserModal" || u_modul == "editSourceModal") {
-		//			//编辑模态框
-		//			$("#editRoleModal").on("shown.bs.modal", function() {
-		//				var input_form = $("#" + u_modul).find(".modal-body form :input")
-		////				setinput(input_form, u_str)
-		//			})
-		//			//  用户编辑模态框
-		//			$("#editUserModal").on("shown.bs.modal", function() {
-		//				var input_form = $("#" + u_modul).find(".modal-body form :input")
-		////				setinput(input_form, u_str)
-		//			})
-		//			//资源编辑模态框
-		//			$("#editSourceModal").on("shown.bs.modal", function() {
-		//				var input_form = $("#" + u_modul).find(".modal-body form :input")
-		////				setinput(input_form, u_str)
-		//			})
-		//			//			setinput(input_form,u_str)
-		//		}
-
-	}
 })
 
 //添加内容的
