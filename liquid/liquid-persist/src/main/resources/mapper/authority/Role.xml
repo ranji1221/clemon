@@ -3,27 +3,27 @@
 <mapper namespace="org.ranji.lemon.model.liquid.authority.Role">
 	<!-- 存储某个角色 -->
 	<insert id="save" parameterType="Role" keyProperty="id" useGeneratedKeys="true">
-		insert into lemon_auth_role (roleName, displayName,roleExtendPId,roleRelyId,roleMaxNum,remarks) values (#{roleName},#{displayName}, #{roleExtendPId}, #{roleRelyId},#{roleMaxNum},#{remarks})
+		insert into lemon_liquid_auth_role (roleName, displayName,roleExtendPId,roleRelyId,roleMaxNum,remarks) values (#{roleName},#{displayName}, #{roleExtendPId}, #{roleRelyId},#{roleMaxNum},#{remarks})
 	</insert>
 	
 	<!-- 存储某个角色和操作的对应关系 -->
 	<insert id="saveRoleAndOperationRelation" parameterType="Map" keyProperty="id" useGeneratedKeys="true">
-		insert into lemon_auth_role_operation (roleId, operationId) values (#{roleId}, #{operationId})
+		insert into lemon_liquid_auth_role_operation (roleId, operationId) values (#{roleId}, #{operationId})
 	</insert>
 	
 	<!-- 删除某个角色 -->
 	<delete id="delete" parameterType="int" >
-		delete from lemon_auth_role where id = #{id}
+		delete from lemon_liquid_auth_role where id = #{id}
 	</delete>
 	
 	<!-- 删除角色和操作的对应关系 -->
 	<delete id="deleteRoleAndOperationRelation" parameterType="Map">
-		delete from lemon_auth_role_operation where roleId = #{roleId} and operationId = #{operationId}
+		delete from lemon_liquid_auth_role_operation where roleId = #{roleId} and operationId = #{operationId}
 	</delete>
 	
 	<!-- 根据角色id删除角色和操作的对应关系 -->
 	<delete id="deleteRoleAndOperationsRelationByRoleId" parameterType="int">
-		delete from lemon_auth_role_operation where roleId = #{roleId}
+		delete from lemon_liquid_auth_role_operation where roleId = #{roleId}
 	</delete>
 	
 	<!-- 查询某个角色 -->
@@ -31,21 +31,21 @@
 		SELECT
 			r.*,pr.roleName rolePName,rr.roleName roleRelyName
 		FROM
-			lemon_auth_role r
-		LEFT JOIN lemon_auth_role pr ON r.roleExtendPId = pr.id
-		LEFT JOIN lemon_auth_role rr ON r.roleRelyId = rr.id 
+			lemon_liquid_auth_role r
+		LEFT JOIN lemon_liquid_auth_role pr ON r.roleExtendPId = pr.id
+		LEFT JOIN lemon_liquid_auth_role rr ON r.roleRelyId = rr.id 
 		where r.id = #{id}
 	</select>
 	
 	<!-- 查询全部角色 -->
 	<select id="findAll" resultType="Role" parameterType="Map">
-		select * from lemon_auth_role
+		select * from lemon_liquid_auth_role
 		<include refid="paramsSQL"/>
 	</select>
 	
 	<!-- 根据角色id查询角色和操作的对应关系 -->
 	<select id="findRoleAndOperationsRelationByRoleId" parameterType="int" resultType="Integer">
-		select operationId from lemon_auth_role_operation where roleId = #{roleId}
+		select operationId from lemon_liquid_auth_role_operation where roleId = #{roleId}
 	</select>
 	
 	<!-- 根据角色id查询角色和操作的对应关系 -->
@@ -53,16 +53,16 @@
 		SELECT
 			o.*
 		FROM
-			lemon_auth_role r
-		LEFT JOIN lemon_auth_role_operation r_o ON r.id = r_o.roleId
-		LEFT JOIN lemon_auth_operation o ON o.id = r_o.operationId
+			lemon_liquid_auth_role r
+		LEFT JOIN lemon_liquid_auth_role_operation r_o ON r.id = r_o.roleId
+		LEFT JOIN lemon_liquid_auth_operation o ON o.id = r_o.operationId
 		WHERE
 			r.id = #{roleId}
 	</select>
 	
 	<!-- 修个某个角色 -->
 	<update id="update" parameterType="Role">
-		update lemon_auth_role
+		update lemon_liquid_auth_role
 		<set>
 			<if test="roleName != null and roleName != ''">roleName = #{roleName},</if>
 			<if test="displayName != null and displayName != ''">displayName = #{displayName},</if>
@@ -79,16 +79,16 @@
 		SELECT
 			r.*,pr.roleName rolePName,rr.roleName roleRelyName
 		FROM
-			lemon_auth_role r
-		LEFT JOIN lemon_auth_role pr ON r.roleExtendPId = pr.id
-		LEFT JOIN lemon_auth_role rr ON r.roleRelyId = rr.id
+			lemon_liquid_auth_role r
+		LEFT JOIN lemon_liquid_auth_role pr ON r.roleExtendPId = pr.id
+		LEFT JOIN lemon_liquid_auth_role rr ON r.roleRelyId = rr.id
 		<include refid="paramsSQL" />
 		limit #{offset}, #{limit}
 	</select>
 	
 	<!-- 查找角色总数 -->
 	<select id="getTotalOfItems" parameterType="Map" resultType="int">
-		select count(*) from lemon_auth_role 
+		select count(*) from lemon_liquid_auth_role 
 		<include refid="paramsSQL" />
 	</select>
 	
