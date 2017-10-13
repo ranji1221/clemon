@@ -115,10 +115,11 @@ $(function() {
 		e.stopPropagation()
 	})
 	$("#editRoleModal").on("shown.bs.modal", function() {
-		
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
+		console.log(11)
+		var max_role = $(document).find($(this))
+		$(this).on("click",".external-link", function(e) {
 			e.preventDefault()
+			console.log(222)
 			e.stopPropagation()
 			$(".modal-backdrop").hide()
 			$("#editRoleModal").appendTo($(".ajax_dom"))
