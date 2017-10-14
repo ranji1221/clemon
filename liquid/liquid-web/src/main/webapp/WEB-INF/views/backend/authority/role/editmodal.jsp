@@ -1,5 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+
 <script type="text/javascript">
 $(function(){
 	//将编辑角色模态框加入到body中id为bodyModalArea的div中
@@ -76,8 +79,38 @@ $(function(){
 			var inputlimitNum = parseInt($(".numCtr input").val());
 			judge(inputlimitNum);
 		});
+		console.log(data)
 		$("[name='remarks']").val(data.remarks);
+		
+		createRoleList(data.roleExtendPId);
+		
 		$('#editRoleModal').modal('show');
+	}
+	function createRoleList(thisRoleExtendPId){
+		console.log(thisRoleExtendPId);
+		$('#sourceType').LemonGetList({
+			requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
+			generateItemFun:function(index,value){
+				var kongge_str = '';
+				for(var i=0;i<value.level;i++){
+					kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				}
+				kongge_str += '|-';
+				
+				var itemHtml = '';
+				var ex_str = '';
+				if(thisRoleExtendPId == -1) ex_str = ' selected ';
+				if(index == 0 ){ itemHtml += '<option value="0" '+ex_str+'>选择父级角色</option>';}
+				itemHtml += '<option  name="'+value.id+'" ';
+				if(value.id == thisRoleExtendPId) itemHtml += ' selected ';
+				itemHtml += ' >'+kongge_str+value.roleName+'</option>';
+				return itemHtml;
+			},
+			getListDataByResponseDataFun:function(data){
+				data = getListByData(data)
+				return data;
+			}
+		})
 	}
 	$("#editRoleModal").on("click","*:not('.pull-right *')",function(e){
 		e.stopPropagation()
@@ -253,8 +286,8 @@ $(function(){
 							<label for="roleName" class=" control-label"><span class="dot">·</span>角色名称：</label>
 						</div>
 						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
-							<input type="hidden"  value="${role.id}" name="id" id="roleId">
-							<input type="text" class="form-control bg-grey2  form_input" value="${role.roleName}" name="roleName" id="roleName" placeholder="请输入角色名称">
+							<input type="hidden" name="id" id="roleId">
+							<input type="text" class="form-control bg-grey2  form_input" name="roleName" id="roleName" placeholder="请输入角色名称">
 							<span class="minlimitNum">15</span>
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
@@ -285,11 +318,6 @@ $(function(){
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
 								<select name="fath" data-toggle="select" class=" form-control" id="sourceType">
-									<option value="0" disabled="disabled">选择父级角色</option>
-									<c:forEach items="${roleList}" var = "roleList">
-										<option value="${roleList.id }" name="roleExtendPId" <c:if test="${roleList.id == role.roleExtendPId}">selected</c:if>>${roleList.roleName}</option>
-									</c:forEach>
-									
 								</select>
 							</div>
 						</div>
@@ -318,7 +346,7 @@ $(function(){
 						</div>
 						<div class="col-xs-2 row-lg-h numCtr">
 							<a href="" class=" icon-minus text-center reduce"></a>
-							<input readonly class="form-control" id="limitNum" name="roleMaxNum" type="text" value="${role.roleMaxNum}" />
+							<input readonly class="form-control" id="limitNum" name="roleMaxNum" type="text"/>
 							<a href="" class="icon-plus text-center add active"></a>
 						</div>
 					</div>
@@ -328,7 +356,7 @@ $(function(){
 	                <span class="dot">·</span>备注：</label>
 						</div>
 						<div class="col-xs-9 col-sm-10 textarea-h">
-							<textarea name="remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注">${role.remarks}</textarea>
+							<textarea name="remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>
@@ -347,3 +375,5 @@ $(function(){
 		</div>
 	</div>
 </div>
+<script>
+</script>

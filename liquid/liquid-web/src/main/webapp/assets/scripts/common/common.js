@@ -46,5 +46,25 @@
 		}else{
 			return null;
 		}
+	}
+	//树转数组，（入口方法）
+	function getListByData(tree){
+		var listData = [];
+		return treeToList(tree,listData,0);
 		
+	}
+	//树转数组
+	function treeToList(tree,listData,level){
+		for(var i=0; i<tree.length;i++){
+			var tem_childern_data = tree[i].list;
+			tem_tree = tree[i];
+			tem_tree.list = {};
+			tem_tree.level = level;
+			listData.push(tem_tree);
+			if(tem_childern_data.length > 0){
+				treeToList(tem_childern_data,listData,level+1);
+			}
+			
+		}
+		return listData;
 	}

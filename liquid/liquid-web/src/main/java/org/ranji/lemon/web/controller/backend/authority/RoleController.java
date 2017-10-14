@@ -63,6 +63,18 @@ public class RoleController {
 		//return "backend/authority/role/rolelist";
 	}
 	
+	@RequestMapping(value = "/listAll")
+	@SystemControllerLog(description="权限管理-角色全部列表")
+	@ResponseBody
+	public List<Role> listAllRole(HttpSession session) {
+		List <Role> roleList = roleService.findRoleTree();
+		//session.setAttribute("roleList", JsonUtils.objectToJson(roleList));
+		//session.setAttribute("roleList", roleList);
+		return roleList;
+		//session.setAttribute("roleList", roleList); //页面
+		//return "backend/authority/role/rolelist";
+	}
+	
 	//@SystemControllerPermission("role:list")
 	@SystemControllerLog(description="权限管理-角色列表")
 	@RequestMapping(value = "/data")
