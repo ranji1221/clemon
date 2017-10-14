@@ -150,13 +150,9 @@ $(function() {
 			dataType: "html",
 			async: true,
 			success: function(data) {
-				console.log(data)
 				$("#editUserModal").html(data);
-				$('#editUserModal').modal('show');
-				var input = $("#userName");
-				limitChangeLength(input, 15);
-				$(".modal-content").attr("n_id", $(this_nid).attr("n_id"));
-				$(".modal-content .editUser").attr("n_id", $(this_nid).attr("n_id"));
+				// 添加id
+				$('#editUserModal .hidmission p').html('用户编辑'+this_nid);
 			},
 			error: function(data) {
 				console.log(data);
@@ -165,8 +161,13 @@ $(function() {
 	}
 	$(document).on("click", ".editUser", function(e) {
 		e.preventDefault();
-		
-		editUser($(this));
+		$('#editUserModal').modal('show');
+		if($(this).attr('mintype')==1){
+			return
+		}else{
+			var editUser_id=$(this).closest('tr').attr('listid');
+			editUser(editUser_id);
+		}
 	});
 
 	function editSource(this_nid) {
@@ -195,11 +196,12 @@ $(function() {
 	function lookRoleModal(id) {
 		$.ajax({
 			dataType: "html",
-			url: lookRoleUrl+'/'+ id,
+			url: lookRoleUrl+'/'+ id,	
 			async: true,
 			success: function(data) {
+
 				$("#lookRoleModal").html(data);
-				$('#lookRoleModal').modal('show');
+				$('#lookRoleModal .hidmission p').html('查看角色'+id);
 			},
 			error: function(data) {
 				console.log(data);
@@ -209,18 +211,23 @@ $(function() {
 
 	$(document).on("click", ".lookRole", function(e) {
 		e.preventDefault();
-		 var id = $(this).closest("tr").attr("role_id")
-		lookRoleModal(id);
+		$('#lookRoleModal').modal('show');
+		if($(this).attr('mintype')==1){
+			return
+		}else{
+			var lookRole_id=$(this).closest('tr').attr('listid');
+			lookRoleModal(lookRole_id);
+		}
 	});
 
-	function lookUserModal() {
+	function lookUserModal(id) {
 		$.ajax({
 			dataType: "html",
 			url: lookUserUrl,
 			async: true,
 			success: function(data) {
 				$("#lookUserModal").html(data);
-				$('#lookUserModal').modal('show');
+				$('#lookUserModal .hidmission p').html('查看用户'+id);
 			},
 			error: function(data) {
 				if(data.status==404){
@@ -234,19 +241,25 @@ $(function() {
 
 	$(document).on("click", ".lookUser", function(e) {
 		e.preventDefault();
-		
-		lookUserModal();
+		$('#lookUserModal').modal('show');
+		if($(this).attr('mintype')==1){
+			return
+		}else{
+			var lookUser_id=$(this).closest('tr').attr('listid');
+			lookUserModal(lookUser_id);
+		}
 	});
 
-	function lookSourceModal() {
+	function lookSourceModal(id) {
 		$.ajax({
 			dataType: "html",
 			url: lookSourceUrl,
 			async: true,
 			success: function(data) {
 
+
 				$("#lookSourceModal").html(data);
-				$('#lookSourceModal').modal('show');
+				$('#lookSourceModal .hidmission p').html('查看资源'+id);
 			},
 			error: function(data) {
 				console.log(data);
@@ -256,27 +269,32 @@ $(function() {
 
 	$(document).on("click", ".lookSource", function(e) {
 		e.preventDefault();
-		
-		lookSourceModal();
+		$('#lookSourceModal').modal('show');
+		if($(this).attr('mintype')==1){
+			return
+		}else{
+			var lookSource_id=$(this).closest('tr').attr('listid');
+			lookSourceModal(lookSource_id);
+		}
 	});
 	// 用户授权模态框的调用
-	$(document).on('click', '.user-aut', function() {
-		$.ajaxSetup({
-			cache: false
-		});
-		$('#user-authorization .modal-content').html('');
-		$('#user-authorization .modal-content').load('backend/authority/user/auth/modal')
-		$('#user-authorization').modal('show');
-	})
-	// 角色授权模态框的调用
-	$(document).on('click', '.role-aut', function() {
-		$.ajaxSetup({
-			cache: false
-		});
-		$('#role-authorization .modal-content').html('');
-		$('#role-authorization .modal-content').load('backend/authority/role/auth/modal')
-		$('#role-authorization').modal('show');
-	})
+//	$(document).on('click', '.user-aut', function() {
+//		$.ajaxSetup({
+//			cache: false
+//		});
+//		$('#user-authorization .modal-content').html('');
+//		$('#user-authorization .modal-content').load('backend/authority/user/auth/modal')
+//		$('#user-authorization').modal('show');
+//	})
+//	// 角色授权模态框的调用
+//	$(document).on('click', '.role-aut', function() {
+//		$.ajaxSetup({
+//			cache: false
+//		});
+//		$('#role-authorization .modal-content').html('');
+//		$('#role-authorization .modal-content').load('backend/authority/role/auth/modal')
+//		$('#role-authorization').modal('show');
+//	})
 });
 //限制输入字符
 function limitChangeLength(elm, limitLength) {

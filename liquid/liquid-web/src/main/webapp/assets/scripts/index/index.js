@@ -97,57 +97,57 @@ $(function() {
 		$(this).closest(".panel").remove();
 	});
 	//问题一：关闭一行时有空行
-	//角色模态框
-	$("#lookRoleModal").on("shown.bs.modal", function(e) {
-		var max_role = $(this).find(".external-link")
-		$(this).on("click",".external-link", function(e) {
-			
-			e.preventDefault()
-			$(".ajax_dom").show()
-			$("#lookRoleModal").modal('hide')
-			$.ajax({
-				url: "backend/authority/role/view/max/" + $("#roleId").val(),
-				dataType: "html"
-			}).done(function(data) {
-				$(".ajax_dom").show()
-				$(".ajax_dom").empty()
-				$(".ajax_dom").html(data)
-			})
-		})
-	})
-	//	用户查看
-	$("#lookUserModal").on("shown.bs.modal", function() {
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			$("#lookUserModal").modal('hide')
-			$.ajax({
-				url: "backend/authority/user/view/max",
-				dataType: "html"
-			}).done(function(data) {
-				$(".ajax_dom").show()
-				$(".ajax_dom").empty()
-				$(".ajax_dom").html(data)
-			})
-		})
-	})
-	//资源查看
-	$("#lookSourceModal").on("shown.bs.modal", function() {
-
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			$("#lookSourceModal").modal('hide')
-			$.ajax({
-				url: "backend/authority/resource/view/max",
-				dataType: "html"
-			}).done(function(data) {
-				$(".ajax_dom").show()
-				$(".ajax_dom").empty()
-				$(".ajax_dom").html(data)
-			})
-		})
-	})
+//	//角色模态框
+//	$("#lookRoleModal").on("shown.bs.modal", function(e) {
+//		var max_role = $(this).find(".external-link")
+//		$(this).on("click",".external-link", function(e) {
+//			
+//			e.preventDefault()
+//			$(".ajax_dom").show()
+//			$("#lookRoleModal").modal('hide')
+//			$.ajax({
+//				url: "backend/authority/role/view/max/" + $("#roleId").val(),
+//				dataType: "html"
+//			}).done(function(data) {
+//				$(".ajax_dom").show()
+//				$(".ajax_dom").empty()
+//				$(".ajax_dom").html(data)
+//			})
+//		})
+//	})
+//	//	用户查看
+//	$("#lookUserModal").on("shown.bs.modal", function() {
+//		var max_role = $(this).find(".external-link")
+//		max_role.on("click", function(e) {
+//			e.preventDefault()
+//			$("#lookUserModal").modal('hide')
+//			$.ajax({
+//				url: "backend/authority/user/view/max",
+//				dataType: "html"
+//			}).done(function(data) {
+//				$(".ajax_dom").show()
+//				$(".ajax_dom").empty()
+//				$(".ajax_dom").html(data)
+//			})
+//		})
+//	})
+//	//资源查看
+//	$("#lookSourceModal").on("shown.bs.modal", function() {
+//
+//		var max_role = $(this).find(".external-link")
+//		max_role.on("click", function(e) {
+//			e.preventDefault()
+//			$("#lookSourceModal").modal('hide')
+//			$.ajax({
+//				url: "backend/authority/resource/view/max",
+//				dataType: "html"
+//			}).done(function(data) {
+//				$(".ajax_dom").show()
+//				$(".ajax_dom").empty()
+//				$(".ajax_dom").html(data)
+//			})
+//		})
+//	})
 });
 
 function pieChart() {
@@ -379,14 +379,70 @@ $(".reportBox").resize(function() {
 	})
 
 
-
+//模态框最小化按钮
+$(document).on("click", ".module_minimize", function() {
+	console.log(111)
+	getdom_module($(this))
+})
+//最小化按钮本地存储
+$(document).on("click", ".dom_minimize", function() {
+	getdom_module($(this))
+})
 function getdom_module(this_dom) {
 	$(".ajax_dom").empty().hide()
 	var dom_modul = this_dom.find(".hidmission").html()
 	var url = this_dom.find(".hidmission p").attr("class")
-	$("<li class="+url+">" + dom_modul + "</li>").appendTo($(".mission ol"))
+	$("<li class="+url+">" + dom_modul + "</li>").prependTo($(".mission ol"))
 
 }
+$(".mission ol").on("click", "li", function(e) {
+	var minindex = $(this).index('.mission ol li')
+	$(this).detach()
+	var minboxitem = $('.minbox').find('.modal-contentbox').eq(minindex) //点击的li对应的隐藏盒子
+	var mintype = $(this).find("p").attr("mintype") //mintype,1是模态框2是可放大页面,3纯页面
+	var modaltype = $(this).find("p").prop("class") //modaltype,确定调用哪个模态框
+	if(mintype == '3') {
+		minboxitem.appendTo($(".ajax_dom"))
+		$(".ajax_dom").show(0);
+	} else if(mintype == '2') {
+		minboxitem.appendTo($(".ajax_dom"))
+		$(".ajax_dom").show(0);
+	} else {
+		switch(modaltype) {
+			case "role-aut":
+				$('#role-authorization .modal-content').html('');
+				minboxitem.appendTo($('#role-authorization .modal-content'))
+				$('#role-authorization').modal('show');
+				break;
+			case "user-aut":
+				$('#user-authorization .modal-content').html('');
+				minboxitem.appendTo($('#user-authorization .modal-content'))
+				$('#user-authorization').modal('show');
+				break;
+			case "editUser":
+				$('#editUserModal').html('');
+				minboxitem.appendTo($('#editUserModal'))
+				$('#editUserModal').modal('show');
+				break;
+			case "lookUser":
+				$('#lookUserModal').html('');
+				minboxitem.appendTo($('#lookUserModal'))
+				$('#lookUserModal').modal('show');
+				break;
+			case "lookRole":
+				$('#lookRoleModal').html('');
+				minboxitem.appendTo($('#lookRoleModal'))
+				$('#lookRoleModal').modal('show');
+				break;
+			case "lookSource":
+				$('#lookSourceModal').html('');
+				minboxitem.appendTo($('#lookSourceModal'))
+				$('#lookSourceModal').modal('show');
+				break;
+
+		}
+	}
+})
 $(document).on("click", function() {
 	$(".mission").hide()
 })

@@ -1,4 +1,4 @@
-/*主框架切分布局*/
+/*涓绘鏋跺垏鍒嗗竷灞�*/
 html{
 	font-size:100px;
 }
@@ -54,6 +54,31 @@ div.main-container{
 .right-container .ajax_dom .breadcrumb_margin{
 	margin:0;
 }
+.right-container >.loading_ajax_dom{
+	width:100%;
+	position:absolute;
+	z-index: 12;
+	/*padding:0 0.2rem;*/
+	height:100%;
+	/*min-height:100%;*/
+	display:none;
+	background-color:white;
+	text-align: center;
+}
+@media (min-width:1500px){
+	.right-container >.loading_ajax_dom{
+		padding-top:1.3rem;
+	}
+}
+.right-container >.loading_ajax_dom >img{
+	display: block;
+	margin:auto;
+}
+.right-container >.loading_ajax_dom >i{
+	margin:2.2rem auto;
+	font-size:1.5rem;
+	color:rgba(111,111,111,1);
+}
 aside.min +.right-container {
 	margin-left:1rem;
 
@@ -71,7 +96,7 @@ aside.min +.right-container {
 	}
 }
 
-/*侧面可滑动导航菜单*/
+/*渚ч潰鍙粦鍔ㄥ鑸彍鍗�*/
 
 aside.left-menu{
 	min-height:100%;
@@ -150,7 +175,7 @@ aside.left-menu >div.user .userinfo p{
 	width:100%;
 	padding-left:10px;
 }*/
-/*另一种定位*/
+/*鍙︿竴绉嶅畾浣�*/
 div.slidenav{
 	/*position:absolute;*/
 	padding-left:0.1rem;
@@ -163,7 +188,7 @@ div.slidenav{
 	/*overflow-x: visible;
 	overflow-y: auto;*/
 }
-/*一层*/
+/*涓�灞�*/
 div.slidenav >ul{
 	width:100%;
 	height:auto;
@@ -290,7 +315,7 @@ div.slidenav >ul >li.active >.rightborder{
 div.slidenav >ul >li.active >.rightarrow{
 	display: block;
 }
-/*二层*/
+/*浜屽眰*/
 div.slidenav >ul >li +ul{
 	width:100%;
 	height:auto;
@@ -349,7 +374,7 @@ div.slidenav >ul >li +ul >li.active >.icon-slidenav{
 div.slidenav >ul >li +ul >li.active >span{
 	transform: rotate(90deg);
 }
-/*第三层*/
+/*绗笁灞�*/
 div.slidenav >ul >li +ul >li +ul{
 	width:100%;
 	height:auto;
@@ -414,7 +439,7 @@ div.slidenav >ul >li +ul >li +ul >li >div.hoverline{
 div.slidenav >ul >li +ul >li +ul >li:hover >div.hoverline{
 	display: block;
 }
-/*底下三个按钮*/
+/*搴曚笅涓変釜鎸夐挳*/
 aside.left-menu >ul.btns{
 	width:100%;
 	/*width:0.9rem;*/
