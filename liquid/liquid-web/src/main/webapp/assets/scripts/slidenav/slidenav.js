@@ -69,7 +69,7 @@ $(function(){
 			}
 		}
 	})
-	$(document).on('click.maxheight',function(){
+	$(document).on('click.maxheight',".left-menu li",function(){
 			// var height_right=$('.right-container').outerHeight(true)>$('.ajax_dom').outerHeight(true)?$('.right-container').outerHeight(true):$('.ajax_dom').outerHeight(true);
 			var height_left=$('.left-menu').outerHeight(true);
 			// var height_main=height_right>height_left?height_right:height_left;

@@ -4,11 +4,11 @@
 <script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
 
 <script >
 function roleListInit(){
-	$("#rolesList").LemonCreateTable({
+	$("#rolesList").LemonGetList({
 		usePage: true,
 		useCheckBox: true,
 		useLocalStorage: true,
