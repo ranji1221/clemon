@@ -982,6 +982,7 @@ textarea {
 	padding:0;
 	border-radius:0;
 	box-shadow: none;
+	border:none;
 }
 .ajax_dom .modal-contentbox .modal-header{
 	display: none;

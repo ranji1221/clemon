@@ -223,7 +223,7 @@
 						<div class="modal-header">
 							<div class="pull-right">
 								<a href="javascript:;" class="remove" data-dismiss="modal">
-									<img src="./assets/images/sys/modal1.png" alt="" />
+									<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 								</a>
 							</div>
 							<div class="modal-title">
@@ -234,7 +234,7 @@
 							<div class="row">
 								<div class="col-xs-4">
 									<div class="trashImg text-right">
-										<img src="assets/images/power/powerModal.png" alt="">
+										<img src="${pageContext.request.contextPath}/img/power/powerModal.png" alt="">
 
 									</div>
 								</div>
