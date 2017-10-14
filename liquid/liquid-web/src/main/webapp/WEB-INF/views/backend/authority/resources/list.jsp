@@ -82,6 +82,11 @@ $('.removeBtn').bindDialogs({
 		},'json');
 	}
 });
+//刷新页面
+$(document).on("click",".renovate",function(){
+	removeStorage();
+	roleListInit();
+})
 </script>
 
 <div class="rolelist sourcelist">
@@ -169,7 +174,7 @@ $('.removeBtn').bindDialogs({
 					<img src="${pageContext.request.contextPath}/img/sys/icons4.png" alt="">
 					新建
 				</span>
-                <span>
+                <span class="renovate">
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
