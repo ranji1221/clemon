@@ -6,7 +6,6 @@
 	<shiro:hasPermission name="user:delete">  
 	<li> <a href="${pageContext.request.contextPath}/backend/authority/user/deleteuser">删除用户</a></li>
 	</shiro:hasPermission>   
-<<<<<<< HEAD
 </ul> --%>
 <!DOCTYPE html>
 <!--1、指定语言基础-->
