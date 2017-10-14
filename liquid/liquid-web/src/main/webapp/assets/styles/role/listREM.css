@@ -243,7 +243,7 @@ div.tfoot .btns span img{
 }
 
 /*鍒嗛〉*/
-div.tfoot .pagination{
+div.tfoot .simple-pagination{
 	height:0.22rem;
 	width:auto;
 	position: absolute;
@@ -253,7 +253,7 @@ div.tfoot .pagination{
 	background:rgba(0,0,0,0);
 	/*padding-top:0.2px;*/
 }
-.pagination li{
+.simple-pagination li{
 	float:left;
 	height:0.22rem;
 	width:0.27rem;
@@ -264,61 +264,98 @@ div.tfoot .pagination{
 }
 
 
-.pagination li{
+.simple-pagination li{
+
+	border:1px solid #ccc;
 	background-color:transparent;
 }
-.pagination li:first-child > a{
-	line-height:0.15rem;
+.simple-pagination li.active{
+	background-color:#378DF8
+}
+.simple-pagination li:first-child > a{
+	line-height:0.18rem;
 	font-size:0.16rem;
-	color:white;
-}
-.pagination > li > a:hover{
-	border-color:#378DF8;
-	background-color:transparent;
-}
-.pagination li:first-child {
-	background-color:#378DF8;
-}
-.pagination li.active a{
-	background-color:#378DF8;
-}
-.pagination li.active a:hover{
-	background-color:#378DF8;
-}
-.pagination li.disabled{
-	background-color:#378DF8;
-}
-.pagination li.disabled a{
-	background-color:transparent;
-}
-.pagination li a{
+	border-radius:0;
 	width:100%;
 	height:100%;
+	display:inline-block;
+	
+}
+.simple-pagination li:first-child > a span{
+	
+}
+.simple-pagination > li > a:hover{
+	border-color:#378DF8;
+	background-color:#378DF8 !important;
+}
+.simple-pagination li.active span{
+	background-color:transparent;
+	width:100%;
+	height:100%;
+	min-width:0;
+	min-height:0;
+	padding:0;
+	color:white;
+}
+.simple-pagination li.active span:hover{
+	background-color:#378DF8;
+}
+.simple-pagination li.disabled{
+	background-color:#378DF8;
+	color:white;
+}
+.simple-pagination li.disabled span{
+	background-color:transparent;
+	width:100%;
+	height:100%;
+	min-height:0;
+	min-width:0;
+	padding:0;
+}
+.simple-pagination > li:last-child > a{
+	border-radius:0 !important;
+}
+.simple-pagination li a{
+	width:100% ;
+		padding:0 0.1rem 0 0.1rem;
+	margin-left:0;
+	height:100%;
+	border:none;
 	color:black;
 	font-size:0.16rem;
 	min-width:0 !important;
 	min-height:0 !important;
-	line-height:0.22rem;
+	line-height:0.2rem;
 	padding:0 !important;
 	background-color:transparent;
 }
-.pagination li.next a{
+.simple-pagination li.next a{
 	line-height:0.15rem;
 }
-.pagination li.next{
+.simple-pagination li.next{
 	background-color:#378DF8;
 }
-.pagination li.next a{
+.simple-pagination li.next a{
 	color:white;
 }
-.pagination li.pre a{
+.simple-pagination li:first-child {
 	background-image:url(/img/sys/pagination-pre.png);
 	background-repeat:  no-repeat;
 	background-position:  center;
 	background-size:cover;
+	background-color:#378DF8;
 	
 }
-.pagination a.page{
+.simple-pagination li:last-child {
+	background-image:url(/img/sys/pagination-next.png);
+	background-repeat:  no-repeat;
+	background-position:  center;
+	background-size:cover;
+	background-color:#378DF8;
+	
+}
+
+.simple-pagination a.page{
 	float:left;
 	height:0.22rem;
 	width:0.22rem;
@@ -331,18 +368,18 @@ div.tfoot .pagination{
 	border-radius: 0.02rem;
 	margin-right:0.1rem;
 }
-.pagination a.page:hover{
+.simple-pagination a.page:hover{
 	border-color:rgb(55,141,248);
 }
-.pagination a:hover{
+.simple-pagination a:hover{
 	text-decoration: none;
 }
-.pagination a.active{
+.simple-pagination a.active{
 	background:rgb(55,141,248);
 	color:rgb(255,255,255);
 	border-color:rgb(55,141,248);
 }
-.pagination a.shot{
+.simple-pagination a.shot{
 	float:left;
 	height:0.24rem;
 	width:0.22rem;
@@ -355,7 +392,7 @@ div.tfoot .pagination{
 	color:rgb(0,0,0);
 	font-size: 0.14rem;
 }
-.pagination a.next{
+.simple-pagination a.next{
 	float:left;
 	height:0.22rem;
 	width:0.27rem;
@@ -369,16 +406,16 @@ div.tfoot .pagination{
 	background-position:  center;
 	background-size:cover;
 }
-.pagination .gotolist{
+.simple-pagination .gotolist{
 	width:auto !important;
 	display:inline-block;
 }
 
-.pagination .gotolist span:hover{
+.simple-pagination .gotolist span:hover{
 	background-color:transparent;
 	color:black;
 }
-.pagination .gotolist span{
+.simple-pagination .gotolist span{
 	float:left;
 	border:none;
 	background-color:transparent;
@@ -392,7 +429,7 @@ div.tfoot .pagination{
 	height:0.22rem;
 	line-height: 0.22rem;
 }
-.pagination .gotolist  input{
+.simple-pagination .gotolist  input{
 	float:left;
 	height:0.22rem;
 	width:0.27rem;
@@ -404,7 +441,7 @@ div.tfoot .pagination{
 	font-size: 0.12rem;
 	color:rgb(0,0,0);
 }
-.pagination .gotolist  button.search{
+.simple-pagination .gotolist  button.search{
 	float:left;
 	height:0.22rem;
 	line-height: 0.228rem;
@@ -429,7 +466,7 @@ div.tfoot2{
 	position: relative;
 	vertical-align: middle;
 }
-div.tfoot2 div.pagination{
+div.tfoot2 div.simple-pagination{
 	/*height:0.22rem;
 	width:5.54rem;
 	position: absolute;
@@ -455,7 +492,7 @@ div.tfoot2 div.pagination{
 	div.tfoot .btns{
 		float:none;
 	}
-	div.tfoot div.pagination{
+	div.tfoot div.simple-pagination{
 		height:auto;
 		width:auto;
 		position: static;

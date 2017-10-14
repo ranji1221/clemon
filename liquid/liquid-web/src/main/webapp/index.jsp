@@ -876,7 +876,7 @@
 			</div>
 		</div>
 		<!--jquery引入-->
-			<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+			<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 			<!--侧导航的js-->
 			<script src="${pageContext.request.contextPath}/js/slidenav/slidenav.js"></script>
 			<!--flatui js库-->
