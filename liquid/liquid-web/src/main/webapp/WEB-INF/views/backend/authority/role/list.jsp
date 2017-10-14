@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/role/list.js"></script>
-<script src="${pageContext.request.contextPath}/js/twbs-pagination-1.4.1/jquery.twbsPagination.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
@@ -9,9 +9,12 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonCreateTable({
+		usePage: true,
+		useCheckBox: true,
+		useLocalStorage: true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
-	    pageClassName:".tfoot",
-	   	trForm : function(index,value,data,extend){
+	    pageClassName:"#page",
+	    generateItemFun : function(index,value,data,extend){
 			var Pname = value.rolePName == null ? '无':value.rolePName ;
 			var tr_data = '<tr role_id='+ value.id+extend +'>'+
 				'<td class="checkboxtd">'+
@@ -44,12 +47,6 @@ function roleListInit(){
 	       	return tr_data; 
    		}
 	})
-	//获取到本地的某条数据 示例代码
-	$(document).on("click", ".roleName", function(e) {
-		var storage_name = $(this).closest('tr').attr('storage_name');
-		var storage_id = $(this).closest('tr').attr('storage_id');
-		console.log(getDataByStorage(storage_name,storage_id));
-	})
 }
 roleListInit();
 $('.removeBtn').bindDialogs({
@@ -68,6 +65,20 @@ $('.removeBtn').bindDialogs({
 			}
 		},'json');
 	}
+});
+//刷新页面
+$(document).on("click",".renovate",function(){
+	removeStorage();
+	roleListInit();
+});
+//添加编辑事件
+$(document).on("click", ".editRole", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	editRole(data);
 });
 </script>
 
@@ -158,7 +169,7 @@ $('.removeBtn').bindDialogs({
 					删除
 				</span>
 			</div>
-			
+			<div id="page" class=""></div>
 		</div>
 	</div>
 

@@ -85,10 +85,11 @@
 	</head>
 
 	<body>
+		<div id="bodyModalArea"></div>
 		<!--编辑模态框框部分-->
-		<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+		<!-- <div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
 			
-		</div>
+		</div> -->
 		<div id="editUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
@@ -824,7 +825,7 @@
 			</div>
 		</div>
 		<!--jquery引入-->
-			<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+			<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 			<!--侧导航的js-->
 			<script src="${pageContext.request.contextPath}/js/slidenav/slidenav.js"></script>
 			<!--flatui js库-->

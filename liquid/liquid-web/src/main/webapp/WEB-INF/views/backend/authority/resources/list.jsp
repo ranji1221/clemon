@@ -1,10 +1,10 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <!-- <link rel="stylesheet" href="./assets/styles/rolelist/rolelistREM.css" /> -->
-<script src="${pageContext.request.contextPath}/js/twbs-pagination-1.4.1/jquery.twbsPagination.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/user/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/mricode.pagination.js"></script>
 <script>
 function resourceListInit(){
 	$("#resourceList").LemonCreateTable({

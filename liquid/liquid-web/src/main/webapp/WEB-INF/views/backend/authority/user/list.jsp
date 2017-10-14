@@ -1,8 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!-- <link rel="stylesheet" href="./assets/styles/rolelist/rolelistREM.css" /> -->
 <script src="${pageContext.request.contextPath}/js/user/list.js"></script>
-
-<script src="${pageContext.request.contextPath}/js/twbs-pagination-1.4.1/jquery.twbsPagination.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/mricode.pagination.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
 
@@ -76,6 +75,11 @@ $('.removeBtn').bindDialogs({
 		},'json');
 	}
 });
+//刷新页面
+$(document).on("click",".renovate",function(){
+	removeStorage();
+	roleListInit();
+})
 </script>
 
 <div class="rolelist userlist">
@@ -169,7 +173,7 @@ $('.removeBtn').bindDialogs({
 					<img src="${pageContext.request.contextPath}/img/sys/icons4.png" alt="">
 					新建
 				</span>
-				<span>
+				<span class="renovate">
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
