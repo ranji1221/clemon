@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/role/list.js"></script>
-<script src="${pageContext.request.contextPath}/js/twbs-pagination-1.4.1/jquery.twbsPagination.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
@@ -9,11 +9,14 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonCreateTable({
+		usePage: true,
+		useCheckBox: true,
+		useLocalStorage: true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
-	    pageClassName:".tfoot",
-	   	trForm : function(index,value,data,extend){
+	    pageClassName:"#page",
+	    generateItemFun : function(index,value,data,extend){
 			var Pname = value.rolePName == null ? '无':value.rolePName ;
-			var tr_data = '<tr role_id='+ value.id+extend +'>'+
+			var tr_data = '<tr listid='+ value.id+extend +' role_id='+ value.id+extend +'>'+
 				'<td class="checkboxtd">'+
 					'<label>'+
 						'<input  type="checkbox" name="layout">'+
@@ -166,7 +169,7 @@ $(document).on("click", ".editRole", function(e) {
 					删除
 				</span>
 			</div>
-			
+			<div id="page" class=""></div>
 		</div>
 	</div>
 
