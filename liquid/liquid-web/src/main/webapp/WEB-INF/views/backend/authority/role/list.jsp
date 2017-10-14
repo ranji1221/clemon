@@ -160,7 +160,7 @@ $(document).on("click", ".editRole", function(e) {
 					<img src="${pageContext.request.contextPath}/img/sys/icons4.png" alt="">
 					新建
 				</span>
-				<span>
+				<span class="renovate">
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
@@ -177,3 +177,5 @@ $(document).on("click", ".editRole", function(e) {
 <div class="maxcontainer">
 	
 </div>
+<!-- 模态框加载  -->
+<%@ include file="editmodal.jsp" %>

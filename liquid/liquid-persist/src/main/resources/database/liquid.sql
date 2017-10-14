@@ -15,10 +15,10 @@ Date: 2017-10-11 10:23:54
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
--- Table structure for `lemon_auth_operation`
+-- Table structure for `lemon_liquid_auth_operation`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_auth_operation`;
-CREATE TABLE `lemon_auth_operation` (
+DROP TABLE IF EXISTS `lemon_liquid_auth_operation`;
+CREATE TABLE `lemon_liquid_auth_operation` (
   `id` int(10) unsigned NOT NULL auto_increment COMMENT '操作ID',
   `operationName` varchar(255) default NULL COMMENT '操作名',
   `operationURL` varchar(255) default NULL COMMENT '操作链接',
@@ -30,10 +30,10 @@ CREATE TABLE `lemon_auth_operation` (
 
 
 -- ----------------------------
--- Table structure for `lemon_auth_resource`
+-- Table structure for `lemon_liquid_auth_resource`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_auth_resource`;
-CREATE TABLE `lemon_auth_resource` (
+DROP TABLE IF EXISTS `lemon_liquid_auth_resource`;
+CREATE TABLE `lemon_liquid_auth_resource` (
   `id` int(11) unsigned NOT NULL auto_increment COMMENT '资源ID',
   `resourceName` varchar(255) default NULL COMMENT '资源名称',
   `resourceType` varchar(255) default NULL COMMENT '资源类型 1,菜单   2,文件',
@@ -44,10 +44,10 @@ CREATE TABLE `lemon_auth_resource` (
 
 
 -- ----------------------------
--- Table structure for `lemon_auth_role`
+-- Table structure for `lemon_liquid_auth_role`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_auth_role`;
-CREATE TABLE `lemon_auth_role` (
+DROP TABLE IF EXISTS `lemon_liquid_auth_role`;
+CREATE TABLE `lemon_liquid_auth_role` (
   `id` int(10) unsigned NOT NULL auto_increment COMMENT '角色ID',
   `roleName` varchar(255) default NULL COMMENT '角色名称',
   `roleExtendPId` int(11) default NULL COMMENT '角色父ID',
@@ -60,10 +60,10 @@ CREATE TABLE `lemon_auth_role` (
 
 
 -- ----------------------------
--- Table structure for `lemon_auth_role_operation`
+-- Table structure for `lemon_liquid_auth_role_operation`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_auth_role_operation`;
-CREATE TABLE `lemon_auth_role_operation` (
+DROP TABLE IF EXISTS `lemon_liquid_auth_role_operation`;
+CREATE TABLE `lemon_liquid_auth_role_operation` (
   `id` int(10) unsigned NOT NULL auto_increment COMMENT '角色和操作关联表ID',
   `roleId` int(11) default NULL COMMENT '角色ID',
   `operationId` int(11) default NULL COMMENT '操作ID',
@@ -71,14 +71,14 @@ CREATE TABLE `lemon_auth_role_operation` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of lemon_auth_role_operation
+-- Records of lemon_liquid_auth_role_operation
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `lemon_auth_user`
+-- Table structure for `lemon_liquid_auth_user`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_auth_user`;
-CREATE TABLE `lemon_auth_user` (
+DROP TABLE IF EXISTS `lemon_liquid_auth_user`;
+CREATE TABLE `lemon_liquid_auth_user` (
   `id` int(11) unsigned NOT NULL auto_increment COMMENT '用户ID',
   `userName` varchar(255) default NULL COMMENT '用户名称',
   `userPass` varchar(255) default NULL COMMENT '用户密码',
@@ -90,15 +90,15 @@ CREATE TABLE `lemon_auth_user` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of lemon_auth_user
+-- Records of lemon_liquid_auth_user
 -- ----------------------------
-INSERT INTO `lemon_auth_user` VALUES ('1', 'admin', 'admin', null, null, null);
+INSERT INTO `lemon_liquid_auth_user` VALUES ('1', 'admin', 'admin', null, null, null);
 
 -- ----------------------------
--- Table structure for `lemon_auth_user_role`
+-- Table structure for `lemon_liquid_auth_user_role`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_auth_user_role`;
-CREATE TABLE `lemon_auth_user_role` (
+DROP TABLE IF EXISTS `lemon_liquid_auth_user_role`;
+CREATE TABLE `lemon_liquid_auth_user_role` (
   `id` int(10) unsigned NOT NULL auto_increment COMMENT '用户和角色操作表ID',
   `userId` tinyint(4) default NULL COMMENT '用户ID',
   `roleId` tinyint(4) default NULL COMMENT '角色ID',
@@ -106,14 +106,14 @@ CREATE TABLE `lemon_auth_user_role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of lemon_auth_user_role
+-- Records of lemon_liquid_auth_user_role
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `lemon_log_systemlog`
+-- Table structure for `lemon_liquid_log_systemlog`
 -- ----------------------------
-DROP TABLE IF EXISTS `lemon_log_systemlog`;
-CREATE TABLE `lemon_log_systemlog` (
+DROP TABLE IF EXISTS `lemon_liquid_log_systemlog`;
+CREATE TABLE `lemon_liquid_log_systemlog` (
   `id` int(11) unsigned NOT NULL auto_increment COMMENT '日志ID',
   `logType` varchar(255) collate utf8_bin default NULL COMMENT '日志类型  1,info  2,error',
   `logTitle` varchar(255) collate utf8_bin default NULL COMMENT '日志标题',

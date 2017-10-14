@@ -215,6 +215,47 @@
 		    	</div>
 		  	</div>
 		</div>
+		<!--没有权限模态框-->
+		<div id="powerModal">
+			<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-keyboard='false'>
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="pull-right">
+								<a href="javascript:;" class="remove" data-dismiss="modal">
+									<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
+								</a>
+							</div>
+							<div class="modal-title">
+								<h4><span>|</span>查看XXX</h4>
+							</div>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-xs-4">
+									<div class="trashImg text-right">
+										<img src="${pageContext.request.contextPath}/img/power/powerModal.png" alt="">
+
+									</div>
+								</div>
+								<div class="col-xs-8 info">
+									<h3>您没有访问权限</h3>
+									<p>
+										很抱歉，系统君拒绝了你的请求！
+									</p>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-xs-8 col-xs-offset-4">
+									<button type="button" class="btn modalBtn delBtn" data-dismiss="modal">确定</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 头部 -->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid row">

@@ -43,7 +43,6 @@ public class AuthorityServiceImpl implements IAuthorityService{
 			for(Role r:list){
 				roles.add(r);
 				int id = r.getRoleExtendPId();
-				//System.out.println(id);
 				if(id>=0){
 				 List<Role> r1=findRolesByRoleId(id);
 				 roles.addAll(r1);

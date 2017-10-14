@@ -7,9 +7,13 @@
 					url:url,
 					dataType:"html"
 				}).done(function(data){
+					
+//					$(".right-container .ajax_dom").hide()
 					$(".right-container .ajax_dom").empty()
+					$('body #bodyModalArea').empty()
 					$(".right-container .ajax_dom").show()
 					$($.parseHTML(data,document, true)).appendTo($(".right-container .ajax_dom"))
+						
 				})
 			}
 		})

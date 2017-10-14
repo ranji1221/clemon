@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.ranji.lemon.common.jersey.util.GuidUtil;
 import org.ranji.lemon.model.jersey.oauth2.Client;
 import org.ranji.lemon.service.jersey.oauth2.prototype.IClientService;
+import org.ranji.lemon.service.jersey.oauth2.prototype.IOauthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,6 +17,9 @@ public class ClientTest {
 	@Autowired
 	IClientService clientService;
 	
+	@Autowired
+	IOauthService oauthService;
+	
 	@Test
 	public void testAddClient(){
 		Client c = new Client();
@@ -24,5 +28,10 @@ public class ClientTest {
 		c.setClientSecret(GuidUtil.generateClientSecret());
 		
 		clientService.save(c);
+	}
+	
+	@Test
+	public void testCheckClient(){
+		System.out.println(oauthService.checkClientId("4CONO77qhHeYe6dbk70H"));
 	}
 }

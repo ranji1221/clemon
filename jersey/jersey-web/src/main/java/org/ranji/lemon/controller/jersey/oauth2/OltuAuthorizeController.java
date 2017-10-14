@@ -1,12 +1,25 @@
 package org.ranji.lemon.controller.jersey.oauth2;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.oltu.oauth2.as.request.OAuthAuthzRequest;
+import org.apache.oltu.oauth2.as.issuer.MD5Generator;
+import org.apache.oltu.oauth2.as.issuer.OAuthIssuer;
+import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
+import org.apache.oltu.oauth2.as.request.OAuthTokenRequest;
+import org.apache.oltu.oauth2.as.response.OAuthASResponse;
+import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+import org.apache.oltu.oauth2.common.message.OAuthResponse;
+import org.ranji.lemon.service.jersey.oauth2.prototype.IOauthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,17 +64,73 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
+@RequestMapping("/oauth2")
 public class OltuAuthorizeController {
 	
-	@RequestMapping(value="/oltuauthorize")
-	public ModelAndView oltuAuthorize(HttpServletRequest request)throws OAuthSystemException, OAuthProblemException{
-		System.out.println("access sucessful");
-		ModelAndView mv = new ModelAndView();
-		
-		//-- 1. 构建OAuth2请求
-		OAuthAuthzRequest oauthRequest = new OAuthAuthzRequest(request);
-		return mv;
+	@Autowired
+	IOauthService oauthService;
+	
+	//-- 1. The Firt Step
+	//-- 类似于第三方应用的人在咱们的第三方开放接口平台注册登录后，创建了某应用，我们为此应用创建了相应的ClientId和ClientSecret
+	//-- 示例：http://localhost:8080/lemonws/oauth2/applyfor?thirdAppName=estore
+	@RequestMapping(value ="/applyfor")
+	@ResponseBody
+	public String applyeForClientIdAndClientSecretForThirdApp(@RequestParam("thirdAppName")String thirdAppName){
+		return oauthService.generateClientIdAndClientSecret(thirdAppName);
 	}
+	
+	//-- 2. The Second Step
+	//-- oauth2提供5种grant_type类型：
+	//-- (1)authorization_code(最安全，但是稍微麻烦些) (2)password  (3)client_credentials (4)implicit (5)refresh_token
+	//-- 利用第一步产生的clientId和clientSecret来获取token，我们采用相对简单的client_credentials模式，这种方式必须为POST请求方式
+	//-- 示例：http://localhost:8080/lemonws/oauth2/token?client_id=test&client_secret=test&grant_type=client_credentials&scope=read write
+	@RequestMapping(value="/token",method=RequestMethod.POST)
+	public Object oltuAuthorize(HttpServletRequest request)throws OAuthSystemException{
+		try {
+			//-- 1. 构建OAuth2请求
+			OAuthTokenRequest oauthRequest = new OAuthTokenRequest(request);
+			
+			//-- 2. 检查ClientId的正确性
+			if(!oauthService.checkClientId(oauthRequest.getClientId())){
+				OAuthResponse response = OAuthASResponse
+						.errorResponse(HttpServletResponse.SC_BAD_REQUEST)
+						.setError(OAuthError.TokenResponse.INVALID_CLIENT).buildJSONMessage();
+			    return new ResponseEntity<String>(  
+			    		response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
+			}
+			//-- 3. 检查ClientSecret的正确性
+			if(!oauthService.checkClientSecret(oauthRequest.getClientSecret())){
+				OAuthResponse response = OAuthASResponse  
+			              .errorResponse(HttpServletResponse.SC_UNAUTHORIZED)  
+			              .setError(OAuthError.TokenResponse.UNAUTHORIZED_CLIENT)  
+			              .buildJSONMessage();
+			    return new ResponseEntity<String>(  
+			    		response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
+			}
+			
+			//-- 4. 生成token
+			OAuthIssuer oauthIssuer = new OAuthIssuerImpl(new MD5Generator()); 
+			final String accessToken = oauthIssuer.accessToken();
+			
+			//-- 5. 生成oauth响应
+			OAuthResponse response = OAuthASResponse
+					.tokenResponse(HttpServletResponse.SC_OK)
+					.setAccessToken(accessToken)
+					.setExpiresIn("32432")
+					.buildJSONMessage();
+			return new ResponseEntity<String>(
+					response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
+		} catch (OAuthProblemException e) {
+			//-- 构建错误响应  
+			OAuthResponse response = OAuthASResponse  
+		              .errorResponse(HttpServletResponse.SC_BAD_REQUEST).error(e)  
+		              .buildJSONMessage();  
+		    return new ResponseEntity<String>(
+		    		response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));  
+		}
+		
+	}
+	
 	@RequestMapping(value ="/hello")
 	@ResponseBody
 	public String hello(){
