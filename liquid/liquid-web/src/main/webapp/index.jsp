@@ -519,6 +519,16 @@
 			<!-- 左侧面滑动导航菜单结束 -->
 			<!-- 右侧主容器 -->
 			<div class="right-container">
+			<div class="loading_ajax_dom">
+					<!-- <img src="assets/images/sys/loading.gif" alt="" style='width:104px;height:105px;margin-top:2.2rem;'> -->
+					<!-- <img src="assets/images/sys/loading2.gif" alt="" style='width:415px;height:234px;margin-top:2.2rem;'> -->
+					<!-- <img src="assets/images/sys/loading3.gif" alt="" style='width:400px;margin-top:1.2rem;'> -->
+					<!-- <img src="assets/images/sys/loading4.gif" alt="" style='width:400px;margin-top:1.2rem;'> -->
+					<img src="${pageContext.request.contextPath}/img/sys/loading5.gif" alt="" style='width:400px;margin-top:1.2rem;'>
+					<!-- <img src="assets/images/sys/loading6.gif" alt="" style='width:400px;margin-top:1.2rem;'> -->
+					<!-- <img src="assets/images/sys/loading7.gif" alt="" style='width:600px;margin-top:0.2rem;'> -->
+					<!-- <i class="icon-spinner icon-spin"></i> -->
+				</div>
 				<div class="ajax_dom"></div>
 				<!-- 此处添加导航右侧内容 -->
 				<div class="container content-wrap">
@@ -883,6 +893,7 @@
 			<script src="${pageContext.request.contextPath}/js/raphael/morris.js"></script>
 			<script src="${pageContext.request.contextPath}/js/index/index.js"></script>
 			<script src="${pageContext.request.contextPath}/js/common/promptBox.js"></script>
+			<div class="minbox" style="display:none;"></div>
 	</body>
 
 </html>
