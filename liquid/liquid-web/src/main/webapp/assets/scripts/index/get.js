@@ -8,6 +8,7 @@
 						"js/editModal/editModal.js",
 						"common/vakata-jstree/dist/themes/default/style.min.css",
 						"common/vakata-jstree/dist/jstree.min.js",
+						"js/pagination/simplePagination.css",
 						"css/role/listREM.css",
 						"css/role/authmodal.css",
 						"css/user/auth.css",
@@ -22,6 +23,7 @@
 						"js/database/progress.js",
 						"css/database/backup.css",
 						"css/database/backupComplex.css"
+						
 						]
 		$.each(arr,function(i,v){
 			if(v.substring(v.length-3) == "css"){
