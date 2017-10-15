@@ -14,14 +14,19 @@ $(function(){
 		$("#editRoleModal").appendTo($(".ajax_dom"))
 		$("#editRoleModal").addClass("bigmodule")
 		$(".breadcrumb").addClass("display_block")
+		$(".modalCon .bg-grey#remark").addClass("active")
+		$(".modalCon .roleNameBox").removeClass("width_active")
 		$(".editRole_modal .role_hearder").addClass("display_block")
 		$(".modalCon .modal-header").addClass("display_none")
 		$(".role_content_error_xian").addClass("display_block")
 	}
 	/* 删除模态框样式 */
 	function removeEditStyle(){
+		$(".modalCon .bg-grey#remark").removeClass("active")
 		$("#editRoleModal").removeClass("bigmodule")
 		$(".breadcrumb").removeClass("display_block")
+		$(".modalCon .bg-grey#remark").removeClass("active")
+		$(".modalCon .roleNameBox").addClass("width_active")
 		$(".editRole_modal .role_hearder").removeClass("display_block")
 		$(".modalCon .modal-header").removeClass("display_none")
 		$(".role_content_error_xian").removeClass("display_block")
@@ -121,6 +126,27 @@ $(function(){
 			e.preventDefault()
 			e.stopPropagation()
 			setEditStyle()
+			var minlimitNum = 5;
+	$(".minlimitNum").html(minlimitNum);
+	$(".error_box").slider({
+		orientation: "horizontal",
+		range: "min",
+		max: 60,
+		value: 60,
+		slide: function(event, ui) {
+			var ui_value = ui.value
+			$(".sliderInput").css("width", ui_value+"%");
+			$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
+			$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
+			$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
+			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
+		}
+	})
+			
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
+			
+			
 			$('.breadcrumb').on("click", function(e) {
 				var el = e.target || window.event
 				e.preventDefault()
@@ -170,24 +196,7 @@ $(function(){
 			$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 		});
 	}
-	var minlimitNum = 5;
-	$(".minlimitNum").html(minlimitNum);
-	$(".error_box").slider({
-		orientation: "horizontal",
-		range: "min",
-		max: 70,
-		value: 70,
-		slide: function(event, ui) {
-			var ui_value = ui.value
-			$(".sliderInput").css("width", ui_value+"%");
-			$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
-			$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-			$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
-			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-		}
-	})
-	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
+
 	/*关闭处理 */
 	$('.red_border').on("click", function(e) {
 		e.preventDefault()
