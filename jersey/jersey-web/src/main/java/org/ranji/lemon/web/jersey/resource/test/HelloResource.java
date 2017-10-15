@@ -1,7 +1,9 @@
-package org.ranji.lemon.resource.jersey.test;
+package org.ranji.lemon.web.jersey.resource.test;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+
+import org.ranji.lemon.common.jersey.annotation.ResourceAccessToken;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one

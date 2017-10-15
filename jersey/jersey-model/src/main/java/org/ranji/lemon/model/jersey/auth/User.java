@@ -1,5 +1,6 @@
 package org.ranji.lemon.model.jersey.auth;
 
+import org.apache.ibatis.type.Alias;
 import org.ranji.lemon.common.core.model.AbstractModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @since JDK1.7
  * @version 1.0
  */
+@Alias("JerseyUser")    //-- 为了避免引入liquid项目中也有User的别名，而引发mybatis别名设置的冲突
 public class User extends AbstractModel {
 	private static final long serialVersionUID = 2048080165498963074L;
 

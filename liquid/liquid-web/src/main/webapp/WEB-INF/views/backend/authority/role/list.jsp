@@ -89,7 +89,7 @@ $(document).on("click", ".editRole", function(e) {
 	    	<a href="#" data="2" url="home">首页</a>
 	    </li>
 	    <li>
-	    	<a href="#" url="${pageContext.request.contextPath}/backend/authority/role/list">角色管理</a>
+	    	<a href="#">角色管理</a>
 	    </li>
 	    <li class="active">角色列表</li>
     	<div class="nav-search" id="nav-search">

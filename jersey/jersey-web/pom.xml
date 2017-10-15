@@ -15,34 +15,45 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<jersey.version>1.19.4</jersey.version>
+		<jersey.version>2.25</jersey.version>
 	</properties>
 
 	<dependencies>
+		<!-- Jersey-service项目 -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>jersey-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+		<!-- Liquid-service项目 -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>liquid-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
-		<!-- Jersey1.19.4 (Web Service框架) -->
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-spring</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
 
+		<!-- Jersey2.0框架 (Web Service框架)-->
+		<!-- 注意: jersey-spring3.jar 使用的是他自己的 Spring 库版本，所以如果你想使用自己的 (本例是使用 Spring 4.0.9.Release),你需要将这些库手动的移除。 -->
+		<dependency>
+		    <groupId>org.glassfish.jersey.ext</groupId>
+		    <artifactId>jersey-spring3</artifactId>
+		    <version>${jersey.version}</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.springframework</groupId>
+		            <artifactId>spring-core</artifactId>
+		        </exclusion>            
+		        <exclusion>
+		            <groupId>org.springframework</groupId>
+		            <artifactId>spring-web</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>org.springframework</groupId>
+		            <artifactId>spring-beans</artifactId>
+		        </exclusion>
+		    </exclusions>            
+		</dependency>
+		
 		<!-- Oatuth2 （web service安全认证框架） -->
 		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>

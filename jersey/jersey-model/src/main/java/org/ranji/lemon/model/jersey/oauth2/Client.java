@@ -1,5 +1,10 @@
 package org.ranji.lemon.model.jersey.oauth2;
 
+import org.ranji.lemon.common.core.model.AbstractModel;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -23,18 +28,56 @@ package org.ranji.lemon.model.jersey.oauth2;
  * @since JDK1.7
  * @version 1.0
  */
-public class Client {
-	private int id;						//-- 主键
+public class Client extends AbstractModel{
+	private static final long serialVersionUID = -8957828394887997447L;
+	
 	private String clientName;			//-- 客户端名称
 	private String clientId;			//-- 客户端ID
 	private String clientSecret;		//-- 客户端安全key
+	private String clientUri;
+	private String clientIconUri;
+	private String scope;
+	private String grantType;
+	private String redirectUri;
+	private String description;
 	
+	public Client(){}
 	
-	public int getId() {
-		return id;
+	public String getClientUri() {
+		return clientUri;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setClientUri(String clientUri) {
+		this.clientUri = clientUri;
+	}
+	public String getClientIconUri() {
+		return clientIconUri;
+	}
+	public void setClientIconUri(String clientIconUri) {
+		this.clientIconUri = clientIconUri;
+	}
+	public String getScope() {
+		return scope;
+	}
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+	public String getGrantType() {
+		return grantType;
+	}
+	public void setGrantType(String grantType) {
+		this.grantType = grantType;
+	}
+	public String getRedirectUri() {
+		return redirectUri;
+	}
+	public void setRedirectUri(String redirectUri) {
+		this.redirectUri = redirectUri;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getClientName() {
 		return clientName;
@@ -55,6 +98,15 @@ public class Client {
 		this.clientSecret = clientSecret;
 	}
 	
-	
+	@Override
+	public String toString() {
+		ObjectMapper om = new ObjectMapper();
+		try {
+			return om.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return super.toString();
+	}
 }
 
