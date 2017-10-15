@@ -1,9 +1,10 @@
-package org.ranji.lemon.common.jersey.annotation;
+package org.ranji.lemon.web.jersey.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import javax.ws.rs.NameBinding;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -22,11 +23,7 @@ import java.lang.annotation.Target;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * 定义日志记录元注解，用于处理后台日志的注解类（针对Resource的方法加标注，实现token的校验）
- * 设计原则和思路：
- * 元注解方式结合AOP，灵活记录操作日志
- * 能够记录详细错误日志为运维提供支持
- * 日志记录尽可能减少性能影响
+ * 自定义定义检查AccessToken的注解（针对Resource的方法加标注，实现token的校验）
  * @author RanJi
  * @date 2017-9-14
  * @since JDK1.7
@@ -36,5 +33,4 @@ import java.lang.annotation.Target;
 @NameBinding
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ResourceAccessToken {
-}
+public @interface CheckAccessToken {}

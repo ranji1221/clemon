@@ -55,7 +55,7 @@
 	</servlet>
 	<servlet-mapping>
 	  <servlet-name>jersey-serlvet</servlet-name>
-	  <url-pattern>/ws/*</url-pattern>
+	  <url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Spring MVC的核心控制器 -->

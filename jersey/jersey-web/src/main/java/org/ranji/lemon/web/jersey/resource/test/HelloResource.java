@@ -1,9 +1,10 @@
 package org.ranji.lemon.web.jersey.resource.test;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-import org.ranji.lemon.common.jersey.annotation.ResourceAccessToken;
+import org.ranji.lemon.web.jersey.common.annotation.CheckAccessToken;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -32,9 +33,10 @@ import org.ranji.lemon.common.jersey.annotation.ResourceAccessToken;
 @Path("")
 public class HelloResource {
 	
+	@CheckAccessToken
 	@GET
 	@Path("/hello")
-	public String sayHello(){
+	public String sayHello(HttpServletRequest request){
 		return "hello jersey.";
 	}
 }
