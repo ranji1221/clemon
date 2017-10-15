@@ -1,4 +1,4 @@
-package org.ranji.lemon.controller.jersey.oauth2;
+package org.ranji.lemon.web.jersey.controller.oauth2;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

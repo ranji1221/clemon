@@ -1,4 +1,4 @@
-package org.ranji.lemon.resource.jersey.user;
+package org.ranji.lemon.web.jersey.resource.user;
 
 import java.io.IOException;
 
@@ -11,7 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
 import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 @Path("/user")
 public class UserResource {
-	
 	@Autowired
 	private IUserService userService;
 	
@@ -92,5 +90,4 @@ public class UserResource {
 		
 		return Response.ok("{\"id\":"+u.getId()+"}").status(HttpServletResponse.SC_OK).header("Access-Control-Allow-Origin", "*").build();
 	}
-	
 }
