@@ -4,6 +4,31 @@
 <!-- 角色授权 -->
 <!-- Modal -->
 	<div class="modal-contentbox">
+		<ol class="breadcrumb">
+		    <li>
+		    	<i class="glyphicon glyphicon-home"></i>
+		    	<a href="#" data="2" url="home">首页</a>
+		    </li>
+		    <li>
+		    	<a href="#" url="./pages/role/rolelist">角色管理</a>
+		    </li>
+		    <li>
+		    	<a href="#" url="./pages/role/rolelist">角色列表</a>
+		    </li>
+		    <li class="active">角色授权</li>
+	    	<div class="nav-search" id="nav-search">
+				<form class="form-search">
+					<div class="input-group">
+				        <input type="text" class="form-control" placeholder="搜索你想找到的...">
+				        <span class="input-group-btn">
+				        <button class="btn btn-default" type="button">
+							<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
+				        </button>
+				        </span>
+				    </div><!-- /input-group -->
+				</form>
+			</div>
+		</ol>
 		<div class="titlezl">
 			<p>角色授权</p>
 			<div class="btns">
@@ -24,22 +49,23 @@
 				</a>
 			</div>
 		</div>
+		<div class="form_content">
 		<form>
 		  	<div class="form-group">
 		    	<label for="rolename" class="rolename">角色名称
-		    	<span class="errormessage">
+		    	<!-- <span class="errormessage">
 		    		您输入了特殊符号！
-		    	</span>
+		    	</span> -->
 		    	</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax">
 				    	<input type="text" class="form-control rolenameinput" placeholder="请输入角色名称" name='name'>
 				    	<span class="rolenamelimit">11</span>
-				    	<span class="icon-exclamation-sign"></span>
+				    	<!--<span class="icon-exclamation-sign"></span>
 				    	<span class="icon-ok-sign"></span>
-				    	<span class="errormessage">
+				    	  <span class="errormessage">
 			    		您输入了特殊符号！
-			    		</span>
+			    		</span>-->
 		    		</div>
 		    	</div>
 		    	<div class="role-slider"></div>
@@ -79,4 +105,5 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 		  	</div>
 		</form>
+	</div>
 	</div>

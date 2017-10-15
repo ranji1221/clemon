@@ -167,7 +167,6 @@
 		width: 20%;
 	}
 }
-
 @media screen and (max-width:991px) {
 	#editRoleModal .select-l-pd {
 		padding-left: 0.5rem;
@@ -269,10 +268,12 @@ textarea {
 	background-color: #f4f4f4;
 	border: 0.01rem solid #bdc3c7;
 	border-radius: 5px;
-	width: 245px;
+	width:77%;
 	min-width:245px;
 }
-
+.modalCon .roleNameBox.width_active{
+	width:77% !important;
+}
 .modalCon .row-lg-h .wordNum {
 	position: absolute;
 	height: 0.54rem;
@@ -350,7 +351,11 @@ textarea {
 .modalCon .bg-grey {
     border: 0.01rem solid #bdc3c7;
     background: #f4f4f4;
-    width: 85%;
+    width: 92%;
+}
+
+.modalCon .bg-grey#remark.active{
+	 width: 72%;
 }
 .modalCon .textarea_grey{
 	background-color:#f4f4f4
@@ -374,6 +379,7 @@ textarea {
 
 .modalCon .textarea-h {
 	padding-right: 0;
+	padding-left:0;
 }
 
 .modalCon #limitNum {

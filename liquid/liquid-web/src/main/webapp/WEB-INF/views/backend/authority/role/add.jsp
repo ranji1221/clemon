@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 
 <!--<link rel="stylesheet" href="assets/styles/role/role.css">-->
+<div class="modal-contentbox">
 <ol class="breadcrumb breadcrumb_margin">
 	<li>
 		<i class="glyphicon glyphicon-home"></i>
@@ -27,7 +28,7 @@
 <div class="container-fluid">
 
 	<!--编辑角色最大化开始-->
-	<div class="row role_hearder">
+	<div class="row role_hearder link_xian">
 		<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 role_hearde_font">
 			<span>添加角色</span>
 		</div>
@@ -43,7 +44,7 @@
 				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 				<div class="hidmission">
 					<span class="icon-pencil icon-slidenav"></span>
-					<p url="${pageContext.request.contextPath}/backend/authority/role/add" u_id="2" n_id="-1">添加角色</p>
+					<p url="${pageContext.request.contextPath}/backend/authority/role/add"  mintype='3'>添加角色</p>
 					<span class="iconfont icon-chuyidong1 del"></span>
 				</div>
 			</div>
@@ -52,13 +53,13 @@
 	<div class="row role_content form_content" u_id="2" n_id="-1">
 		<form action="" id="jjjj">
 			<div class="row role_form ">
-				<div class="form-horizontal col-lg-8 col-md-9 col-sm-9 col-xs-12">
+				<div class="form-horizontal col-lg-12 col-md-9 col-sm-9 col-xs-12">
 					<div class="form-group ">
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
 							<span></span>
 						</div>
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-3 control-label">角色名称：</label>
-						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-0 col-sm-offset-1 role_name sliderInput">
+						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6 form_input  col-md-offset-0 col-sm-offset-1 role_name sliderInput">
 							<input type="text" name="name" maxlength="15" class="form-control " placeholder="请输入角色名称">
 							<span class="minlimitNum">15</span>
 						</div>
@@ -70,7 +71,7 @@
 					<span>您输入了特殊符号！</span>
 				</div>
 			</div>
-			<div class="row role_content_error_xian">
+			<div class="row role_content_error_xian display_block">
 				<div class="error_xian col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
 					<div class="col-lg-3 col-md-3 col-xs-4"></div>
 					<div class="error_box col-lg-5 col-md-7 col-sm-6 col-xs-6"></div>
@@ -139,7 +140,7 @@
 					<span></span>
 				</div>
 				<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">备注 ：</label>
-				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 role_write">
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 role_write">
 					<textarea id="" placeholder="请输入备注" name="beizhu"></textarea>
 				</div>
 			</div>
@@ -154,6 +155,7 @@
 	</div>
 	</form>
 	<!--编辑角色最大化结束-->
+</div>
 </div>
 <script>
 	(function($) {
@@ -180,7 +182,7 @@
 				orientation: "horizontal",
 				range: "min",
 				max: 70,
-				value: 1,
+				value: 70,
 				slide: function(event, ui) {
 					var ui_value = ui.value
 					$(".sliderInput").css("width",  ui_value+"%");
@@ -190,7 +192,8 @@
 					limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 				}
 			})
-
+$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
 			$('[data-toggle="select"]').select2();
 
 			function limitChangeLength(elm, limitLength) {
@@ -232,29 +235,43 @@
 					$(".add").removeClass("active")
 				}
 			});
-			//点击缩小
-			$('.blue_border').on("click", function(e) {
-				e.preventDefault()
-				$.ajax({
-					url: "${pageContext.request.contextPath}/backend/authority/role/list",
-					dataType: "html"
-				}).done(function(data) {
-					$(".ajax_dom").empty()
-					$(".ajax_dom").html(data)
-					$("#editRoleModal").modal('show')
-				})
-			})
-			//点击关闭
-			$('.red_border').on("click", function(e) {
-				e.preventDefault()
-				$.ajax({
-					url: "${pageContext.request.contextPath}/backend/authority/role/list",
-					dataType: "html"
-				}).done(function(data) {
-					$(".ajax_dom").empty()
-					$(".ajax_dom").html(data)
-				})
-			})
+			// //点击缩小
+			// $('.blue_border').on("click", function(e) {
+			// 	e.preventDefault()
+			// 	$.ajax({
+			// 		url: "./pages/role/rolelist.html",
+			// 		dataType: "html"
+			// 	}).done(function(data) {
+			// 		$(".ajax_dom").empty()
+			// 		$(".ajax_dom").html(data)
+			// 		$("#editRoleModal").modal('show')
+			// 	})
+			// })
+			// //点击关闭
+			// $('.red_border').on("click", function(e) {
+			// 	e.preventDefault()
+			// 	$.ajax({
+			// 		url: "./pages/role/rolelist.html",
+			// 		dataType: "html"
+			// 	}).done(function(data) {
+			// 		$(".ajax_dom").empty()
+			// 		$(".ajax_dom").html(data)
+			// 	})
+			// })
+			// 关闭按钮
+		    $('.red_border').on('click',function(){
+				$(this).closest('.modal-contentbox').remove();
+				if(!$('.ajax_dom').html()){
+					$('.ajax_dom').hide()
+				}
+		    })
+			// 最小化隐藏
+			$('.dom_minimize').on('click',function(){
+				$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+				if(!$('.ajax_dom').html()){
+					$('.ajax_dom').hide()
+				}
+		    })
 		})
 	})(jQuery)
 </script>

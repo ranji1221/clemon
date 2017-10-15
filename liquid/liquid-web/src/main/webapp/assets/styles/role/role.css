@@ -22,6 +22,7 @@
       margin-bottom: 0.1rem; }
       .container-fluid .role_content .role_form .form-horizontal .form-group .form_clire {
         width: 10px;
+        padding:0;
         height: 10px;
         line-height: 0.5rem; }
         .container-fluid .role_content .role_form .form-horizontal .form-group .form_clire span {
@@ -41,7 +42,7 @@
       .container-fluid .role_content .role_form .form-horizontal .form-group .form_input {
         height: 0.52rem;
         background-color: #f4f4f4;
-        border: 1px solid transparent;
+        border: 1px solid #bfbfbf;
         border-radius: 10px;
         min-width: 245px; }
         .container-fluid .role_content .role_form .form-horizontal .form-group .form_input.active {
@@ -66,8 +67,8 @@
             color: #f5523a; }
       @media (max-width: 1790px) {
         .container-fluid .role_content .role_form .form-horizontal .form-group .form_input {
-          max-width: 440px; } }
-      @media (max-width: 1250px) {
+          /*max-width: 440px;*/ } }
+      @media (max-width: 1190px) {
         .container-fluid .role_content .role_form .form-horizontal .form-group .form_input {
           max-width: 317px; } }
       @media (max-width: 982px) {
@@ -115,11 +116,13 @@
           color: #378ef8; }
     .container-fluid .role_content .role_fath {
       margin-bottom: 0.2rem; }
+      .container-fluid .role_content .role_fath .fath_select{
+      padding:0;}
       .container-fluid .role_content .role_fath .fath_select .form_clire {
         width: 10px;
         height: 10px;
         line-height: 0.51rem;
-        padding-left: 0; }
+        padding: 0; }
         .container-fluid .role_content .role_fath .fath_select .form_clire span {
           display: inline-block;
           width: 6px;
@@ -150,6 +153,7 @@
       .container-fluid .role_content .role_max_number .form_clire {
         width: 10px;
         height: 10px;
+        padding:0;
         line-height: 0.42rem; }
         .container-fluid .role_content .role_max_number .form_clire span {
           display: inline-block;
@@ -202,6 +206,7 @@
       .container-fluid .role_content .role_remarks .form_clire {
         width: 10px;
         height: 10px;
+        padding:0;
         line-height: 0.42rem; }
         .container-fluid .role_content .role_remarks .form_clire span {
           display: inline-block;
@@ -215,7 +220,7 @@
         line-height: 0.48rem;
         padding-right: 0; }
       .container-fluid .role_content .role_remarks .role_write {
-        border: 1px solid #f4f4f4;
+        border: 1px solid #bfbfbf;
         background-color: #f4f4f4;
         border-radius: 10px;
         padding: 0;

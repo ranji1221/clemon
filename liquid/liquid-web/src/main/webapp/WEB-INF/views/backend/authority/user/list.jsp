@@ -1,13 +1,14 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!-- <link rel="stylesheet" href="./assets/styles/rolelist/rolelistREM.css" /> -->
 <script src="${pageContext.request.contextPath}/js/user/list.js"></script>
-<script src="${pageContext.request.contextPath}/js/pagination/mricode.pagination.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
 
 <script>
+
 function userListInit(){
-	$("#userList").LemonCreateTable({
+	$("#userList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/user/data',
 	   	trForm : function(index,value){
 			var phone = value.phone == null ? '无':value.phone ;

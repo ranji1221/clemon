@@ -381,7 +381,6 @@ $(".reportBox").resize(function() {
 
 //模态框最小化按钮
 $(document).on("click", ".module_minimize", function() {
-	console.log(111)
 	getdom_module($(this))
 })
 //最小化按钮本地存储

@@ -3,11 +3,11 @@
 
 <script src="${pageContext.request.contextPath}/js/user/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<script src="${pageContext.request.contextPath}/js/common/LemonForm.js"></script>
-<script src="${pageContext.request.contextPath}/js/pagination/mricode.pagination.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 <script>
 function resourceListInit(){
-	$("#resourceList").LemonCreateTable({
+	$("#resourceList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
 	   	trForm : function(index,value){
 	   		var thisType = '';

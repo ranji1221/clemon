@@ -26,7 +26,7 @@
     font-size: 0.12rem; }
 
 .role_button {
-  margin-top: 0.83rem; }
+  margin-top: 0.83rem !important; }
   .role_button .role_succse {
     text-align: right; }
     .role_button .role_succse .btn {

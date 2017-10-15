@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
+<div class="modal-contentbox">
 <ol class="breadcrumb breadcrumb_margin">
 	<li>
 		<i class="glyphicon glyphicon-home"></i>
@@ -82,7 +83,7 @@
 				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 				<div class="hidmission">
 					<span class="icon-pencil icon-slidenav"></span>
-					<p url="${pageContext.request.contextPath}/backend/authority/resource/add" u_id="1" n_id="-1">添加资源</p>
+					<p url="${pageContext.request.contextPath}/backend/authority/resource/add" mintype='3'>添加资源</p>
 					<span class="iconfont icon-chuyidong1 del"></span>
 				</div>
 			</div>
@@ -109,7 +110,7 @@
 				<span>您输入了特殊符号！</span>
 			</div>
 		</div>
-		<div class="row role_content_error_xian">
+		<div class="row role_content_error_xian display_block">
 			<div class="error_xian col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
 				<div class="col-lg-3 col-md-3 col-xs-4"></div>
 				<div class="error_box col-lg-5 col-md-7 col-sm-6 col-xs-6"></div>
@@ -203,7 +204,7 @@
 	</form>
 	<!--编辑资源最大化结束-->
 </div>
-
+</div>
 <script>
 	$("[type='checkbox']").iCheck({
 		checkboxClass: 'icheckbox_flat-blue',
@@ -216,7 +217,7 @@
 	$(".error_box").slider({
 		orientation: "horizontal",
 		range: "min",
-		value: 1,
+		value: 70,
 		max:70,
 		slide: function(event, ui) {
 	var ui_value = ui.value
@@ -227,6 +228,8 @@
 			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 		}
 	})
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
 	$('[data-toggle="select"]').select2();
 
 	function limitChangeLength(elm, limitLength) {
@@ -248,4 +251,19 @@
 			$(".ajax_dom").html(data)
 		})
 	})
+	
+	// 关闭按钮
+    $('.red_border').on('click',function(){
+		$(this).closest('.modal-contentbox').remove();
+		if(!$('.ajax_dom').html()){
+			$('.ajax_dom').hide()
+		}
+    })
+	// 最小化隐藏
+	$('.dom_minimize').on('click',function(){
+		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+		if(!$('.ajax_dom').html()){
+			$('.ajax_dom').hide()
+		}
+    })
 </script>
