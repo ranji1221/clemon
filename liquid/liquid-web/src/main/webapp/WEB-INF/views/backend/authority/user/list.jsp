@@ -202,7 +202,3 @@ $(document).on("click",".renovate",function(){
 	</div>
 </div>
 
-<!-- 最大化容器 -->
-<div class="maxcontainer">
-	
-</div>

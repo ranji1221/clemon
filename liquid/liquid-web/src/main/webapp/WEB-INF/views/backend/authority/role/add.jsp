@@ -194,8 +194,8 @@ createRoleList();
 			$(".error_box").slider({
 				orientation: "horizontal",
 				range: "min",
-				max: 70,
-				value: 70,
+				max: 72,
+				value: 72,
 				slide: function(event, ui) {
 					var ui_value = ui.value
 					$(".sliderInput").css("width",  ui_value+"%");
@@ -205,8 +205,8 @@ createRoleList();
 					limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 				}
 			})
-	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
+			$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+			$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
 			$('[data-toggle="select"]').select2();
 
 			function limitChangeLength(elm, limitLength) {

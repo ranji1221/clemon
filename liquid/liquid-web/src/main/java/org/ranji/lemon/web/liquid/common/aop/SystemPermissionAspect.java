@@ -1,4 +1,4 @@
-package org.ranji.lemon.web.common.aop;
+package org.ranji.lemon.web.liquid.common.aop;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

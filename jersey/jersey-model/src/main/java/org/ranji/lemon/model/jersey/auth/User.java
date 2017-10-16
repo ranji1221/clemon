@@ -2,8 +2,7 @@ package org.ranji.lemon.model.jersey.auth;
 
 import org.apache.ibatis.type.Alias;
 import org.ranji.lemon.common.core.model.AbstractModel;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.ranji.lemon.common.core.util.JsonUtil;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -56,13 +55,7 @@ public class User extends AbstractModel {
 
 	@Override
 	public String toString() {
-		ObjectMapper om = new ObjectMapper();
-		try {
-			return om.writerWithDefaultPrettyPrinter().writeValueAsString(this);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return super.toString();
+		return JsonUtil.objectToJson(this);
 	}
 
 }
