@@ -9,6 +9,7 @@ function setEditStyle(){
 	$(".modalCon .bg-grey#remark").addClass("active")
 	$(".modalCon .roleNameBox").removeClass("width_active")
 	$(".editRole_modal .role_hearder").addClass("display_block")
+	$('#editRoleModal .maxNumView').addClass("width_block")
 	$(".modalCon .modal-header").addClass("display_none")
 	$(".role_content_error_xian").addClass("display_block")
 }
@@ -19,6 +20,7 @@ function removeEditStyle(){
 	$(".breadcrumb").removeClass("display_block")
 	$(".modalCon .bg-grey#remark").removeClass("active")
 	$(".modalCon .roleNameBox").addClass("width_active")
+	$('#editRoleModal .maxNumView').removeClass("width_block")
 	$(".editRole_modal .role_hearder").removeClass("display_block")
 	$(".modalCon .modal-header").removeClass("display_none")
 	$(".role_content_error_xian").removeClass("display_block")
@@ -117,7 +119,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 });
 
 /* 弹出编辑框 */
-function editRole(data) {
+function showEditModal(data) {
 	//获取到本地的某条数据 示例代码
 	$("[name='roleName']").val(data.displayName);
 	$("[name='roleMaxNum']").val(data.roleMaxNum);
@@ -171,7 +173,7 @@ function editRole(data) {
 	console.log(data)
 	$("[name='remarks']").val(data.remarks);
 	
-	createRoleList(data.roleExtendPId);
+	createRoleList(data);
 	
 	$('#editRoleModal').modal('show');
 }
