@@ -11,7 +11,7 @@ $(function(){
 })
 
 
-function createRoleList(thisRoleExtendPId){
+function createRoleList(data){
 	$('.form-control').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
 		beforeFun(data){
@@ -32,6 +32,22 @@ function createRoleList(thisRoleExtendPId){
 			return itemHtml;
 		},
 		afterFun(){
+			//.roleExtendPId
+			if(data.roleExtendPId >= 1){
+				$('#edit_parentRole option').each(function(val){
+					if($(this).attr('name') == data.roleExtendPId){
+						$(this).attr('selected','selected');
+					}
+				})
+			}
+			
+			if(data.roleRelyId >= 1){
+				$('#edit_roleRelyId option').each(function(val){
+					if($(this).attr('name') == data.roleRelyId){
+						$(this).attr('selected','selected');
+					}
+				})
+			}
 			/* 下拉框样式 */
 			$('[data-toggle="select"]').select2();
 		}
@@ -159,7 +175,7 @@ function createRoleList(thisRoleExtendPId){
 							</div>
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="fath" data-toggle="select" class=" form-control" id="sourceType">
+								<select name="fath" data-toggle="select" class=" form-control" id="edit_parentRole">
 								</select>
 							</div>
 						</div>
@@ -170,7 +186,7 @@ function createRoleList(thisRoleExtendPId){
 	            </label>
 							</div>
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="yilai" data-toggle="select" class="form-control" id="parentRole">
+								<select name="yilai" data-toggle="select" class="form-control" id="edit_roleRelyId">
 								</select>
 							</div>
 						</div>
