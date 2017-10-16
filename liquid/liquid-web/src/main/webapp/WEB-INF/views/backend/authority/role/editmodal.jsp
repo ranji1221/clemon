@@ -14,7 +14,7 @@ $(function(){
 function createRoleList(data){
 	$('.form-control').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
-		beforeFun(data){
+		beforeFun:function(data){
 			return getListByTree(data);
 		},
 		generateItemFun:function(index,value){
@@ -31,7 +31,7 @@ function createRoleList(data){
 			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
 			return itemHtml;
 		},
-		afterFun(){
+		afterFun:function(){
 			//.roleExtendPId
 			if(data.roleExtendPId >= 1){
 				$('#edit_parentRole option').each(function(val){
