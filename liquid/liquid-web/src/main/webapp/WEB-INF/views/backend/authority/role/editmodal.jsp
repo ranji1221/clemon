@@ -11,10 +11,14 @@ $(function(){
 })
 
 
-function createRoleList(thisRoleExtendPId){
-	$('.form-control').LemonGetList({
+function dealDataToModal(data){
+	//获取到本地的某条数据 示例代码
+	$("[name='edit_roleName']").val(data.displayName);
+	$("[name='edit_roleMaxNum']").val(data.roleMaxNum);
+	
+	$('.select_roleList').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
-		beforeFun(data){
+		beforeFun:function(data){
 			return getListByTree(data);
 		},
 		generateItemFun:function(index,value){
@@ -31,7 +35,23 @@ function createRoleList(thisRoleExtendPId){
 			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
 			return itemHtml;
 		},
-		afterFun(){
+		afterFun:function(){
+			//.roleExtendPId
+			if(data.roleExtendPId >= 1){
+				$('#edit_parentRole option').each(function(val){
+					if($(this).attr('name') == data.roleExtendPId){
+						$(this).attr('selected','selected');
+					}
+				})
+			}
+			
+			if(data.roleRelyId >= 1){
+				$('#edit_roleRelyId option').each(function(val){
+					if($(this).attr('name') == data.roleRelyId){
+						$(this).attr('selected','selected');
+					}
+				})
+			}
 			/* 下拉框样式 */
 			$('[data-toggle="select"]').select2();
 		}
@@ -98,7 +118,7 @@ function createRoleList(thisRoleExtendPId){
 		
 			<div class="modal-header">
 				<div class="pull-right">
-					<a  class="minus module_minimize">
+					<a href="javascript:;" data-dismiss="modal" class="minus module_minimize">
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>
@@ -129,7 +149,7 @@ function createRoleList(thisRoleExtendPId){
 						</div>
 						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
 							<input type="hidden" name="id" id="roleId">
-							<input type="text" class="form-control bg-grey2  form_input" name="roleName" id="roleName" placeholder="请输入角色名称">
+							<input type="text" class="form-control bg-grey2  form_input" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
 							<span class="minlimitNum">15</span>
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
@@ -159,7 +179,7 @@ function createRoleList(thisRoleExtendPId){
 							</div>
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="fath" data-toggle="select" class=" form-control" id="sourceType">
+								<select name="fath" data-toggle="select" class=" form-control select_roleList" id="edit_parentRole">
 								</select>
 							</div>
 						</div>
@@ -170,7 +190,7 @@ function createRoleList(thisRoleExtendPId){
 	            </label>
 							</div>
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="yilai" data-toggle="select" class="form-control" id="parentRole">
+								<select name="yilai" data-toggle="select" class="form-control select_roleList" id="edit_roleRelyId">
 								</select>
 							</div>
 						</div>
@@ -194,7 +214,7 @@ function createRoleList(thisRoleExtendPId){
 	                <span class="dot">·</span>备注：</label>
 						</div>
 						<div class="col-xs-9 col-sm-10 textarea-h">
-							<textarea name="remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
+							<textarea name="edit_remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>
