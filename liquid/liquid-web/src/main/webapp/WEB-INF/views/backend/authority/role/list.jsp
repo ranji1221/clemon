@@ -10,7 +10,6 @@
 function roleListInit(){
 	$("#rolesList").LemonGetList({
 		usePage: true,
-		useCheckBox: true,
 		useLocalStorage: true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    pageClassName:"#page",
@@ -45,6 +44,14 @@ function roleListInit(){
 				'</td>'+
 			'</tr>';
 	       	return tr_data; 
+   		},
+   		afterFun : function(){
+			$('.tablewrap input').iCheck({
+			    checkboxClass: 'icheckbox_flat-blue',
+			    radioClass: 'iradio_flat-blue',
+			    labelHover : true, 
+			  	cursor : false,
+			 });
    		}
 	})
 }
