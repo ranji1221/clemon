@@ -1,4 +1,4 @@
-package org.ranji.lemon.web.controller.backend.authority;
+package org.ranji.lemon.web.liquid.controller.backend.authority;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

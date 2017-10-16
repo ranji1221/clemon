@@ -1,4 +1,4 @@
-package org.ranji.lemon.web.common.aop;
+package org.ranji.lemon.web.liquid.common.aop;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;

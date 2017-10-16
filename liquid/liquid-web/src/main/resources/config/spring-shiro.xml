@@ -15,7 +15,7 @@
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<bean id="systemRealm" class="org.ranji.lemon.web.common.security.SystemRealm" />
+	<bean id="systemRealm" class="org.ranji.lemon.web.liquid.common.security.SystemRealm" />
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- 设置自定义realm -->
 		<property name="realm" ref="systemRealm" />

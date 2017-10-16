@@ -54,7 +54,7 @@
 	<!-- 处理分页的过滤器 -->
 	<filter>
 		<filter-name>pagerFilter</filter-name>
-		<filter-class>org.ranji.lemon.web.common.filter.PagerFilter</filter-class>
+		<filter-class>org.ranji.lemon.web.liquid.common.filter.PagerFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>pagerFilter</filter-name>
