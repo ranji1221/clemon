@@ -173,7 +173,7 @@ function showEditModal(data) {
 	console.log(data)
 	$("[name='remarks']").val(data.remarks);
 	
-	createRoleList(data);
+	createRoleList(data); 
 	
 	$('#editRoleModal').modal('show');
 }
