@@ -38,7 +38,6 @@ function createRoleList(thisRoleExtendPId){
 	})
 }
 </script>
-
 <div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
@@ -214,4 +213,3 @@ function createRoleList(thisRoleExtendPId){
 		</div>
 	</div>
 </div>
-
