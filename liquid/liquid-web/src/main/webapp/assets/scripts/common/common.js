@@ -48,7 +48,7 @@
 		}
 	}
 	//树转数组，（入口方法）
-	function getListByData(tree){
+	function getListByTree(tree){
 		var listData = [];
 		return treeToList(tree,listData,0);
 		

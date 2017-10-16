@@ -192,7 +192,7 @@
 					limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 				}
 			})
-$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
 	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
 			$('[data-toggle="select"]').select2();
 

@@ -83,7 +83,7 @@
         background-color: #cccccc;
         border-radius: 20px;
         height: 0.11rem;
-        margin-left: 4%; }
+        margin-left:0; }
       @media (max-width: 1179px) {
         .container-fluid .role_content .role_content_error_xian .error_xian .error_box {
           margin-left: 9%; } }

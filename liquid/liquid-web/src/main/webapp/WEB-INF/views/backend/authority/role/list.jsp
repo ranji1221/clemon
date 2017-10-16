@@ -10,7 +10,6 @@
 function roleListInit(){
 	$("#rolesList").LemonGetList({
 		usePage: true,
-		useCheckBox: true,
 		useLocalStorage: true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    pageClassName:"#page",
@@ -32,10 +31,10 @@ function roleListInit(){
 				     Pname +
 				'</td>'+
 				'<td>'+
-					'<span class="icon-eye-open iconact lookRole"></span> '+
+					'<span class="icon-eye-open iconact viewRole"></span> '+
 				'</td>'+
 				'<td>'+
-					'<span class="icon-pencil iconact editRole" n_id="1"></span>'+
+					'<span class="icon-pencil iconact editRole"></span>'+
 				'</td>'+
 				'<td>'+
 					'<span class="icon-trash iconact removeBtn"></span>'+
@@ -45,6 +44,14 @@ function roleListInit(){
 				'</td>'+
 			'</tr>';
 	       	return tr_data; 
+   		},
+   		afterFun : function(){
+			$('.tablewrap input').iCheck({
+			    checkboxClass: 'icheckbox_flat-blue',
+			    radioClass: 'iradio_flat-blue',
+			    labelHover : true, 
+			  	cursor : false,
+			 });
    		}
 	})
 }
@@ -79,6 +86,15 @@ $(document).on("click", ".editRole", function(e) {
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
 	editRole(data);
+});
+//添加查看事件
+$(document).on("click", ".viewRole", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	viewRole(data);
 });
 </script>
 
@@ -179,3 +195,4 @@ $(document).on("click", ".editRole", function(e) {
 </div>
 <!-- 模态框加载  -->
 <%@ include file="editmodal.jsp" %>
+<%@ include file="viewmodal.jsp" %>

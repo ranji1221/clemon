@@ -96,9 +96,9 @@
 			
 		</div>
 		<!--查看模态框-->
-		<div id="lookRoleModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+		<!-- <div id="lookRoleModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
-		</div>
+		</div> -->
 		<div id="lookUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>

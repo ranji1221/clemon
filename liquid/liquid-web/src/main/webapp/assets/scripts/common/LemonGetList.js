@@ -4,9 +4,9 @@ $(function(){
 		var _this = this;
 		var defaults = {
 			usePage: false,
-			useCheckBox: false,
 			useLocalStorage: false,
 			
+			data:{},
 			pageSize:"10",
 			requestListUrl:" ",
 			pageClassName:".pagination",
@@ -14,9 +14,15 @@ $(function(){
 			generateItemFun : function(){
 				return '';
 			},
-			getListDataByResponseDataFun : function(data){
-				console.log('处理发过来的请求数据方法为:getListDataByResponseDataFun');
+			//渲染页面之前的操作
+			beforeFun : function(data){ 
+				console.log('处理数据之前的操作 : beforeFun(data), 需要返回待处理数组');
 				return data.rows;
+				
+			},
+			//渲染页面之后的操作
+			afterFun : function(){ 
+				console.log('生成页面之后的操作 : afterFun()');
 			},
 			emptyDataFun : function(){
 				return "<tr><td style='width:100%' colspan='9'><span class='center text-center' style='display:inline-block;width:100%;'>没有查找到数据!</span></td></tr>";
@@ -39,10 +45,11 @@ $(function(){
 			if(data){
 	 			dealData(data,pages,page_first);
 			}else{
-				$.post(url,{
-					page: pages,
-					rows: TableObj.pageSize
-				}, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
+				if(TableObj.usePage){
+					TableObj.data.page = pages;
+					TableObj.data.rows = TableObj.pageSize;
+				}
+				$.post(url,TableObj.data, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
 					if(TableObj.useLocalStorage){ setStorage(saveStorageName,data); }
 					dealData(data,pages,page_first);
 				},"json");
@@ -52,25 +59,18 @@ $(function(){
 		
 		//处理来自服务器端的数据
 		function dealData(data,pages,page_first){
-			var dataList = TableObj.getListDataByResponseDataFun(data);
+			var dataList = TableObj.beforeFun(data);
 			if(!dataList){
-				console.log('getListDataByResponseDataFun : return data 为空');
+				console.log('beforeFun : return data 为空');
 				return ;
 			}
 			if(dataList.length > 0){
-				initHtml(dataList);
 				if(page_first && TableObj.usePage){ 
 					//如果页面是第一次加载,进入本流程
 					createPage(pages,data.total,TableObj.pageSize);
 				}
-				if(TableObj.useCheckBox){
-					$('.tablewrap input').iCheck({
-					    checkboxClass: 'icheckbox_flat-blue',
-					    radioClass: 'iradio_flat-blue',
-					    labelHover : true, 
-					  	cursor : false,
-					 });
-				}
+				initHtml(dataList);
+				TableObj.afterFun();
 			}else{
 				_this.html(TableObj.emptyDataFun());
 			}
