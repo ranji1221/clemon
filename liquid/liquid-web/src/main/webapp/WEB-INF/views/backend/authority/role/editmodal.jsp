@@ -9,8 +9,7 @@ $(function(){
 	//将编辑角色模态框加入到body中id为bodyModalArea的div中
 	$('#editRoleModal').appendTo('body #bodyModalArea');
 })
-
-
+ 
 function dealDataToModal(data){
 	//获取到本地的某条数据 示例代码
 	$("[name='edit_roleName']").val(data.displayName);
