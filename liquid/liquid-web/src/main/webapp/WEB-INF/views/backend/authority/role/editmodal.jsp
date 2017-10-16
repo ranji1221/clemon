@@ -9,48 +9,6 @@ $(function(){
 	//将编辑角色模态框加入到body中id为bodyModalArea的div中
 	$('#editRoleModal').appendTo('body #bodyModalArea');
 })
-	
-	/* 弹出编辑框 */
-	function editRole(data) {
-		//获取到本地的某条数据 示例代码
-		$("[name='roleName']").val(data.displayName);
-		$("[name='roleMaxNum']").val(data.roleMaxNum);
-		var maxNum = data.roleMaxNum;
-		var maxLimitNum = 10;
-		//加减按钮
-		var limitNum;
-		if(parseInt(maxNum) == 0) {
-			limitNum = 0;
-		} else if(parseInt(maxNum)) {
-			limitNum = parseInt(maxNum);
-		} else {
-			limitNum = parseInt($("#limitNum").val()) || 0;
-		}
-		function judge(limitNum) {
-			if(maxLimitNum <= limitNum) {
-				$(add).css("background", grey);
-				$(sub).css("background", blue);
-			} else if(limitNum < 1) {
-				$(sub).css("background", grey);
-				$(add).css("background", blue);
-			} else {
-				$(add).css("background", blue);
-				$(sub).css("background", blue);
-
-
-function createRoleList(thisRoleExtendPId){
-	$('.form-control').LemonGetList({
-		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
-		beforeFun(data){
-			return getListByTree(data);
-		},
-		generateItemFun:function(index,value){
-			var itemHtml = '';
-			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择角色</option>';}
-			
-			var kongge_str = '';
-			for(var i=0;i<value.level;i++){
-				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
 
 function createRoleList(thisRoleExtendPId){
@@ -77,93 +35,11 @@ function createRoleList(thisRoleExtendPId){
 			/* 下拉框样式 */
 			$('[data-toggle="select"]').select2();
 		}
-		var add = $(".numCtr .icon-plus");
-		var sub = $(".numCtr .icon-minus");
-		var grey = '#bdc3c7';
-		var blue = '#378ef8';
-		$(sub).click(function(e) {
-			e.preventDefault();
-			var numVal = parseInt($("#limitNum").val());
-			if(numVal > 0) {
-				numVal--;
-				$("#limitNum").val(numVal);
-			}
-			var inputlimitNum = parseInt($(".numCtr input").val());
-			judge(inputlimitNum);
-		});
-		$(add).click(function(e) {
-			e.preventDefault();
-			var numVal = parseInt($("#limitNum").val());
-			if(numVal < 10) {
-				numVal++;
-				$("#limitNum").val(numVal);
-			}
-			var inputlimitNum = parseInt($(".numCtr input").val());
-			judge(inputlimitNum);
-		});
-		console.log(data)
-		$("[name='remarks']").val(data.remarks);
-		
-		createRoleList(data.roleExtendPId);
-		
-		$('#editRoleModal').modal('show');
-	}
-	function createRoleList(thisRoleExtendPId){
-		console.log(thisRoleExtendPId);
-		$('#sourceType').LemonGetList({
-			requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
-			generateItemFun:function(index,value){
-				var kongge_str = '';
-				for(var i=0;i<value.level;i++){
-					kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-				}
-				kongge_str += '|-';
-				
-				var itemHtml = '';
-				var ex_str = '';
-				if(thisRoleExtendPId == -1) ex_str = ' selected ';
-				if(index == 0 ){ itemHtml += '<option value="0" '+ex_str+'>选择父级角色</option>';}
-				itemHtml += '<option  name="'+value.id+'" ';
-				if(value.id == thisRoleExtendPId) itemHtml += ' selected ';
-				itemHtml += ' >'+kongge_str+value.roleName+'</option>';
-				return itemHtml;
-			},
-			getListDataByResponseDataFun:function(data){
-				data = getListByData(data)
-				return data;
-			}
-		})
-	}
-	$("#editRoleModal").on("click","*:not('.pull-right *')",function(e){
-		e.stopPropagation()
-	})
-	$("#editRoleModal").on("shown.bs.modal", function() {
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			e.stopPropagation()
-			setEditStyle()
-			var minlimitNum = 5;
-	$(".minlimitNum").html(minlimitNum);
-	$(".error_box").slider({
-		orientation: "horizontal",
-		range: "min",
-		max: 60,
-		value: 60,
-		slide: function(event, ui) {
-			var ui_value = ui.value
-			$(".sliderInput").css("width", ui_value+"%");
-			$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
-			$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-			$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
-			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-		}
 	})
 }
 </script>
-<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
-<div class="modal-contentbox modalCon">
 
+<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
