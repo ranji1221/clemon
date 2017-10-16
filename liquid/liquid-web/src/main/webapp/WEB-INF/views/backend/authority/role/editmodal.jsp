@@ -2,36 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 
 <script type="text/javascript">
 $(function(){
 	//将编辑角色模态框加入到body中id为bodyModalArea的div中
 	$('#editRoleModal').appendTo('body #bodyModalArea');
 })
-	/* 放大模态框样式  */
-	function setEditStyle(){
-		$(".modal-backdrop").hide()
-		$("#editRoleModal").appendTo($(".ajax_dom"))
-		$("#editRoleModal").addClass("bigmodule")
-		$(".breadcrumb").addClass("display_block")
-		$(".modalCon .bg-grey#remark").addClass("active")
-		$(".modalCon .roleNameBox").removeClass("width_active")
-		$(".editRole_modal .role_hearder").addClass("display_block")
-		$(".modalCon .modal-header").addClass("display_none")
-		$(".role_content_error_xian").addClass("display_block")
-	}
-	/* 删除模态框样式 */
-	function removeEditStyle(){
-		$(".modalCon .bg-grey#remark").removeClass("active")
-		$("#editRoleModal").removeClass("bigmodule")
-		$(".breadcrumb").removeClass("display_block")
-		$(".modalCon .bg-grey#remark").removeClass("active")
-		$(".modalCon .roleNameBox").addClass("width_active")
-		$(".editRole_modal .role_hearder").removeClass("display_block")
-		$(".modalCon .modal-header").removeClass("display_none")
-		$(".role_content_error_xian").removeClass("display_block")
-		
-	}
+	
 	/* 弹出编辑框 */
 	function editRole(data) {
 		//获取到本地的某条数据 示例代码
@@ -58,7 +36,46 @@ $(function(){
 			} else {
 				$(add).css("background", blue);
 				$(sub).css("background", blue);
+
+
+function createRoleList(thisRoleExtendPId){
+	$('.form-control').LemonGetList({
+		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
+		beforeFun(data){
+			return getListByTree(data);
+		},
+		generateItemFun:function(index,value){
+			var itemHtml = '';
+			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择角色</option>';}
+			
+			var kongge_str = '';
+			for(var i=0;i<value.level;i++){
+				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+
+
+function createRoleList(thisRoleExtendPId){
+	$('.form-control').LemonGetList({
+		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
+		beforeFun(data){
+			return getListByTree(data);
+		},
+		generateItemFun:function(index,value){
+			var itemHtml = '';
+			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择角色</option>';}
+			
+			var kongge_str = '';
+			for(var i=0;i<value.level;i++){
+				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 			}
+			kongge_str += '|-';
+			
+			itemHtml += '<option  name="'+value.id+'" ';
+			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
+			return itemHtml;
+		},
+		afterFun(){
+			/* 下拉框样式 */
+			$('[data-toggle="select"]').select2();
 		}
 		var add = $(".numCtr .icon-plus");
 		var sub = $(".numCtr .icon-minus");
@@ -142,70 +159,11 @@ $(function(){
 			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 		}
 	})
-			
-	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
-			
-			
-			$('.breadcrumb').on("click", function(e) {
-				var el = e.target || window.event
-				e.preventDefault()
-				var url = $(el).attr("url")
-				var ajax_dom = $(".ajax_dom")
-				if($(el).attr('data')) {
-					window.location.reload()
-				} else {
-					if(url){
-						$.ajax({
-							url: url + ".html",
-							dataType: "html"
-						}).done(function(data) {
-							ajax_dom.empty()
-							ajax_dom.html(data)
-						})
-					}
-				}
-			});
-			$(document).on("click.all_click",".left-menu li",function(e){
-				e.stopPropagation()
-				var url = $(this).attr("url")
-				if(url){
-					$(".ajax_dom").empty()	
-				}else{
-					
-				}
-				
-				$(document).off("click.all_click","**")
-			});
-		});
-	});
-	/* 下拉框样式 */
-	$('[data-toggle="select"]').select2();
-	$(".blue_border").on("click", function() {
-		$(".modal-backdrop").show()
-		$("#editRoleModal").modal('show')
-		removeEditStyle()
-		$('#editRoleModal').appendTo('body #bodyModalArea');
-	})
-	/* 滑块 */
-	function limitChangeLength(elm, limitLength) {
-		$(elm).attr("maxLength", limitLength);
-		$(elm).keyup(function() {
-			var length = $(elm).val().length;
-			
-			$(elm).siblings("span").html($(elm).attr("maxlength") - length);
-		});
-	}
-
-	/*关闭处理 */
-	$('.red_border').on("click", function(e) {
-		e.preventDefault()
-		$('#editRoleModal').appendTo('body #bodyModalArea');
-		removeEditStyle()
-		$("#editRoleModal").modal('hide')
-	})
+}
 </script>
 <div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
+<div class="modal-contentbox modalCon">
+
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
@@ -241,12 +199,12 @@ $(function(){
 					<span>角色编辑</span>
 				</div>
 				<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border" data-dismiss="modal">
+					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon edit_red_border" data-dismiss="modal">
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 						<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 					</div>
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  blue_border">
+					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  edit_blue_border">
 						<!--<a href=""><span class="glyphicon glyphicon-resize-small blue_back"></span></a>-->
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />
@@ -254,11 +212,11 @@ $(function(){
 					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
 						<!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-						<!--<div class="hidmission">
+						<div class="hidmission">
 						<span class="icon-pencil icon-slidenav"></span>
-						<p url="./pages/role/edit" u_id="2">角色编辑</p>
+						<p url="./pages/role/edit" u_id="2" mintype='2'>角色编辑</p>
 						<span class="iconfont icon-chuyidong1 del"></span>
-					</div>-->
+					</div>
 					</div>
 				</div>
 			</div>
@@ -269,12 +227,12 @@ $(function(){
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>
-							<p u_id="2" class="editRole">编辑角色</p>
+							<p u_id="2" class="editRole" mintype='1'>编辑角色</p>
 							<span class="iconfont icon-chuyidong1 del"></span>
 						</div>
 	
 					</a>
-					<a href="javascript:;" class="external-link">
+					<a href="javascript:;" class="edit_external_link">
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" />
 					</a>
 					<a href="javascript:;" class="remove" data-dismiss="modal">
@@ -338,10 +296,6 @@ $(function(){
 							</div>
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
 								<select name="yilai" data-toggle="select" class="form-control" id="parentRole">
-									<option value="0" disabled="disabled">选择依赖角色</option>
-									<c:forEach items="${roleList}" var = "roleList">
-										<option value="${roleList.id }" name="roleRelyId" <c:if test="${roleList.id == role.roleRelyId}">selected</c:if>>${roleList.roleName}</option>
-									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -384,5 +338,4 @@ $(function(){
 		</div>
 	</div>
 </div>
-<script>
-</script>
+
