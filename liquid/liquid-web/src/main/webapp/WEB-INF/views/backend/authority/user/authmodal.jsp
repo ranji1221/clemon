@@ -27,19 +27,19 @@
 		<form>
 		  	<div class="form-group">
 		    	<label for="rolename" class="rolename">用户名称
-		    	<span class="errormessage">
+		    	<!-- <span class="errormessage">
 		    		您输入了特殊符号！
-		    	</span>
+		    	</span> -->
 		    	</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax">
-				    	<input type="text" class="form-control rolenameinput" placeholder="请输入用户名称" name='name'>
-				    	<span class="rolenamelimit">11</span>
-				    	<span class="icon-exclamation-sign"></span>
+				    	<input type="text" class="form-control usernameinput" placeholder="请输入用户名称" name='name'>
+				    	<span class=" usernamelimit">11</span>
+				    	<!-- <span class="icon-exclamation-sign"></span>
 				    	<span class="icon-ok-sign"></span>
 				    	<span class="errormessage">
 			    		您输入了特殊符号！
-			    		</span>
+			    		</span> -->
 		    		</div>
 		    	</div>
 		    	<div class="user-slider"></div>

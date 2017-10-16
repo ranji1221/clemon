@@ -119,10 +119,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 });
 
 /* 弹出编辑框 */
-function editRole(data) {
-	//获取到本地的某条数据 示例代码
-	$("[name='roleName']").val(data.displayName);
-	$("[name='roleMaxNum']").val(data.roleMaxNum);
+function showEditModal(data) {
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
 	//加减按钮
@@ -173,7 +170,7 @@ function editRole(data) {
 	console.log(data)
 	$("[name='remarks']").val(data.remarks);
 	
-	createRoleList(data.roleExtendPId);
+	dealDataToModal(data); 
 	
 	$('#editRoleModal').modal('show');
 }

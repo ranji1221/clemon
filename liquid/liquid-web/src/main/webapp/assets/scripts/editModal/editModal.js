@@ -94,6 +94,7 @@ $(function() {
 			url: lookUserUrl,
 			async: true,
 			success: function(data) {
+
 				$("#lookUserModal").html(data);
 				$('#lookUserModal .hidmission p').html('查看用户'+id);
 			},

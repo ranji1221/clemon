@@ -336,7 +336,7 @@ $(document).on("click", ".dom_minimize", function() {
 	getdom_module($(this))
 })
 function getdom_module(this_dom) {
-	$(".ajax_dom").empty().hide()
+	//$(".ajax_dom").empty().hide()
 	var dom_modul = this_dom.find(".hidmission").html()
 	var url = this_dom.find(".hidmission p").attr("class")
 	$("<li class="+url+">" + dom_modul + "</li>").prependTo($(".mission ol"))

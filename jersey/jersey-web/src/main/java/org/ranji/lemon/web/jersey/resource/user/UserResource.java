@@ -1,7 +1,5 @@
 package org.ranji.lemon.web.jersey.resource.user;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -11,14 +9,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
+import org.ranji.lemon.web.jersey.common.annotation.CheckAccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -37,13 +33,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * 测试用的hello webservice接口，没有实际的用处，仅仅是个示例而已
+ * 测试用的user webservice接口，仅仅是个示例而已
  * @author RanJi
  * @date 2017-9-23
  * @since JDK1.7
  * @version 1.0
  */
 
+@CheckAccessToken
 @Component
 @Path("/user")
 public class UserResource {
@@ -55,22 +52,7 @@ public class UserResource {
 	@Path("/{id}")
 	public String getUser(@PathParam("id") int id){
 		User u = userService.find(id);
-		
-		ObjectMapper om = new ObjectMapper();
-		String userJsonData = "";
-		
-		try {
-			//-- 加入writeWithDefaultPrettyPrinter()方法仅仅是为了更加的格式化
-			userJsonData = om.writerWithDefaultPrettyPrinter().writeValueAsString(u);
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return userJsonData;
+		return JsonUtil.objectToJson(u);
 	}
 	
 	@POST
@@ -78,16 +60,18 @@ public class UserResource {
 	@Produces("application/json")
 	@Path("/save")
 	public Object saveUser(@FormParam("userName") String userName,@FormParam("userPass") String userPass){
-		
+		String jsonData = "";
 		User u = new User();
 		u.setUserName(userName);
 		u.setUserPass(userPass);
 		try {
 			userService.save(u);
 		} catch (Exception e) {
-			return Response.ok("{\"access\":\"failure\"}").status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR ).header("Access-Control-Allow-Origin", "*").build();
+			//-- 统一在过滤器中添加跨域访问的header信息，所以这里就不添加了
+			jsonData = JsonUtil.toJsonByProperty("addUser","failure");
+			return Response.ok(jsonData).status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR ).build();
 		}
-		
-		return Response.ok("{\"id\":"+u.getId()+"}").status(HttpServletResponse.SC_OK).header("Access-Control-Allow-Origin", "*").build();
+		jsonData = JsonUtil.toJsonByProperty("id", u.getId());
+		return Response.ok(jsonData).status(HttpServletResponse.SC_OK).build();
 	}
 }

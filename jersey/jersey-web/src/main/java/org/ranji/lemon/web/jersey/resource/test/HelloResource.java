@@ -29,11 +29,11 @@ import org.ranji.lemon.web.jersey.common.annotation.CheckAccessToken;
  * @since JDK1.7
  * @version 1.0
  */
-
+@CheckAccessToken
 @Path("")
 public class HelloResource {
 	
-	@CheckAccessToken
+	
 	@GET
 	@Path("/hello")
 	public String sayHello(HttpServletRequest request){

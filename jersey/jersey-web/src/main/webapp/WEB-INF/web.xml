@@ -49,6 +49,7 @@
 	  	<param-value>
 	  		org.ranji.lemon.web.jersey.resource
 	  		org.ranji.lemon.web.jersey.common.filter
+	  		org.ranji.lemon.web.jersey.common.exception
 	  	</param-value>
 	  </init-param>
 	  <load-on-startup>1</load-on-startup>

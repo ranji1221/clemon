@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ranji.lemon.model.liquid.authority.Resource;
-import org.ranji.lemon.persist.liquit.authority.prototype.IResourceDao;
+import org.ranji.lemon.persist.liquid.authority.prototype.IResourceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

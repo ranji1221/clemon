@@ -34,8 +34,8 @@
 	<aop:aspectj-autoproxy/>
 	
 	<!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-	<context:component-scan base-package="org.ranji.lemon.web.common.aop" />
-	<context:component-scan base-package="org.ranji.lemon.web.controller" />
+	<context:component-scan base-package="org.ranji.lemon.web.liquid.common.aop" />
+	<context:component-scan base-package="org.ranji.lemon.web.liquid.controller" />
 
 	<!-- 资源映射 -->
 	<mvc:resources mapping="/img/**" location="/assets/images/" />

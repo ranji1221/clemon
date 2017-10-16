@@ -25,7 +25,7 @@ function roleListInit(){
 					(index+1) +
 				'</td>'+
 				'<td title='+ value.roleName +' class="roleName">'+
-					value.roleName +'[点我]'+//${role.roleName}
+					value.roleName +//${role.roleName}
 				'</td>'+
 				'<td title='+ Pname +'>'+
 				     Pname +
@@ -85,7 +85,7 @@ $(document).on("click", ".editRole", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	editRole(data);
+	showEditModal(data);
 });
 //添加查看事件
 $(document).on("click", ".viewRole", function(e) {

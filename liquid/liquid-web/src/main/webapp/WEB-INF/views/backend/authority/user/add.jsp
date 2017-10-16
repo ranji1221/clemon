@@ -155,7 +155,7 @@
 	$(".error_box").slider({
 		orientation: "horizontal",
 		range: "min",
-		max:70,
+		max:65,
 		value: 1,
 		slide: function(event, ui) {
 			var ui_value = ui.value
@@ -166,6 +166,8 @@
 			limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
 		}
 	})
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
 	$('[data-toggle="select"]').select2();
 	
 	function limitChangeLength(elm, limitLength) {
