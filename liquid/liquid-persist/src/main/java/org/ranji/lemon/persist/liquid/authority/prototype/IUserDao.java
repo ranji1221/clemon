@@ -1,4 +1,4 @@
-package org.ranji.lemon.persist.liquit.authority.prototype;
+package org.ranji.lemon.persist.liquid.authority.prototype;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.ranji.lemon.persist.liquit.authority.impl;
+package org.ranji.lemon.persist.liquid.authority.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Map;
 import org.ranji.lemon.common.core.persist.impl.GenericDaoImpl;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.model.liquid.authority.User;
-import org.ranji.lemon.persist.liquit.authority.prototype.IUserDao;
+import org.ranji.lemon.persist.liquid.authority.prototype.IUserDao;
 import org.springframework.stereotype.Repository;
 /**
  * Licensed to the Apache Software Foundation (ASF) under one

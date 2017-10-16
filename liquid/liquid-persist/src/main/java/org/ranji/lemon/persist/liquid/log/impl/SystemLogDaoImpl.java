@@ -1,9 +1,9 @@
-package org.ranji.lemon.persist.liquit.authority.prototype;
+package org.ranji.lemon.persist.liquid.log.impl;
 
-import java.util.List;
-
-import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
-import org.ranji.lemon.model.liquid.authority.Resource;
+import org.ranji.lemon.common.core.persist.impl.GenericDaoImpl;
+import org.ranji.lemon.model.liquid.log.SystemLog;
+import org.ranji.lemon.persist.liquid.log.prototype.ISystemLogDao;
+import org.springframework.stereotype.Repository;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -22,19 +22,14 @@ import org.ranji.lemon.model.liquid.authority.Resource;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * IResourceDao接口类
- * @author FengJie
- * @date 2017-9-13
+ * Authority模块中的RoleDao实现类
+ * @author LiJianBo
+ * @date 2017-9-21
  * @since JDK1.7
  * @version 1.0
  */
-public interface IResourceDao extends IGenericDao<Resource, Integer> {
 
-	/**
-	 * 根据资源id查询全部的资源-操作对应
-	 * @param resourceId 资源id
-	 * @return 操作id集合
-	 */
-	public List<Integer> findROsByResourceId(int resourceId);
+@Repository
+public class SystemLogDaoImpl  extends GenericDaoImpl<SystemLog, Integer> implements ISystemLogDao{
 
 }

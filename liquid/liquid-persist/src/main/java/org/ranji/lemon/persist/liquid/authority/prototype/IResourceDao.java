@@ -1,7 +1,9 @@
-package org.ranji.lemon.persist.liquit.authority.prototype;
+package org.ranji.lemon.persist.liquid.authority.prototype;
+
+import java.util.List;
 
 import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
-import org.ranji.lemon.model.liquid.authority.Operation;
+import org.ranji.lemon.model.liquid.authority.Resource;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -20,14 +22,19 @@ import org.ranji.lemon.model.liquid.authority.Operation;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * IOperationDao接口类
+ * IResourceDao接口类
  * @author FengJie
  * @date 2017-9-13
  * @since JDK1.7
  * @version 1.0
  */
+public interface IResourceDao extends IGenericDao<Resource, Integer> {
 
-public interface IOperationDao extends IGenericDao<Operation, Integer> {
-
+	/**
+	 * 根据资源id查询全部的资源-操作对应
+	 * @param resourceId 资源id
+	 * @return 操作id集合
+	 */
+	public List<Integer> findROsByResourceId(int resourceId);
 
 }

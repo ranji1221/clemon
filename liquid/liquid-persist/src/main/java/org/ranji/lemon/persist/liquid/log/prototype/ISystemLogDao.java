@@ -1,4 +1,4 @@
-package org.ranji.lemon.persist.liquit.log.prototype;
+package org.ranji.lemon.persist.liquid.log.prototype;
 
 import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
 import org.ranji.lemon.model.liquid.log.SystemLog;

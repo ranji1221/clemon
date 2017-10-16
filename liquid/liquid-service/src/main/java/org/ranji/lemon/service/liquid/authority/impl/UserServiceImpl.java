@@ -7,7 +7,7 @@ import java.util.Map;
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.model.liquid.authority.User;
-import org.ranji.lemon.persist.liquit.authority.prototype.IUserDao;
+import org.ranji.lemon.persist.liquid.authority.prototype.IUserDao;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
 import org.springframework.stereotype.Service;
 /**

@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.model.liquid.authority.User;
-import org.ranji.lemon.persist.liquit.authority.prototype.IUserDao;
+import org.ranji.lemon.persist.liquid.authority.prototype.IUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

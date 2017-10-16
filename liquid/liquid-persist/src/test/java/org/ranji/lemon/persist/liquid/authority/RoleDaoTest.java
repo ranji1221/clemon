@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.common.core.system.SystemContext;
 import org.ranji.lemon.model.liquid.authority.Role;
-import org.ranji.lemon.persist.liquit.authority.prototype.IRoleDao;
+import org.ranji.lemon.persist.liquid.authority.prototype.IRoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

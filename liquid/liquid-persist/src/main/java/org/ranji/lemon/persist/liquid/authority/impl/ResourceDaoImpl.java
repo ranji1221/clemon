@@ -1,10 +1,10 @@
-package org.ranji.lemon.persist.liquit.authority.impl;
+package org.ranji.lemon.persist.liquid.authority.impl;
 
 import java.util.List;
 
 import org.ranji.lemon.common.core.persist.impl.GenericDaoImpl;
 import org.ranji.lemon.model.liquid.authority.Resource;
-import org.ranji.lemon.persist.liquit.authority.prototype.IResourceDao;
+import org.ranji.lemon.persist.liquid.authority.prototype.IResourceDao;
 import org.springframework.stereotype.Repository;
 /**
  * Licensed to the Apache Software Foundation (ASF) under one

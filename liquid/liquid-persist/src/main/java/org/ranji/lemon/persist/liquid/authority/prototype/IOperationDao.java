@@ -1,9 +1,8 @@
-package org.ranji.lemon.persist.liquit.authority.impl;
+package org.ranji.lemon.persist.liquid.authority.prototype;
 
-import org.ranji.lemon.common.core.persist.impl.GenericDaoImpl;
+import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
 import org.ranji.lemon.model.liquid.authority.Operation;
-import org.ranji.lemon.persist.liquit.authority.prototype.IOperationDao;
-import org.springframework.stereotype.Repository;
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -21,16 +20,14 @@ import org.springframework.stereotype.Repository;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * Authority模块中的IResourceDao实现类
+ * IOperationDao接口类
  * @author FengJie
  * @date 2017-9-13
  * @since JDK1.7
  * @version 1.0
  */
 
-@Repository
-public class OperationDaoImpl extends GenericDaoImpl<Operation, Integer> implements IOperationDao {
+public interface IOperationDao extends IGenericDao<Operation, Integer> {
 
-	
 
 }
