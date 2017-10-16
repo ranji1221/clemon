@@ -1,13 +1,37 @@
 package org.ranji.lemon.common.core.util;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the"License"); 
+ * you may not use this file except in compliance with the License.  
+ * You may obtain a copy of the License at
 
-public class JsonUtils {
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+ * See the License for the specific language governing permissions and limitations under the License.
+ * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
+ * 
+ * 自己封装的处理Json的工具类
+ * @author RanJi
+ * @date 2017-10-13
+ * @since JDK1.7
+ * @version 1.0
+ */
+public class JsonUtil {
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -21,7 +45,7 @@ public class JsonUtils {
      */
     public static String objectToJson(Object data) {
     	try {
-			String string = MAPPER.writeValueAsString(data);
+			String string = MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(data);
 			return string;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -66,4 +90,28 @@ public class JsonUtils {
     	return null;
     }
     
+    /**
+     * 把一对数据转化为Json字符串
+     * @param propertyName
+     * @param propertyValue
+     * @return
+     */
+    public static String toJsonByProperty(String propertyName,Object propertyValue){
+    	Map<String,Object> proMap = new HashMap<String,Object>();
+    	proMap.put(propertyName, propertyValue);
+    	return toJsonByProperties(proMap);
+    }
+    /**
+     * 把一组数据转化为Json字符串
+     * @param properties
+     * @return
+     */
+    public static String toJsonByProperties(Map<String,Object> properties){
+    	try {
+			return MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(properties);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+    	return "";
+    }
 }

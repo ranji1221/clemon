@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ranji.lemon.common.core.util.JsonUtils;
+import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
@@ -45,7 +45,7 @@ public class AuthServiceTest {
 	@Test
 	public void testFindRolesByUserId(){
 		List<Role> role = authService.findRolesByUserId(2);
-			System.out.println(JsonUtils.objectToJson(role));
+			System.out.println(JsonUtil.objectToJson(role));
 		
 	}
 	//查询用户的所有操作
