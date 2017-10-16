@@ -4,145 +4,13 @@
 
 $(function() {
 	var editModal = $("#editModal");
-	//var editRoleUrl = "backend/authority/role/edit/modal";
 	var editUserUrl = "backend/authority/user/edit/modal";
 	var editSourceUrl = "backend/authority/resource/edit/modal";
-	var lookRoleUrl = "backend/authority/role/view/modal";
+	//var lookRoleUrl = "backend/authority/role/view/modal";
 	var lookUserUrl = "backend/authority/user/view/modal";
 	var lookSourceUrl = "backend/authority/resource/view/modal";
 	const maxLimitNum = 10;
 
-/*	function editRole(this_nid,id) {
-		$.ajax({
-			url: editRoleUrl + "/" + id,
-			async: true,
-			success: function(data) {
-				$("#editRoleModal").html(data);
-
-				var input = $("#roleName");
-				limitChangeLength(input, 12);
-				$(".modal-content").attr("n_id", $(this_nid).attr("n_id"))
-				$(".modal-content .editRole").attr("n_id", $(this_nid).attr("n_id"));
-				var nId = $(".modal-content .editRole").attr("n_id");
-
-				var uStr, maxNum;
-				uStr = localStorage.getItem("this_role" + nId);
-//				console.log("uStr:" + uStr);
-				if(uStr) {
-
-					maxNum = JSON.parse(uStr)[3].value;
-				}
-
-				//					console.log("第一个"+maxNum+"maxNum");
-				//					console.log(maxNum==null);
-				//					console.log(maxNum==0);
-				//					console.log(maxNum==undefined);
-				//加减按钮
-				var limitNum;
-				if(parseInt(maxNum) == 0) {
-					limitNum = 0;
-				} else if(parseInt(maxNum)) {
-					limitNum = parseInt(maxNum);
-				} else {
-					limitNum = parseInt($("#limitNum").val()) || 0;
-				}
-//				console.log("第二个" + limitNum);
-
-				function judge(limitNum) {
-
-					if(maxLimitNum <= limitNum) {
-						//                  	console.log("条件1："+maxLimitNum+"maxLimitNum;"+limitNum+"limitNum");
-						$(add).css("background", grey);
-						$(sub).css("background", blue);
-					} else if(limitNum < 1) {
-						//                  	console.log("条件2："+maxLimitNum+"maxLimitNum;"+limitNum+"limitNum");
-						$(sub).css("background", grey);
-						$(add).css("background", blue);
-					} else {
-						//                  	console.log("条件3："+maxLimitNum+"maxLimitNum;"+limitNum+"limitNum");
-						$(add).css("background", blue);
-						$(sub).css("background", blue);
-					}
-				}
-				var add = $(".numCtr .icon-plus");
-				var sub = $(".numCtr .icon-minus");
-				var grey = '#bdc3c7';
-				var blue = '#378ef8';
-				//                  $("#limitNum").ready(function(){
-				////                  	console.log($("#limitNum").val());
-				//                  $("#limitNum").val(limitNum);
-				//                  })
-
-				//                  judge(limitNum);
-				$(sub).click(function(e) {
-					e.preventDefault();
-					var numVal = parseInt($("#limitNum").val());
-					if(numVal > 0) {
-						numVal--;
-						$("#limitNum").val(numVal);
-					}
-					var inputlimitNum = parseInt($(".numCtr input").val());
-					judge(inputlimitNum);
-					
-					localStorage.removeItem("this_role" + nId);
-				});
-				$(add).click(function(e) {
-					e.preventDefault();
-					var numVal = parseInt($("#limitNum").val());
-					if(numVal < 10) {
-						numVal++;
-						$("#limitNum").val(numVal);
-					}
-					var inputlimitNum = parseInt($(".numCtr input").val());
-					judge(inputlimitNum);
-					localStorage.removeItem("this_role" + nId);
-				});
-			},
-			error: function(data) {
-				console.log(data);
-			}
-		});
-	
-	}
-	$(document).on("click", ".editRole", function(e) {
-		e.preventDefault();
-		var id = $(this).closest("tr").attr("role_id")
-		$('#editRoleModal').modal('show');
-		editRole($(this),id);
-
-	});
-	$("#editRoleModal").on("click","*:not('.pull-right *')",function(e){
-		e.stopPropagation()
-	})
-	$("#editRoleModal").on("shown.bs.modal", function() {
-		
-		var max_role = $(this).find(".external-link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			e.stopPropagation()
-			$(".modal-backdrop").hide()
-			$("#editRoleModal").appendTo($(".ajax_dom"))
-			$("#editRoleModal").addClass("bigmodule")
-			$(".breadcrumb").addClass("display_block")
-			$(".editRole_modal .role_hearder").addClass("display_block")
-			$(".modalCon .modal-header").addClass("display_none")
-			$(".role_content_error_xian").addClass("display_block")
-			$(document).on("click.all_click","*:not('#editRoleModal')",function(){
-				$("#editRoleModal").insertBefore($("body div:first"))
-				$("#editRoleModal").removeClass("bigmodule")
-				$(".breadcrumb").removeClass("display_block")
-				$(".editRole_modal .role_hearder").removeClass("display_block")
-				$(".modalCon .modal-header").removeClass("display_none")
-				$(".role_content_error_xian").removeClass("display_block")
-//				$(".modal-backdrop").show()
-				$("#editRoleModal").modal('hide')
-				$(document).off("click.all_click","**")
-				
-				
-	})
-		})
-	});
-*/
 	function editUser(this_nid) {
 
 		$.ajax({
@@ -193,7 +61,7 @@ $(function() {
 		editSource($(this));
 	});
 
-	function lookRoleModal(id) {
+	/*function lookRoleModal(id) {
 		$.ajax({
 			dataType: "html",
 			url: lookRoleUrl+'/'+ id,	
@@ -218,7 +86,7 @@ $(function() {
 			var lookRole_id=$(this).closest('tr').attr('listid');
 			lookRoleModal(lookRole_id);
 		}
-	});
+	});*/
 
 	function lookUserModal(id) {
 		$.ajax({

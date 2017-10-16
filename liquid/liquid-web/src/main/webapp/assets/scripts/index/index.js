@@ -96,58 +96,6 @@ $(function() {
 	$("#showList .m-con .panel-heading .icon-remove").click(function() {
 		$(this).closest(".panel").remove();
 	});
-	//问题一：关闭一行时有空行
-//	//角色模态框
-//	$("#lookRoleModal").on("shown.bs.modal", function(e) {
-//		var max_role = $(this).find(".external-link")
-//		$(this).on("click",".external-link", function(e) {
-//			
-//			e.preventDefault()
-//			$(".ajax_dom").show()
-//			$("#lookRoleModal").modal('hide')
-//			$.ajax({
-//				url: "backend/authority/role/view/max/" + $("#roleId").val(),
-//				dataType: "html"
-//			}).done(function(data) {
-//				$(".ajax_dom").show()
-//				$(".ajax_dom").empty()
-//				$(".ajax_dom").html(data)
-//			})
-//		})
-//	})
-//	//	用户查看
-//	$("#lookUserModal").on("shown.bs.modal", function() {
-//		var max_role = $(this).find(".external-link")
-//		max_role.on("click", function(e) {
-//			e.preventDefault()
-//			$("#lookUserModal").modal('hide')
-//			$.ajax({
-//				url: "backend/authority/user/view/max",
-//				dataType: "html"
-//			}).done(function(data) {
-//				$(".ajax_dom").show()
-//				$(".ajax_dom").empty()
-//				$(".ajax_dom").html(data)
-//			})
-//		})
-//	})
-//	//资源查看
-//	$("#lookSourceModal").on("shown.bs.modal", function() {
-//
-//		var max_role = $(this).find(".external-link")
-//		max_role.on("click", function(e) {
-//			e.preventDefault()
-//			$("#lookSourceModal").modal('hide')
-//			$.ajax({
-//				url: "backend/authority/resource/view/max",
-//				dataType: "html"
-//			}).done(function(data) {
-//				$(".ajax_dom").show()
-//				$(".ajax_dom").empty()
-//				$(".ajax_dom").html(data)
-//			})
-//		})
-//	})
 });
 
 function pieChart() {
@@ -429,9 +377,9 @@ $(".mission ol").on("click", "li", function(e) {
 				$('#lookUserModal').modal('show');
 				break;
 			case "lookRole":
-				$('#lookRoleModal').html('');
-				minboxitem.appendTo($('#lookRoleModal'))
-				$('#lookRoleModal').modal('show');
+				$('#viewRoleModal').html('');
+				minboxitem.appendTo($('#viewRoleModal'))
+				$('#viewRoleModal').modal('show');
 				break;
 			case "lookSource":
 				$('#lookSourceModal').html('');
