@@ -121,7 +121,7 @@ $(function(){
 		e.stopPropagation()
 	})
 	$("#editRoleModal").on("shown.bs.modal", function() {
-		var max_role = $(this).find(".external-link")
+		var max_role = $(this).find(".edit_external_link")
 		max_role.on("click", function(e) {
 			e.preventDefault()
 			e.stopPropagation()
@@ -181,9 +181,9 @@ $(function(){
 	});
 	/* 下拉框样式 */
 	$('[data-toggle="select"]').select2();
-	$(".blue_border").on("click", function() {
+	$(".edit_blue_border").on("click", function() {
 		$(".modal-backdrop").show()
-		$("#editRoleModal").modal('show')
+		//$("#editRoleModal").modal('show')
 		removeEditStyle()
 		$('#editRoleModal').appendTo('body #bodyModalArea');
 	})
@@ -198,7 +198,7 @@ $(function(){
 	}
 
 	/*关闭处理 */
-	$('.red_border').on("click", function(e) {
+	$('.edit_red_border').on("click", function(e) {
 		e.preventDefault()
 		$('#editRoleModal').appendTo('body #bodyModalArea');
 		removeEditStyle()
@@ -241,12 +241,12 @@ $(function(){
 					<span>角色编辑</span>
 				</div>
 				<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border" data-dismiss="modal">
+					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon edit_red_border" data-dismiss="modal">
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 						<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 					</div>
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  blue_border">
+					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  edit_blue_border">
 						<!--<a href=""><span class="glyphicon glyphicon-resize-small blue_back"></span></a>-->
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />
@@ -274,7 +274,7 @@ $(function(){
 						</div>
 	
 					</a>
-					<a href="javascript:;" class="external-link">
+					<a href="javascript:;" class="edit_external_link">
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" />
 					</a>
 					<a href="javascript:;" class="remove" data-dismiss="modal">
@@ -384,5 +384,3 @@ $(function(){
 		</div>
 	</div>
 </div>
-<script>
-</script>
