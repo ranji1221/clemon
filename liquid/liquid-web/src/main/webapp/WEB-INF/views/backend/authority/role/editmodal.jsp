@@ -5,11 +5,6 @@
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 
 <script type="text/javascript">
-$(function(){
-	//将编辑角色模态框加入到body中id为bodyModalArea的div中
-	$('#editRoleModal').appendTo('body #bodyModalArea');
-})
-
 
 function createRoleList(data){
 	$('.form-control').LemonGetList({
@@ -54,7 +49,7 @@ function createRoleList(data){
 	})
 }
 </script>
-<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
+<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
@@ -62,10 +57,10 @@ function createRoleList(data){
 			<a href="#" data="2" url="home">首页</a>
 		</li>
 		<li>
-			<a href="#" url="./pages/role/rolelist">角色管理</a>
+			<a href="#" url="${pageContext.request.contextPath}/backend/authority/role/list">角色管理</a>
 		</li>
 		<li>
-			<a href="" url="./pages/role/rolelist">角色列表</a>
+			<a href="">角色列表</a>
 		</li>
 		<li class="active">角色编辑</li>
 		<div class="nav-search" id="nav-search">
