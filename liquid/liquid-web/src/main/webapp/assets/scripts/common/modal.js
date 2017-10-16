@@ -9,6 +9,7 @@ function setEditStyle(){
 	$(".modalCon .bg-grey#remark").addClass("active")
 	$(".modalCon .roleNameBox").removeClass("width_active")
 	$(".editRole_modal .role_hearder").addClass("display_block")
+	$('#editRoleModal .maxNumView').addClass("width_block")
 	$(".modalCon .modal-header").addClass("display_none")
 	$(".role_content_error_xian").addClass("display_block")
 }
@@ -19,6 +20,7 @@ function removeEditStyle(){
 	$(".breadcrumb").removeClass("display_block")
 	$(".modalCon .bg-grey#remark").removeClass("active")
 	$(".modalCon .roleNameBox").addClass("width_active")
+	$('#editRoleModal .maxNumView').removeClass("width_block")
 	$(".editRole_modal .role_hearder").removeClass("display_block")
 	$(".modalCon .modal-header").removeClass("display_none")
 	$(".role_content_error_xian").removeClass("display_block")
