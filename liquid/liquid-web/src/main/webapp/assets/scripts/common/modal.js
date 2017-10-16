@@ -35,7 +35,7 @@ function limitChangeLength(elm, limitLength) {
 	});
 }
 /* 放大样式 */
-$(".blue_border").on("click", function() {
+$(".edit_blue_border").on("click", function() {
 	$(".modal-backdrop").show()
 	$("#editRoleModal").modal('show')
 	removeEditStyle()
@@ -44,7 +44,7 @@ $(".blue_border").on("click", function() {
 
 
 /*关闭处理 */
-$('.red_border').on("click", function(e) {
+$('.edit_red_border').on("click", function(e) {
 	e.preventDefault()
 	$('#editRoleModal').appendTo('body #bodyModalArea');
 	removeEditStyle()
@@ -57,7 +57,7 @@ $('.red_border').on("click", function(e) {
 		e.stopPropagation()
 	})
 	$("#editRoleModal").on("shown.bs.modal", function() {
-		var max_role = $(this).find(".external-link")
+		var max_role = $(this).find(".edit_external_link")
 		max_role.on("click", function(e) {
 			e.preventDefault()
 			e.stopPropagation()
