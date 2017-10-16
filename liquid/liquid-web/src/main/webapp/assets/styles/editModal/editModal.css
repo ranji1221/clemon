@@ -353,6 +353,7 @@ textarea {
 
 .modalCon .bg-grey2 {
 	width: 93%;
+	font-size:0.18rem;
 	display: inline-block;
 	background-color: transparent;
 	outline: none;
@@ -361,6 +362,7 @@ textarea {
     border: 0.01rem solid #bdc3c7;
     background: #f4f4f4;
     width: 92%;
+    font-size:0.18rem;
 }
 
 .modalCon .bg-grey#remark.active{
@@ -389,6 +391,7 @@ textarea {
 .modalCon .textarea-h {
 	padding-right: 0;
 	padding-left:0;
+	
 }
 
 .modalCon #limitNum {
@@ -646,7 +649,7 @@ textarea {
 	padding: 0.9rem 0.7rem 0 1.14rem;
 }
 
-.editRole_modal.bigmodule .modal-content,.ajax_dom .modal-contentbox .modal-content
+.editRole_modal.bigmodule .modal-content,.ajax_dom .modal-contentbox .modal-content,
 .editRole_modal.bigmodule .modal-dialog.modal-lg,.ajax_dom .modal-contentbox .modal-dialog.modal-lg{
 	width: 100%;
 	height: 100%;
@@ -709,7 +712,7 @@ textarea {
 	background-color: #cccccc;
 	border-radius: 20px;
 	height: 0.11rem;
-	margin-left: 0%;
+	margin-left: 6%;
 }
 
 @media (max-width:1179px) {

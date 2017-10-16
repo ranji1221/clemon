@@ -114,7 +114,7 @@ function createRoleList(data){
 		
 			<div class="modal-header">
 				<div class="pull-right">
-					<a href="javascript:;" data-dismiss="modal" class="minus module_minimize">
+					<a  class="minus module_minimize">
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>

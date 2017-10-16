@@ -10,7 +10,11 @@
 function userListInit(){
 	$("#userList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/user/data',
-	   	trForm : function(index,value){
+
+		usePage: true,
+		useLocalStorage: true,
+		pageClassName:"#page",
+		generateItemFun : function(index,value){
 			var phone = value.phone == null ? '无':value.phone ;
 			var email = value.email == null ? '无':value.email ;
 			var createTime = value.createTime == null ? '无':value.createTime.substr(0,10);
@@ -49,7 +53,15 @@ function userListInit(){
 				'</td>'+
 			'</tr>';
 	       	return tr_data; 
-	   	}
+	   	},   		
+	   	afterFun : function(){
+			$('.tablewrap input').iCheck({
+			    checkboxClass: 'icheckbox_flat-blue',
+			    radioClass: 'iradio_flat-blue',
+			    labelHover : true, 
+			  	cursor : false,
+			 });
+   		}
 	})
 	//获取到本地的某条数据 示例代码
 	$(document).on("click", ".roleName", function(e) {
@@ -183,7 +195,7 @@ $(document).on("click",".renovate",function(){
 					删除
 				</span>
 			</div>
-			<div class="pagination">
+			<div id="page">
 
 			</div>
 		</div>
