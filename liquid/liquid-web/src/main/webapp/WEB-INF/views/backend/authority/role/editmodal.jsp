@@ -5,9 +5,18 @@
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 
 <script type="text/javascript">
+$(function(){
+	//将编辑角色模态框加入到body中id为bodyModalArea的div中
+	$('#editRoleModal').appendTo('body #bodyModalArea');
+})
 
-function createRoleList(data){
-	$('.form-control').LemonGetList({
+
+function dealDataToModal(data){
+	//获取到本地的某条数据 示例代码
+	$("[name='edit_roleName']").val(data.displayName);
+	$("[name='edit_roleMaxNum']").val(data.roleMaxNum);
+	
+	$('.select_roleList').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
 		beforeFun:function(data){
 			return getListByTree(data);
@@ -109,7 +118,7 @@ function createRoleList(data){
 		
 			<div class="modal-header">
 				<div class="pull-right">
-					<a  class="minus module_minimize">
+					<a href="javascript:;" data-dismiss="modal" class="minus module_minimize">
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>
@@ -140,7 +149,7 @@ function createRoleList(data){
 						</div>
 						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
 							<input type="hidden" name="id" id="roleId">
-							<input type="text" class="form-control bg-grey2  form_input" name="roleName" id="roleName" placeholder="请输入角色名称">
+							<input type="text" class="form-control bg-grey2  form_input" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
 							<span class="minlimitNum">15</span>
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
@@ -170,7 +179,7 @@ function createRoleList(data){
 							</div>
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="fath" data-toggle="select" class=" form-control" id="edit_parentRole">
+								<select name="fath" data-toggle="select" class=" form-control select_roleList" id="edit_parentRole">
 								</select>
 							</div>
 						</div>
@@ -181,7 +190,7 @@ function createRoleList(data){
 	            </label>
 							</div>
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="yilai" data-toggle="select" class="form-control" id="edit_roleRelyId">
+								<select name="yilai" data-toggle="select" class="form-control select_roleList" id="edit_roleRelyId">
 								</select>
 							</div>
 						</div>
@@ -205,7 +214,7 @@ function createRoleList(data){
 	                <span class="dot">·</span>备注：</label>
 						</div>
 						<div class="col-xs-9 col-sm-10 textarea-h">
-							<textarea name="remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
+							<textarea name="edit_remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>

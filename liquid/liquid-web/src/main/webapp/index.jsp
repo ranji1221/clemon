@@ -85,20 +85,12 @@
 
 	<body>
 		<div id="bodyModalArea"></div>
-		<!--编辑模态框框部分-->
-		<!-- <div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
-			
-		</div> -->
 		<div id="editUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
 		<div id="editSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
-		<!--查看模态框-->
-		<!-- <div id="lookRoleModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
-			
-		</div> -->
 		<div id="lookUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
@@ -127,19 +119,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- 授权模态框 -->
-
-		<!-- 角色授权 -->
-		<!-- Modal -->
-		<div class="modal fade" id="role-authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  	<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-
-		    	</div>
-		  	</div>
-		</div>
-
-		<!-- 授权模态框 -->
 
 		<!-- 用户授权 -->
 		<!-- Modal -->

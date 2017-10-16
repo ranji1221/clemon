@@ -1,3 +1,12 @@
+
+$(function(){
+	//将编辑角色模态框加入到body中id为bodyModalArea的div中
+	$('.right-container .modalToBody').appendTo('body #bodyModalArea');
+})
+/**
+ * 编辑模态框
+ * @returns
+ */
 //存放模态框需要调用的方法
 
 /* 放大模态框样式  */
@@ -176,4 +185,66 @@ function showEditModal(data) {
 	createRoleList(data); 
 	
 	$('#editRoleModal').modal('show');
+}
+
+/**
+ * 查看模态框
+ */
+//放大
+$(".view_external_link").on("click", function(e) {
+	e.preventDefault()
+	e.stopPropagation()
+	$(this).closest('.modal').modal('hide')
+	$(this).closest('.modal-contentbox').addClass('looklg')
+	$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
+	$('.ajax_dom').show(0)
+})
+// 缩小
+$(".view_blue_border").on("click", function() {
+	$(this).closest('.modal-contentbox').appendTo('#viewRoleModal');
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+    $(this).closest('.modal-contentbox').removeClass('looklg')
+    $(this).closest('.modal').modal('show')
+})
+// 关闭按钮
+$('.view_red_border').on('click',function(){
+	$(this).closest('.modal-contentbox').remove();
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+})
+// 最小化隐藏
+$('.dom_minimize').on('click',function(){
+	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+})
+$('.module_minimize').on('click',function(){
+	$(this).closest('.modal').modal('hide');
+	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+})
+
+/* 弹出查看框 */
+function viewRole(data) {
+	console.log(data)
+	//获取到本地的某条数据 示例代码
+	$("#view_roleName").html(data.displayName);
+	$("#view_roleMaxNum").html(data.roleMaxNum);
+	$("#view_rolePName").html(data.rolePName);
+	$("#view_roleRelyName").html(data.roleRelyName);
+	$("#view_remarks").html(data.remarks);
+	$('#viewRoleModal').modal('show');
+}
+$("#viewRoleModal").on("click","*:not('.pull-right *')",function(e){
+	e.stopPropagation()
+})
+/**
+* 查看角色授权模态框
+*/
+function roleAuth(data) {
+	$("#role-authorization").modal('show');
+	console.log("1111")
 }

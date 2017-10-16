@@ -78,9 +78,9 @@ public class UserController {
 	
 	//@RequiresPermissions("user:lookuser")
 //	@SystemControllerPermission("user:view")
-	@RequestMapping(value = "/view/{size}/{id}")
+	@RequestMapping(value = "/view/{size}")
 	@SystemControllerLog(description="权限管理-查看用户")
-	public String viewUser(@PathVariable String size,@PathVariable int id) {
+	public String viewUser(@PathVariable String size) {
 		
 		if("modal".equals(size)){
 			return "backend/authority/user/viewmodal";

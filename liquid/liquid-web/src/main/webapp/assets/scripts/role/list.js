@@ -41,20 +41,4 @@ $(function(){
 			zlsortdown.css('opacity','0');
 		}		
 	})
-		// $.ajaxSetup ({ 
-		// 	cache: false //关闭AJAX相应的缓存 
-		// });
-	// 授权模态框的调用
-	$('div.tablewrap').on('click','.icon-key',function(){
-		// console.log('启动授权模态框');
-		// $.ajax({cache: false});
-		$.ajaxSetup ({ cache: false });
-		// console.log('尝试清除js');
-		var role_aut_id=$(this).closest('tr').find('td').eq(1).html().trim();
-		// console.log(role_aut_id);
-		$('#role-authorization .modal-content').attr('aut_id',role_aut_id);
-		$('#role-authorization .modal-content').html('');
-		$('#role-authorization .modal-content').load('backend/authority/role/auth/modal');
-		$('#role-authorization').modal('show');
-	})
 })
