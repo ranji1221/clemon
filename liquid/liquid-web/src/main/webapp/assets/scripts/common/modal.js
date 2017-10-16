@@ -198,7 +198,7 @@ $(".view_external_link").on("click", function(e) {
 })
 // 缩小
 $(".view_blue_border").on("click", function() {
-	$(this).closest('.modal-contentbox').appendTo('#viewRoleModal');
+	$(this).closest('.modal-contentbox').appendTo('#viewModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
@@ -233,9 +233,15 @@ function viewRole(data) {
 	$("#view_rolePName").html(data.rolePName);
 	$("#view_roleRelyName").html(data.roleRelyName);
 	$("#view_remarks").html(data.remarks);
-	$('#viewRoleModal').modal('show');
+	$('#viewModal').modal('show');
 }
-$("#viewRoleModal").on("click","*:not('.pull-right *')",function(e){
+$("#viewModal").on("click","*:not('.pull-right *')",function(e){
+	e.stopPropagation()
+})
+function viewUser(data) {
+	$('#viewModal').modal('show');
+}
+$("#viewModal").on("click","*:not('.pull-right *')",function(e){
 	e.stopPropagation()
 })
 /**
