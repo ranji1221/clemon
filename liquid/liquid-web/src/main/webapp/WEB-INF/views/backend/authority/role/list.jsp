@@ -25,7 +25,7 @@ function roleListInit(){
 					(index+1) +
 				'</td>'+
 				'<td title='+ value.roleName +' class="roleName">'+
-					value.roleName +'[点我]'+//${role.roleName}
+					value.roleName +//${role.roleName}
 				'</td>'+
 				'<td title='+ Pname +'>'+
 				     Pname +

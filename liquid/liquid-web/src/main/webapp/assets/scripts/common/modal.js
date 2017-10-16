@@ -120,9 +120,6 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 
 /* 弹出编辑框 */
 function showEditModal(data) {
-	//获取到本地的某条数据 示例代码
-	$("[name='roleName']").val(data.displayName);
-	$("[name='roleMaxNum']").val(data.roleMaxNum);
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
 	//加减按钮
@@ -173,7 +170,7 @@ function showEditModal(data) {
 	console.log(data)
 	$("[name='remarks']").val(data.remarks);
 	
-	createRoleList(data); 
+	dealDataToModal(data); 
 	
 	$('#editRoleModal').modal('show');
 }
