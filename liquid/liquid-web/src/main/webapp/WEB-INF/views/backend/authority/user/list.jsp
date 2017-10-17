@@ -110,7 +110,7 @@ $(document).on("click", ".userAuth", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	auth(data);
+	userAuth(data);
 });
 </script>
 

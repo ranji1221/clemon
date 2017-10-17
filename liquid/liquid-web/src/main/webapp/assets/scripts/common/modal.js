@@ -20,10 +20,11 @@ function limitChangeLength(elm, limitLength) {
 }
 //缩小
 $(document).on("click",".edit_blue_border", function() {
-	$(".roleNameBox").addClass("width_active")
-	$("#remark").addClass("active")
-	$('#editRoleModal .maxNumView').removeClass("width_block")
-	$(".select-l-pd").removeClass('active')
+//	$(".roleNameBox").addClass("width_active")
+//	$("#remark").addClass("active")
+//	$('#editRoleModal .maxNumView').removeClass("width_block")
+//	$(".select-l-pd").removeClass('active')
+	
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
@@ -71,11 +72,10 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		
 		$(this).closest('.modal').modal('hide')
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
-				$(".roleNameBox").removeClass("width_active")
-				$("#remark").removeClass("active")
-				$(".select-l- pd").addClass('active')
-				$(".select-l-pd").addClass('active')
-				$('.maxNumView').addClass("width_block")
+//				$(".roleNameBox").removeClass("width_active")
+//				$("#remark").removeClass("active")
+//				$('.maxNumView').addClass("width_block")
+			$(".editrolelg").addClass("active")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
 			
@@ -173,24 +173,6 @@ function editUserModal(data) {
 /**
  * 查看模态框
  */
-//放大
-//$(document).on("click",".view_external_link",function(e) {
-//	maxModal('looklg');
-//	$(this).closest('.modal').modal('hide')
-//	$(this).closest('.modal-contentbox').addClass('looklg')
-//	$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
-//	$('.ajax_dom').show(0)
-//})
-// 缩小
-$(document).on("click",".view_blue_border", function() {
-	$("#viewModal").empty()
-	$(this).closest('.modal-contentbox').appendTo('#viewModal');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-    $(this).closest('.modal-contentbox').removeClass('looklg')
-    $(this).closest('.modal').modal('show')
-})
 // 关闭按钮
 $(document).on('click','.view_red_border',function(){
 	$(this).closest('.modal-contentbox').remove();
@@ -222,25 +204,20 @@ function viewUser(data) {
 	$('#viewModal').modal('show');
 }
 
+function roleAuth(data) {
+	$("#auth_roleName").val(data.roleName);
+	$("#role-authorization").modal('show');
+}
 /**
 * 查看用户授权模态框
 */
-function auth(data) {
+function userAuth(data) {
 	$("#auth_userName").val(data.userName);
-	$("#authorization").modal('show');    
+	$("#user-authorization").modal('show');    
 }
-//放大
-$(document).on('click','.auth_external_link',function(e){
-	e.preventDefault()
-	e.stopPropagation()
-	$(this).closest('.modal').modal('hide')
-	$(this).closest('.modal-contentbox').addClass('role-authorizationlg')
-	$(this).closest('.modal-contentbox').appendTo('.ajax_dom');
-	$(".ajax_dom").show(0);
-})
 //缩小
 $(document).on('click','.auth_blue_border',function(){
-	$(this).closest('.modal-contentbox').appendTo('#authorization .modal-content');
+	$(this).closest('.modal-contentbox').appendTo('#role-authorization .modal-content');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
@@ -250,7 +227,7 @@ $(document).on('click','.auth_blue_border',function(){
 // 关闭按钮
 $('.modal .zclose').on('click',function(){
 	$(this).closest('.modal-contentbox').remove();
-	$(this).closest('.modal-contentbox').appendTo('#authorization');
+	$(this).closest('.modal-contentbox').appendTo('#role-authorization');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
@@ -344,17 +321,16 @@ $(".mission ol").on("click", "li", function(e) {
 $(document).on("click", function() {
 	$(".mission").hide()
 })
-function fun(){
-	alert('base fun')
-}
 //放大
 $(document).on('click','.enlargeAction',function(e){
 	e.preventDefault()
 	e.stopPropagation()
 	//字符串转成方法
 	methodName = $(this).closest('.modal-contentbox').attr('beforeMaxFunName'); 
-	var Fun = eval(methodName);
-	Fun();
+	if(methodName){
+		var Fun = eval(methodName);
+		Fun();
+	}
 	$(this).closest('.modal').modal('hide')
 	var class_name = $(this).closest('.modal-contentbox').attr('maxClassName')
 	if(!class_name) {
@@ -365,4 +341,15 @@ $(document).on('click','.enlargeAction',function(e){
 		$(".ajax_dom").show(0);
 		
 	}
+})
+//缩小
+$(document).on('click','.narrowAction',function(){
+	var class_name = $(this).closest('.modal-contentbox').attr('narrowClassName')
+	var maxClassName = $(this).closest('.modal-contentbox').attr('maxClassName')
+	$(this).closest('.modal-contentbox').appendTo(class_name);
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+	$(this).closest('.modal-contentbox').removeClass(maxClassName)
+    $(this).closest('.modal').modal('show')
 })

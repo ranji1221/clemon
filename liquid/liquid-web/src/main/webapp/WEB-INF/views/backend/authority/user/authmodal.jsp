@@ -2,10 +2,10 @@
 
 <!-- 用户授权 -->
 <!-- Modal -->
-<div class="modal fade modalToBody" id="authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+<div class="modal fade modalToBody" id="user-authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   	<div class="modal-dialog" role="document">
     	<div class="modal-content">
-    		<div class="modal-contentbox">
+    		<div class="modal-contentbox" maxClassName="user-authorizationlg">
 				<ol class="breadcrumb">
 				    <li>
 				    	<i class="glyphicon glyphicon-home"></i>
@@ -61,7 +61,7 @@
 								<span class="iconfont icon-chuyidong1 del"></span>
 							</div>
 						</a>
-						<a href="javascript:;" class="maxuser auth_external_link">
+						<a href="javascript:;" class="maxuser enlargeAction">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
 						</a>
 						<a href="javascript:;" class="zclose" data-dismiss="modal">

@@ -9,7 +9,7 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonGetList({
-		useLocalStorage : false,
+		useLocalStorage : true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    className_Page : "#page",
 	    generateItemFun : function(index,value,data,extend){
@@ -119,7 +119,7 @@ $(document).on("click", ".roleAuth", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	auth(data);
+	roleAuth(data);
 });
 </script>
 
