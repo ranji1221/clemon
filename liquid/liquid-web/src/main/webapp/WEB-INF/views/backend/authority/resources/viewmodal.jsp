@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
-<div class="modal-dialog modal-lg" role="document">
 <div class="modal-contentbox">
+<div class="modal-dialog modal-lg" role="document">
+
 	<ol class="breadcrumb breadcrumb_margin">
 	    <li>
 	    	<i class="glyphicon glyphicon-home"></i>

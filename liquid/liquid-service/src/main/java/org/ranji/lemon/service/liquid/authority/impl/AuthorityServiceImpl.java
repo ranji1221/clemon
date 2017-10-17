@@ -1,10 +1,15 @@
 package org.ranji.lemon.service.liquid.authority.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Role;
+import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.ranji.lemon.service.liquid.authority.prototype.IResourceService;
@@ -12,6 +17,9 @@ import org.ranji.lemon.service.liquid.authority.prototype.IRoleService;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class AuthorityServiceImpl implements IAuthorityService{
@@ -69,9 +77,34 @@ public class AuthorityServiceImpl implements IAuthorityService{
 			 opera = roleService.findOperationByRoleId(role.getId());
 			 opera.removeAll(operations); // 移除所有和operations中一致的操作
 			 operations.addAll(opera); //将剩余操作加入集合中
-			 //operations = compareArray(operations,opera);
 		}
 		return operations;
+	}
+
+	@Override
+	public String findAllUserInduleRoles(String params) {
+		try {
+			ObjectMapper om = new ObjectMapper();
+			Map<String, Object> map = new HashMap<String, Object>();
+			if (!StringUtils.isEmpty(params)) {
+				// 参数处理
+				map = om.readValue(params, new TypeReference<Map<String, Object>>() {});
+			}
+			PagerModel<User> pg = userService.findPaginated(map);
+			List<User> userList = pg.getData();
+			for(User u: userList){
+				List<Role> roles = userService.findRoleByUserId(u.getId());
+				u.setRoleList(roles);
+			}
+			//序列化查询结果为JSON
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("total", pg.getTotal());
+			result.put("rows", userList);
+			return om.writeValueAsString(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"total\" : 0, \"rows\" : [] }";
+		}
 	}
 }
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Role;
+import org.ranji.lemon.model.liquid.authority.User;
 
 
 /**
@@ -46,4 +47,11 @@ public interface IAuthorityService {
 	 * @return 操作对象集合
 	 */
 	public List<Operation> findOperationsByUserId(int userId);
+	
+	/**
+	 * 查询所有用户（包含用户的角色信息）
+	 * @param params 分页或模糊查询参数
+	 * @return 用户对象集合json
+	 */
+	public String findAllUserInduleRoles(String params);
 }

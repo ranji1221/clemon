@@ -47,13 +47,13 @@ function dealDataToModal(data){
 					}
 				})
 			}
-			/* 下拉框样式 */
-			$('[data-toggle="select"]').select2();
+			
 		}
 	})
 }
 </script>
 <div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
+<div class="modal-contentbox">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
@@ -144,8 +144,8 @@ function dealDataToModal(data){
 						</div>
 						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
 							<input type="hidden" name="id" id="roleId">
-							<input type="text" class="form-control bg-grey2  form_input" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
-							<span class="minlimitNum">15</span>
+							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
+							<span class="minlimitNum">12</span>
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
 						</div>
@@ -226,5 +226,6 @@ function dealDataToModal(data){
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </div>

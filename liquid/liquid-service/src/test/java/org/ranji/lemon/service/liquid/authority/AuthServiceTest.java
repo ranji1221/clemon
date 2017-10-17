@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Role;
+import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -55,6 +56,11 @@ public class AuthServiceTest {
 		for(Operation o: operation){
 			System.out.println(o.getOperationName());
 		}
+	}
+	@Test
+	public void testFindAllUserInduleRoles(){
+		System.out.println( authService.findAllUserInduleRoles(null));
+		
 	}
 	
 }

@@ -194,7 +194,11 @@ function showEditModal(data) {
  * 查看模态框
  */
 //放大
+<<<<<<< HEAD
 $(document).on("click",".view_external_link",function(e) {
+=======
+$(document).on("click",".view_external_link", function(e) {
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 	e.preventDefault()
 	e.stopPropagation()
 	$(this).closest('.modal').modal('hide')
@@ -204,6 +208,10 @@ $(document).on("click",".view_external_link",function(e) {
 })
 // 缩小
 $(document).on("click",".view_blue_border", function() {
+<<<<<<< HEAD
+=======
+	$("#viewModal").empty()
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 	$(this).closest('.modal-contentbox').appendTo('#viewModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
