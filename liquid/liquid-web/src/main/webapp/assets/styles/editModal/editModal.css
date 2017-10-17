@@ -375,6 +375,7 @@ textarea {
 	border: 0.01rem solid #bdc3c7;
 	background: #f4f4f4;
 	border-radius: 5px;
+	font-size:0.18rem;
 }
 
 .modalCon .in_input_num .bg-grey {
@@ -382,6 +383,7 @@ textarea {
 	display: inline-block;
 	box-shadow: none;
 	background-color: transparent;
+	font-size:0.18rem;
 }
 
 .modalCon .in_input_num span {
@@ -808,7 +810,7 @@ textarea {
 	display: none;
 	width: 100%;
 	height: 0.8rem;
-	//line-height:80px;
+	/*line-height:80px;*/
 	border-bottom: 1px solid #f3f3f3;
 }
 

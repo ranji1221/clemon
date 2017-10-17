@@ -198,6 +198,7 @@ $(".view_external_link").on("click", function(e) {
 })
 // 缩小
 $(".view_blue_border").on("click", function() {
+	$("#viewModal").empty()
 	$(this).closest('.modal-contentbox').appendTo('#viewModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
