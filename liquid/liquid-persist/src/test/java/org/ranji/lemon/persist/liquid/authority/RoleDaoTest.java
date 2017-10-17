@@ -1,5 +1,8 @@
 package org.ranji.lemon.persist.liquid.authority;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,10 +51,11 @@ public class RoleDaoTest {
 	
 	@Test
 	public void testFindPaginated(){
-		//Map <String,Object> params = new HashMap<String,Object> ();
+		Map <String,Object> params = new HashMap<String,Object> ();
 		SystemContext.setOffset(0);
-		SystemContext.setPageSize(7);
-		PagerModel<Role> roles = roleDao.findPaginated(null);
+		SystemContext.setPageSize(10);
+		params.put("roleNameLike", "吃");
+		PagerModel<Role> roles = roleDao.findPaginated(params);
 		for(Role r: roles.getData()){
 			System.out.println(r.getRoleName()+"======="+r.getRolePName());
 		}

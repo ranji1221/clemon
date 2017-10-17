@@ -101,18 +101,28 @@
 			<if test=" roleNameLike != null and roleNameLike != '' ">
 				and roleName like concat(concat('%', #{roleNameLike, jdbcType=VARCHAR}),'%')
 			</if>
+			
+			<if test=" rNameLike != null and rNameLike != '' ">
+				and r.roleName like concat(concat('%', #{rNameLike, jdbcType=VARCHAR}),'%')
+			</if>
+			
 			<if test=" displayName != null and displayName != '' ">
 				and displayName = #{displayName}
 			</if>
 			<if test=" displayNameLike != null and displayNameLike != '' ">
 				and displayName like concat(concat('%', #{displayNameLike, jdbcType=VARCHAR}),'%')
 			</if>
+			<if test=" dNameLike != null and dNameLike != '' ">
+				and r.displayName like concat(concat('%', #{dNameLike, jdbcType=VARCHAR}),'%')
+			</if>
+			
 			<if test=" roleExtendPId != null and roleExtendPId != '' ">
 				and roleExtendPId = #{roleExtendPId}
 			</if>
 			<if test=" roleExtendPIdLike != null and roleExtendPIdLike != '' ">
 				and roleExtendPId like concat(concat('%', #{roleExtendPIdLike, jdbcType=INTEGER}),'%')
 			</if>
+			
 			<if test=" roleRelyId != null and roleRelyId != '' ">
 				and roleRelyId = #{roleRelyId}
 			</if>
