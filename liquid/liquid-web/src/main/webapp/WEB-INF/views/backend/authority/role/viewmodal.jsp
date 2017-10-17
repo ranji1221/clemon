@@ -3,7 +3,7 @@
 
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <div id="viewModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
-	<div class="modal-contentbox">
+	<div class="modal-contentbox" maxClassName="looklg">
 		<ol class="breadcrumb breadcrumb_margin">
 		    <li>
 		    	<i class="glyphicon glyphicon-home"></i>
@@ -67,7 +67,7 @@
 							<span class="iconfont icon-chuyidong1 del"></span>
 						</div>
 					</a>
-					<a  href="javascript:;" class="view_external_link">
+					<a  href="javascript:;" class="enlargeAction">
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png"/>
 					</a>
 					<a href="javascript:;" class="remove" data-dismiss="modal">

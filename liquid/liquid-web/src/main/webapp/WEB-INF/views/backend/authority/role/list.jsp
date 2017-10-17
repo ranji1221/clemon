@@ -2,14 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/role/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
 
 <script >
 function roleListInit(){
 	$("#rolesList").LemonGetList({
-		useLocalStorage : true,
+		useLocalStorage : false,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    className_Page : "#page",
 	    generateItemFun : function(index,value,data,extend){
@@ -60,7 +60,7 @@ function roleListInit(){
    					'params':JSON.stringify({
    						'rNameLike' : $('.nav-search #list_search_str').val()
    					})
-   				});
+   				},true);
    			})
    		}
 	})
@@ -119,7 +119,7 @@ $(document).on("click", ".roleAuth", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	roleAuth(data);
+	auth(data);
 });
 </script>
 

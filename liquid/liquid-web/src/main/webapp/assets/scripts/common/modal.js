@@ -42,16 +42,7 @@ $(document).on("click",'.edit_red_border', function(e) {
 	}
 })
 //最小化隐藏
-	$('#editModal .dom_minimize').on('click',function(){
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-    })
-    $('#editModal .module_minimize').on('click',function(){
-		$(this).closest('.modal').modal('hide');
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-    })
+	
 
 	$("#editModal").on("shown.bs.modal", function() {
 		var max_role = $(this).find(".edit_external_link")
@@ -82,8 +73,8 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
 				$(".roleNameBox").removeClass("width_active")
 				$("#remark").removeClass("active")
-				$(".select-l-pd").addClass('active')
-				$('#editRoleModal .maxNumView').addClass("width_block")
+				$(".select-l- pd").addClass('active')
+				$('.maxNumView').addClass("width_block")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
 			
@@ -182,14 +173,13 @@ function editUserModal(data) {
  * 查看模态框
  */
 //放大
-$(document).on("click",".view_external_link",function(e) {
-	e.preventDefault()
-	e.stopPropagation()
-	$(this).closest('.modal').modal('hide')
-	$(this).closest('.modal-contentbox').addClass('looklg')
-	$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
-	$('.ajax_dom').show(0)
-})
+//$(document).on("click",".view_external_link",function(e) {
+//	maxModal('looklg');
+//	$(this).closest('.modal').modal('hide')
+//	$(this).closest('.modal-contentbox').addClass('looklg')
+//	$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
+//	$('.ajax_dom').show(0)
+//})
 // 缩小
 $(document).on("click",".view_blue_border", function() {
 	$("#viewModal").empty()
@@ -232,32 +222,34 @@ function viewUser(data) {
 }
 
 /**
- * 授权模态框
- */
-function roleAuth(data) {
-	$("#auth_role_name").val(data.displayName);
-	$("#role-authorization").modal('show');
-}
-/**
 * 查看用户授权模态框
 */
-function userAuth(data) {
+function auth(data) {
 	$("#auth_userName").val(data.userName);
-	$("#user-authorization").modal('show');    
+	$("#authorization").modal('show');    
 }
 //放大
 $(document).on('click','.auth_external_link',function(e){
 	e.preventDefault()
 	e.stopPropagation()
 	$(this).closest('.modal').modal('hide')
-	$(this).closest('.modal-contentbox').prop('id','user-authorizationlg');
+	$(this).closest('.modal-contentbox').addClass('role-authorizationlg')
 	$(this).closest('.modal-contentbox').appendTo('.ajax_dom');
 	$(".ajax_dom").show(0);
+})
+//缩小
+$(document).on('click','.auth_blue_border',function(){
+	$(this).closest('.modal-contentbox').appendTo('#authorization .modal-content');
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+	$(this).closest('.modal-contentbox').removeClass('role-authorizationlg')
+    $(this).closest('.modal').modal('show')
 })
 // 关闭按钮
 $('.modal .zclose').on('click',function(){
 	$(this).closest('.modal-contentbox').remove();
-	$(this).closest('.modal-contentbox').appendTo('#user-authorization');
+	$(this).closest('.modal-contentbox').appendTo('#authorization');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
@@ -352,4 +344,26 @@ $(".mission ol").on("click", "li", function(e) {
 })
 $(document).on("click", function() {
 	$(".mission").hide()
+})
+function fun(){
+	alert('base fun')
+}
+//放大
+$(document).on('click','.enlargeAction',function(e){
+	e.preventDefault()
+	e.stopPropagation()
+	//字符串转成方法
+	methodName = $(this).closest('.modal-contentbox').attr('beforeMaxFunName'); 
+	var Fun = eval(methodName);
+	Fun();
+	$(this).closest('.modal').modal('hide')
+	var class_name = $(this).closest('.modal-contentbox').attr('maxClassName')
+	if(!class_name) {
+		console.log('最近的 div.modal-contentbox 的 maxClassName属性 没有 值')
+	}else{
+		$(this).closest('.modal-contentbox').addClass(class_name);
+		$(this).closest('.modal-contentbox').appendTo('.ajax_dom');
+		$(".ajax_dom").show(0);
+		
+	}
 })

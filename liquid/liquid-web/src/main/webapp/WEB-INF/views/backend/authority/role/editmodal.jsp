@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 
 <script type="text/javascript">
 
@@ -52,9 +51,52 @@ function dealDataToModal(data){
 		}
 	})
 }
+function beforeMaxEditModal(){
+	alert('这里写放大编辑模态前的方法')
+	var minlimitNum = 5;
+	$(".minlimitNum").html(minlimitNum);
+	$(".error_box").slider({
+		orientation: "horizontal",
+		range: "min",
+		max: 70,
+		value: 70,
+		slide: function(event, ui) {
+			var ui_value = ui.value
+			$(".sliderInput").css("width", ui_value+"%");
+			$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
+			$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
+			$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
+			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
+		}
+	})
+			
+$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
+
+	$('.breadcrumb').on("click", function(e) {
+		var el = e.target || window.event
+		e.preventDefault()
+		var url = $(el).attr("url")
+		var ajax_dom = $(".ajax_dom")
+		if($(el).attr('data')) {
+			window.location.reload()
+		} else {
+			if(url){
+				$.ajax({
+					url: url + ".html",
+					dataType: "html"
+				}).done(function(data) {
+					ajax_dom.empty()
+					ajax_dom.html(data)
+				})
+			}
+		}
+	});
+}
 </script>
+
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
-<div class="modal-contentbox">
+<div class="modal-contentbox"  maxClassName="looklg" beforeMaxFunName="beforeMaxEditModal">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
@@ -123,7 +165,7 @@ function dealDataToModal(data){
 						</div>
 	
 					</a>
-					<a href="javascript:;" class="edit_external_link">
+					<a href="javascript:;" class="enlargeAction">
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" />
 					</a>
 					<a href="javascript:;" class="remove" data-dismiss="modal">

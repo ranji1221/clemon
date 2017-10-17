@@ -2,7 +2,7 @@
 
 <!-- 角色授权 -->
 <!-- Modal -->
-<div class="modal fade modalToBody" id="role-authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade modalToBody" id="authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-contentbox">
@@ -31,19 +31,39 @@
 						</form>
 					</div>
 				</ol>
-				<div class="titlezl">
+				<div class="titleaut">
 					<p>角色授权</p>
 					<div class="btns">
 						<a href="javascript:;" class="min module_minimize" data-dismiss="modal">
 							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
 							<div class="hidmission">
 								<span class="icon-key icon-slidenav"></span>
-								<p class='role-aut'>角色授权</p>
+								<p class='role-aut' mintype='1'>角色授权</p>
 								<span class="iconfont icon-chuyidong1 del"></span>
 							</div>
 						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
-						<a href="javascript:;" class="maxrole" data-dismiss="modal">
+						<a href="javascript:;" class="maxrole auth_external_link" data-dismiss="modal">
+							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
+						</a>
+						<a href="javascript:;" class="zclose" data-dismiss="modal">
+							<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="titleautlg">
+					<p>角色授权</p>
+					<div class="btns">
+						<a href="javascript:;" class="min dom_minimize" data-dismiss="modal">
+							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
+							<div class="hidmission">
+								<span class="icon-key icon-slidenav"></span>
+								<p mintype='2'>角色授权</p>
+								<span class="iconfont icon-chuyidong1 del"></span>
+							</div>
+						</a>
+						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
+						<a href="javascript:;" class="maxrole auth_blue_border" data-dismiss="modal">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
 						</a>
 						<a href="javascript:;" class="zclose" data-dismiss="modal">

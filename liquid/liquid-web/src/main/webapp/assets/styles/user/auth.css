@@ -16,7 +16,7 @@
 		width:6rem;
 	}
 }
-#user-authorization .modal-content .titlezl{
+#user-authorization .modal-content .titleaut{
 	height: 0.6rem;
 	line-height: 0.6rem;
 	padding:0 0.25rem;
@@ -24,7 +24,10 @@
 	color:rgb(255,255,255);
 	position:relative;
 }
-#user-authorization .modal-content .titlezl:before{
+#user-authorization .modal-content .titleautlg{
+	display: none;
+}
+#user-authorization .modal-content .titleaut:before{
 	position:absolute;
 	content:'';
 	width:0.04rem;
@@ -33,23 +36,23 @@
 	left:0.25rem;
 	top:0.2rem;
 }
-#user-authorization .modal-content .titlezl p{
+#user-authorization .modal-content .titleaut p{
 	font-size:0.18rem;
 	padding-left:0.08rem;
 	float:left;
 	line-height:0.6rem;
 }
-#user-authorization .modal-content .titlezl div.btns{
+#user-authorization .modal-content .titleaut div.btns{
 	float:right;
 	height:0.6rem;
 }
-#user-authorization .modal-content .titlezl div.btns a{
+#user-authorization .modal-content .titleaut div.btns a{
 	float:left;
 	width:0.3rem;
 	height:0.6rem;
 	margin-left:0.1rem;
 }
-#user-authorization .modal-content .titlezl div.btns a img{
+#user-authorization .modal-content .titleaut div.btns a img{
 	width:100%;
 	height:100%;
 }
@@ -269,7 +272,7 @@ label{
 
 /*最大化样式*/
 
-#user-authorizationlg {
+.user-authorizationlg {
     position: absolute;
     top: 0;
     left: 0;
@@ -283,26 +286,26 @@ label{
     padding: 0 0.45rem;
 
 }
-#user-authorizationlg .modal-dialog{
+.user-authorizationlg .modal-dialog{
     padding: 0 0.45rem;
 	width:100%;
 	height:100%;
 	margin:0;
 }
-#user-authorizationlg .modal-content{
+.user-authorizationlg .modal-content{
 	width:100%;
 	height:100%;
 	margin:0;
 	box-shadow: none;
 }
-#user-authorizationlg .breadcrumb{
+.user-authorizationlg .breadcrumb{
 	display:block!important;
 }
-#user-authorizationlg .breadcrumb form{
+.user-authorizationlg .breadcrumb form{
 	padding:0;
 }
 
-#user-authorizationlg  .titlezl{
+.user-authorizationlg  .titleautlg{
 	height: 0.8rem;
 	line-height: 0.8rem;
 	/*padding:0 0.25rem;*/
@@ -311,7 +314,10 @@ label{
 	position:relative;
 	border-bottom:1px solid rgba(213,213,213,1);
 }
-#user-authorizationlg  .titlezl:before{
+.user-authorizationlg  .titleaut{
+	display: none;
+}
+.user-authorizationlg  .titleautlg:before{
 	position:absolute;
 	content:'';
 	width:0.04rem;
@@ -320,33 +326,33 @@ label{
 	left:0rem;
 	top:0.28rem;
 }
-#user-authorizationlg  .titlezl p{
+.user-authorizationlg  .titleautlg p{
 	font-size:0.24rem;
 	padding-left:0.1rem;
 	float:left;
 	line-height: 0.8rem;
 }
-#user-authorizationlg  .titlezl div.btns{
+.user-authorizationlg  .titleautlg div.btns{
 	float:right;
 	height:0.6rem;
 	margin-top:0.1rem;
 }
-#user-authorizationlg  .titlezl div.btns a{
+.user-authorizationlg  .titleautlg div.btns a{
 	float:left;
 	width:0.3rem;
 	height:0.6rem;
 	margin-left:0.1rem;
 }
-#user-authorizationlg  .titlezl div.btns a img{
+.user-authorizationlg  .titleautlg div.btns a img{
 	width:100%;
 	height:100%;
 	vertical-align: top;
 }
-#user-authorizationlg  form{
+.user-authorizationlg  form{
 	display: block;
 	padding:0.4rem 0.3rem;
 }
-#user-authorizationlg form .form-group label{
+.user-authorizationlg form .form-group label{
 	font-size:0.18rem;
 	color:rgb(0,0,0);
 	position:relative;
@@ -356,15 +362,15 @@ label{
 	color:rgb(51,51,51);
 }
 @media (max-width:992px){
-	#user-authorizationlg form .form-group>label{
+	.user-authorizationlg form .form-group>label{
 		float:none;
 		display: block;
 	}
 }
-#user-authorizationlg form .form-group>label{
+.user-authorizationlg form .form-group>label{
 	line-height: 0.52rem;
 }
-#user-authorizationlg form .form-group >label:before{
+.user-authorizationlg form .form-group >label:before{
 	position:absolute;
 	content:'';
 	top:50%;
@@ -375,10 +381,10 @@ label{
 	border-radius:50%;
 	background:rgba(55, 142, 248, 1);
 }
-#user-authorizationlg .form-group >label.prompt:before{
+.user-authorizationlg .form-group >label.prompt:before{
 	display:none;
 }
-#user-authorizationlg .form-group >label.prompt .icheckbox_flat-blue{
+.user-authorizationlg .form-group >label.prompt .icheckbox_flat-blue{
 	transform: scale(0.75);
 	margin-top:-0.04rem;
 }
@@ -390,27 +396,27 @@ label{
 	outline:none;
 	box-shadow: none;
 }*/
-#user-authorizationlg form .form-group .username:focus{
+.user-authorizationlg form .form-group .username:focus{
 	background:rgb(244,244,244);
 }
-#user-authorizationlg form #username{
+.user-authorizationlg form #username{
 	display: inline-block;
 	margin-bottom:0rem;
 	color:rgb(51,51,51);
 	font-size:0.18rem;
 }
-#user-authorizationlg form .username span.errormessage{
+.user-authorizationlg form .username span.errormessage{
 	float:right;
 	color:rgb(245,82,58);
 	font-size:0.16rem;
 	display: none;
 }
 @media (max-width:992px){
-	#user-authorizationlg form .username span.errormessage{
+	.user-authorizationlg form .username span.errormessage{
 		display: block;
 	}
 }
-#user-authorizationlg form .inputwrapper span.errormessage{
+.user-authorizationlg form .inputwrapper span.errormessage{
 	color:rgb(245,82,58);
 	font-size:0.16rem;
 	display: block;
@@ -422,7 +428,7 @@ label{
 	right:-17em;
 }
 /*滑块*/
-#user-authorizationlg .user-slider{
+.user-authorizationlg .user-slider{
 	width:3.4rem;
 	height:0.1rem;
 	border-radius:0.05rem;
@@ -433,18 +439,18 @@ label{
 	margin-left:1.25rem;
 }
 @media (max-width:992px){
-	#user-authorizationlg .user-slider{
+	.user-authorizationlg .user-slider{
 		display: none;
 	}
 }
-#user-authorizationlg .ui-state-default{
+.user-authorizationlg .ui-state-default{
 	
 	background-color: rgba(245, 245, 245, 1);
 	border-radius: 0.05rem;
 	border: solid 1px rgba(55, 142, 248, 1);
 
 }
-#user-authorizationlg .ui-slider-horizontal .ui-slider-handle{
+.user-authorizationlg .ui-slider-horizontal .ui-slider-handle{
 	top:-0.07rem;
 	text-align: center;
 	background-image:url('../../images/sys/slidericon.png');
@@ -452,47 +458,47 @@ label{
 	background-position:center;
 	background-size:0.22rem 0.24rem;
 }
-#user-authorizationlg .ui-state-default,#user-authorizationlg .ui-widget-content .ui-state-default{
+.user-authorizationlg .ui-state-default,.user-authorizationlg .ui-widget-content .ui-state-default{
 	background-color: rgba(245, 245, 245, 1);
 	border-radius: 0.05rem;
 	border: solid 1px rgba(55, 142, 248, 1);
 	width: 0.22rem;
 	height:0.24rem;
 }
-#user-authorizationlg .ui-state-active,#user-authorizationlg .ui-slider-handle{
+.user-authorizationlg .ui-state-active,.user-authorizationlg .ui-slider-handle{
 	background-color: rgba(245, 245, 245, 1)!important;
 }
-/*#user-authorizationlg .ui-slider-horizontal .ui-slider-handle:before{
+/*.user-authorizationlg .ui-slider-horizontal .ui-slider-handle:before{
 	content:'|||';
 	color:rgba(55, 142, 248, 1);
 	font-size:0.17rem;
 	position:relative;
 	top:-0.02rem;
 }*/
-#user-authorizationlg .ui-slider-horizontal .ui-slider-range-min{
+.user-authorizationlg .ui-slider-horizontal .ui-slider-range-min{
 	background:rgb(55,142,248);
 }
-#user-authorizationlg .inputwrapper{
+.user-authorizationlg .inputwrapper{
 	overflow: hidden;
 	position:relative;
 	padding-left:0.4rem;
 	padding-right:3rem;
 }
 @media (max-width:992px){
-	#user-authorizationlg .inputwrapper{
+	.user-authorizationlg .inputwrapper{
 		padding:0;
 	}
 }
-#user-authorizationlg .inputwrappermax{
+.user-authorizationlg .inputwrappermax{
 	position: relative;
 	width:50%;
 }
 @media (max-width:992px){
-	#user-authorizationlg .inputwrappermax{
+	.user-authorizationlg .inputwrappermax{
 		width:100%!important;
 	}
 }
-#user-authorizationlg .inputwrapper span{
+.user-authorizationlg .inputwrapper span{
 	position:absolute;
 	font-size: 0.35rem;
 	right:-0.4rem;
@@ -500,11 +506,11 @@ label{
 	margin-top:-0.17rem;
 }
 @media (max-width:992px){
-	#user-authorizationlg .inputwrapper span{
+	.user-authorizationlg .inputwrapper span{
 		right:0.12rem;
 	}
 }
-#user-authorizationlg .inputwrapper span.usernamelimit{
+.user-authorizationlg .inputwrapper span.usernamelimit{
 	position:absolute;
 	font-size: 0.16rem;
 	right:0.12rem;
@@ -515,7 +521,7 @@ label{
 	color:red;
 }
 @media (max-width:992px){
-	#user-authorizationlg .inputwrapper span.usernamelimit{
+	.user-authorizationlg .inputwrapper span.usernamelimit{
 		right:0.5rem;
 	}
 }
@@ -528,7 +534,7 @@ label{
 }
 /*多选框容器*/
 
-#user-authorizationlg .wrapper{
+.user-authorizationlg .wrapper{
 	width: auto;
 	height: 5rem;
 	background-color: rgba(255, 255, 255, 1);
@@ -539,36 +545,36 @@ label{
 	margin-left:1.13rem;
 }
 @media (max-width:992px){
-	#user-authorizationlg .wrapper{
+	.user-authorizationlg .wrapper{
 		margin-left:0;
 	}
 }
-#user-authorizationlg .wrapper header{
+.user-authorizationlg .wrapper header{
 	height: 0.54rem;
 	line-height: 0.54rem;
 	background-color: rgba(222, 233, 247, 1);
 	border-radius: 0.06rem 0.06rem 0 0;
 
 }
-#user-authorizationlg .wrapper header .icheckbox_flat-blue{
+.user-authorizationlg .wrapper header .icheckbox_flat-blue{
 	/*border:1px solid rgb(191,191,191);*/
 	margin-top:-3px;
 	background-color:white;
 	border-radius: 6px;
 	transform: scale(0.75);
 }
-#user-authorizationlg .wrapper header label{
+.user-authorizationlg .wrapper header label{
 	line-height: 0.54rem;
 	float:left;
 	padding-left:0.3rem;
 	font-size:0.14rem;
 	margin-bottom:0;
 }
-#user-authorizationlg .wrapper header label.prompt{
+.user-authorizationlg .wrapper header label.prompt{
 	float:right;
 	padding-right:0.1rem;
 }
-#user-authorizationlg .treeuser{
+.user-authorizationlg .treeuser{
 	position:absolute;
 	top:0.54rem;
 	left:0;
@@ -576,18 +582,18 @@ label{
 	bottom:0;
 	overflow:auto; 
 }
-#user-authorizationlg .btnbox{
+.user-authorizationlg .btnbox{
 	text-align: center;
 }
-#user-authorizationlg .btnbox button.btn:active:focus{
+.user-authorizationlg .btnbox button.btn:active:focus{
 	outline: none;
 }
-/*#user-authorizationlg .btnbox button.btn-default:active:hover, #user-authorizationlg .btnbox button.btn-default:active:focus{
+/*.user-authorizationlg .btnbox button.btn-default:active:hover, .user-authorizationlg .btnbox button.btn-default:active:focus{
 	border:1px solid rgba(111, 179, 224, 1);
 	background-color: rgba(111, 179, 224, 1);
 	color:rgb(255,255,255);
 } */
-#user-authorizationlg .btnbox button.btn{
+.user-authorizationlg .btnbox button.btn{
 	font-size:0.22rem;
 	color:rgb(255,255,255);
 	/*width: 1.3rem;
@@ -600,16 +606,16 @@ label{
 	border:1px solid rgba(111, 179, 224, 1);
 	outline: none;
 }
-#user-authorizationlg .btnbox button:last-child{
+.user-authorizationlg .btnbox button:last-child{
 	color:rgba(111, 179, 224, 1);
 	background:rgb(255,255,255);
 	margin-left:0.47rem;
 	/*margin-right:0.3rem;*/
 }
-/*#user-authorizationlg button:hover{
+/*.user-authorizationlg button:hover{
 	background-color: rgba(55, 142, 248, 1);
 }*/
-#user-authorizationlg button.success{
+.user-authorizationlg button.success{
 	background-color: rgba(55, 142, 248, 1);
 }
 /*未选中*/
