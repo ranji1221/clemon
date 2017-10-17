@@ -17,7 +17,7 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 	});
 }
-//放大样式
+//缩小
 $(document).on("click",".edit_blue_border", function() {
 	$(".roleNameBox").addClass("width_active")
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
@@ -103,8 +103,8 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 	});
 });
 
-//弹出编辑框 
-function showEditModal(data) {
+//角色编辑框 
+function editRoleModal(data) {
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
 	//加减按钮
@@ -160,6 +160,14 @@ function showEditModal(data) {
 	$('#editModal').modal('show');
 }
 
+//用户编辑框
+function editUserModal(data) {
+	$("#edit_userName").val(data.userName);
+	$("#edit_phone").val(data.phone);
+	$("#edit_email").val(data.email);
+	$("#editModal").modal('show');
+	
+}
 /**
  * 查看模态框
  */
