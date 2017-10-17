@@ -3,7 +3,6 @@ package org.ranji.lemon.service.jersey.auth.prototype;
 import java.util.List;
 
 import org.ranji.lemon.common.core.service.prototype.IGenericService;
-import org.ranji.lemon.model.jersey.auth.Role;
 import org.ranji.lemon.model.jersey.auth.User;
 
 /**

@@ -16,6 +16,12 @@
 			<version>${project.version}</version>
 		</dependency>
 		
+		<!-- Shiro框架 之所以再这里引入，仅为了使用shiro框架中的类库-->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>  
+        	<artifactId>shiro-core</artifactId>  
+		</dependency>
+		
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>

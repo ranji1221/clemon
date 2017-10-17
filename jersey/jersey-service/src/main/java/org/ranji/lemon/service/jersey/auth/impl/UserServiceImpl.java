@@ -1,11 +1,9 @@
 package org.ranji.lemon.service.jersey.auth.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
-import org.ranji.lemon.model.jersey.auth.Role;
 import org.ranji.lemon.model.jersey.auth.User;
 import org.ranji.lemon.persist.jersey.auth.prototype.IUserDao;
 import org.ranji.lemon.service.jersey.auth.prototype.IUserService;
@@ -35,7 +33,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends GenericServiceImpl<User, Integer> implements IUserService {
-
+	
+	@Override
+	public void save(User entity) {
+		entity.setPassword(new DefaultPasswordService().encryptPassword(entity.getPassword()));
+		super.save(entity);
+	}
 
 	@Override
 	public void saveUserAndRoleRelation(int userId, int roleId) {
