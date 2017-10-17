@@ -1,7 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <div id="viewModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
 	<div class="modal-contentbox">
 		<ol class="breadcrumb breadcrumb_margin">

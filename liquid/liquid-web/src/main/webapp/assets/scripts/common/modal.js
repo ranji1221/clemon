@@ -42,16 +42,7 @@ $(document).on("click",'.edit_red_border', function(e) {
 	}
 })
 //最小化隐藏
-	$('#editModal .dom_minimize').on('click',function(){
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-    })
-    $('#editModal .module_minimize').on('click',function(){
-		$(this).closest('.modal').modal('hide');
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-    })
+	
 
 	$("#editModal").on("shown.bs.modal", function() {
 		var max_role = $(this).find(".edit_external_link")
@@ -83,7 +74,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 				$(".roleNameBox").removeClass("width_active")
 				$("#remark").removeClass("active")
 				$(".select-l-pd").addClass('active')
-				$('#editRoleModal .maxNumView').addClass("width_block")
+				$('.maxNumView').addClass("width_block")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
 			
@@ -262,17 +253,15 @@ $('.modal .zclose').on('click',function(){
 		$('.ajax_dom').hide()
 	}
 })
-/**
- * 最小化模态框
- */
+
 //模态框最小化按钮
-$(document).on("click", ".module_minimize", function() {
+$('.module_minimize').on("click", function() {
 	getdom_module($(this))
 	$(this).closest('.modal').modal('hide');
 	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 })
 //最小化按钮本地存储
-$(document).on("click", ".dom_minimize", function() {
+$(".dom_minimize").on("click", function() {
 	getdom_module($(this))
 	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 	if(!$('.ajax_dom').html()){

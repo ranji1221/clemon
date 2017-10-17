@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
+
 
 <script type="text/javascript">
 
