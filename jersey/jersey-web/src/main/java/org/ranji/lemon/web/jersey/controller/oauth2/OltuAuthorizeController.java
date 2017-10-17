@@ -12,6 +12,10 @@ import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.ranji.lemon.service.jersey.oauth2.prototype.IOauthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -133,6 +137,21 @@ public class OltuAuthorizeController {
 	@RequestMapping(value ="/hello")
 	@ResponseBody
 	public String hello(){
+		Subject subject = SecurityUtils.getSubject();
+		//String password = new DefaultPasswordService().encryptPassword("123");
+		//System.out.println(password);
+		UsernamePasswordToken token = new UsernamePasswordToken("aaa", "123");
+		//--4. 登录，即身份验证
+		try {
+			subject.login(token);
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
+		}
+		//System.out.println(subject.isAuthenticated());
+		//System.out.println(subject.getPrincipal());
+		//-- 6. 退出
+		System.out.println(subject.isAuthenticated());
+		subject.logout();
 		return "hello";
 	}
 }
