@@ -198,7 +198,7 @@ $(".view_external_link").on("click", function(e) {
 })
 // 缩小
 $(".view_blue_border").on("click", function() {
-	$(this).closest('.modal-contentbox').appendTo('#viewRoleModal');
+	$(this).closest('.modal-contentbox').appendTo('#viewModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
@@ -233,15 +233,44 @@ function viewRole(data) {
 	$("#view_rolePName").html(data.rolePName);
 	$("#view_roleRelyName").html(data.roleRelyName);
 	$("#view_remarks").html(data.remarks);
-	$('#viewRoleModal').modal('show');
+	$('#viewModal').modal('show');
 }
-$("#viewRoleModal").on("click","*:not('.pull-right *')",function(e){
+$("#viewModal").on("click","*:not('.pull-right *')",function(e){
+	e.stopPropagation()
+})
+function viewUser(data) {
+	$('#viewModal').modal('show');
+}
+$("#viewModal").on("click","*:not('.pull-right *')",function(e){
 	e.stopPropagation()
 })
 /**
 * 查看角色授权模态框
 */
 function roleAuth(data) {
+	$("#auth_role_name").val(data.displayName);
 	$("#role-authorization").modal('show');
-	console.log("1111")
+	// 大小切换按钮,1是模态框2是页面
+	$('.modal .maxrole').on('click',function(){
+		if($(this).closest('.modal-contentbox').prop('id')!=='role-authorizationlg'){
+	        $(this).closest('.modal').modal('hide')
+	        $(this).closest('.modal-contentbox').prop('id','role-authorizationlg');
+	        $(this).closest('.modal').find('.hidmission p').attr('mintype','2')
+	        $(this).closest('.modal-contentbox').appendTo('.ajax_dom');
+	        $(".ajax_dom").show(0);
+	        $(".role-slider").slider({value: 50,});
+	        $('.inputwrappermax').css('width',50+50/2+'%')
+		}else{
+	        $(this).closest('.modal-contentbox').appendTo('#role-authorization .modal-content');
+	        if(!$('.ajax_dom').html()){
+				$('.ajax_dom').hide()
+			}
+	        $(this).closest('.modal-contentbox').prop('id','');
+			$('.inputwrappermax').css('width','100%');
+	        $(this).closest('.modal').modal('show')
+	        $(this).closest('.modal').find('.hidmission p').attr('mintype','1')
+		}
+	})
 }
+//放大
+

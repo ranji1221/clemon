@@ -91,9 +91,9 @@
 		<div id="editSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
-		<div id="lookUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+		<!-- <div id="lookUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
-		</div>
+		</div> -->
 		<div id="lookSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
