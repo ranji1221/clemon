@@ -11,6 +11,7 @@ $(function(){
 //滑块 
 function limitChangeLength(elm, limitLength) {
 	$(elm).attr("maxLength", limitLength);
+	$(elm).siblings("span").html($(elm).attr("maxlength") - $(elm).val().length);
 	$(elm).keyup(function() {
 		var length = $(elm).val().length;
 		
@@ -20,6 +21,9 @@ function limitChangeLength(elm, limitLength) {
 //缩小
 $(document).on("click",".edit_blue_border", function() {
 	$(".roleNameBox").addClass("width_active")
+	$("#remark").addClass("active")
+	$('#editRoleModal .maxNumView').removeClass("width_block")
+	$(".select-l-pd").removeClass('active')
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
@@ -77,6 +81,9 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		$(this).closest('.modal').modal('hide')
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
 				$(".roleNameBox").removeClass("width_active")
+				$("#remark").removeClass("active")
+				$(".select-l-pd").addClass('active')
+				$('#editRoleModal .maxNumView').addClass("width_block")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
 			
@@ -105,6 +112,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 
 //角色编辑框 
 function editRoleModal(data) {
+	limitChangeLength($(".sliderInput input[type='text']"),12)
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
 	//加减按钮
@@ -155,6 +163,8 @@ function editRoleModal(data) {
 	$("[name='remarks']").val(data.remarks);
 	
 	dealDataToModal(data); 
+	$('#editModal').modal('show');
+	limitChangeLength($(".sliderInput input[type='text']"),12)
 	console.log("111")
 	
 	$('#editModal').modal('show');

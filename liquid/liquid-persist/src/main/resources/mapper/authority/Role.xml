@@ -88,7 +88,7 @@
 	
 	<!-- 查找角色总数 -->
 	<select id="getTotalOfItems" parameterType="Map" resultType="int">
-		select count(*) from lemon_liquid_auth_role 
+		select count(*) from lemon_liquid_auth_role r
 		<include refid="paramsSQL" />
 	</select>
 	
