@@ -4,39 +4,10 @@
 
 $(function() {
 	var editModal = $("#editModal");
-	var editUserUrl = "backend/authority/user/edit/modal";
-	var editSourceUrl = "backend/authority/resource/edit/modal";
 	//var lookRoleUrl = "backend/authority/role/view/modal";
 	var lookUserUrl = "backend/authority/user/view/modal";
 	var lookSourceUrl = "backend/authority/resource/view/modal";
 	const maxLimitNum = 10;
-
-	function editUser(this_nid) {
-
-		$.ajax({
-			url: editUserUrl,
-			dataType: "html",
-			async: true,
-			success: function(data) {
-				$("#editUserModal").html(data);
-				// 添加id
-				$('#editUserModal .hidmission p').html('用户编辑'+this_nid);
-			},
-			error: function(data) {
-				console.log(data);
-			}
-		});
-	}
-	$(document).on("click", ".editUser", function(e) {
-		e.preventDefault();
-		$('#editUserModal').modal('show');
-		if($(this).attr('mintype')==1){
-			return
-		}else{
-			var editUser_id=$(this).closest('tr').attr('listid');
-			editUser(editUser_id);
-		}
-	});
 
 	function editSource(this_nid) {
 		$.ajax({

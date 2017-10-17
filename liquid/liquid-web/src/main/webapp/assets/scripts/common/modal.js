@@ -18,15 +18,12 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 	});
 }
-//放大样式
+//缩小
 $(document).on("click",".edit_blue_border", function() {
 	$(".roleNameBox").addClass("width_active")
-<<<<<<< HEAD
 	$("#remark").addClass("active")
 	$('#editRoleModal .maxNumView').removeClass("width_block")
 	$(".select-l-pd").removeClass('active')
-=======
->>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
@@ -113,8 +110,8 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 	});
 });
 
-//弹出编辑框 
-function showEditModal(data) {
+//角色编辑框 
+function editRoleModal(data) {
 	limitChangeLength($(".sliderInput input[type='text']"),12)
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
@@ -166,16 +163,21 @@ function showEditModal(data) {
 	$("[name='remarks']").val(data.remarks);
 	
 	dealDataToModal(data); 
-<<<<<<< HEAD
 	$('#editModal').modal('show');
 	limitChangeLength($(".sliderInput input[type='text']"),12)
-=======
 	console.log("111")
 	
 	$('#editModal').modal('show');
->>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 }
 
+//用户编辑框
+function editUserModal(data) {
+	$("#edit_userName").val(data.userName);
+	$("#edit_phone").val(data.phone);
+	$("#edit_email").val(data.email);
+	$("#editModal").modal('show');
+	
+}
 /**
  * 查看模态框
  */

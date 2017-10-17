@@ -47,9 +47,7 @@
 
 	<body>
 		<div id="bodyModalArea"></div>
-		<div id="editUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
-			
-		</div>
+		
 		<div id="editSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
