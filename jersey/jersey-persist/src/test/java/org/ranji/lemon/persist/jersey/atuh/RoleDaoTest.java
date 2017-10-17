@@ -1,5 +1,7 @@
 package org.ranji.lemon.persist.jersey.atuh;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ranji.lemon.model.jersey.auth.Role;
@@ -10,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:config/spring-persist.xml")
-public class RoleTest {
+public class RoleDaoTest {
 	
 	@Autowired
 	IRoleDao roleDao;
@@ -36,5 +38,25 @@ public class RoleTest {
 		r.setRoleName("wrerr");
 		r.setId(1);
 		roleDao.update(r);
+	}
+	@Test
+	public void testAddRolePermission(){
+		roleDao.saveRoleAndPermissionRelation(1, "wwwww");
+		roleDao.saveRoleAndPermissionRelation(1, "aaaaa");
+	}
+	@Test
+	public void testDeleteRoleAndPermissionRelation(){
+		roleDao.deleteRoleAndPermissionRelation(1, "aaaaa");
+	}
+	@Test
+	public void testDeleteRoleAndPermissionRelationByRoleId(){
+		roleDao.deleteRoleAndPermissionRelationByRoleId(1);
+	}
+	@Test
+	public void testFindRoleAndPermissionRelationByRoleId(){
+		List<String> list = roleDao.findRoleAndPermissionRelationByRoleId(1);
+		for(String s:list){
+			System.out.println(s);
+		}
 	}
 }

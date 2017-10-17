@@ -47,7 +47,7 @@ public interface IRoleDao extends IGenericDao<Role, Integer>{
 
 	/**
 	 * 删除 某角色的全部角色-操作的对应
-	 * @param operationId 操作id
+	 * @param roleId 操作id
 	 */
 	public void deleteRoleAndOperationsRelationByRoleId(int roleId);
 

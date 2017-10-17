@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:config/spring-persist.xml","classpath:config/spring-service.xml"})
-public class ClientTest {
+public class ClientServiceTest {
 	
 	@Autowired
 	IClientService clientService;

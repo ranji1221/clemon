@@ -6,10 +6,30 @@
 		values (#{guid},#{createTime},#{updateTime},#{roleName}, #{description})
 	</insert>
 	
+	<!-- 存储某个角色和许可的对应关系 -->
+	<insert id="saveRoleAndPermissionRelation" parameterType="Map" keyProperty="id" useGeneratedKeys="true">
+		insert into lemon_jersey_auth_role_permission (roleId, permission) values (#{roleId}, #{permission})
+	</insert>
+	
+	<!-- 删除角色和操作的对应关系 -->
+	<delete id="deleteRoleAndPermissionRelation" parameterType="Map">
+		delete from lemon_jersey_auth_role_permission where roleId = #{roleId} and permission = #{permission}
+	</delete>
+	
+	<!-- 根据角色id删除角色和操作的对应关系 -->
+	<delete id="deleteRoleAndPermissionRelationByRoleId" parameterType="int">
+		delete from lemon_jersey_auth_role_permission where roleId = #{roleId}
+	</delete>
+	
 	<!-- 删除某条记录 -->
 	<delete id="delete" parameterType="int" >
 		delete from lemon_jersey_auth_role where id = #{id}
 	</delete>
+	
+	<!-- 根据角色id查询角色和操作的对应关系 -->
+	<select id="findRoleAndPermissionRelationByRoleId" parameterType="int" resultType="String">
+		select permission from lemon_jersey_auth_role_permission where roleId = #{roleId}
+	</select>
 	
 	<!-- 查询根据id -->
 	<select id="find" parameterType="int" resultType="JerseyRole">
