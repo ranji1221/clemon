@@ -8,7 +8,7 @@ $(function(){
  * @returns
  */
 
-/* 滑块 */
+//滑块 
 function limitChangeLength(elm, limitLength) {
 	$(elm).attr("maxLength", limitLength);
 	$(elm).keyup(function() {
@@ -17,7 +17,7 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 	});
 }
-/* 放大样式 */
+//放大样式
 $(document).on("click",".edit_blue_border", function() {
 	$(".roleNameBox").addClass("width_active")
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
@@ -29,7 +29,7 @@ $(document).on("click",".edit_blue_border", function() {
 })
 
 
-/*关闭处理 */
+//关闭处理 
 $(document).on("click",'.edit_red_border', function(e) {
 	$(this).closest('.modal-contentbox').remove();
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
@@ -37,7 +37,7 @@ $(document).on("click",'.edit_red_border', function(e) {
 		$('.ajax_dom').hide()
 	}
 })
-// 最小化隐藏
+//最小化隐藏
 	$('#editModal .dom_minimize').on('click',function(){
 		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 		if(!$('.ajax_dom').html()){
@@ -103,7 +103,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 	});
 });
 
-/* 弹出编辑框 */
+//弹出编辑框 
 function showEditModal(data) {
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
@@ -294,24 +294,24 @@ $(".mission ol").on("click", "li", function(e) {
 			$('#user-authorization').modal('show');
 			break;
 		case "editUser":
-			$('#editUserModal').html('');
-			minboxitem.appendTo($('#editUserModal'))
-			$('#editUserModal').modal('show');
+			$('#editModal').html('');
+			minboxitem.appendTo($('#editModal'))
+			$('#editModal').modal('show');
 			break;
 		case "editRole":
-			$('#editRoleModal').html('');
-			minboxitem.appendTo($('#editRoleModal'))
-			$('#editRoleModal').modal('show');
+			$('#editModal').html('');
+			minboxitem.appendTo($('#editModal'))
+			$('#editModal').modal('show');
 			break;
 		case "editSource":
-			$('#editSourceModal').html('');
-			minboxitem.appendTo($('#editSourceModal'))
-			$('#editSourceModal').modal('show');
+			$('#editModal').html('');
+			minboxitem.appendTo($('#editModal'))
+			$('#editModal').modal('show');
 			break;
 		case "lookUser":
-			$('#lookUserModal').html('');
-			minboxitem.appendTo($('#lookUserModal'))
-			$('#lookUserModal').modal('show');
+			$('#viewModal').html('');
+			minboxitem.appendTo($('#viewModal'))
+			$('#viewrModal').modal('show');
 			break;
 		case "lookRole":
 			$('#viewModal').html('');
@@ -319,9 +319,9 @@ $(".mission ol").on("click", "li", function(e) {
 			$('#viewModal').modal('show');
 			break;
 		case "lookSource":
-			$('#lookSourceModal').html('');
-			minboxitem.appendTo($('#lookSourceModal'))
-			$('#lookSourceModal').modal('show');
+			$('#viewModal').html('');
+			minboxitem.appendTo($('#viewModal'))
+			$('#viewModal').modal('show');
 			break;
 		case "lookLog":
 			$('#lookLogModal').html('');
