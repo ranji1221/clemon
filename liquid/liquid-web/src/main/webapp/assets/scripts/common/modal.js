@@ -7,48 +7,24 @@ $(function(){
  * 编辑模态框
  * @returns
  */
-//存放模态框需要调用的方法
 
-/* 放大模态框样式  */
-//function setEditStyle(){
-//	$(".modal-backdrop").hide()
-//	$("#editRoleModal").appendTo($(".ajax_dom"))
-//	$("#editRoleModal").addClass("bigmodule")
-//	$(".breadcrumb").addClass("display_block")
-//	$(".modalCon .bg-grey#remark").addClass("active")
-//	$(".modalCon .roleNameBox").removeClass("width_active")
-//	$(".editRole_modal .role_hearder").addClass("display_block")
-///	$('#editRoleModal .maxNumView').addClass("width_block")
-//	$(".modalCon .modal-header").addClass("display_none")
-//	$(".role_content_error_xian").addClass("display_block")
-//}
-/* 删除模态框样式 */
-//function removeEditStyle(){
-//	$(".modalCon .bg-grey#remark").removeClass("active")
-//	$("#editRoleModal").removeClass("bigmodule")
-//	$(".breadcrumb").removeClass("display_block")
-//	$(".modalCon .bg-grey#remark").removeClass("active")
-//	$(".modalCon .roleNameBox").addClass("width_active")
-//	$('#editRoleModal .maxNumView').removeClass("width_block")
-//	$(".editRole_modal .role_hearder").removeClass("display_block")
-//	$(".modalCon .modal-header").removeClass("display_none")
-//	$(".role_content_error_xian").removeClass("display_block")
-	
-//}
-
-/* 滑块 */
+//滑块 
 function limitChangeLength(elm, limitLength) {
 	$(elm).attr("maxLength", limitLength);
+	$(elm).siblings("span").html($(elm).attr("maxlength") - $(elm).val().length);
 	$(elm).keyup(function() {
 		var length = $(elm).val().length;
 		
 		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 	});
 }
-/* 放大样式 */
-$(".edit_blue_border").on("click", function() {
+//放大样式
+$(document).on("click",".edit_blue_border", function() {
 	$(".roleNameBox").addClass("width_active")
-	$(this).closest('.modal-contentbox').appendTo('#editRoleModal');
+	$("#remark").addClass("active")
+	$('#editRoleModal .maxNumView').removeClass("width_block")
+	$(".select-l-pd").removeClass('active')
+	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
@@ -57,33 +33,31 @@ $(".edit_blue_border").on("click", function() {
 })
 
 
-/*关闭处理 */
-$('.edit_red_border').on("click", function(e) {
+//关闭处理 
+$(document).on("click",'.edit_red_border', function(e) {
 	$(this).closest('.modal-contentbox').remove();
+	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
 })
-// 最小化隐藏
-	$('#editRoleModal .dom_minimize').on('click',function(){
+//最小化隐藏
+	$('#editModal .dom_minimize').on('click',function(){
 		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 		if(!$('.ajax_dom').html()){
 			$('.ajax_dom').hide()
 		}
     })
-    $('#editRoleModal .module_minimize').on('click',function(){
+    $('#editModal .module_minimize').on('click',function(){
 		$(this).closest('.modal').modal('hide');
 		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
     })
 
-
-
-	$("#editRoleModal").on("shown.bs.modal", function() {
+	$("#editModal").on("shown.bs.modal", function() {
 		var max_role = $(this).find(".edit_external_link")
 		max_role.on("click", function(e) {
 			e.preventDefault()
 			e.stopPropagation()
-			//setEditStyle()
 			var minlimitNum = 5;
 	$(".minlimitNum").html(minlimitNum);
 	$(".error_box").slider({
@@ -107,6 +81,9 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		$(this).closest('.modal').modal('hide')
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
 				$(".roleNameBox").removeClass("width_active")
+				$("#remark").removeClass("active")
+				$(".select-l-pd").addClass('active')
+				$('#editRoleModal .maxNumView').addClass("width_block")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
 			
@@ -133,8 +110,9 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 	});
 });
 
-/* 弹出编辑框 */
+//弹出编辑框 
 function showEditModal(data) {
+	limitChangeLength($(".sliderInput input[type='text']"),12)
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
 	//加减按钮
@@ -185,9 +163,8 @@ function showEditModal(data) {
 	$("[name='remarks']").val(data.remarks);
 	
 	dealDataToModal(data); 
-	/* 下拉框样式 */
-	$('[data-toggle="select"]').select2();
-	$('#editRoleModal').modal('show');
+	$('#editModal').modal('show');
+	limitChangeLength($(".sliderInput input[type='text']"),12)
 }
 
 /**
@@ -244,8 +221,8 @@ function viewUser(data) {
 }
 
 /**
-* 查看角色授权模态框
-*/
+ * 授权模态框
+ */
 function roleAuth(data) {
 	$("#auth_role_name").val(data.displayName);
 	$("#role-authorization").modal('show');
@@ -274,4 +251,94 @@ $('.modal .zclose').on('click',function(){
 		$('.ajax_dom').hide()
 	}
 })
+/**
+ * 最小化模态框
+ */
+//模态框最小化按钮
+$(document).on("click", ".module_minimize", function() {
+	getdom_module($(this))
+	$(this).closest('.modal').modal('hide');
+	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+})
+//最小化按钮本地存储
+$(document).on("click", ".dom_minimize", function() {
+	getdom_module($(this))
+	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+})
+function getdom_module(this_dom) {
+	//$(".ajax_dom").empty().hide()
+	var dom_modul = this_dom.find(".hidmission").html()
+	var url = this_dom.find(".hidmission p").attr("class")
+	$("<li class="+url+">" + dom_modul + "</li>").prependTo($(".mission ol"))
 
+}
+$(".mission ol").on("click", "li", function(e) {
+	var minindex = $(this).index('.mission ol li')
+	$(this).detach()
+	var minboxitem = $('.minbox').find('.modal-contentbox').eq(minindex) //点击的li对应的隐藏盒子
+	var mintype = $(this).find("p").attr("mintype") //mintype,1是模态框2是可放大页面,3纯页面
+	var modaltype = $(this).find("p").prop("class") //modaltype,确定调用哪个模态框
+	console.log(minboxitem,mintype,modaltype)
+	if(mintype == '3') {
+		minboxitem.appendTo($(".ajax_dom"))
+		$(".ajax_dom").show(0);
+	} else if(mintype == '2') {
+		minboxitem.appendTo($(".ajax_dom"))
+		$(".ajax_dom").show(0);
+	} else {
+		switch(modaltype) {
+		case "role-aut":
+			$('#role-authorization .modal-content').html('');
+			minboxitem.appendTo($('#role-authorization .modal-content'))
+			$('#role-authorization').modal('show');
+			break;
+		case "user-aut":
+			$('#user-authorization .modal-content').html('');
+			minboxitem.appendTo($('#user-authorization .modal-content'))
+			$('#user-authorization').modal('show');
+			break;
+		case "editUser":
+			$('#editModal').html('');
+			minboxitem.appendTo($('#editModal'))
+			$('#editModal').modal('show');
+			break;
+		case "editRole":
+			$('#editModal').html('');
+			minboxitem.appendTo($('#editModal'))
+			$('#editModal').modal('show');
+			break;
+		case "editSource":
+			$('#editModal').html('');
+			minboxitem.appendTo($('#editModal'))
+			$('#editModal').modal('show');
+			break;
+		case "lookUser":
+			$('#viewModal').html('');
+			minboxitem.appendTo($('#viewModal'))
+			$('#viewrModal').modal('show');
+			break;
+		case "lookRole":
+			$('#viewModal').html('');
+			minboxitem.appendTo($('#viewModal'))
+			$('#viewModal').modal('show');
+			break;
+		case "lookSource":
+			$('#viewModal').html('');
+			minboxitem.appendTo($('#viewModal'))
+			$('#viewModal').modal('show');
+			break;
+		case "lookLog":
+			$('#lookLogModal').html('');
+			minboxitem.appendTo($('#lookLogModal'))
+			$('#lookLogModal').modal('show');
+			break;
+
+		}
+	}
+})
+$(document).on("click", function() {
+	$(".mission").hide()
+})

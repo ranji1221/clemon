@@ -31,6 +31,7 @@ function dealDataToModal(data){
 			return itemHtml;
 		},
 		afterFun:function(){
+			
 			//.roleExtendPId
 			if(data.roleExtendPId >= 1){
 				$('#edit_parentRole option').each(function(val){
@@ -52,7 +53,7 @@ function dealDataToModal(data){
 	})
 }
 </script>
-<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
+<div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
 <div class="modal-contentbox">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
@@ -142,7 +143,7 @@ function dealDataToModal(data){
 						<div class="col-xs-3 col-sm-2 row-lg-h">
 							<label for="roleName" class=" control-label"><span class="dot">·</span>角色名称：</label>
 						</div>
-						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
+						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active">
 							<input type="hidden" name="id" id="roleId">
 							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
 							<span class="minlimitNum">12</span>
@@ -208,8 +209,8 @@ function dealDataToModal(data){
 							<label class="control-label" for="remark">
 	                <span class="dot">·</span>备注：</label>
 						</div>
-						<div class="col-xs-9 col-sm-10 textarea-h">
-							<textarea name="edit_remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
+						<div class="col-xs-9 col-sm-10 textarea-h ">
+							<textarea name="edit_remarks" class="form-control bg-grey active" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>

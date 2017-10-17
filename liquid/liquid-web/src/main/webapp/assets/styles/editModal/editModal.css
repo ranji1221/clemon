@@ -181,7 +181,17 @@
 		padding-left: 0.5rem;
 	}
 }
-
+.select-l-pd.active select{
+	width:142px;
+}
+.select-l-pd{
+	 padding-top: 0.1rem;
+}
+.select-l-pd.active {
+		padding:0;
+		    padding-top: 0.1rem;
+		margin-left:-0.2rem;
+	}
 @media screen and (max-width: 768px) {
 	.select {
 		min-width: 1.64rem;
@@ -282,6 +292,8 @@ textarea {
 }
 .modalCon .roleNameBox.width_active{
 	width:77% !important;
+	margin-left:0.4rem;
+	
 }
 .modalCon .row-lg-h .wordNum {
 	position: absolute;
@@ -366,7 +378,7 @@ textarea {
 }
 
 .modalCon .bg-grey#remark.active{
-	 width: 72%;
+	 margin-left:0.4rem;
 }
 .modalCon .textarea_grey{
 	background-color:#f4f4f4
