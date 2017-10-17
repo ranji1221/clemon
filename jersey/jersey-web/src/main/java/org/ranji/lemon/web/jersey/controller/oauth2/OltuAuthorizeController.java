@@ -140,7 +140,7 @@ public class OltuAuthorizeController {
 		Subject subject = SecurityUtils.getSubject();
 		//String password = new DefaultPasswordService().encryptPassword("123");
 		//System.out.println(password);
-		UsernamePasswordToken token = new UsernamePasswordToken("zhansan", "123");
+		UsernamePasswordToken token = new UsernamePasswordToken("zhansan", "123456");
 		//--4. 登录，即身份验证
 		try {
 			subject.login(token);
