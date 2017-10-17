@@ -9,10 +9,9 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonGetList({
-		useLocalStorage: true,
+		useLocalStorage : true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
-	    pageClassName:"#page",
-	    searchClassName:".nav-search",
+	    className_Page : "#page",
 	    generateItemFun : function(index,value,data,extend){
 			var Pname = value.rolePName == null ? '无':value.rolePName ;
 			var tr_data = '<tr listid='+ value.id+extend +' role_id='+ value.id+extend +'>'+
@@ -52,6 +51,13 @@ function roleListInit(){
 			    labelHover : true, 
 			  	cursor : false,
 			 });
+   		},
+   		initFun : function(){
+   			_this = this;
+   			$('.nav-search #list_search_btn').on('click',function(){
+   				//刷新当前对象
+   				_this.getData({'roleNameLike':$('.nav-search #list_search_str').val()});
+   			})
    		}
 	})
 }
@@ -117,7 +123,19 @@ $(document).on("click", ".roleAuth", function(e) {
 	    	<a href="#">角色管理</a>
 	    </li>
 	    <li class="active">角色列表</li>
-    	<div class="nav-search" id="nav-search"></div>
+    	<div class="nav-search" id="nav-search">
+    		<form class="form-search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="搜索你想找到的..." id="list_search_str">
+					<span class="input-group-btn">
+			        <button class="btn btn-default" type="button" id="list_search_btn">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
+			        </button>
+			        </span>
+				</div>
+				<!-- /input-group -->
+			</form>
+    	</div>
 	</ol>
 	<div class="alertArea"></div>
 	<div class="alert alert-danger">
