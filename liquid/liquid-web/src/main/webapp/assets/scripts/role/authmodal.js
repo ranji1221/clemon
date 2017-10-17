@@ -147,27 +147,7 @@ $(function(){
 	});
 	
 	// 大小切换按钮,1是模态框2是页面
-	$('.modal .maxrole').on('click',function(){
-		if($(this).closest('.modal-contentbox').prop('id')!=='role-authorizationlg'){
-	        $(this).closest('.modal').modal('hide')
-	        $(this).closest('.modal-contentbox').prop('id','role-authorizationlg');
-	        $(this).closest('.modal').find('.hidmission p').attr('mintype','2')
-	        $(this).closest('.modal-contentbox').appendTo('.ajax_dom');
-	        $(".ajax_dom").show(0);
-	        $(".role-slider").slider({value: 50,});
-	        $('.inputwrappermax').css('width',50+50/2+'%')
-		}else{
-	        $(this).closest('.modal-contentbox').appendTo('#role-authorization .modal-content');
-	        if(!$('.ajax_dom').html()){
-    			$('.ajax_dom').hide()
-    		}
-	        $(this).closest('.modal-contentbox').prop('id','');
-			zishuxianzhi('#role-authorization .rolenameinput','#role-authorization .rolenamelimit',15);
-			$('.inputwrappermax').css('width','100%');
-	        $(this).closest('.modal').modal('show')
-	        $(this).closest('.modal').find('.hidmission p').attr('mintype','1')
-		}
-	})
+	
     // 关闭按钮
     $('.modal .zclose').on('click',function(){
     	if($(this).closest('.modal-contentbox').prop('id')=='role-authorizationlg'){

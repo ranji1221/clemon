@@ -37,6 +37,10 @@ public class AccessToken extends AbstractModel{
 	private String refreshToken;
 	private String refreshTokenExpiredSeconds;
 	
+	public AccessToken(){
+		
+	}
+	
 	public String getToken() {
 		return token;
 	}

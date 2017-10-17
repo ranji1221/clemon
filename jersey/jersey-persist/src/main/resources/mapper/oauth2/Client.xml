@@ -87,6 +87,41 @@
 			<if test="clientSecretLike != null and clientSecretLike != '' ">
 				and clientSecret like concat(concat('%', #{clientSecretLike, jdbcType=VARCHAR}),'%')
 			</if>
+			
+			<if test=" clientUri != null and clientUri != '' ">
+				and clientUri = #{clientUri}
+			</if>
+			<if test="clientUriLike != null and clientUriLike != '' ">
+				and clientUri like concat(concat('%', #{clientUriLike, jdbcType=VARCHAR}),'%')
+			</if>
+			
+			<if test=" scope != null and scope != '' ">
+				and scope = #{scope}
+			</if>
+			<if test="scopeLike != null and scopeLike != '' ">
+				and scope like concat(concat('%', #{scopeLike, jdbcType=VARCHAR}),'%')
+			</if>
+			
+			<if test=" grantType != null and grantType != '' ">
+				and grantType = #{grantType}
+			</if>
+			<if test="grantTypeLike != null and grantTypeLike != '' ">
+				and grantType like concat(concat('%', #{grantTypeLike, jdbcType=VARCHAR}),'%')
+			</if>
+			
+			<if test=" redirectUri != null and redirectUri != '' ">
+				and grantType = #{grantType}
+			</if>
+			<if test="redirectUriLike != null and redirectUriLike != '' ">
+				and redirectUri like concat(concat('%', #{redirectUriLike, jdbcType=VARCHAR}),'%')
+			</if>
+			
+			<if test=" description != null and description != '' ">
+				and description = #{description}
+			</if>
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and description like concat(concat('%', #{descriptionLike, jdbcType=VARCHAR}),'%')
+			</if>
 		</where>
 	</sql>
 	

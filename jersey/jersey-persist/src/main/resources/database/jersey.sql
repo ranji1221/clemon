@@ -5,42 +5,41 @@
 -- user
 DROP TABLE  IF EXISTS lemon_jersey_auth_user;
 CREATE TABLE lemon_jersey_auth_user (
-  id int(11) not null auto_increment,
-  create_time datetime ,
-  version int(11) default 0,
+  id int auto_increment primary key,
+  guid varchar(255) not null unique,
+  createTime datetime,
+  updateTime datetime,
   password varchar(255) not null,
   username varchar(255) not null unique,
-  default_user tinyint(1) default '0',
-  last_login_time datetime ,
-  PRIMARY KEY  (id),
   INDEX username_index (username)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- role
 DROP TABLE  IF EXISTS lemon_jersey_auth_role;
 CREATE TABLE lemon_jersey_auth_role (
-  id int(11) not null auto_increment,
-  archived tinyint(1) default '0',
-  version int(11) DEFAULT 0,
-  role_name varchar(255) not null,
-  PRIMARY KEY  (id)
+  id int auto_increment primary key,
+  guid varchar(255) not null unique,
+  createTime datetime,
+  updateTime datetime,
+  roleName varchar(255) not null,
+  description varchar(255)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- user_role
 DROP TABLE  IF EXISTS lemon_jersey_auth_user_role;
 CREATE TABLE lemon_jersey_auth_user_role (
-  user_id int(11) not null,
-  role_id int(11) not null,
-  INDEX users_id_index (user_id),
-  INDEX roles_id_index (role_id)
+  userId int(11) not null,
+  roleId int(11) not null,
+  INDEX users_id_index (userId),
+  INDEX roles_id_index (roleId)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- role_permission
 DROP TABLE  IF EXISTS lemon_jersey_auth_role_permission;
 CREATE TABLE lemon_jersey_auth_role_permission (
-  role_id int(11) not null,
+  roleId int(11) not null,
   permission varchar(255) not null,
-  INDEX role_id_index (role_id)
+  INDEX role_id_index (roleId)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 

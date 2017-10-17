@@ -6,11 +6,9 @@
 <script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
 
 <script>
-
 function userListInit(){
 	$("#userList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/user/data',
-
 		usePage: true,
 		useLocalStorage: true,
 		pageClassName:"#page",
@@ -40,10 +38,10 @@ function userListInit(){
 					createTime +
 				'</td>'+
 				'<td>'+
-					'<span class="icon-eye-open iconact lookUser"></span>'+
+					'<span class="icon-eye-open iconact viewUser"></span>'+
 				'</td>'+
 				'<td>'+
-					'<span class="icon-pencil iconact editUser" n_id="1"></span>'+
+					'<span class="icon-pencil iconact editUser"></span>'+
 				'</td>'+
 				'<td>'+
 					'<span class="icon-trash iconact removeBtn"></span>'+
@@ -63,12 +61,12 @@ function userListInit(){
 			 });
    		}
 	})
-	//获取到本地的某条数据 示例代码
+	/* //获取到本地的某条数据 示例代码
 	$(document).on("click", ".roleName", function(e) {
 		var storage_name = $(this).closest('tr').attr('storage_name');
 		var storage_id = $(this).closest('tr').attr('storage_id');
 		console.log(getDataByStorage(storage_name,storage_id));
-	})
+	}) */
 }
 userListInit();
 $('.removeBtn').bindDialogs({
@@ -93,6 +91,33 @@ $(document).on("click",".renovate",function(){
 	removeStorage();
 	roleListInit();
 })
+//添加编辑事件
+$(document).on("click", ".editUser", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	showEditModal(data);
+});
+//添加查看事件
+$(document).on("click", ".viewUser", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	viewUser(data);
+});
+//添加查看角色授权事件
+$(document).on("click", ".roleAuth", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	roleAuth(data);
+});
 </script>
 
 <div class="rolelist userlist">
@@ -201,4 +226,7 @@ $(document).on("click",".renovate",function(){
 		</div>
 	</div>
 </div>
-
+<!-- 模态框加载  -->
+<%@ include file="viewmodal.jsp" %><%-- 
+<%@ include file="editmodal.jsp" %>
+<%@ include file="authmodal.jsp" %> --%>

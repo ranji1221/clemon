@@ -614,12 +614,14 @@ label{
 }
 #role-authorization input[type=text]{
 	height:0.52rem;
+	color:#737373;
 }
 #user-authorization input[type=text]{
 	height:0.52rem;
 }
 #role-authorizationlg .form_content input[type=text]{
 	height:0.52rem;
+	color:# 737373;
 }
 #user-authorizationlg .form_content input[type=text]{
 	height:0.52rem;
