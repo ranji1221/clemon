@@ -105,7 +105,7 @@ function dealDataToModal(data){
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 						<span class="icon-pencil icon-slidenav"></span>
-						<p url="./pages/role/edit" u_id="2" mintype='2'>角色编辑</p>
+						<p>角色编辑</p>
 						<span class="iconfont icon-chuyidong1 del"></span>
 					</div>
 					</div>
@@ -118,7 +118,7 @@ function dealDataToModal(data){
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>
-							<p u_id="2" class="editRole" mintype='1'>编辑角色</p>
+							<p class="editRole" >编辑角色</p>
 							<span class="iconfont icon-chuyidong1 del"></span>
 						</div>
 	
@@ -143,7 +143,7 @@ function dealDataToModal(data){
 						<div class="col-xs-3 col-sm-2 row-lg-h">
 							<label for="roleName" class=" control-label"><span class="dot">·</span>角色名称：</label>
 						</div>
-						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput">
+						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active">
 							<input type="hidden" name="id" id="roleId">
 							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
 							<span class="minlimitNum">12</span>
@@ -209,8 +209,8 @@ function dealDataToModal(data){
 							<label class="control-label" for="remark">
 	                <span class="dot">·</span>备注：</label>
 						</div>
-						<div class="col-xs-9 col-sm-10 textarea-h">
-							<textarea name="edit_remarks" class="form-control bg-grey" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
+						<div class="col-xs-9 col-sm-10 textarea-h ">
+							<textarea name="edit_remarks" class="form-control bg-grey active" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>
