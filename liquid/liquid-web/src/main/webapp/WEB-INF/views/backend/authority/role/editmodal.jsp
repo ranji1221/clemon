@@ -31,6 +31,7 @@ function dealDataToModal(data){
 			return itemHtml;
 		},
 		afterFun:function(){
+			
 			//.roleExtendPId
 			if(data.roleExtendPId >= 1){
 				$('#edit_parentRole option').each(function(val){
@@ -52,7 +53,7 @@ function dealDataToModal(data){
 	})
 }
 </script>
-<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
+<div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
 <div class="modal-contentbox">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
