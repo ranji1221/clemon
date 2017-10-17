@@ -47,13 +47,11 @@
 
 	<body>
 		<div id="bodyModalArea"></div>
-		
+		<!-- 
 		<div id="editSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
-		</div>
-		<div id="lookSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
-			
-		</div>
+		</div> -->
+		
 		<!--删除模态框-->
 		<div id="removeModal">
 			<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">

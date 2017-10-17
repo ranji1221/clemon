@@ -145,7 +145,14 @@ function editRoleModal(data) {
 	
 	$('#editModal').modal('show');
 }
-
+function editSource(data) {
+	console.log(data)
+	$("#edit_resourceName").val(data.resourceName);
+	$("#edit_resourceType").html(data.resourceType);
+	//$("#edit_resourcePName").html(data.resourcePName);
+	//$("#view_operationName").html(data.operationName);
+	$("#editModal").modal('show');
+}
 //用户编辑框
 function editUserModal(data) {
 	$("#edit_userName").val(data.userName);
@@ -157,16 +164,6 @@ function editUserModal(data) {
 /**
  * 查看模态框
  */
-// 关闭按钮
-$(document).on('click','.view_red_border',function(){
-	$(this).closest('.modal-contentbox').remove();
-	$(this).closest('.modal-contentbox').appendTo('#viewModal');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-})
-
-
 /* 弹出查看框 */
 function viewRole(data) {
 	//获取到本地的某条数据 示例代码
@@ -186,6 +183,14 @@ function viewUser(data) {
 	$('#viewModal').modal('show');
 }
 
+function viewSource(data) {
+	console.log(data)
+	$("#view_resourceName").html(data.resourceName);
+	$("#view_resourceType").html(data.resourceType);
+	$("#view_resourceURL").html(data.resourceURL);
+	//$("#view_operationName").html(data.operationName);
+	$("#viewModal").modal('show');
+}
 function roleAuth(data) {
 	$("#auth_roleName").val(data.roleName);
 	$("#role-authorization").modal('show');

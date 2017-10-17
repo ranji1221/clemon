@@ -2,6 +2,7 @@
 <!-- <link rel="stylesheet" href="./assets/styles/rolelist/rolelistREM.css" /> -->
 
 <script src="${pageContext.request.contextPath}/js/user/list.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
 <script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
@@ -12,8 +13,7 @@ function resourceListInit(){
 		useLocalStorage: true,
 		pageClassName:"#page",
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
-	    generateItemFun : function(index,value){
-	   		console.log(value)
+	    generateItemFun : function(index,value,data,extend){
 	   		var thisType = '';
 	   		switch(value.resourceType){
 	   			case 1:
@@ -27,7 +27,7 @@ function resourceListInit(){
 	   				break;
 	   		}
 	   		if(!value.resourcePName) value.resourcePName = '无';
-	   		var tr_data = '<tr resource_id='+ value.id +'>'+
+	   		var tr_data = '<tr resource_id='+ value.id +extend+'>'+
 	   			'<td class="checkboxtd">'+
 	   				'<label>'+
 	   					'<input  type="checkbox" name="layout">'+
@@ -46,13 +46,10 @@ function resourceListInit(){
 	   				value.resourcePName +
 	   			'</td>'+
 	   			'<td>'+
-	   				'<span class="icon-eye-open iconact lookSource"></span>'+
+	   				'<span class="icon-eye-open iconact viewResource"></span>'+
 	   			'</td>'+
 	   			'<td>'+
-	   				'<span class="icon-pencil iconact editSource" n_id="1"></span>'+
-	   			'</td>'+
-	   			'<td>'+
-	   				'<span class="icon-trash iconact removeBtn"></span>'+
+	   				'<span class="icon-pencil iconact editResource"></span>'+
 	   			'</td>'+
 	   			'<td>'+
 	   				'<span class="icon-trash iconact removeBtn"></span>'+
@@ -99,6 +96,24 @@ $(document).on("click",".renovate",function(){
 	removeStorage();
 	roleListInit();
 })
+//添加编辑事件
+$(document).on("click", ".editResource", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	editSource(data);
+});
+//添加查看事件
+$(document).on("click", ".viewResource", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	viewSource(data);
+});
 </script>
 
 <div class="rolelist sourcelist">
@@ -201,3 +216,6 @@ $(document).on("click",".renovate",function(){
         </div>
     </div>
 </div>
+<!-- 模态框加载  -->
+<%@ include file="editmodal.jsp" %>
+<%@ include file="viewmodal.jsp" %>
