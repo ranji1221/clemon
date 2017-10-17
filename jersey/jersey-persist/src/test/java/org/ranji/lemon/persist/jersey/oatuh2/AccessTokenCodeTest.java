@@ -35,7 +35,7 @@ public class AccessTokenCodeTest {
 	}
 	
 	@Test
-	public void testUpdateAccessToken(){
+	public void testUpdateAccessTokenCode(){
 		AccessTokenCode atc = new AccessTokenCode();
 		atc.setUsername("werrtt");
 		atc.setClientId(GuidUtil.generateClientId());
