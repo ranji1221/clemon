@@ -9,8 +9,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.ranji.lemon.common.core.annotation.SystemControllerLog;
 import org.ranji.lemon.common.core.pagination.PagerModel;
-import org.ranji.lemon.common.core.util.JsonUtil;
+import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Role;
+import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.ranji.lemon.service.liquid.authority.prototype.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,8 @@ public class RoleController {
 	
 	@Autowired
 	private IRoleService roleService;
+	@Autowired
+	private IAuthorityService authService;
 		
 	//@SystemControllerPermission("role:list")
 	@RequestMapping(value = "/list")
@@ -74,6 +77,14 @@ public class RoleController {
 		return roleList;
 		//session.setAttribute("roleList", roleList); //页面
 		//return "backend/authority/role/rolelist";
+	}
+	
+	@RequestMapping(value = "/getOperation")
+	@SystemControllerLog(description="权限管理-角色操作列表")
+	@ResponseBody
+	public List<Operation> getOperationByRoleId(int roleId) {
+		
+		return authService.findOperationsByRoleId(roleId);
 	}
 	
 	//@SystemControllerPermission("role:list")

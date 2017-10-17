@@ -13,6 +13,7 @@
 			classpath:config/spring-service.xml
 			classpath:config/spring-jersey.xml
 			classpath:config/spring-flowable.xml
+			classpath:config/spring-shiro.xml
 		</param-value>
 	</context-param>
 	
@@ -39,6 +40,19 @@
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 设置Shiro安装框架的过滤器 -->
+	<filter>
+		<filter-name>shiro</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiro</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<!-- Jersey的核心控制器 -->
 	<servlet>

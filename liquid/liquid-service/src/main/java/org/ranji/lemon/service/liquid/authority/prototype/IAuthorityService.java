@@ -54,4 +54,11 @@ public interface IAuthorityService {
 	 * @return 用户对象集合json
 	 */
 	public String findAllUserInduleRoles(String params);
+	
+	/**
+	 * 根据用户id查询所有操作
+	 * @param roleId 角色id
+	 * @return 操作集合
+	 */
+	public List<Operation> findOperationsByRoleId(int roleId);
 }

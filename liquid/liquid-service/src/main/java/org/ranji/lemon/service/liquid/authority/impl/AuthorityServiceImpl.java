@@ -37,6 +37,7 @@ public class AuthorityServiceImpl implements IAuthorityService{
 	private List<Role> roles = new ArrayList<Role>();//存储角色
 	private List<Role> recRole	=new ArrayList<Role>();  //存储递归角色
 	private List<Operation> operations= new ArrayList<Operation>(); //存储用户操集合
+	private List<Operation> roleOperation = new ArrayList<Operation>(); //存储角色集合
 	
 	@Override
 	public List<Role> userFindRole() {
@@ -56,7 +57,6 @@ public class AuthorityServiceImpl implements IAuthorityService{
 				 roles.addAll(r1);
 				}
 			}
-	
 		return roles;
 	}
 	// 递归查询角色
@@ -68,7 +68,7 @@ public class AuthorityServiceImpl implements IAuthorityService{
 		}
 		return recRole;
 	}
-	// 查询角色对应操作
+	// 查询用户对应操作
 	@Override
 	public List<Operation> findOperationsByUserId(int userId) {
 		List <Role> roleIds = findRolesByUserId(userId);
@@ -79,6 +79,25 @@ public class AuthorityServiceImpl implements IAuthorityService{
 			 operations.addAll(opera); //将剩余操作加入集合中
 		}
 		return operations;
+	}
+	// 查询角色对应操作
+	@Override
+	public List<Operation> findOperationsByRoleId(int roleId){
+		
+		roleOperation = roleService.findOperationByRoleId(roleId);
+		for(Operation o :roleOperation){
+			o.setState(true);
+		}
+		Role r = roleService.find(roleId);
+		if(r.getRoleExtendPId()>=0){
+			findRolesByRoleId(r.getRoleExtendPId());
+		}
+		for(Role r1 :recRole){
+			List<Operation> opera = roleService.findOperationByRoleId(r1.getId());
+			opera.removeAll(roleOperation); // 移除所有和operations中一致的操作
+			roleOperation.addAll(opera); //将剩余操作加入集合中
+		}
+		return roleOperation;
 	}
 
 	@Override

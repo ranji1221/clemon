@@ -40,7 +40,16 @@ public class Role implements Serializable{
 	private int roleMaxNum; // 最大限制用户数
 	private String remarks;  //备注
 	private List<Role> list = new ArrayList<Role>();
+	private List<Operation> operationList = new ArrayList<Operation>();
 	
+	public List<Operation> getOperationList() {
+		return operationList;
+	}
+
+	public void setOperationList(List<Operation> operationList) {
+		this.operationList = operationList;
+	}
+
 	public List<Role> getList() {
 		return list;
 	}

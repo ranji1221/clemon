@@ -38,7 +38,6 @@ import org.springframework.stereotype.Service;
 public class RoleServiceImpl extends GenericServiceImpl<Role, Integer> implements IRoleService {
 	@Override
 	public Role findByRoleName(String roleName) {
-		// TODO Auto-generated method stub
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("roleName", roleName);
 		List<Role> roles = ((IRoleDao) dao).findAll(params);

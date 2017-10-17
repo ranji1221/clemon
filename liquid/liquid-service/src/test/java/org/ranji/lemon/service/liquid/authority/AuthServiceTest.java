@@ -62,5 +62,10 @@ public class AuthServiceTest {
 		System.out.println( authService.findAllUserInduleRoles(null));
 		
 	}
+	@Test
+	public void testFindOperationsByRoleId(){
+		List<Operation> operation = authService.findOperationsByRoleId(1);
+		System.out.println(JsonUtil.objectToJson(operation));
+	}
 	
 }

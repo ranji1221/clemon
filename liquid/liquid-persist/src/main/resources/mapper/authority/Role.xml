@@ -53,9 +53,9 @@
 		SELECT
 			o.*
 		FROM
-			lemon_liquid_auth_role r
-		LEFT JOIN lemon_liquid_auth_role_operation r_o ON r.id = r_o.roleId
-		LEFT JOIN lemon_liquid_auth_operation o ON o.id = r_o.operationId
+			lemon_liquid_auth_operation o
+		LEFT JOIN lemon_liquid_auth_role_operation r_o ON o.id = r_o.operationId
+		LEFT JOIN lemon_liquid_auth_role r ON r.id = r_o.roleId
 		WHERE
 			r.id = #{roleId}
 	</select>
