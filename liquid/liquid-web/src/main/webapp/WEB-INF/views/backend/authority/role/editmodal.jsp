@@ -5,11 +5,6 @@
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 
 <script type="text/javascript">
-$(function(){
-	//将编辑角色模态框加入到body中id为bodyModalArea的div中
-	$('#editRoleModal').appendTo('body #bodyModalArea');
-})
-
 
 function dealDataToModal(data){
 	//获取到本地的某条数据 示例代码
@@ -58,7 +53,7 @@ function dealDataToModal(data){
 	})
 }
 </script>
-<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal" tabindex="-1" role="dialog">
+<div id="editRoleModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
@@ -66,10 +61,10 @@ function dealDataToModal(data){
 			<a href="#" data="2" url="home">首页</a>
 		</li>
 		<li>
-			<a href="#" url="./pages/role/rolelist">角色管理</a>
+			<a href="#" url="${pageContext.request.contextPath}/backend/authority/role/list">角色管理</a>
 		</li>
 		<li>
-			<a href="" url="./pages/role/rolelist">角色列表</a>
+			<a href="">角色列表</a>
 		</li>
 		<li class="active">角色编辑</li>
 		<div class="nav-search" id="nav-search">
@@ -118,7 +113,7 @@ function dealDataToModal(data){
 		
 			<div class="modal-header">
 				<div class="pull-right">
-					<a  class="minus module_minimize">
+					<a href="javascript:;" data-dismiss="modal" class="minus module_minimize">
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>
@@ -204,7 +199,7 @@ function dealDataToModal(data){
 						</div>
 						<div class="col-xs-2 row-lg-h numCtr">
 							<a href="" class=" icon-minus text-center reduce"></a>
-							<input readonly class="form-control" id="limitNum" name="edit_roleMaxNum" type="text"/>
+							<input readonly class="form-control" id="limitNum" name="roleMaxNum" type="text"/>
 							<a href="" class="icon-plus text-center add active"></a>
 						</div>
 					</div>

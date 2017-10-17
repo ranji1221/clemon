@@ -1,5 +1,36 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-
+<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
+<script>
+function createRoleList(){
+	$('.form-control').LemonGetList({
+		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
+		beforeFun:function(data){
+			return getListByTree(data);
+		},
+		generateItemFun:function(index,value){
+			var itemHtml = '';
+			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择角色</option>';}
+			
+			var kongge_str = '';
+			for(var i=0;i<value.level;i++){
+				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			}
+			kongge_str += '|-';
+			
+			itemHtml += '<option  name="'+value.id+'" ';
+			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
+			return itemHtml;
+		},
+		afterFun:function(){
+			//.roleExtendPId
+			/* 下拉框样式 */
+			$('[data-toggle="select"]').select2();
+		}
+	})
+}
+createRoleList();
+</script>
 <!--<link rel="stylesheet" href="assets/styles/role/role.css">-->
 <div class="modal-contentbox">
 <ol class="breadcrumb breadcrumb_margin">
@@ -33,21 +64,7 @@
 			<span>添加角色</span>
 		</div>
 		<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
 
-				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
-			</div>
-
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
-				<!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
-				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-				<div class="hidmission">
-					<span class="icon-pencil icon-slidenav"></span>
-					<p url="${pageContext.request.contextPath}/backend/authority/role/add"  mintype='3'>添加角色</p>
-					<span class="iconfont icon-chuyidong1 del"></span>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="row role_content form_content" u_id="2" n_id="-1">
@@ -87,10 +104,6 @@
 						<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select">
 
 							<option value="0" disabled="disabled">选择父级角色</option>
-							<option value="1">角色列表</option>
-							<option value="2">首页</option>
-							<option value="3">角色列表</option>
-							<option value="4">角色列表</option>
 
 						</select>
 					</div>
@@ -181,8 +194,8 @@
 			$(".error_box").slider({
 				orientation: "horizontal",
 				range: "min",
-				max: 70,
-				value: 70,
+				max: 72,
+				value: 72,
 				slide: function(event, ui) {
 					var ui_value = ui.value
 					$(".sliderInput").css("width",  ui_value+"%");
@@ -192,8 +205,8 @@
 					limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 				}
 			})
-	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
+			$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+			$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
 			$('[data-toggle="select"]').select2();
 
 			function limitChangeLength(elm, limitLength) {
@@ -235,43 +248,6 @@
 					$(".add").removeClass("active")
 				}
 			});
-			// //点击缩小
-			// $('.blue_border').on("click", function(e) {
-			// 	e.preventDefault()
-			// 	$.ajax({
-			// 		url: "./pages/role/rolelist.html",
-			// 		dataType: "html"
-			// 	}).done(function(data) {
-			// 		$(".ajax_dom").empty()
-			// 		$(".ajax_dom").html(data)
-			// 		$("#editRoleModal").modal('show')
-			// 	})
-			// })
-			// //点击关闭
-			// $('.red_border').on("click", function(e) {
-			// 	e.preventDefault()
-			// 	$.ajax({
-			// 		url: "./pages/role/rolelist.html",
-			// 		dataType: "html"
-			// 	}).done(function(data) {
-			// 		$(".ajax_dom").empty()
-			// 		$(".ajax_dom").html(data)
-			// 	})
-			// })
-			// 关闭按钮
-		    $('.red_border').on('click',function(){
-				$(this).closest('.modal-contentbox').remove();
-				if(!$('.ajax_dom').html()){
-					$('.ajax_dom').hide()
-				}
-		    })
-			// 最小化隐藏
-			$('.dom_minimize').on('click',function(){
-				$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-				if(!$('.ajax_dom').html()){
-					$('.ajax_dom').hide()
-				}
-		    })
 		})
 	})(jQuery)
 </script>

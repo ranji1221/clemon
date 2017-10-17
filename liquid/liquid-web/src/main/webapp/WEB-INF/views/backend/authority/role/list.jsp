@@ -24,7 +24,7 @@ function roleListInit(){
 				'<td>'+
 					(index+1) +
 				'</td>'+
-				'<td title='+ value.roleName +' class="roleName">'+
+				'<td title='+ value.roleName +'>'+
 					value.roleName +//${role.roleName}
 				'</td>'+
 				'<td title='+ Pname +'>'+
@@ -40,7 +40,7 @@ function roleListInit(){
 					'<span class="icon-trash iconact removeBtn"></span>'+
 				'</td>'+
 				'<td>'+
-					'<span class="icon-key iconact"></span>'+
+					'<span class="icon-key iconact roleAuth"></span>'+
 				'</td>'+
 			'</tr>';
 	       	return tr_data; 
@@ -95,6 +95,15 @@ $(document).on("click", ".viewRole", function(e) {
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
 	viewRole(data);
+});
+//添加查看角色授权事件
+$(document).on("click", ".roleAuth", function(e) {
+	e.preventDefault();
+	////获取到本地的某条数据
+	var storage_name = $(this).closest('tr').attr('storage_name');
+	var storage_id = $(this).closest('tr').attr('storage_id');
+	var data = getDataByStorage(storage_name,storage_id);
+	roleAuth(data);
 });
 </script>
 
@@ -184,3 +193,4 @@ $(document).on("click", ".viewRole", function(e) {
 <!-- 模态框加载  -->
 <%@ include file="editmodal.jsp" %>
 <%@ include file="viewmodal.jsp" %>
+<%@ include file="authmodal.jsp" %>

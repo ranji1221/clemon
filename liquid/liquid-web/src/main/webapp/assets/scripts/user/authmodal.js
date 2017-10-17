@@ -1,27 +1,17 @@
 $(function(){
-	// console.log('user-authorization');
-	// 获取点击列表编号作为唯一标识符
-	var user_aut_id=$('#user-authorization .modal-content').attr('aut_id');
-	$('.min').find('p').attr('user_aut_id',user_aut_id);
-	$('.min').find('p').html('用户授权'+user_aut_id);
-
-	// console.log(user_aut_id);
-	var user_input=localStorage['this_user_input'+user_aut_id]?JSON.parse(localStorage['this_user_input'+user_aut_id]):'';
-	if(user_input){
-		$('#user-authorization .rolenameinput').val(user_input);
-	}
+	zishuxianzhi('#user-authorization .usernameinput','#user-authorization .usernamelimit',15);
 	// 限制字数方法zl_input获取输入框元素zl_message获取提示信息元素zl_limit限制字数值
 	function zishuxianzhi(zl_inputele,zl_messageele,zl_limitnum){
 		var zl_input=$(zl_inputele);
 		var zl_message=$(zl_messageele);
 		var zl_limit=zl_limitnum;
 		// console.log(zl_input)
+		console.log(zl_limit,zl_input)
 		if(zl_limit-zl_input.val().length<0){
 
 			zl_message.html(0);
 		}else{
 			zl_message.html(zl_limit-zl_input.val().length);
-			
 		}
 		// 配合滑块截取超出字符，单独限制字符不需要此片段
 		var zl_con=zl_input.val()
@@ -31,19 +21,36 @@ $(function(){
 		}else{
 			zl_message.html(zl_limit*1-zl_input.val().length*1)
 		}
-		zl_input.on('keyup',function(){
+		zl_input.off().on('keyup',function(){
 			var zl_con=$(this).val()
 			if($(this).val().length>zl_limit){
 				zl_message.html(0);
 				zl_input.val(zl_con.substr(0,zl_limit));
 			}else{
 				zl_message.html(zl_limit*1-$(this).val().length*1)
-				
 			}
 		})
 	}
-	zishuxianzhi('#user-authorization .rolenameinput','#user-authorization .rolenamelimit',15);
-
+		// zishuxianzhi('#user-authorizationlg .usernameinput','#user-authorizationlg .usernamelimit',15);
+		// 滑块
+		var changenum;//修改限制字数用
+		$(".user-slider").slider({
+		    // orientation: "vertical",
+		    range: "min",
+		    min: 0,
+		    max: 100,
+		    value: 50,
+		    slide: function (event, ui) {
+		    	changenum=Math.floor((ui.value-50)/5);
+				zishuxianzhi('#user-authorizationlg .usernameinput','#user-authorizationlg .usernamelimit',15+changenum);
+		    	// console.log(changenum)
+		        // console.log(ui.value-50)
+		        $('#user-authorizationlg .inputwrappermax').css('width',50+ui.value/2+'%')
+		    }
+		});
+		//设置初始宽度
+		var widthpercent=$(".user-slider").slider('value');
+		$('#user-authorizationlg .inputwrappermax').css('width',50+widthpercent/2+'%');
 	// 复选框
 	$('#user-authorization header input[type=checkbox]').iCheck({
 	    checkboxClass: 'icheckbox_flat-blue',
@@ -57,38 +64,26 @@ $(function(){
 	    labelHover : true, 
 	  	cursor : false,
 	 });
-	$('#user-authorization .checkallaut').on('ifChecked', function(event){
+	$('.checkallaut').on('ifChecked', function(event){
 	  	// $(".user-authorization-jstree").jstree(true).select_all()
-	  	$("#user-authorization .user-authorization-jstree").jstree(true).check_all ()
+	  	$(this).closest('.wrapper').find(".user-authorization-jstree").jstree(true).check_all ()
 	});
-	$('#user-authorization .checkallaut').on('ifUnchecked', function(event){
-	  	$("#user-authorization .user-authorization-jstree").jstree(true).uncheck_all ()
-	  	$('#user-authorization .user-authorization-jstree .jstree-disabled').each(function(){
-			$("#user-authorization .user-authorization-jstree").jstree(true).check_node($(this))
+	$('.checkallaut').on('ifUnchecked', function(event){
+	  	$(".user-authorization-jstree").jstree(true).uncheck_all ()
+	  	$(this).closest('.wrapper').find('.user-authorization-jstree .jstree-disabled').each(function(){
+			$(this).closest('.wrapper').find(".user-authorization-jstree").jstree(true).check_node($(this))
 		})
-		// $("#user-authorization .user-authorization-jstree").jstree(true).check_node('.jstree-disabled')
+		// $(".user-authorization-jstree").jstree(true).check_node('.jstree-disabled')
 	  	// $(".user-authorization-jstree").jstree(true).deselect_all()
 	});
-		$('#user-authorization .slidedownallaut').on('ifChecked', function(event){
-	  	$("#user-authorization .user-authorization-jstree").jstree(true).open_all()
+		$('.slidedownallaut').on('ifChecked', function(event){
+	  	$(this).closest('.wrapper').find(".user-authorization-jstree").jstree(true).open_all()
 	});
-		$('#user-authorization .slidedownallaut').on('ifUnchecked', function(event){
-	  	$("#user-authorization .user-authorization-jstree").jstree(true).close_all()
+		$('.slidedownallaut').on('ifUnchecked', function(event){
+	  	$(this).closest('.wrapper').find(".user-authorization-jstree").jstree(true).close_all()
 	});
 	// 树形图
-	// 从本地获取变化前jstree选中项
-		var selected=localStorage['this_user_bulkadd'+user_aut_id]?JSON.parse(localStorage['this_user_bulkadd'+user_aut_id]):[];
-		
-		// 根据本地储存更新初始状态
-		$(".user-authorization-jstree").on("ready.jstree", function(e, data) {
-				// console.log('执行同步')
-			if(selected.length>0){
-				$(".user-authorization-jstree").jstree(true).uncheck_all()
-				$(".user-authorization-jstree").jstree(true).check_node(selected)
-			}else{
-				// console.log('未储存')
-			}
-		});
+	
 	$(".user-authorization-jstree").jstree({
 		'core' : {
 			'themes':{'icons':false},
@@ -130,27 +125,52 @@ $(function(){
 		},
 		"plugins": ["checkbox"]
 	});
-	// 点击最小化、大小切换时保存状态至本地数据		
-		$('.min').on('click',function(){
-			selected=$(".user-authorization-jstree").jstree(true).get_checked();
-			localStorage['this_user_bulkadd'+user_aut_id]=JSON.stringify(selected);
-			localStorage['this_user_input'+user_aut_id]=JSON.stringify($('#user-authorization .rolenameinput').val());
-		})	
-		$('.maxuser').on('click',function(){
-			selected=$(".user-authorization-jstree").jstree(true).get_checked();
-			localStorage['this_user_bulkadd'+user_aut_id]=JSON.stringify(selected);
-			localStorage['this_user_input'+user_aut_id]=JSON.stringify($('#user-authorization .rolenameinput').val());
-		})
-		// 关闭时清除
-		$('.zclose').on('click',function(){
-			localStorage.removeItem('this_user_bulkadd'+user_aut_id);
-			localStorage.removeItem('this_user_input'+user_aut_id);
-		})
-	// 放大按钮
-	$('.modal .maxuser').on('click',function(){
-		console.log('触发次数+1')
-		// 填充列表页
-		$('.ajax_dom').html('');
-        $('.ajax_dom').load('backend/authority/user/auth/max').show();
+	
+    // 大小切换按钮mintype,1是模态框2是页面
+    $('.modal .maxuser').on('click',function(){
+		if($(this).closest('.modal-contentbox').prop('id')!=='user-authorizationlg'){
+	        $(this).closest('.modal').modal('hide')
+	        $(this).closest('.modal-contentbox').prop('id','user-authorizationlg');
+	        $(this).closest('.modal').find('.hidmission p').attr('mintype','2')
+	        $(this).closest('.modal-contentbox').appendTo('.ajax_dom');
+	        $(".ajax_dom").show(0);
+	        $(".user-slider").slider({value: 50,});
+	        $('.inputwrappermax').css('width',50+50/2+'%')
+		}else{
+	        $(this).closest('.modal-contentbox').appendTo('#user-authorization .modal-content');
+	        if(!$('.ajax_dom').html()){
+    			$('.ajax_dom').hide()
+    		}
+	        $(this).closest('.modal-contentbox').prop('id','');
+			zishuxianzhi('#user-authorization .usernameinput','#user-authorization .usernamelimit',15);
+			$('.inputwrappermax').css('width','100%');
+	        $(this).closest('.modal').modal('show')
+	        $(this).closest('.modal').find('.hidmission p').attr('mintype','1')
+		}
+	})
+    // 关闭按钮
+    $('.modal .zclose').on('click',function(){
+    	if($(this).closest('.modal-contentbox').prop('id')=='user-authorizationlg'){
+    		$(this).closest('.modal-contentbox').remove();
+    		if(!$('.ajax_dom').html()){
+    			$('.ajax_dom').hide()
+    		}
+    	}else{
+
+    	}
+    })
+    // 最小化隐藏
+	$('.modal .min').on('click',function(){
+		if($(this).closest('.modal-contentbox').prop('id')=='user-authorizationlg'){
+			$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+    		if(!$('.ajax_dom').html()){
+    			$('.ajax_dom').hide()
+    		}
+    	}else{
+    		$(this).closest('.modal').modal('hide');
+			$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+
+    	}
+    	
     })
 })

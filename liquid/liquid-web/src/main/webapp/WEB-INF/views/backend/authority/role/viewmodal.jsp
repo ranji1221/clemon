@@ -1,62 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript">
-$(function(){
-	//将编辑角色模态框加入到body中id为bodyModalArea的div中
-	$('#viewRoleModal').appendTo('body #bodyModalArea');
-})
-	//放大
-	$(".view_external_link").on("click", function(e) {
-		e.preventDefault()
-		e.stopPropagation()
-		$(this).closest('.modal').modal('hide')
-		$(this).closest('.modal-contentbox').addClass('looklg')
-		$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
-		$('.ajax_dom').show(0)
-	})
-	// 缩小
-	$(".view_blue_border").on("click", function() {
-		$(this).closest('.modal-contentbox').appendTo('#viewRoleModal');
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-	    $(this).closest('.modal-contentbox').removeClass('looklg')
-	    $(this).closest('.modal').modal('show')
-	})
-	// 关闭按钮
-	$('.view_red_border').on('click',function(){
-		$(this).closest('.modal-contentbox').remove();
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-	})
-	// 最小化隐藏
-	$('.dom_minimize').on('click',function(){
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-	})
-	$('.module_minimize').on('click',function(){
-		$(this).closest('.modal').modal('hide');
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-	})
-	
-	/* 弹出查看框 */
-	function viewRole(data) {
-		//获取到本地的某条数据 示例代码
-		$("#view_roleName").html(data.displayName);
-		$("#view_roleMaxNum").html(data.roleMaxNum);
-		$("#view_rolePName").html(data.rolePName);
-		$("#view_roleRelyName").html(data.roleRelyName);
-		$("#view_remarks").html(data.remarks);
-		$('#viewRoleModal').modal('show');
-	}
-	$("#viewRoleModal").on("click","*:not('.pull-right *')",function(e){
-		e.stopPropagation()
-	})
-</script>
-<div id="viewRoleModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+
+<script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
+<div id="viewModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
 	<div class="modal-contentbox">
 		<ol class="breadcrumb breadcrumb_margin">
 		    <li>
@@ -64,9 +10,9 @@ $(function(){
 		    	<a href="#" data="2" url="home">首页</a>
 		    </li>
 		    <li>
-		    	<a href="#" url="./pages/role/rolelist">角色管理</a>
+		    	<a href="#" url="${pageContext.request.contextPath}/backend/authority/role/list">角色管理</a>
 		    </li>
-		    <li><a href="" url="./pages/role/rolelist">角色列表</a></li>
+		    <li><a href="">角色列表</a></li>
 		    <li class="active">查看角色</li>
 	    	<div class="nav-search" id="nav-search">
 				<form class="form-search">
