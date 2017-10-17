@@ -56,7 +56,11 @@ function roleListInit(){
    			_this = this;
    			$('.nav-search #list_search_btn').on('click',function(){
    				//刷新当前对象
-   				_this.getData({'roleNameLike':$('.nav-search #list_search_str').val()});
+   				_this.getData({
+   					'params':JSON.stringify({
+   						'rNameLike' : $('.nav-search #list_search_str').val()
+   					})
+   				});
    			})
    		}
 	})

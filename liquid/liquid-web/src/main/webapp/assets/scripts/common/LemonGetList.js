@@ -8,7 +8,7 @@ $(function(){
 		var saveStorageName = '';
 		
 		var defaults = {
-			useLocalStorage: false,
+			useLocalStorage : false,
 			
 			data:{},
 			pageSize:"10",
@@ -54,7 +54,9 @@ $(function(){
 			if(TableObj.useLocalStorage){
 				saveStorageName = '';
 				for (var Key in TableObj.data){
-					saveStorageName += '_'+TableObj.data[Key];
+					var str_tem = TableObj.data[Key];
+					if(typeof str_tem == 'object') str_tem = JSON.stringify(str_tem);
+					saveStorageName += '_'+str_tem;
 				}
 				saveStorageName = TableObj.requestListUrl+saveStorageName; 
 				var local_data = getStorage(saveStorageName);
@@ -62,6 +64,7 @@ $(function(){
 			if(local_data){
 				dealData(local_data,request_data);
 			}else{
+				console.log(TableObj.data);
 				$.post(TableObj.requestListUrl,TableObj.data, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
 					if(TableObj.useLocalStorage){ setStorage(saveStorageName,data); }
 					dealData(data,request_data);
@@ -80,7 +83,7 @@ $(function(){
 				return ;
 			}
 			if(dataList.length > 0){
-				if(plug_first && TableObj.className_Page){ 
+				if(TableObj.className_Page){ 
 					//如果页面是第一次加载,进入本流程
 					createPage(data.total);
 				}
@@ -88,6 +91,10 @@ $(function(){
 				TableObj.afterFun();
 			}else{
 				_this.html(TableObj.emptyDataFun());
+				//如果没有数据,但是使用分页,就将分页div中的内容清理掉
+				if(TableObj.className_Page){ 
+					$(TableObj.className_Page).html('');
+				}
 			}
 			plug_first = false;
 		}
