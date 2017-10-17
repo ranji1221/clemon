@@ -14,12 +14,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.ranji.lemon.model.jersey.auth.User;
 import org.ranji.lemon.service.jersey.auth.prototype.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 public class SystemRealm extends AuthorizingRealm {
 	
 	@Autowired
-	@Qualifier("JerseyUserServiceImpl")
 	private IUserService userService;
 	
 	@Override
