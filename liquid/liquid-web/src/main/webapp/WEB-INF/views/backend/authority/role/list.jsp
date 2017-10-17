@@ -9,10 +9,10 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonGetList({
-		usePage: true,
 		useLocalStorage: true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    pageClassName:"#page",
+	    searchClassName:".nav-search",
 	    generateItemFun : function(index,value,data,extend){
 			var Pname = value.rolePName == null ? '无':value.rolePName ;
 			var tr_data = '<tr listid='+ value.id+extend +' role_id='+ value.id+extend +'>'+
@@ -224,19 +224,7 @@ $(document).on("click", ".roleAuth", function(e) {
 	    	<a href="#">角色管理</a>
 	    </li>
 	    <li class="active">角色列表</li>
-    	<div class="nav-search" id="nav-search">
-			<form class="form-search">
-				<div class="input-group">
-			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
-			        <span class="input-group-btn">
-			        <button class="btn btn-default" type="button">
-						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
-			        </button>
-			        </span>
-			    </div>
-			    <!-- /input-group -->
-			</form>
-		</div>
+    	<div class="nav-search" id="nav-search"></div>
 	</ol>
 	<div class="alertArea"></div>
 	<div class="alert alert-danger">
