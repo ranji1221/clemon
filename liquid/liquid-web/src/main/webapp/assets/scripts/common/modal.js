@@ -73,11 +73,8 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
 				$(".roleNameBox").removeClass("width_active")
 				$("#remark").removeClass("active")
-<<<<<<< HEAD
 				$(".select-l- pd").addClass('active')
-=======
 				$(".select-l-pd").addClass('active')
->>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 				$('.maxNumView').addClass("width_block")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
