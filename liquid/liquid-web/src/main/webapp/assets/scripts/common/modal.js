@@ -10,31 +10,31 @@ $(function(){
 //存放模态框需要调用的方法
 
 /* 放大模态框样式  */
-function setEditStyle(){
-	$(".modal-backdrop").hide()
-	$("#editRoleModal").appendTo($(".ajax_dom"))
-	$("#editRoleModal").addClass("bigmodule")
-	$(".breadcrumb").addClass("display_block")
-	$(".modalCon .bg-grey#remark").addClass("active")
-	$(".modalCon .roleNameBox").removeClass("width_active")
-	$(".editRole_modal .role_hearder").addClass("display_block")
-	$('#editRoleModal .maxNumView').addClass("width_block")
-	$(".modalCon .modal-header").addClass("display_none")
-	$(".role_content_error_xian").addClass("display_block")
-}
+//function setEditStyle(){
+//	$(".modal-backdrop").hide()
+//	$("#editRoleModal").appendTo($(".ajax_dom"))
+//	$("#editRoleModal").addClass("bigmodule")
+//	$(".breadcrumb").addClass("display_block")
+//	$(".modalCon .bg-grey#remark").addClass("active")
+//	$(".modalCon .roleNameBox").removeClass("width_active")
+//	$(".editRole_modal .role_hearder").addClass("display_block")
+///	$('#editRoleModal .maxNumView').addClass("width_block")
+//	$(".modalCon .modal-header").addClass("display_none")
+//	$(".role_content_error_xian").addClass("display_block")
+//}
 /* 删除模态框样式 */
-function removeEditStyle(){
-	$(".modalCon .bg-grey#remark").removeClass("active")
-	$("#editRoleModal").removeClass("bigmodule")
-	$(".breadcrumb").removeClass("display_block")
-	$(".modalCon .bg-grey#remark").removeClass("active")
-	$(".modalCon .roleNameBox").addClass("width_active")
-	$('#editRoleModal .maxNumView').removeClass("width_block")
-	$(".editRole_modal .role_hearder").removeClass("display_block")
-	$(".modalCon .modal-header").removeClass("display_none")
-	$(".role_content_error_xian").removeClass("display_block")
+//function removeEditStyle(){
+//	$(".modalCon .bg-grey#remark").removeClass("active")
+//	$("#editRoleModal").removeClass("bigmodule")
+//	$(".breadcrumb").removeClass("display_block")
+//	$(".modalCon .bg-grey#remark").removeClass("active")
+//	$(".modalCon .roleNameBox").addClass("width_active")
+//	$('#editRoleModal .maxNumView').removeClass("width_block")
+//	$(".editRole_modal .role_hearder").removeClass("display_block")
+//	$(".modalCon .modal-header").removeClass("display_none")
+//	$(".role_content_error_xian").removeClass("display_block")
 	
-}
+//}
 
 /* 滑块 */
 function limitChangeLength(elm, limitLength) {
@@ -47,39 +47,50 @@ function limitChangeLength(elm, limitLength) {
 }
 /* 放大样式 */
 $(".edit_blue_border").on("click", function() {
-	$(".modal-backdrop").show()
-	$("#editRoleModal").modal('show')
-	removeEditStyle()
-	$('#editRoleModal').appendTo('body #bodyModalArea');
+	$(".roleNameBox").addClass("width_active")
+	$(this).closest('.modal-contentbox').appendTo('#editRoleModal');
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+    $(this).closest('.modal-contentbox').removeClass('editrolelg modalCon')
+    $(this).closest('.modal').modal('show')
 })
 
 
 /*关闭处理 */
 $('.edit_red_border').on("click", function(e) {
-	e.preventDefault()
-	$('#editRoleModal').appendTo('body #bodyModalArea');
-	removeEditStyle()
-	$("#editRoleModal").modal('hide')
+	$(this).closest('.modal-contentbox').remove();
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
 })
+// 最小化隐藏
+	$('#editRoleModal .dom_minimize').on('click',function(){
+		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+		if(!$('.ajax_dom').html()){
+			$('.ajax_dom').hide()
+		}
+    })
+    $('#editRoleModal .module_minimize').on('click',function(){
+		$(this).closest('.modal').modal('hide');
+		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+    })
 
 
 
-	$("#editRoleModal").on("click","*:not('.pull-right *')",function(e){
-		e.stopPropagation()
-	})
 	$("#editRoleModal").on("shown.bs.modal", function() {
 		var max_role = $(this).find(".edit_external_link")
 		max_role.on("click", function(e) {
 			e.preventDefault()
 			e.stopPropagation()
-			setEditStyle()
+			//setEditStyle()
 			var minlimitNum = 5;
 	$(".minlimitNum").html(minlimitNum);
 	$(".error_box").slider({
 		orientation: "horizontal",
 		range: "min",
-		max: 60,
-		value: 60,
+		max: 70,
+		value: 70,
 		slide: function(event, ui) {
 			var ui_value = ui.value
 			$(".sliderInput").css("width", ui_value+"%");
@@ -93,7 +104,12 @@ $('.edit_red_border').on("click", function(e) {
 $(".sliderInput").css("width", $(".error_box").slider("value")+"%");
 $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
 		
-		
+		$(this).closest('.modal').modal('hide')
+			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
+				$(".roleNameBox").removeClass("width_active")
+			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
+			$('.ajax_dom').show(0)
+			
 		$('.breadcrumb').on("click", function(e) {
 			var el = e.target || window.event
 			e.preventDefault()
@@ -113,17 +129,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 				}
 			}
 		});
-		$(document).on("click.all_click",".left-menu li",function(e){
-			e.stopPropagation()
-			var url = $(this).attr("url")
-			if(url){
-				$(".ajax_dom").empty()	
-			}else{
-				
-			}
-			
-			$(document).off("click.all_click","**")
-		});
+	
 	});
 });
 
@@ -176,11 +182,11 @@ function showEditModal(data) {
 		var inputlimitNum = parseInt($(".numCtr input").val());
 		judge(inputlimitNum);
 	});
-	console.log(data)
 	$("[name='remarks']").val(data.remarks);
 	
 	dealDataToModal(data); 
-	
+	/* 下拉框样式 */
+	$('[data-toggle="select"]').select2();
 	$('#editRoleModal').modal('show');
 }
 
@@ -188,7 +194,7 @@ function showEditModal(data) {
  * 查看模态框
  */
 //放大
-$(".view_external_link").on("click", function(e) {
+$(document).on("click",".view_external_link",function(e) {
 	e.preventDefault()
 	e.stopPropagation()
 	$(this).closest('.modal').modal('hide')
@@ -197,7 +203,7 @@ $(".view_external_link").on("click", function(e) {
 	$('.ajax_dom').show(0)
 })
 // 缩小
-$(".view_blue_border").on("click", function() {
+$(document).on("click",".view_blue_border", function() {
 	$(this).closest('.modal-contentbox').appendTo('#viewModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
@@ -206,23 +212,14 @@ $(".view_blue_border").on("click", function() {
     $(this).closest('.modal').modal('show')
 })
 // 关闭按钮
-$('.view_red_border').on('click',function(){
+$(document).on('click','.view_red_border',function(){
 	$(this).closest('.modal-contentbox').remove();
+	$(this).closest('.modal-contentbox').appendTo('#viewModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}
 })
-// 最小化隐藏
-$('.dom_minimize').on('click',function(){
-	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-})
-$('.module_minimize').on('click',function(){
-	$(this).closest('.modal').modal('hide');
-	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-})
+
 
 /* 弹出查看框 */
 function viewRole(data) {
@@ -235,42 +232,45 @@ function viewRole(data) {
 	$("#view_remarks").html(data.remarks);
 	$('#viewModal').modal('show');
 }
-$("#viewModal").on("click","*:not('.pull-right *')",function(e){
-	e.stopPropagation()
-})
+
 function viewUser(data) {
+	console.log(data)
+	$("#view_userName").html(data.userName);
+	$("#view_roleName").html(data.roleName);
+	$("#view_phone").html(data.phone);
+	$("#view_email").html(data.email);
 	$('#viewModal').modal('show');
 }
-$("#viewModal").on("click","*:not('.pull-right *')",function(e){
-	e.stopPropagation()
-})
+
 /**
 * 查看角色授权模态框
 */
 function roleAuth(data) {
 	$("#auth_role_name").val(data.displayName);
 	$("#role-authorization").modal('show');
-	// 大小切换按钮,1是模态框2是页面
-	$('.modal .maxrole').on('click',function(){
-		if($(this).closest('.modal-contentbox').prop('id')!=='role-authorizationlg'){
-	        $(this).closest('.modal').modal('hide')
-	        $(this).closest('.modal-contentbox').prop('id','role-authorizationlg');
-	        $(this).closest('.modal').find('.hidmission p').attr('mintype','2')
-	        $(this).closest('.modal-contentbox').appendTo('.ajax_dom');
-	        $(".ajax_dom").show(0);
-	        $(".role-slider").slider({value: 50,});
-	        $('.inputwrappermax').css('width',50+50/2+'%')
-		}else{
-	        $(this).closest('.modal-contentbox').appendTo('#role-authorization .modal-content');
-	        if(!$('.ajax_dom').html()){
-				$('.ajax_dom').hide()
-			}
-	        $(this).closest('.modal-contentbox').prop('id','');
-			$('.inputwrappermax').css('width','100%');
-	        $(this).closest('.modal').modal('show')
-	        $(this).closest('.modal').find('.hidmission p').attr('mintype','1')
-		}
-	})
+}
+/**
+* 查看用户授权模态框
+*/
+function userAuth(data) {
+	$("#auth_userName").val(data.userName);
+	$("#user-authorization").modal('show');    
 }
 //放大
+$(document).on('click','.auth_external_link',function(e){
+	e.preventDefault()
+	e.stopPropagation()
+	$(this).closest('.modal').modal('hide')
+	$(this).closest('.modal-contentbox').prop('id','user-authorizationlg');
+	$(this).closest('.modal-contentbox').appendTo('.ajax_dom');
+	$(".ajax_dom").show(0);
+})
+// 关闭按钮
+$('.modal .zclose').on('click',function(){
+	$(this).closest('.modal-contentbox').remove();
+	$(this).closest('.modal-contentbox').appendTo('#user-authorization');
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+})
 
