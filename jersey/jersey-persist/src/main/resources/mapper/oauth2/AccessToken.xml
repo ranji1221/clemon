@@ -17,13 +17,13 @@
 		select * from lemon_jersey_oauth2_access_token where id = #{id}
 	</select>
 	
-	<!-- 查询全部client -->
+	<!-- 查询全部AccessToken -->
 	<select id="findAll" resultType="AccessToken" parameterType="Map">
 		select * from lemon_jersey_oauth2_access_token
 		<include refid="paramsSQL"/>
 	</select>
 	
-	<!-- 分页查询client -->
+	<!-- 分页查询AccessToken -->
 	<select id="findPaginated" resultType="AccessToken" parameterType="Map">
 		select * from lemon_jersey_oauth2_access_token
 		<include refid="paramsSQL"/>
@@ -48,7 +48,6 @@
 			<if test="refreshTokenExpiredSeconds != null and refreshTokenExpiredSeconds != ''">refreshTokenExpiredSeconds = #{refreshTokenExpiredSeconds},</if>
 			<if test="updateTime != null and updateTime != ''">updateTime = #{updateTime},</if>
 		</set>
-		<!-- where logId = #{logId} -->
 		where id = #{id}
 	</update>
 	
