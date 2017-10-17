@@ -92,7 +92,7 @@ $(document).on("click", ".editUser", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	showEditModal(data);
+	editUserModal(data);
 });
 //添加查看事件
 $(document).on("click", ".viewUser", function(e) {
@@ -222,5 +222,5 @@ $(document).on("click", ".userAuth", function(e) {
 </div>
 <!-- 模态框加载  -->
 <%@ include file="viewmodal.jsp" %>
-<%-- <%@ include file="editmodal.jsp" %> --%>
+<%@ include file="editmodal.jsp" %>
 <%@ include file="authmodal.jsp" %>

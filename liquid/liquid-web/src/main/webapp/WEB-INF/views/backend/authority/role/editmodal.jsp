@@ -105,7 +105,7 @@ function dealDataToModal(data){
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 						<span class="icon-pencil icon-slidenav"></span>
-						<p url="./pages/role/edit" u_id="2" mintype='2'>角色编辑</p>
+						<p>角色编辑</p>
 						<span class="iconfont icon-chuyidong1 del"></span>
 					</div>
 					</div>
@@ -118,7 +118,7 @@ function dealDataToModal(data){
 						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 						<div class="hidmission">
 							<span class="icon-pencil icon-slidenav"></span>
-							<p u_id="2" class="editRole" mintype='1'>编辑角色</p>
+							<p class="editRole" >编辑角色</p>
 							<span class="iconfont icon-chuyidong1 del"></span>
 						</div>
 	
