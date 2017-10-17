@@ -43,7 +43,7 @@
 							</div>
 						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
-						<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
+						<a href="javascript:;" class="maxrole" data-dismiss="modal">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
 						</a>
 						<a href="javascript:;" class="zclose" data-dismiss="modal">

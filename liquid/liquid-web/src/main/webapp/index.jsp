@@ -39,48 +39,10 @@
 		<!-- 侧导航样式 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slidenav/slidenavREM.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/iconfont.css" />
-		<!-- <script src="${pageContext.request.contextPath}/js/slidenav/slidenav.js"></script>
 		<!--bootstrap图标库-->
 		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/3.0.0/css/font-awesome.min.css" />
-		<!-- icheck -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/common/icheck/skins/all.css" />
-		<!-- <script src="${pageContext.request.contextPath}/common/icheck/icheck.js"></script>
 		<!--头部引入-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index/index.css" />
-		<!--ajax页面获取-->
-		<!-- <script src="${pageContext.request.contextPath}/js/index/getDom.js"></script>
-		<!--模态框引入-->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editModal/editModal.css">
-		<!-- <script src="${pageContext.request.contextPath}/js/editModal/editModal.js"></script>
-		<!-- jstree -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/common/vakata-jstree/dist/themes/default/style.min.css" />
-		<!-- <script src="${pageContext.request.contextPath}/common/vakata-jstree/dist/jstree.min.js"></script>
-		<!-- 角色列表页 -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/role/rolelistREM.css" />
-		<!-- 角色授权 -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/role/role-authorization.css" />
-		<!-- 用户授权 -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/user-authorization.css" />
-		<!-- 批量角色 -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/role/bulkaddrolesREM.css" />
-
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/role/role.css">
-		<!--jqueryui css文件-->
-		<!-- <link href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
-		<!--用户css-->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/edit.css">
-		<!--resources资源  css-->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/resources/add.css">
-		<!--icheck-->
-		<!--<script src="assets/scripts/icheck/icheck.js"></script>-->
-		<!-- <script src="${pageContext.request.contextPath}/js/icheck/custom.min.js"></script>
-		<!--rolelook css-->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/role/look.css">
-		<!-- 进度条 -->
-		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/database/progress.css">
-		<!-- <script src="${pageContext.request.contextPath}/js/database/progress.js"></script>
-		<!--难得数据备份-->
-	
 	</head>
 
 	<body>
@@ -91,9 +53,6 @@
 		<div id="editSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
-		<!-- <div id="lookUserModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
-			
-		</div> -->
 		<div id="lookSourceModal" class="modalCon modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 			
 		</div>
@@ -120,15 +79,6 @@
 			</div>
 		</div>
 
-		<!-- 用户授权 -->
-		<!-- Modal -->
-		<div class="modal fade" id="user-authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  	<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-
-		    	</div>
-		  	</div>
-		</div>
 		<!-- 进度展示模态框 -->
 		<div class="modal fade" id="leading-progress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  	<div class="modal-dialog" role="document">
