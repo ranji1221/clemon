@@ -8,8 +8,12 @@
 <script>
 function resourceListInit(){
 	$("#resourceList").LemonGetList({
+		usePage: true,
+		useLocalStorage: true,
+		pageClassName:"#page",
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
-	   	trForm : function(index,value){
+	    generateItemFun : function(index,value){
+	   		console.log(value)
 	   		var thisType = '';
 	   		switch(value.resourceType){
 	   			case 1:
@@ -55,6 +59,14 @@ function resourceListInit(){
 	   			'</td>'+
 	   		'</tr>';
 	       	return tr_data; 
+   		},
+   		afterFun : function(){
+			$('.tablewrap input').iCheck({
+			    checkboxClass: 'icheckbox_flat-blue',
+			    radioClass: 'iradio_flat-blue',
+			    labelHover : true, 
+			  	cursor : false,
+			 });
    		}
 	})
 	//获取到本地的某条数据 示例代码
@@ -183,7 +195,7 @@ $(document).on("click",".renovate",function(){
 					删除
 				</span>
             </div>
-            <div class="pagination">
+            <div id="page">
             
             </div>
         </div>

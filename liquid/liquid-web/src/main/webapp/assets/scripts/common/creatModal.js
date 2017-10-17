@@ -1,7 +1,7 @@
 (function($){
 	$(function(){
-		function creatModule(creatid){
-			
+		function creatModule(creatid,callback){
+			callback(creatid)
 		}
 	})
 })(jQuery)

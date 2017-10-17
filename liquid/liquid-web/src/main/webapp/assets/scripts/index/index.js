@@ -330,10 +330,16 @@ $(".reportBox").resize(function() {
 //模态框最小化按钮
 $(document).on("click", ".module_minimize", function() {
 	getdom_module($(this))
+	$(this).closest('.modal').modal('hide');
+	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 })
 //最小化按钮本地存储
 $(document).on("click", ".dom_minimize", function() {
 	getdom_module($(this))
+	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
 })
 function getdom_module(this_dom) {
 	//$(".ajax_dom").empty().hide()
@@ -348,6 +354,7 @@ $(".mission ol").on("click", "li", function(e) {
 	var minboxitem = $('.minbox').find('.modal-contentbox').eq(minindex) //点击的li对应的隐藏盒子
 	var mintype = $(this).find("p").attr("mintype") //mintype,1是模态框2是可放大页面,3纯页面
 	var modaltype = $(this).find("p").prop("class") //modaltype,确定调用哪个模态框
+	console.log(minboxitem,mintype,modaltype)
 	if(mintype == '3') {
 		minboxitem.appendTo($(".ajax_dom"))
 		$(".ajax_dom").show(0);
@@ -356,36 +363,51 @@ $(".mission ol").on("click", "li", function(e) {
 		$(".ajax_dom").show(0);
 	} else {
 		switch(modaltype) {
-			case "role-aut":
-				$('#role-authorization .modal-content').html('');
-				minboxitem.appendTo($('#role-authorization .modal-content'))
-				$('#role-authorization').modal('show');
-				break;
-			case "user-aut":
-				$('#user-authorization .modal-content').html('');
-				minboxitem.appendTo($('#user-authorization .modal-content'))
-				$('#user-authorization').modal('show');
-				break;
-			case "editUser":
-				$('#editUserModal').html('');
-				minboxitem.appendTo($('#editUserModal'))
-				$('#editUserModal').modal('show');
-				break;
-			case "lookUser":
-				$('#lookUserModal').html('');
-				minboxitem.appendTo($('#lookUserModal'))
-				$('#lookUserModal').modal('show');
-				break;
-			case "lookRole":
-				$('#viewRoleModal').html('');
-				minboxitem.appendTo($('#viewRoleModal'))
-				$('#viewRoleModal').modal('show');
-				break;
-			case "lookSource":
-				$('#lookSourceModal').html('');
-				minboxitem.appendTo($('#lookSourceModal'))
-				$('#lookSourceModal').modal('show');
-				break;
+		case "role-aut":
+			$('#role-authorization .modal-content').html('');
+			minboxitem.appendTo($('#role-authorization .modal-content'))
+			$('#role-authorization').modal('show');
+			break;
+		case "user-aut":
+			$('#user-authorization .modal-content').html('');
+			minboxitem.appendTo($('#user-authorization .modal-content'))
+			$('#user-authorization').modal('show');
+			break;
+		case "editUser":
+			$('#editUserModal').html('');
+			minboxitem.appendTo($('#editUserModal'))
+			$('#editUserModal').modal('show');
+			break;
+		case "editRole":
+			$('#editRoleModal').html('');
+			minboxitem.appendTo($('#editRoleModal'))
+			$('#editRoleModal').modal('show');
+			break;
+		case "editSource":
+			$('#editSourceModal').html('');
+			minboxitem.appendTo($('#editSourceModal'))
+			$('#editSourceModal').modal('show');
+			break;
+		case "lookUser":
+			$('#lookUserModal').html('');
+			minboxitem.appendTo($('#lookUserModal'))
+			$('#lookUserModal').modal('show');
+			break;
+		case "lookRole":
+			$('#viewModal').html('');
+			minboxitem.appendTo($('#viewModal'))
+			$('#viewModal').modal('show');
+			break;
+		case "lookSource":
+			$('#lookSourceModal').html('');
+			minboxitem.appendTo($('#lookSourceModal'))
+			$('#lookSourceModal').modal('show');
+			break;
+		case "lookLog":
+			$('#lookLogModal').html('');
+			minboxitem.appendTo($('#lookLogModal'))
+			$('#lookLogModal').modal('show');
+			break;
 
 		}
 	}

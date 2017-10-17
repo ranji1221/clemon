@@ -1,23 +1,22 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.ranji.lemon.common.core.annotation.SystemControllerLog;
 import org.ranji.lemon.common.core.annotation.SystemControllerPermission;
 import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.model.liquid.authority.User;
+import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -52,7 +51,8 @@ public class UserController {
 
 	@Autowired
 	private IUserService userService;
-	
+	@Autowired
+	private IAuthorityService authService;
 	
 	//@RequiresPermissions("user:add")
 	@SystemControllerPermission("user:add")
@@ -171,23 +171,6 @@ public class UserController {
 	@SystemControllerLog(description="权限管理-用户列表")
 	@RequestMapping(value = "/data")
 	public String data(String params,HttpSession session) {
-		try {
-			ObjectMapper om = new ObjectMapper();
-			Map<String, Object> map = new HashMap<String, Object>();
-			// 当前只查询管理员
-			if (!StringUtils.isEmpty(params)) {
-				// 参数处理
-				map = om.readValue(params, new TypeReference<Map<String, Object>>() {});
-			}
-			PagerModel<User	> pg = userService.findPaginated(map);
-			// 序列化查询结果为JSON
-			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("total", pg.getTotal());
-			result.put("rows", pg.getData());
-			return om.writeValueAsString(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "{ \"total\" : 0, \"rows\" : [] }";
-		}
+		return authService.findAllUserInduleRoles(params);
 	}
 }

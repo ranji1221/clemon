@@ -12,11 +12,11 @@ function userListInit(){
 		usePage: true,
 		useLocalStorage: true,
 		pageClassName:"#page",
-		generateItemFun : function(index,value){
+		generateItemFun : function(index,value,data,extend){
 			var phone = value.phone == null ? '无':value.phone ;
 			var email = value.email == null ? '无':value.email ;
 			var createTime = value.createTime == null ? '无':value.createTime.substr(0,10);
-			tr_data = '<tr user_id='+ value.id +'>'+
+			tr_data = '<tr user_id='+ value.id +extend+'>'+
 				'<td class="checkboxtd">'+
 					'<label>'+
 						'<input  type="checkbox" name="layout">'+
@@ -47,7 +47,7 @@ function userListInit(){
 					'<span class="icon-trash iconact removeBtn"></span>'+
 				'</td>'+
 				'<td>'+
-					'<span class="icon-key iconact"></span>'+
+					'<span class="icon-key iconact userAuth"></span>'+
 				'</td>'+
 			'</tr>';
 	       	return tr_data; 
@@ -61,12 +61,6 @@ function userListInit(){
 			 });
    		}
 	})
-	/* //获取到本地的某条数据 示例代码
-	$(document).on("click", ".roleName", function(e) {
-		var storage_name = $(this).closest('tr').attr('storage_name');
-		var storage_id = $(this).closest('tr').attr('storage_id');
-		console.log(getDataByStorage(storage_name,storage_id));
-	}) */
 }
 userListInit();
 $('.removeBtn').bindDialogs({
@@ -109,14 +103,14 @@ $(document).on("click", ".viewUser", function(e) {
 	var data = getDataByStorage(storage_name,storage_id);
 	viewUser(data);
 });
-//添加查看角色授权事件
-$(document).on("click", ".roleAuth", function(e) {
+//添加查看用户授权事件
+$(document).on("click", ".userAuth", function(e) {
 	e.preventDefault();
 	////获取到本地的某条数据
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	roleAuth(data);
+	userAuth(data);
 });
 </script>
 
@@ -227,6 +221,6 @@ $(document).on("click", ".roleAuth", function(e) {
 	</div>
 </div>
 <!-- 模态框加载  -->
-<%@ include file="viewmodal.jsp" %><%-- 
-<%@ include file="editmodal.jsp" %>
-<%@ include file="authmodal.jsp" %> --%>
+<%@ include file="viewmodal.jsp" %>
+<%-- <%@ include file="editmodal.jsp" %> --%>
+<%@ include file="authmodal.jsp" %>

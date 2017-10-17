@@ -1,6 +1,10 @@
 package org.ranji.lemon.model.liquid.authority;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.ranji.lemon.common.core.util.JsonUtil;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -34,6 +38,17 @@ public class User implements Serializable {
 	private String phone;  //电话
 	private String email;  //邮箱
 	private String createTime;  //创建时间
+	private List<Role> roleList = new ArrayList<Role>();  //页面显示字段（解决前台缓存列表页直接获取用户角色信息）
+	
+	
+
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
 
 	public int getId() {
 		return id;
@@ -82,5 +97,8 @@ public class User implements Serializable {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	
+	@Override
+	public String toString() {
+		return JsonUtil.objectToJson(this);
+	}
 }
