@@ -9,7 +9,7 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonGetList({
-		useLocalStorage : true,
+		useLocalStorage : false,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    className_Page : "#page",
 	    generateItemFun : function(index,value,data,extend){
@@ -60,7 +60,7 @@ function roleListInit(){
    					'params':JSON.stringify({
    						'rNameLike' : $('.nav-search #list_search_str').val()
    					})
-   				});
+   				},true);
    			})
    		}
 	})
