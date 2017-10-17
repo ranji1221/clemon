@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.ranji.lemon.common.core.annotation.SystemControllerLog;
 import org.ranji.lemon.common.core.pagination.PagerModel;
+import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.service.liquid.authority.prototype.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,16 +80,15 @@ public class RoleController {
 	@SystemControllerLog(description="权限管理-角色列表")
 	@RequestMapping(value = "/data")
 	@ResponseBody
-	public String data(String params,HttpSession session) {
+	public String data(String params) {
 		try {
 			ObjectMapper om = new ObjectMapper();
 			Map<String, Object> map = new HashMap<String, Object>();
-			// 当前只查询管理员
 			if (!StringUtils.isEmpty(params)) {
 				// 参数处理
 				map = om.readValue(params, new TypeReference<Map<String, Object>>() {});
 			}
-			PagerModel<Role	> pg = roleService.findPaginated(map);
+			PagerModel<Role> pg = roleService.findPaginated(map);
 			// 序列化查询结果为JSON
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("total", pg.getTotal());
