@@ -2,6 +2,11 @@ $(function(){
 	//给jquery添加表格插件
 	$.fn.LemonGetList = function(params){
 		var _this = this;
+		var plug_first = true;  //第一次载入插件
+
+		//扩展业务字段
+		var saveStorageName = '';
+		
 		var defaults = {
 			useLocalStorage: false,
 			
@@ -9,18 +14,20 @@ $(function(){
 			pageSize:"10",
 			requestListUrl:" ",
 			
-			pageClassName:false,
-			searchClassName:false,
+			className_Page:false,
 			
+			//请求事件方法
+			initFun : function(_this){
+				return false;
+			},
 			//生成一个的方法
 			generateItemFun : function(){
 				return '';
 			},
 			//渲染页面之前的操作
-			beforeFun : function(data){ 
-				console.log('处理数据之前的操作 : beforeFun(data), 需要返回待处理数组');
+			beforeFun : function(data){
+				console.log('发送数据之前的操作 : beforeFun(data), 需要返回待处理数组');
 				return data.rows;
-				
 			},
 			//渲染页面之后的操作
 			afterFun : function(){ 
@@ -28,52 +35,52 @@ $(function(){
 			},
 			emptyDataFun : function(){
 				return "<tr><td style='width:100%' colspan='8'><span class='center text-center' style='display:inline-block;width:100%;'>没有查找到数据!</span></td></tr>";
+			},
+			getData:function(data){
+				getData(data);
 			}
 		};
 		var TableObj = $.extend(defaults,params);
 		
-		//扩展业务字段
-		var saveStorageName = '';
-		
 		//去 后台 请求数据
-		var getData = function(url,pages,page_first){
+		var getData = function(request_data){
+			TableObj.data = $.extend(TableObj.data,request_data);
 			//如果使用分页,执行下面添加page和rows代码
-			if(TableObj.pageClassName){
-				TableObj.data.page = pages;
+			if(TableObj.className_Page){
 				TableObj.data.rows = TableObj.pageSize;
 			}
 			//设置本地存储名称
+			var local_data = '';
 			if(TableObj.useLocalStorage){
 				saveStorageName = '';
 				for (var Key in TableObj.data){
 					saveStorageName += '_'+TableObj.data[Key];
 				}
 				saveStorageName = TableObj.requestListUrl+saveStorageName; 
-				var data = getStorage(saveStorageName);
-			}else{
-				var data = '';
+				var local_data = getStorage(saveStorageName);
 			}
-			if(data){
-	 			dealData(data,pages,page_first);
+			if(local_data){
+				dealData(local_data,request_data);
 			}else{
-				$.post(url,TableObj.data, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
+				$.post(TableObj.requestListUrl,TableObj.data, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
 					if(TableObj.useLocalStorage){ setStorage(saveStorageName,data); }
-					dealData(data,pages,page_first);
+					dealData(data,request_data);
 				},"json");
 			}
 		};
-		getData(TableObj.requestListUrl,1,true)
+		//插件初始化工作
+		if(plug_first) TableObj.initFun();
+		getData({page:1})
 		
 		//处理来自服务器端的数据
-		function dealData(data,pages,page_first){
+		function dealData(data,request_data){
 			var dataList = TableObj.beforeFun(data);
 			if(!dataList){
 				console.log('beforeFun : return data 为空');
 				return ;
 			}
-			if(TableObj.searchClassName) { createSearch(); }
 			if(dataList.length > 0){
-				if(page_first && TableObj.pageClassName){ 
+				if(plug_first && TableObj.className_Page){ 
 					//如果页面是第一次加载,进入本流程
 					createPage(data.total);
 				}
@@ -82,6 +89,7 @@ $(function(){
 			}else{
 				_this.html(TableObj.emptyDataFun());
 			}
+			plug_first = false;
 		}
 		function initHtml(data){
 			var html = '';
@@ -113,36 +121,21 @@ $(function(){
 		}
 		function pagePlug(total_pages){
 			//生成分页
-			$(TableObj.pageClassName).pagination({
-				items: total_pages,
-		        itemOnPage: TableObj.pageSize,
-		        currentPage: 1,
-		        cssStyle: '',
-		        prevText: ' ',
-		        nextText: ' ',
+			$(TableObj.className_Page).pagination({
+				items 		: total_pages,
+		        itemOnPage 	: TableObj.pageSize,
+		        currentPage : TableObj.data.page,
+		        cssStyle 	: '',
+		        prevText 	: ' ',
+		        nextText 	: ' ',
 		        onInit: function () {
 		            // fire first page loading
 		        },
 		        onPageClick: function (page, evt) {
-		        	getData(TableObj.requestListUrl,page,false);
+		        	TableObj.data.page = page;
+		        	getData();
 		        }
 				
-			})
-		}
-		function createSearch(){
-			var img_path = 'img/sys/iconsearch.png';
-			var search_str = 
-				'<div class="input-group list_search">'+
-			        '<input type="text" id="list_search_str" class="form-control" placeholder="搜索你想找到的..." name="list_search_str"  >'+
-			        '<span class="input-group-btn">'+
-			        '<button class="btn btn-default" type="button" id="list_search_btn">'+
-						'<img src="'+img_path+'" alt="">'+
-			        '</button>'+
-			        '</span>'+
-			    '</div>';
-			$(TableObj.searchClassName).html(search_str);
-			$(TableObj.searchClassName+" #list_search_btn").on('click',function(){
-				console.log($(TableObj.searchClassName+" #list_search_str"));
 			})
 		}
 	}

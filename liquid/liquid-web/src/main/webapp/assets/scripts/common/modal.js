@@ -21,9 +21,12 @@ function limitChangeLength(elm, limitLength) {
 //放大样式
 $(document).on("click",".edit_blue_border", function() {
 	$(".roleNameBox").addClass("width_active")
+<<<<<<< HEAD
 	$("#remark").addClass("active")
 	$('#editRoleModal .maxNumView').removeClass("width_block")
 	$(".select-l-pd").removeClass('active')
+=======
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
@@ -163,8 +166,14 @@ function showEditModal(data) {
 	$("[name='remarks']").val(data.remarks);
 	
 	dealDataToModal(data); 
+<<<<<<< HEAD
 	$('#editModal').modal('show');
 	limitChangeLength($(".sliderInput input[type='text']"),12)
+=======
+	console.log("111")
+	
+	$('#editModal').modal('show');
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 }
 
 /**

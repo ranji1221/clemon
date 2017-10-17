@@ -62,7 +62,7 @@
 					    	<div class="inputwrapper">
 					    		<div class="inputwrappermax">
 					    			
-							    	 <input type="text" class="form-control rolenameinput" id='auth_role_name' readonly>
+							    	 <input type="text" class="form-control rolenameinput" id='auth_roleName' readonly>
 							    	<!-- <span class="rolenamelimit">11</span> -->
 							    	<!--<span class="icon-exclamation-sign"></span>
 							    	<span class="icon-ok-sign"></span>

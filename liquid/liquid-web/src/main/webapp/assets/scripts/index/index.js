@@ -109,32 +109,6 @@ function pieChart() {
 		size: pieWidth
 	});
 }
-//饼图部分
-// function changePie() {
-//     var pieWidth=parseInt($('.pie').css("width"));
-//     var pieHeight=parseInt($('.pie').css("height"));
-//     var labelh=parseInt($('.pie .per').css("height"));
-//     if(pieWidth>pieHeight){
-//         pieWidth=pieHeight;
-//     }
-//     $('.pieChart canvas').css({
-//         width:pieWidth,
-//         height:pieWidth
-//     });
-//     var labeltop=pieWidth/2-labelh/2;
-//     $('.pie .per').css({
-//         top:labeltop,
-//         left:0
-//     });
-// };
-//
-// $(window).ready(function () {
-//     pieChart();
-//     changePie();
-// });
-// $(window).resize(function () {
-//     changePie();
-// });
 function pieChart() {
 	var pieWidth = parseInt($('.pie').width()) < parseInt($('.pie').height()) ? parseInt($('.pie').width()) - 20 : parseInt($('.pie').height() - 20);
 	var lineHeight = parseInt($('.pie').height());
@@ -303,8 +277,6 @@ $(".reportBox").resize(function() {
 	lineChart();
 })
 //面包屑的所有
-
-	
 	$(document).on("click", ".breadcrumb", function(e) {
 		var el = e.target || window.event
 		e.preventDefault()
@@ -325,96 +297,6 @@ $(".reportBox").resize(function() {
 		}
 
 	})
-
-
-//模态框最小化按钮
-$(document).on("click", ".module_minimize", function() {
-	getdom_module($(this))
-	$(this).closest('.modal').modal('hide');
-	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-})
-//最小化按钮本地存储
-$(document).on("click", ".dom_minimize", function() {
-	getdom_module($(this))
-	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-})
-function getdom_module(this_dom) {
-	//$(".ajax_dom").empty().hide()
-	var dom_modul = this_dom.find(".hidmission").html()
-	var url = this_dom.find(".hidmission p").attr("class")
-	$("<li class="+url+">" + dom_modul + "</li>").prependTo($(".mission ol"))
-
-}
-$(".mission ol").on("click", "li", function(e) {
-	var minindex = $(this).index('.mission ol li')
-	$(this).detach()
-	var minboxitem = $('.minbox').find('.modal-contentbox').eq(minindex) //点击的li对应的隐藏盒子
-	var mintype = $(this).find("p").attr("mintype") //mintype,1是模态框2是可放大页面,3纯页面
-	var modaltype = $(this).find("p").prop("class") //modaltype,确定调用哪个模态框
-	console.log(minboxitem,mintype,modaltype)
-	if(mintype == '3') {
-		minboxitem.appendTo($(".ajax_dom"))
-		$(".ajax_dom").show(0);
-	} else if(mintype == '2') {
-		minboxitem.appendTo($(".ajax_dom"))
-		$(".ajax_dom").show(0);
-	} else {
-		switch(modaltype) {
-		case "role-aut":
-			$('#role-authorization .modal-content').html('');
-			minboxitem.appendTo($('#role-authorization .modal-content'))
-			$('#role-authorization').modal('show');
-			break;
-		case "user-aut":
-			$('#user-authorization .modal-content').html('');
-			minboxitem.appendTo($('#user-authorization .modal-content'))
-			$('#user-authorization').modal('show');
-			break;
-		case "editUser":
-			$('#editUserModal').html('');
-			minboxitem.appendTo($('#editUserModal'))
-			$('#editUserModal').modal('show');
-			break;
-		case "editRole":
-			$('#editRoleModal').html('');
-			minboxitem.appendTo($('#editRoleModal'))
-			$('#editRoleModal').modal('show');
-			break;
-		case "editSource":
-			$('#editSourceModal').html('');
-			minboxitem.appendTo($('#editSourceModal'))
-			$('#editSourceModal').modal('show');
-			break;
-		case "lookUser":
-			$('#lookUserModal').html('');
-			minboxitem.appendTo($('#lookUserModal'))
-			$('#lookUserModal').modal('show');
-			break;
-		case "lookRole":
-			$('#viewModal').html('');
-			minboxitem.appendTo($('#viewModal'))
-			$('#viewModal').modal('show');
-			break;
-		case "lookSource":
-			$('#lookSourceModal').html('');
-			minboxitem.appendTo($('#lookSourceModal'))
-			$('#lookSourceModal').modal('show');
-			break;
-		case "lookLog":
-			$('#lookLogModal').html('');
-			minboxitem.appendTo($('#lookLogModal'))
-			$('#lookLogModal').modal('show');
-			break;
-
-		}
-	}
-})
-$(document).on("click", function() {
-	$(".mission").hide()
-})
 
 //添加内容的
 function setinput(inut_set, ustr) {
