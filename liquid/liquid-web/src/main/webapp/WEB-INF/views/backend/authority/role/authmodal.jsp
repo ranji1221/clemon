@@ -43,7 +43,7 @@
 							</div>
 						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
-						<a href="javascript:;" class="maxrole external-link" data-dismiss="modal" u_id="4">
+						<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
 						</a>
 						<a href="javascript:;" class="zclose" data-dismiss="modal">
@@ -61,8 +61,9 @@
 					    	</label>
 					    	<div class="inputwrapper">
 					    		<div class="inputwrappermax">
-							    	<input type="text" class="form-control rolenameinput" placeholder="请输入角色名称" name='name'>
-							    	<span class="rolenamelimit">11</span>
+					    			
+							    	 <input type="text" class="form-control rolenameinput" id='auth_role_name' readonly>
+							    	<!-- <span class="rolenamelimit">11</span> -->
 							    	<!--<span class="icon-exclamation-sign"></span>
 							    	<span class="icon-ok-sign"></span>
 							    	  <span class="errormessage">
@@ -70,7 +71,6 @@
 						    		</span>-->
 					    		</div>
 					    	</div>
-					    	<div class="role-slider"></div>
 					  	</div>
 					  	<div class="form-group">
 					    	<label for="authorization">角色授权</label>
