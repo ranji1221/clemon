@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
  * @since JDK1.7
  * @version 1.0
  */
-@Service
+@Service("JerseyUserServiceImpl") //-- 为解决其他项目中也有项目的类名，则利用@Autowired自动注入冲突的问题
 public class UserServiceImpl extends GenericServiceImpl<User, Integer> implements IUserService {
 	
 	@Override
