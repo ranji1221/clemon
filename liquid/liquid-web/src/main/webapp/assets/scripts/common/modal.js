@@ -18,22 +18,6 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 	});
 }
-//缩小
-$(document).on("click",".edit_blue_border", function() {
-//	$(".roleNameBox").addClass("width_active")
-//	$("#remark").addClass("active")
-//	$('#editRoleModal .maxNumView').removeClass("width_block")
-//	$(".select-l-pd").removeClass('active')
-	
-	$(this).closest('.modal-contentbox').appendTo('#editModal');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-    $(this).closest('.modal-contentbox').removeClass('editrolelg modalCon')
-    $(this).closest('.modal').modal('show')
-})
-
-
 //关闭处理 
 $(document).on("click",'.edit_red_border', function(e) {
 	$(this).closest('.modal-contentbox').remove();
@@ -185,7 +169,6 @@ $(document).on('click','.view_red_border',function(){
 
 /* 弹出查看框 */
 function viewRole(data) {
-	console.log(data)
 	//获取到本地的某条数据 示例代码
 	$("#view_roleName").html(data.displayName);
 	$("#view_roleMaxNum").html(data.roleMaxNum);
@@ -196,7 +179,6 @@ function viewRole(data) {
 }
 
 function viewUser(data) {
-	console.log(data)
 	$("#view_userName").html(data.userName);
 	$("#view_roleName").html(data.roleName);
 	$("#view_phone").html(data.phone);
@@ -215,15 +197,6 @@ function userAuth(data) {
 	$("#auth_userName").val(data.userName);
 	$("#user-authorization").modal('show');    
 }
-//缩小
-$(document).on('click','.auth_blue_border',function(){
-	$(this).closest('.modal-contentbox').appendTo('#role-authorization .modal-content');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-	$(this).closest('.modal-contentbox').removeClass('role-authorizationlg')
-    $(this).closest('.modal').modal('show')
-})
 // 关闭按钮
 $('.modal .zclose').on('click',function(){
 	$(this).closest('.modal-contentbox').remove();
@@ -352,4 +325,17 @@ $(document).on('click','.narrowAction',function(){
 	}
 	$(this).closest('.modal-contentbox').removeClass(maxClassName)
     $(this).closest('.modal').modal('show')
+})
+//关闭
+$(document).on("click",'.closeAction', function(e) {
+	$(this).closest('.modal-contentbox').remove();
+	var class_name = $(this).closest('.modal-contentbox').attr('narrowClassName')
+	$(this).closest('.modal-contentbox').appendTo(class_name);
+	var maxClassName = $(this).closest('.modal-contentbox').attr('maxClassName')
+	if(maxClassName){
+		$(this).closest('.modal-contentbox').removeClass(maxClassName)
+	}
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
 })

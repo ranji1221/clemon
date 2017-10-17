@@ -137,6 +137,7 @@
 .inputwrapper input[type=text]{
 	background:rgb(244,244,244);
 	box-shadow: none;
+	color:#565656;
 }
 .inputwrapper input[type=text]:focus{
 	background:rgb(244,244,244);

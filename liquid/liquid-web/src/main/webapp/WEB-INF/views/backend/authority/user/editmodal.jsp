@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
-	<div class="modal-contentbox">
+	<div class="modal-contentbox"  maxClassName="looklg" narrowClassName="#editModal">
 		<ol class="breadcrumb breadcrumb_margin">
 			<li>
 				<i class="glyphicon glyphicon-home"></i>
@@ -35,12 +35,12 @@
 						<span>编辑用户</span>
 					</div>
 					<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-						<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon edit_red_border">
+						<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction">
 		
 							<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 							<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 						</div>
-						<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  edit_blue_border">
+						<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  narrowAction">
 							<!--<a href=""><span class="glyphicon glyphicon-resize-small blue_back"></span></a>-->
 		
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />

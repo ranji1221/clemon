@@ -95,7 +95,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 </script>
 
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
-<div class="modal-contentbox"  maxClassName="editrolelg modalCon active" beforeMaxFunName="beforeMaxEditModal">
+<div class="modal-contentbox"  maxClassName="editrolelg modalCon active" narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditModal">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
@@ -131,12 +131,12 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 					<span>角色编辑</span>
 				</div>
 				<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon edit_red_border" data-dismiss="modal">
+					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction" data-dismiss="modal">
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 						<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 					</div>
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  edit_blue_border">
+					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  narrowAction">
 						<!--<a href=""><span class="glyphicon glyphicon-resize-small blue_back"></span></a>-->
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />

@@ -34,7 +34,7 @@
 		            <span>查看角色</span>
 		        </div>
 		        <div class="pull-right col-lg-2 col-md-2 col-sm-3 col-xs-4 role_hearde_icon">
-		            <div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon view_red_border">
+		            <div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction">
 		            	
 		            	<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 		                <!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->

@@ -3,7 +3,7 @@
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 
 <div id="viewModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
-	<div class="modal-contentbox"  maxClassName="looklg">
+	<div class="modal-contentbox"  maxClassName="looklg" narrowClassName="#viewModal">
 		<div class="modal-dialog modal-lg" role="document">
 			<ol class="breadcrumb breadcrumb_margin">
 	    		<li>
@@ -34,10 +34,10 @@
             			<span>查看用户</span>
         			</div>
         			<div class="pull-right col-lg-2 col-md-2 col-sm-3 col-xs-4 role_hearde_icon">
-           				<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon view_red_border">
+           				<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction">
             				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
             			</div>
-            			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  view_blue_border">
+            			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  narrowAction">
                 			<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />
             			</div>
             			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
