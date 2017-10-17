@@ -34,7 +34,7 @@ function roleListInit(){
 					'<span class="icon-eye-open iconact viewRole"></span> '+
 				'</td>'+
 				'<td>'+
-					'<span class="icon-pencil iconact editRole"></span>'+
+					'<span class="icon-pencil iconact role_editRole"></span>'+
 				'</td>'+
 				'<td>'+
 					'<span class="icon-trash iconact removeBtn"></span>'+
@@ -79,12 +79,18 @@ $(document).on("click",".renovate",function(){
 	roleListInit();
 });
 //添加编辑事件
-$(document).on("click", ".editRole", function(e) {
+$(document).on("click", ".role_editRole", function(e) {
 	e.preventDefault();
 	////获取到本地的某条数据
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	if($(this).attr('mintype')==1){
+		return
+	}else{
+		//var editRole_id=$(this).closest('tr').attr('listid');
+		//editRole(editRole_id);
+	}
 	showEditModal(data);
 });
 //添加查看事件
@@ -94,7 +100,7 @@ $(document).on("click", ".viewRole", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	//viewRole(data);
+	viewRole(data);
 	
 //
 //

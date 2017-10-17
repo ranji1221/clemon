@@ -51,17 +51,17 @@
 			<span>编辑资源</span>
 		</div>
 		<div class="pull-right col-lg-2 col-md-2 col-sm-3 col-xs-4 role_hearde_icon">
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
+			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon res_red_border">
 
 				<img src="./assets/images/sys/modal1.png" alt="" />
 				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 			</div>
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  blue_border">
+			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  res_blue_border">
 				<!--<a href=""><span class="glyphicon glyphicon-resize-small blue_back"></span></a>-->
 
 				<img src="./assets/images/sys/modal3.png" alt="" />
 			</div>
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
+			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon res_green_border dom_minimize">
 				<!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
 				<img src="./assets/images/sys/modal2.png" alt="" />
 				<div class="hidmission">
@@ -83,10 +83,10 @@
 						<label for="resourceName" class=" control-label"><span class="dot">·</span>资源名称：</label>
 					</div>
 					<div class="col-sm-10 col-xs-9 row-lg-h in_input_num">
-						<input name="name" type="text" class="form-control bg-grey" id="resourceName" maxlength="15" placeholder="请输入资源名称">
+						<input name="name" type="text" class="form-control bg-grey" id="resourceName" maxlength="12" placeholder="请输入资源名称">
 						<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 						<!--<span class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>-->
-						<span class="wordNum">15</span>
+						<span class="wordNum">12</span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -187,10 +187,10 @@
 		increaseArea: '20%' // optional
 	});
 	
-	$(".in_input_num span").html(15-$(".in_input_num input").val().length)
+	$(".in_input_num span").html(12-$(".in_input_num input").val().length)
 	$(".in_input_num input").on("keyup",function(){
 		var val = $(this).val().length
-		$(".in_input_num span").html(15-val)
+		$(".in_input_num span").html(12-val)
 	})
 	//放大
 		$(".external-link").on("click", function(e) {
@@ -202,7 +202,7 @@
 			$('.ajax_dom').show(0)
 		})
 	// 缩小
-	$(".blue_border").on("click", function() {
+	$(".res_blue_border").on("click", function() {
 		$(this).closest('.modal-contentbox').appendTo('#editSourceModal');
 		if(!$('.ajax_dom').html()){
 			$('.ajax_dom').hide()
@@ -211,7 +211,7 @@
         $(this).closest('.modal').modal('show')
 	})
 	// 关闭按钮
-    $('.red_border').on('click',function(){
+    $('.res_red_border').on('click',function(){
 		$(this).closest('.modal-contentbox').remove();
 		if(!$('.ajax_dom').html()){
 			$('.ajax_dom').hide()
