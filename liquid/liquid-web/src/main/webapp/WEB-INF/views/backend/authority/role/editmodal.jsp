@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 
 <script type="text/javascript">
 

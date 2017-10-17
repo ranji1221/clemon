@@ -73,7 +73,11 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
 				$(".roleNameBox").removeClass("width_active")
 				$("#remark").removeClass("active")
+<<<<<<< HEAD
 				$(".select-l- pd").addClass('active')
+=======
+				$(".select-l-pd").addClass('active')
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 				$('.maxNumView').addClass("width_block")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
@@ -254,17 +258,15 @@ $('.modal .zclose').on('click',function(){
 		$('.ajax_dom').hide()
 	}
 })
-/**
- * 最小化模态框
- */
+
 //模态框最小化按钮
-$(document).on("click", ".module_minimize", function() {
+$('.module_minimize').on("click", function() {
 	getdom_module($(this))
 	$(this).closest('.modal').modal('hide');
 	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 })
 //最小化按钮本地存储
-$(document).on("click", ".dom_minimize", function() {
+$(".dom_minimize").on("click", function() {
 	getdom_module($(this))
 	$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 	if(!$('.ajax_dom').html()){

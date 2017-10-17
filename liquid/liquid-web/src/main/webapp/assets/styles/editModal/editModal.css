@@ -292,7 +292,7 @@ textarea {
 }
 .modalCon .roleNameBox.width_active{
 	width:77% !important;
-	margin-left:0.4rem;
+	margin-left:0.3rem;
 	
 }
 .modalCon .row-lg-h .wordNum {
@@ -1216,7 +1216,7 @@ textarea {
 #viewModal >.modal-contentbox{
 	width:900px;
 }
-#editRoleModal >.modal-contentbox{
+#editModal >.modal-contentbox{
 	width:900px;
 }
 #lookUserModal >.modal-contentbox{

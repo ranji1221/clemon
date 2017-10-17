@@ -1,12 +1,10 @@
-package org.ranji.lemon.persist.jersey.auth.prototype;
+package org.ranji.lemon.service.jersey.auth.prototype;
 
 import java.util.List;
 
-import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
-import org.ranji.lemon.model.jersey.auth.User;
+import org.ranji.lemon.common.core.service.prototype.IGenericService;
 import org.ranji.lemon.model.jersey.auth.Role;
-
-
+import org.ranji.lemon.model.jersey.auth.User;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -25,14 +23,14 @@ import org.ranji.lemon.model.jersey.auth.Role;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * Oauth2用户Dao接口
- * @author fengjie
- * @date 2017-10-17
+ * Authority模块中的IUserService接口类
+ * @author RanJi
+ * @date 2013-10-1
  * @since JDK1.7
  * @version 1.0
  */
+public interface IUserService extends IGenericService<User, Integer> {
 
-public interface IUserDao extends IGenericDao<User,Integer>{
 	/**
 	 * 存储用户-角色的对应
 	 * @param userId 用户id
@@ -46,25 +44,18 @@ public interface IUserDao extends IGenericDao<User,Integer>{
 	 * @param roleId 角色id
 	 */
 	public void deleteUserAndRoleRelation(int userId, int roleId);
-
+	
 	/**
 	 * 删除某用户的全部用户-角色的对应
 	 * @param userId 用户id
 	 */
-	public void deleteUserAndRolesRelationByUserId(int userId);
+	public void deleteUserAndRolesByUserId(int userId);
 
 	/**
 	 * 根据用户id查询全部的用户-角色对应
 	 * @param userId 用户id
 	 * @return 角色id集合
 	 */
-	public List<Integer> findUserRolesRelationByUserId(int userId);
-	
-	/**
-	 * 根据用户id查找关联角色
-	 * @param userId 用户id
-	 * 
-	 */
-	public List <Role> findRoleByUserId(int userId);  
-	
+	public List<Integer> findUserAndRolesByUserId(int userId);
+
 }

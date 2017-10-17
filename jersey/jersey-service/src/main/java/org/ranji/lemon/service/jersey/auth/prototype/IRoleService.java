@@ -1,10 +1,9 @@
-package org.ranji.lemon.persist.liquid.authority.prototype;
+package org.ranji.lemon.service.jersey.auth.prototype;
 
 import java.util.List;
 
-import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
-import org.ranji.lemon.model.liquid.authority.Operation;
-import org.ranji.lemon.model.liquid.authority.Role;
+import org.ranji.lemon.common.core.service.prototype.IGenericService;
+import org.ranji.lemon.model.jersey.auth.Role;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -23,47 +22,39 @@ import org.ranji.lemon.model.liquid.authority.Role;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * IRoleDao接口类
+ * Authority模块中的IRoleService接口类
  * @author LiJianBo
- * @date 2017-9-13
+ * @date 2017-9-14
  * @since JDK1.7
  * @version 1.0
  */
-public interface IRoleDao extends IGenericDao<Role, Integer>{
-	
+public interface IRoleService extends IGenericService<Role, Integer>{
+
 	/**
 	 * 存储  角色-操作的对应
 	 * @param roleId 角色id
-	 * @param operationId 操作id
+	 * @param permission 操作 例如：User：add
 	 */
-	public void saveRoleAndOperationRelation(int roleId, int operationId);
+	public void saveRoleAndPermissionRelation(int roleId, String permission);
 
 	/**
-	 * 删除 角色-操作的对应
+	 * 删除 角色-许可的对应
 	 * @param roleId 角色id
-	 * @param operationId 操作id
+	 * @param permission 操作
 	 */
-	public void deleteRoleAndOperationRelation(int roleId, int operationId);
+	public void deleteRoleAndPermissionRelation(int roleId, String permission);
 
 	/**
-	 * 删除 某角色的全部角色-操作的对应
-	 * @param roleId 操作id
+	 * 删除 某角色的全部角色-许可的对应
+	 * @param roleId 角色id
 	 */
-	public void deleteRoleAndOperationsRelationByRoleId(int roleId);
+	public void deleteRoleAndPermissionRelationByRoleId(int roleId);
 
 	/**
 	 * 根据角色id查询全部的 角色-操作对应
 	 * @param roelId 角色id
-	 * @return 操作id集合
+	 * @return 许可集合
 	 */
-	public List<Integer> findRoleAndOperationsRelationByRoleId(int roleId);
+	public List<String> findRoleAndPermissionRelationByRoleId(int roleId);
 	
-	/**
-	 * 根据角色id查询全部的 角色-操作对应
-	 * @author fengjie
-	 * @param roelId 角色id
-	 * @return 操作对象集合
-	 */
-	public List<Operation> findOperationByRoleId(int roleId);
-
 }
