@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS `lemon_liquid_auth_operation`;
 CREATE TABLE `lemon_liquid_auth_operation` (
   `id` int(10) unsigned NOT NULL auto_increment COMMENT '操作ID',
   `operationName` varchar(255) default NULL COMMENT '操作名',
+  `displayName` varchar(255) default NULL COMMENT '操作中文名',
   `operationURL` varchar(255) default NULL COMMENT '操作链接',
   `resourceId` int(11) default NULL COMMENT '资源ID',
   `operationPId` int(11) default NULL COMMENT '操作父ID',
@@ -50,6 +51,7 @@ DROP TABLE IF EXISTS `lemon_liquid_auth_role`;
 CREATE TABLE `lemon_liquid_auth_role` (
   `id` int(10) unsigned NOT NULL auto_increment COMMENT '角色ID',
   `roleName` varchar(255) default NULL COMMENT '角色名称',
+  `displayName` varchar(255) default NULL COMMENT '角色中文名称',
   `roleExtendPId` int(11) default NULL COMMENT '角色父ID',
   `roleRelyId` int(11) default NULL COMMENT '角色依赖ID',
   `roleMaxNum` int(11) default NULL COMMENT '最大限制用户数',

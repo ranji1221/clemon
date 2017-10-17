@@ -36,7 +36,16 @@ public class Operation implements Serializable{
 	private String operationURL; // 操作链接
 	private int resourceId; // 资源ID 
 	private int operationPId; //操作父id
+	private boolean state = false;
 	
+	public boolean getState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+
 	public int getId() {
 		return id;
 	}
