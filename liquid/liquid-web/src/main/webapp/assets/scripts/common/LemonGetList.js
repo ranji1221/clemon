@@ -3,13 +3,15 @@ $(function(){
 	$.fn.LemonGetList = function(params){
 		var _this = this;
 		var defaults = {
-			usePage: false,
 			useLocalStorage: false,
 			
 			data:{},
 			pageSize:"10",
 			requestListUrl:" ",
-			pageClassName:".pagination",
+			
+			pageClassName:false,
+			searchClassName:false,
+			
 			//生成一个的方法
 			generateItemFun : function(){
 				return '';
@@ -35,9 +37,18 @@ $(function(){
 		
 		//去 后台 请求数据
 		var getData = function(url,pages,page_first){
+			//如果使用分页,执行下面添加page和rows代码
+			if(TableObj.pageClassName){
+				TableObj.data.page = pages;
+				TableObj.data.rows = TableObj.pageSize;
+			}
 			//设置本地存储名称
-			if(TableObj.useLocalStorage){ 
-				saveStorageName = TableObj.requestListUrl+"_"+pages; 
+			if(TableObj.useLocalStorage){
+				saveStorageName = '';
+				for (var Key in TableObj.data){
+					saveStorageName += '_'+TableObj.data[Key];
+				}
+				saveStorageName = TableObj.requestListUrl+saveStorageName; 
 				var data = getStorage(saveStorageName);
 			}else{
 				var data = '';
@@ -45,10 +56,6 @@ $(function(){
 			if(data){
 	 			dealData(data,pages,page_first);
 			}else{
-				if(TableObj.usePage){
-					TableObj.data.page = pages;
-					TableObj.data.rows = TableObj.pageSize;
-				}
 				$.post(url,TableObj.data, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
 					if(TableObj.useLocalStorage){ setStorage(saveStorageName,data); }
 					dealData(data,pages,page_first);
@@ -64,10 +71,11 @@ $(function(){
 				console.log('beforeFun : return data 为空');
 				return ;
 			}
+			if(TableObj.searchClassName) { createSearch(); }
 			if(dataList.length > 0){
-				if(page_first && TableObj.usePage){ 
+				if(page_first && TableObj.pageClassName){ 
 					//如果页面是第一次加载,进入本流程
-					createPage(pages,data.total,TableObj.pageSize);
+					createPage(data.total);
 				}
 				initHtml(dataList);
 				TableObj.afterFun();
@@ -93,7 +101,9 @@ $(function(){
 		
 		//分页相关---
 		// 需要 当前分页 和 总数
-		function createPage(now_page,all_num,pageSize){
+		function createPage(all_num){
+			var now_page = TableObj.data.page;
+			var pageSize = TableObj.data.rows;
 			// 计算总页数
 			total_pages = all_num % pageSize == 0 ? (all_num / pageSize):(all_num / pageSize) +1 ;	
 			total_pages = parseInt(total_pages);
@@ -117,6 +127,22 @@ $(function(){
 		        	getData(TableObj.requestListUrl,page,false);
 		        }
 				
+			})
+		}
+		function createSearch(){
+			var img_path = 'img/sys/iconsearch.png';
+			var search_str = 
+				'<div class="input-group list_search">'+
+			        '<input type="text" id="list_search_str" class="form-control" placeholder="搜索你想找到的..." name="list_search_str"  >'+
+			        '<span class="input-group-btn">'+
+			        '<button class="btn btn-default" type="button" id="list_search_btn">'+
+						'<img src="'+img_path+'" alt="">'+
+			        '</button>'+
+			        '</span>'+
+			    '</div>';
+			$(TableObj.searchClassName).html(search_str);
+			$(TableObj.searchClassName+" #list_search_btn").on('click',function(){
+				console.log($(TableObj.searchClassName+" #list_search_str"));
 			})
 		}
 	}
