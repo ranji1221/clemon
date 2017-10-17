@@ -2,10 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 
 <script type="text/javascript">
 
@@ -56,7 +52,6 @@ function dealDataToModal(data){
 	})
 }
 function beforeMaxEditModal(){
-	alert('这里写放大编辑模态前的方法')
 	var minlimitNum = 5;
 	$(".minlimitNum").html(minlimitNum);
 	$(".error_box").slider({
@@ -100,7 +95,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 </script>
 
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
-<div class="modal-contentbox"  maxClassName="looklg" beforeMaxFunName="beforeMaxEditModal">
+<div class="modal-contentbox"  maxClassName="editrolelg modalCon active" beforeMaxFunName="beforeMaxEditModal">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>

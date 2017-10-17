@@ -9,7 +9,7 @@
 <script >
 function roleListInit(){
 	$("#rolesList").LemonGetList({
-		useLocalStorage : false,
+		useLocalStorage : true,
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/role/data',
 	    className_Page : "#page",
 	    generateItemFun : function(index,value,data,extend){

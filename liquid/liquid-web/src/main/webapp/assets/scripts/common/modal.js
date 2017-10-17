@@ -20,10 +20,11 @@ function limitChangeLength(elm, limitLength) {
 }
 //缩小
 $(document).on("click",".edit_blue_border", function() {
-	$(".roleNameBox").addClass("width_active")
-	$("#remark").addClass("active")
-	$('#editRoleModal .maxNumView').removeClass("width_block")
-	$(".select-l-pd").removeClass('active')
+//	$(".roleNameBox").addClass("width_active")
+//	$("#remark").addClass("active")
+//	$('#editRoleModal .maxNumView').removeClass("width_block")
+//	$(".select-l-pd").removeClass('active')
+	
 	$(this).closest('.modal-contentbox').appendTo('#editModal');
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
@@ -71,11 +72,10 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		
 		$(this).closest('.modal').modal('hide')
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
-				$(".roleNameBox").removeClass("width_active")
-				$("#remark").removeClass("active")
-				$(".select-l- pd").addClass('active')
-				$(".select-l-pd").addClass('active')
-				$('.maxNumView').addClass("width_block")
+//				$(".roleNameBox").removeClass("width_active")
+//				$("#remark").removeClass("active")
+//				$('.maxNumView').addClass("width_block")
+			$(".editrolelg").addClass("active")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
 			
@@ -344,9 +344,6 @@ $(".mission ol").on("click", "li", function(e) {
 $(document).on("click", function() {
 	$(".mission").hide()
 })
-function fun(){
-	alert('base fun')
-}
 //放大
 $(document).on('click','.enlargeAction',function(e){
 	e.preventDefault()

@@ -1,3 +1,26 @@
+/*添加一个editModal的active*/
+#editModal .roleNameBox{
+	width:77% !important;
+	margin-left:0.3rem;
+}
+#editModal .bg-grey#remark{
+	 margin-left:0.4rem;
+}
+#editModal .select-l-pd{
+	padding-top:0.1rem;
+}
+.editrolelg.active .select-l-pd select{
+	width:142px;
+}
+.editrolelg.active .select-l-pd{
+	padding:0;
+	 padding-top: 0.1rem;
+	 margin-left:-0.2rem;
+}
+.editrolelg.active .maxNumView{
+		width:17%;
+}
+
 /*修改下拉选项默认样式*/
 
 .modal-open {
@@ -173,20 +196,13 @@
 #editRoleModal .maxNumView.width_block	{
 	width:17%;
 }
-.ajax_dom .maxNumView.width_block{
-	width:17%;
-}
+
 @media screen and (max-width:991px) {
 	#editRoleModal .select-l-pd {
 		padding-left: 0.5rem;
 	}
 }
-.select-l-pd.active select{
-	width:142px;
-}
-.select-l-pd{
-	 padding-top: 0.1rem;
-}
+
 .select-l-pd.active {
 		padding:0;
 		    padding-top: 0.1rem;
@@ -290,11 +306,7 @@ textarea {
 	width:77%;
 	min-width:245px;
 }
-.modalCon .roleNameBox.width_active{
-	width:77% !important;
-	margin-left:0.3rem;
-	
-}
+
 .modalCon .row-lg-h .wordNum {
 	position: absolute;
 	height: 0.54rem;
@@ -377,9 +389,7 @@ textarea {
     font-size:0.18rem;
 }
 
-.modalCon .bg-grey#remark.active{
-	 margin-left:0.4rem;
-}
+
 .modalCon .textarea_grey{
 	background-color:#f4f4f4
 }
