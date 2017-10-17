@@ -25,7 +25,7 @@ $(function(){
 				console.log('生成页面之后的操作 : afterFun()');
 			},
 			emptyDataFun : function(){
-				return "<tr><td style='width:100%' colspan='9'><span class='center text-center' style='display:inline-block;width:100%;'>没有查找到数据!</span></td></tr>";
+				return "<tr><td style='width:100%' colspan='8'><span class='center text-center' style='display:inline-block;width:100%;'>没有查找到数据!</span></td></tr>";
 			}
 		};
 		var TableObj = $.extend(defaults,params);

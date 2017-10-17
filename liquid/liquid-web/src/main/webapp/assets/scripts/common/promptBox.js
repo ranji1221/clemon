@@ -1,6 +1,3 @@
-/**
- * Created by BOBO on 2017/10/11.
- */
 
 $(function(){
 	//确认信息框
