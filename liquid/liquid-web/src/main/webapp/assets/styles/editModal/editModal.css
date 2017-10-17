@@ -1198,3 +1198,27 @@ textarea {
 		padding-left: 0.5rem;
 	}
 }
+.modal >.modal-contentbox{
+	margin:auto;
+}
+#viewModal >.modal-contentbox{
+	width:900px;
+}
+#editRoleModal >.modal-contentbox{
+	width:900px;
+}
+#lookUserModal >.modal-contentbox{
+	width:900px;
+}
+#editUserModal >.modal-contentbox{
+	width:8.8rem;
+}
+#lookSourceModal >.modal-contentbox{
+	width:900px;
+}
+#editSourceModal >.modal-contentbox{
+	width:900px;
+}
+#lookLogModal >.modal-contentbox{
+	width:10rem;
+}
