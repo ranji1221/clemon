@@ -1,7 +1,10 @@
 package org.ranji.lemon.persist.jersey.auth.prototype;
 
+import java.util.List;
+
 import org.ranji.lemon.common.core.persist.prototype.IGenericDao;
 import org.ranji.lemon.model.jersey.auth.User;
+import org.ranji.lemon.model.jersey.auth.Role;
 
 
 
@@ -30,5 +33,38 @@ import org.ranji.lemon.model.jersey.auth.User;
  */
 
 public interface IUserDao extends IGenericDao<User,Integer>{
+	/**
+	 * 存储用户-角色的对应
+	 * @param userId 用户id
+	 * @param roleId 角色id
+	 */
+	public void saveUserAndRoleRelation(int userId, int roleId);
+
+	/**
+	 * 删除用户-角色的对应
+	 * @param userId 用户id
+	 * @param roleId 角色id
+	 */
+	public void deleteUserAndRoleRelation(int userId, int roleId);
+
+	/**
+	 * 删除某用户的全部用户-角色的对应
+	 * @param userId 用户id
+	 */
+	public void deleteUserAndRolesRelationByUserId(int userId);
+
+	/**
+	 * 根据用户id查询全部的用户-角色对应
+	 * @param userId 用户id
+	 * @return 角色id集合
+	 */
+	public List<Integer> findUserRolesRelationByUserId(int userId);
+	
+	/**
+	 * 根据用户id查找关联角色
+	 * @param userId 用户id
+	 * 
+	 */
+	public List <Role> findRoleByUserId(int userId);  
 	
 }
