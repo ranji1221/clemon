@@ -6,14 +6,46 @@
 		values (#{guid},#{createTime},#{updateTime},#{username}, #{password})
 	</insert>
 	
+	<!-- 存储某个用户和角色的对应关系 -->
+	<insert id="saveUserAndRoleRelation" parameterType="Map" keyProperty="id" useGeneratedKeys="true">
+		insert into lemon_jersey_auth_user_role (userId, roleId) values (#{userId}, #{roleId})
+	</insert>
+	
+	<!-- 删除用户和角色的对应关系 -->
+	<delete id="deleteUserAndRoleRelation" parameterType="Map">
+		delete from lemon_jersey_auth_user_role where userId = #{userId} and roleId = #{roleId}
+	</delete>
+	
 	<!-- 删除某条记录 -->
 	<delete id="delete" parameterType="int" >
 		delete from lemon_jersey_auth_user where id = #{id}
 	</delete>
 	
+	<!-- 根据用户id删除用户和角色的对应关系 -->
+	<delete id="deleteUserAndRolesRelationByUserId" parameterType="int">
+		delete from lemon_jersey_auth_user_role where userId = #{userId}
+	</delete>
+	
 	<!-- 查询根据id -->
 	<select id="find" parameterType="int" resultType="JerseyUser">
 		select * from lemon_jersey_auth_user where id = #{id}
+	</select>
+	
+	<!-- 根据用户id查询用户和角色的对应关系 -->
+	<select id="findUserRolesRelationByUserId" parameterType="int" resultType="Integer">
+		select roleId from lemon_jersey_auth_user_role where userId = #{userId}
+	</select>
+	
+	<!-- 根据id查找角色 -->
+	<select id="findRoleByUserId" parameterType="Integer" resultType ="JerseyRole">
+		SELECT
+			r.*
+		FROM
+			lemon_jersey_auth_role r
+		LEFT JOIN lemon_jersey_auth_user_role u_r ON r.id = u_r.roleId
+		LEFT JOIN lemon_jersey_auth_user u ON u.id = u_r.userId
+		WHERE
+			u.id = #{id}
 	</select>
 	
 	<!-- 查询全部user -->
@@ -33,6 +65,9 @@
 		select count(*) from lemon_jersey_auth_user
 		<include refid="paramsSQL"/>
 	</select>
+	
+	
+	
 	
 	<!-- 修改个某条user信息 -->
 	<update id="update" parameterType="JerseyUser">

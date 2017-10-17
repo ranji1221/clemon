@@ -36,14 +36,18 @@ $(function(){
 			emptyDataFun : function(){
 				return "<tr><td style='width:100%' colspan='8'><span class='center text-center' style='display:inline-block;width:100%;'>没有查找到数据!</span></td></tr>";
 			},
-			getData:function(data){
-				getData(data);
+			getData:function(data,is_first){
+				getData(data,is_first);
 			}
 		};
 		var TableObj = $.extend(defaults,params);
 		
 		//去 后台 请求数据
-		var getData = function(request_data){
+		var getData = function(request_data,is_first){
+			if(is_first){
+				plug_first = true;
+				if(TableObj.data.page && TableObj.data.page != 1) TableObj.data.page = 1;
+			}
 			TableObj.data = $.extend(TableObj.data,request_data);
 			//如果使用分页,执行下面添加page和rows代码
 			if(TableObj.className_Page){
@@ -64,7 +68,6 @@ $(function(){
 			if(local_data){
 				dealData(local_data,request_data);
 			}else{
-				console.log(TableObj.data);
 				$.post(TableObj.requestListUrl,TableObj.data, function(data){  //get 请求数据 需要获取当前 总数 和 本次分页数据
 					if(TableObj.useLocalStorage){ setStorage(saveStorageName,data); }
 					dealData(data,request_data);
@@ -82,19 +85,15 @@ $(function(){
 				console.log('beforeFun : return data 为空');
 				return ;
 			}
+			if(plug_first && TableObj.className_Page){ 
+				//如果页面是第一次加载,进入本流程
+				createPage(data.total);
+			}
 			if(dataList.length > 0){
-				if(TableObj.className_Page){ 
-					//如果页面是第一次加载,进入本流程
-					createPage(data.total);
-				}
 				initHtml(dataList);
 				TableObj.afterFun();
 			}else{
 				_this.html(TableObj.emptyDataFun());
-				//如果没有数据,但是使用分页,就将分页div中的内容清理掉
-				if(TableObj.className_Page){ 
-					$(TableObj.className_Page).html('');
-				}
 			}
 			plug_first = false;
 		}
@@ -124,6 +123,8 @@ $(function(){
 			total_pages = parseInt(total_pages);
 			if(total_pages >= 2){
 				pagePlug(total_pages);
+			}else{
+				$(TableObj.className_Page).html('');
 			}
 		}
 		function pagePlug(total_pages){
