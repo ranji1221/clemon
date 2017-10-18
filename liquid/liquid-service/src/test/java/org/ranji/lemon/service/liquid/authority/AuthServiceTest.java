@@ -6,9 +6,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Operation;
+import org.ranji.lemon.model.liquid.authority.Resource;
 import org.ranji.lemon.model.liquid.authority.Role;
-import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
+import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -42,6 +43,9 @@ public class AuthServiceTest {
 	@Autowired
 	private IAuthorityService authService;
 	
+	@Autowired
+	private IOperationService operService;
+	
 	//查询用户所有角色及父级角色测试
 	@Test
 	public void testFindRolesByUserId(){
@@ -66,6 +70,11 @@ public class AuthServiceTest {
 	public void testFindOperationsByRoleId(){
 		List<Operation> operation = authService.findOperationsByRoleId(1);
 		System.out.println(JsonUtil.objectToJson(operation));
+	}
+	@Test
+	public void testFindResourceTree(){
+		List<Resource> resource = operService.findResourceTree();
+		System.out.println(JsonUtil.objectToJson(resource));
 	}
 	
 }

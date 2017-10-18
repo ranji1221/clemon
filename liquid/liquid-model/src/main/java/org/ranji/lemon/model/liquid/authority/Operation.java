@@ -1,6 +1,8 @@
 package org.ranji.lemon.model.liquid.authority;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -37,7 +39,17 @@ public class Operation implements Serializable{
 	private int resourceId; // 资源ID 
 	private int operationPId; //操作父id
 	private boolean state = false;
+	private List<Operation> operationList = new ArrayList<Operation>();
 	
+	
+	public List<Operation> getOperationList() {
+		return operationList;
+	}
+
+	public void setOperationList(List<Operation> operationList) {
+		this.operationList = operationList;
+	}
+
 	public boolean getState() {
 		return state;
 	}
