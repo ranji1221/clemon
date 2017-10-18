@@ -136,7 +136,6 @@ function editRoleModal(data) {
 		var inputlimitNum = parseInt($(".numCtr input").val());
 		judge(inputlimitNum);
 	});
-	$("[name='remarks']").val(data.remarks);
 	
 	dealDataToModal(data); 
 	$('#editModal').modal('show');
@@ -161,9 +160,6 @@ function editUserModal(data) {
 	$("#editModal").modal('show');
 	
 }
-/**
- * 查看模态框
- */
 /* 弹出查看框 */
 function viewRole(data) {
 	//获取到本地的某条数据 示例代码
@@ -184,7 +180,6 @@ function viewUser(data) {
 }
 
 function viewSource(data) {
-	console.log(data)
 	$("#view_resourceName").html(data.resourceName);
 	$("#view_resourceType").html(data.resourceType);
 	$("#view_resourceURL").html(data.resourceURL);
@@ -202,14 +197,6 @@ function userAuth(data) {
 	$("#auth_userName").val(data.userName);
 	$("#user-authorization").modal('show');    
 }
-// 关闭按钮
-$('.modal .zclose').on('click',function(){
-	$(this).closest('.modal-contentbox').remove();
-	$(this).closest('.modal-contentbox').appendTo('#role-authorization');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-})
 
 //模态框最小化按钮
 $('.module_minimize').on("click", function() {

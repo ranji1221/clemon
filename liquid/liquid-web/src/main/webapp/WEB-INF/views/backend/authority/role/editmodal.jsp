@@ -7,9 +7,10 @@
 
 function dealDataToModal(data){
 	//获取到本地的某条数据 示例代码
-	$("[name='edit_roleName']").val(data.displayName);
-	$("[name='edit_roleMaxNum']").val(data.roleMaxNum);
-	
+	$("#edit_roleName").val(data.displayName);
+	$("#limitNum").val(data.roleMaxNum);
+	$("#edit_remarks").val(data.remarks);
+	$("#edit_roleId").val(data.id);
 	$('.select_roleList').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
 		beforeFun:function(data){
@@ -92,6 +93,17 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		}
 	});
 }
+/* $(document).on("click","#submit",function(){
+	$.post("${pageContext.request.contextPath}/backend/authority/role/edit",
+			{
+				id:$("#edit_roleId").val(),
+				roleName:$("#edit_roleName").val(),
+				
+			},function(){
+				
+			}
+		,"json")
+}) */
 </script>
 
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal  modalToBody" tabindex="-1" role="dialog">
@@ -176,7 +188,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 				</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal flatUi" id="editRole" action="${pageContext.request.contextPath}/backend/authority/role/edit" method="post">
+				<form class="form-horizontal flatUi" id="editRole">
 					<div class="form-group has-feedback">
 						<div class="col-xs-12 roleNameError text-right row-xs-h">
 							<!--不要输入特殊符号-->
@@ -184,9 +196,9 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 						<div class="col-xs-3 col-sm-2 row-lg-h">
 							<label for="roleName" class=" control-label"><span class="dot">·</span>角色名称：</label>
 						</div>
-						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active">
-							<input type="hidden" name="id" id="roleId">
-							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
+						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active" >
+							<input type="hidden" name="roleId" id="edit_roleId">
+							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" id="edit_roleName" placeholder="请输入角色名称">
 							<span class="minlimitNum">12</span>
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
@@ -241,7 +253,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 						</div>
 						<div class="col-xs-2 row-lg-h numCtr">
 							<a href="" class=" icon-minus text-center reduce"></a>
-							<input readonly class="form-control" id="limitNum" name="roleMaxNum" type="text"/>
+							<input readonly class="form-control" id="limitNum" type="text"/>
 							<a href="" class="icon-plus text-center add active"></a>
 						</div>
 					</div>
@@ -251,14 +263,14 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 	                <span class="dot">·</span>备注：</label>
 						</div>
 						<div class="col-xs-9 col-sm-10 textarea-h ">
-							<textarea name="edit_remarks" class="form-control bg-grey active" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
+							<textarea class="form-control bg-grey active" id="edit_remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>
 					<div class="form-group">
 						<div class="role_button">
 							<div class="col-xs-6 role_succse">
-								<button type="submit" class="btn btn-default editSourceSubmit">确定</button>
+								<button type="submit" class="btn btn-default editSourceSubmit" id="submit">确定</button>
 							</div>
 							<div class="col-xs-6 role_remove">
 								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
