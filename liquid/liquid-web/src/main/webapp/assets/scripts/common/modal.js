@@ -144,7 +144,14 @@ function editRoleModal(data) {
 	
 	dealDataToModal(data); 
 	limitChangeLength($(".sliderInput input[type='text']"),12)
+<<<<<<< HEAD
 	$('#editModal').modal('show');
+=======
+	console.log("111")
+	
+	$('#editModal').modal('show');
+
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 }
 function editSource(data) {
 	console.log(data)
