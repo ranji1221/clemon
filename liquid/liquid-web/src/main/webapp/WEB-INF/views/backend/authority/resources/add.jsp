@@ -1,4 +1,65 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
+
+<script>
+	$("[type='checkbox']").iCheck({
+		checkboxClass: 'icheckbox_flat-blue',
+		increaseArea: '20%' // optional
+	});
+	$(".sliderInput").css("width","0");
+	var minlimitNum=5;
+	$(".minlimitNum").html(minlimitNum);
+//	var docu_w = parseInt($(".sliderInput").css("width"));
+	$(".error_box").slider({
+		orientation: "horizontal",
+		range: "min",
+		value: 70,
+		max:70,
+		slide: function(event, ui) {
+	var ui_value = ui.value
+			$(".sliderInput").css("width",ui_value+"%");
+			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10));
+			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
+			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
+			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
+		}
+	})
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
+	$('[data-toggle="select"]').select2();
+
+	function limitChangeLength(elm, limitLength) {
+		$(elm).attr("maxLength", limitLength);
+		$(elm).keyup(function() {
+			var length = $(elm).val().length;
+			$(elm).siblings("span").html(limitLength - length);
+		});
+	}
+	limitChangeLength($(".form_input .resources_name"),parseInt($(".minlimitNum").html()))
+	
+	$(document).on("click","#submit_addResource",function(){
+	$.post("${pageContext.request.contextPath}/backend/authority/resource/save",
+		{
+			resourcesName:$("#add_resourcesName").val(),
+			resourceType:$("#add_resourceType option:selected").val(),
+			resourcePId:$("#add_resourcePId option:selected").val()
+		},function(data){
+			if(data.success){
+				removeStorage();
+				$(".ajax_dom").empty()
+				$.ajax({
+					url:"${pageContext.request.contextPath}/backend/authority/resource/list"
+				}).done(function(data){
+					$(data).appendTo($(".ajax_dom"))
+				})
+				alert("成功啦");
+			}
+			else{
+				alert("失败啦")
+			}
+		}
+	,"json")
+})
+</script>
 <div class="modal-contentbox">
 <ol class="breadcrumb breadcrumb_margin">
 	<li>
@@ -24,48 +85,6 @@
 	</div>
 </ol>
 <div class="container-fluid">
-	<!--<div class="row crumbs_nav">-->
-	<!--<div class="col-lg-3 crumbs">-->
-	<!--<div class="col-lg-1 crumbs_font_home">-->
-	<!--<span class="icon-home"></span>-->
-	<!--</div>-->
-	<!--<ul class="col-lg-11 crumbs_font_box">-->
-	<!--<li class="col-lg-1 crumbs_font">-->
-	<!--<span>首页</span>-->
-	<!--</li>-->
-	<!--<li class="col-lg-1 crumbs_icon">-->
-	<!--<span class="icon-angle-right"></span>-->
-	<!--</li>-->
-	<!--<li class="col-lg-2 crumbs_font">-->
-	<!--<span>资源管理</span>-->
-	<!--</li>-->
-	<!--<li class="col-lg-1 crumbs_icon">-->
-	<!--<span class="icon-angle-right"></span>-->
-	<!--</li>-->
-	<!--<li class="col-lg-2 crumbs_font">-->
-	<!--<span>资源列表</span>-->
-	<!--</li>-->
-	<!--<li class="col-lg-1 crumbs_icon">-->
-	<!--<span class="icon-angle-right"></span>-->
-	<!--</li>-->
-	<!--<li class="col-lg-2 crumbs_font">-->
-	<!--<span><a href="" class="active">编辑资源</a></span>-->
-	<!--</li>-->
-	<!--</ul>-->
-	<!--</div>-->
-	<!--<div class="pull-right col-lg-2">-->
-	<!--<from class="form-group">-->
-	<!--<div class="input-group">-->
-	<!--<input type="text" class="form-control" placeholder="搜索你想找到的...">-->
-	<!--<span class="input-group-btn">-->
-	<!--<button class="btn btn-default" type="button">-->
-	<!--<span class="icon-search"></span>-->
-	<!--</button>-->
-	<!--</span>-->
-	<!--</div>-->
-	<!--</from>-->
-	<!--</div>-->
-	<!--</div>-->
 	<!--编辑资源最大化开始-->
 	<div class="row resources_hearder">
 		<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 resources_hearde_font">
@@ -83,7 +102,7 @@
 				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
 				<div class="hidmission">
 					<span class="icon-pencil icon-slidenav"></span>
-					<p url="${pageContext.request.contextPath}/backend/authority/resource/add" mintype='3'>添加资源</p>
+					<p url="${pageContext.request.contextPath}/backend/authority/resource/add">添加资源</p>
 					<span class="iconfont icon-chuyidong1 del"></span>
 				</div>
 			</div>
@@ -99,7 +118,7 @@
 					</div>
 					<label class="col-lg-2 col-md-3 col-sm-3 col-xs-3 control-label">资源名称：</label>
 					<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-1 col-sm-offset-0  res_name sliderInput">
-						<input type="text" name="name" maxlength="15" class="form-control resources_name" placeholder="请输入资源名称">
+						<input type="text" name="name" maxlength="15" class="form-control resources_name" placeholder="请输入资源名称" id="add_resourcesName">
 						<span class="minlimitNum">15</span>
 					</div>
 				</div>
@@ -123,7 +142,7 @@
 				</div>
 				<label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">资源类型：</label>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form_input">
-					<select class="form-control select select-primary select-block mbl" name="yilai" data-toggle="select">
+					<select class="form-control select select-primary select-block mbl" name="yilai" data-toggle="select" id="add_resourceType">
 						<option value="0" disabled="disabled">选择资源类型</option>
 						<option value="1">资源列表</option>
 						<option value="2">首页</option>
@@ -143,7 +162,7 @@
 				</div>
 				<label class="col-lg-4 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">父级资源：</label>
 				<div class="col-lg-4 col-md-3 col-sm-3  col-xs-3 form_input">
-					<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select">
+					<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select" id="add_resourcePId">
 
 						<option value="0" disabled="disabled">选择父级资源</option>
 						<option value="1">资源列表</option>
@@ -194,10 +213,10 @@
 		</div>
 		<div class="row role_button">
 			<div class=" col-sm-6 col-md-4 col-md-6 col-lg-6 col-xs-6 role_succse">
-				<button type="submit" class="btn btn-default">确认</button>
+				<button type="button" class="btn btn-default" id="submit_addResource">确认</button>
 			</div>
 			<div class=" col-sm-4 col-md-4 col-lg-4 col-xs-4 role_remove">
-				<button type="submit" class="btn btn-default">取消</button>
+				<button type="button" class="btn btn-default">取消</button>
 			</div>
 		</div>
 	</div>
@@ -205,65 +224,3 @@
 	<!--编辑资源最大化结束-->
 </div>
 </div>
-<script>
-	$("[type='checkbox']").iCheck({
-		checkboxClass: 'icheckbox_flat-blue',
-		increaseArea: '20%' // optional
-	});
-	$(".sliderInput").css("width","0");
-	var minlimitNum=5;
-	$(".minlimitNum").html(minlimitNum);
-//	var docu_w = parseInt($(".sliderInput").css("width"));
-	$(".error_box").slider({
-		orientation: "horizontal",
-		range: "min",
-		value: 70,
-		max:70,
-		slide: function(event, ui) {
-	var ui_value = ui.value
-			$(".sliderInput").css("width",ui_value+"%");
-			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10));
-			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
-			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
-			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-		}
-	})
-	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
-	$('[data-toggle="select"]').select2();
-
-	function limitChangeLength(elm, limitLength) {
-		$(elm).attr("maxLength", limitLength);
-		$(elm).keyup(function() {
-			var length = $(elm).val().length;
-			$(elm).siblings("span").html(limitLength - length);
-		});
-	}
-	limitChangeLength($(".form_input .resources_name"),parseInt($(".minlimitNum").html()))
-	//点击关闭
-	$('.red_border').on("click", function(e) {
-		e.preventDefault()
-		$.ajax({
-			url: "${pageContext.request.contextPath}/backend/authority/resource/list",
-			dataType: "html"
-		}).done(function(data) {
-			$(".ajax_dom").empty()
-			$(".ajax_dom").html(data)
-		})
-	})
-	
-	// 关闭按钮
-    $('.red_border').on('click',function(){
-		$(this).closest('.modal-contentbox').remove();
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-    })
-	// 最小化隐藏
-	$('.dom_minimize').on('click',function(){
-		$(this).closest(".modal-contentbox").prependTo($(".minbox"));
-		if(!$('.ajax_dom').html()){
-			$('.ajax_dom').hide()
-		}
-    })
-</script>

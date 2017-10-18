@@ -9,9 +9,8 @@
 function userListInit(){
 	$("#userList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/user/data',
-		usePage: true,
 		useLocalStorage: true,
-		pageClassName:"#page",
+		className_Page:"#page",
 		generateItemFun : function(index,value,data,extend){
 			var phone = value.phone == null ? '无':value.phone ;
 			var email = value.email == null ? '无':value.email ;

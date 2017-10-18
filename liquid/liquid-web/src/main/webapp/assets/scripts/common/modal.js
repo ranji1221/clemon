@@ -156,6 +156,7 @@ function editSource(data) {
 }
 //用户编辑框
 function editUserModal(data) {
+	$("#edit_userId").val(data.id);
 	$("#edit_userName").val(data.userName);
 	$("#edit_phone").val(data.phone);
 	$("#edit_email").val(data.email);
@@ -187,10 +188,6 @@ function viewSource(data) {
 	$("#view_resourceURL").html(data.resourceURL);
 	//$("#view_operationName").html(data.operationName);
 	$("#viewModal").modal('show');
-}
-function roleAuth(data) {
-	$("#auth_roleName").val(data.roleName);
-	$("#role-authorization").modal('show');
 }
 /**
 * 查看用户授权模态框

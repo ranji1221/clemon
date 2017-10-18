@@ -1,5 +1,25 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-
+<script>
+$(document).on("click","#submit_editUser",function(){
+	$.post("${pageContext.request.contextPath}/backend/authority/user/edits",
+		{
+			id:$("#edit_userId").val(),
+			userName:$("#edit_userName").val(),
+			phone:$("#edit_phone").val(),
+			email:$("#edit_email").val()
+		},function(data){
+			if(data.success){
+				removeStorage();
+				userListInit();
+				alert("成功啦");
+			}
+			else{
+				alert("失败啦")
+			}
+		}
+	,"json")
+}) 
+</script>
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
 	<div class="modal-contentbox"  maxClassName="looklg" narrowClassName="#editModal">
 		<ol class="breadcrumb breadcrumb_margin">
@@ -88,25 +108,9 @@
 								<label for="userName" class=" control-label"><span class="dot">·</span>用户名：</label>
 							</div>
 							<div class="col-sm-10 col-xs-9 row-lg-h name_input">
+								<input type="hidden" id="edit_userId">
 								<input name="name" type="text" class="form-control bg-grey" id="edit_userName" placeholder="请输入用户名">
 								<span class="wordNum">15</span>
-							</div>
-						</div>
-						<div class="form-group fath_select">
-							<div class="col-xs-12">
-								<div class="col-xs-6 col-sm-5 row-xs-h parentRoleError text-right"> </div>
-							</div>
-							<div class="col-sm-2 col-xs-3 row-lg-h">
-								<label for="parentRole" class="control-label">
-		                <span class="dot">·</span>分配角色：
-		            </label>
-							</div>
-							<div class="col-xs-3 row-lg-h">
-								<select name="fath" data-toggle="select" class=" form-control select_roleList" id="edit_parentRole">
-								</select>
-							</div>
-							<div class="col-xs-6 row-lg-h allotRoleError">
-								<!--您还未选择分配用户-->
 							</div>
 						</div>
 						<div class="form-group has-feedback">
@@ -137,8 +141,8 @@
 						</div>
 						<div class="form-group">
 							<div class="role_button">
-								<div class="col-xs-6 role_succse">
-									<button type="submit" class="btn btn-default editSourceSubmit">确定</button>
+								<div class="col-xs-6 role_succse" data-dismiss="modal">
+									<button type="button" class="btn btn-default editSourceSubmit" id="submit_editUser">确定</button>
 								</div>
 								<div class="col-xs-6 role_remove">
 									<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

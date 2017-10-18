@@ -1,4 +1,63 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<script>
+	//滑块限制字符
+	$(".sliderInput").css("width","0");
+	var minlimitNum=5;
+	$(".minlimitNum").html(minlimitNum);
+	var docu_w = parseInt($(".sliderInput").css("width"));
+	$(".error_box").slider({
+		orientation: "horizontal",
+		range: "min",
+		max:65,
+		value: 1,
+		slide: function(event, ui) {
+			var ui_value = ui.value
+			$(".sliderInput").css("width",ui_value+"%");
+			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10));
+			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
+			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
+			limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
+		}
+	})
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
+	$('[data-toggle="select"]').select2();
+	
+	function limitChangeLength(elm, limitLength) {
+		$(elm).attr("maxLength", limitLength);
+		$(elm).keyup(function() {
+			var length = $(elm).val().length;
+			$(elm).siblings("span").html(limitLength - length);
+		});
+	}
+	limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
+	limitChangeLength($(".form_input .phone"), 11)
+	limitChangeLength($(".form_input .emlia"), 15)
+	
+$(document).on("click","#submit_addUser",function(){
+	$.post("${pageContext.request.contextPath}/backend/authority/user/save",
+		{
+			userName:$("#add_userName").val(),
+			phone:$("#add_phone").val(),
+			email:$("#add_email").val()
+		},function(data){
+			if(data.success){
+				removeStorage();
+				$(".ajax_dom").empty()
+				$.ajax({
+					url:"${pageContext.request.contextPath}/backend/authority/user/list"
+				}).done(function(data){
+					$(data).appendTo($(".ajax_dom"))
+				})
+				alert("成功啦");
+			}
+			else{
+				alert("失败啦")
+			}
+		}
+	,"json")
+}) 
+</script>
 <ol class="breadcrumb breadcrumb_margin">
 	<li>
 		<i class="glyphicon glyphicon-home"></i>
@@ -55,7 +114,7 @@
 					</div>
 					<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">用户名称：</label>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-1 col-sm-offset-1  role_name sliderInput">
-						<input type="text" maxlength="15" name="name" class="form-control role" placeholder="请输入用户名称">
+						<input type="text" maxlength="15" name="name" class="form-control role" placeholder="请输入用户名称" id="add_userName">
 						<span class="minlimitNum">15</span>
 					</div>
 				</div>
@@ -77,7 +136,7 @@
 				<div class="error_box col-lg-5 col-md-7 col-sm-6 col-xs-6"></div>
 			</div>
 		</div>
-		<ul class="row user_fath">
+		<!-- <ul class="row user_fath">
 			<li class="col-lg-7 col-md-7 col-sm-9 col-xs-12 fath_select">
 				<div class="col-lg-1 col-md-1 col-sm-1  col-xs-1 form_clire  text-center">
 					<span></span>
@@ -95,7 +154,7 @@
 					</select>
 				</div>
 			</li>
-		</ul>
+		</ul> -->
 		<div class="row user_phone">
 			<div action="" class="form-horizontal col-lg-9 col-md-9 col-sm-9 col-xs-12">
 				<div class="form-group ">
@@ -104,7 +163,7 @@
 					</div>
 					<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label fath_select_font sliderBox">联系电话：</label>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-1 col-sm-offset-1 ">
-						<input type="text" name="phone" maxlength="11" class="form-control phone" placeholder="请输入用户联系方式">
+						<input type="text" name="phone" maxlength="11" class="form-control phone" placeholder="请输入用户联系方式" id="add_phone">
 						<span>11</span>
 					</div>
 				</div>
@@ -123,7 +182,7 @@
 					</div>
 					<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3  control-label fath_select_font">邮箱：</label>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-1 col-sm-offset-1 ">
-						<input type="text" maxlength="15" name="emily" class="form-control emlia" placeholder="请输入用户邮箱">
+						<input type="text" maxlength="15" name="emily" class="form-control emlia" placeholder="请输入用户邮箱" id="add_email">
 						<span>15</span>
 					</div>
 				</div>
@@ -136,72 +195,13 @@
 		</div>
 		<div class="row role_button">
 			<div class=" col-sm-6 col-md-6 col-lg-6 col-xs-6 role_succse">
-				<button type="submit" class="btn btn-default">确认</button>
+				<button type="button" class="btn btn-default" id="submit_addUser">确认</button>
 			</div>
 			<div class=" col-sm-4 col-md-4 col-lg-4 col-xs-4 role_remove">
-				<button type="submit" class="btn btn-default">取消</button>
+				<button type="button" class="btn btn-default">取消</button>
 			</div>
 		</div>
 	</form>
 </div>
 	<!--编辑用户最大化结束-->
 </div>
-<script>
-	//滑块限制字符
-	$(".sliderInput").css("width","0");
-	var minlimitNum=5;
-	$(".minlimitNum").html(minlimitNum);
-	var docu_w = parseInt($(".sliderInput").css("width"));
-	$(".error_box").slider({
-		orientation: "horizontal",
-		range: "min",
-		max:65,
-		value: 1,
-		slide: function(event, ui) {
-			var ui_value = ui.value
-			$(".sliderInput").css("width",ui_value+"%");
-			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10));
-			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
-			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
-			limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
-		}
-	})
-	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
-	$('[data-toggle="select"]').select2();
-	
-	function limitChangeLength(elm, limitLength) {
-		$(elm).attr("maxLength", limitLength);
-		$(elm).keyup(function() {
-			var length = $(elm).val().length;
-			$(elm).siblings("span").html(limitLength - length);
-		});
-	}
-	limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
-	limitChangeLength($(".form_input .phone"), 11)
-	limitChangeLength($(".form_input .emlia"), 15)
-
-	//点击缩小
-	$('.blue_border').on("click", function(e) {
-		e.preventDefault()
-		$.ajax({
-			url: "${pageContext.request.contextPath}/backend/authority/user/list",
-			dataType: "html"
-		}).done(function(data) {
-			$(".ajax_dom").empty()
-			$(".ajax_dom").html(data)
-			$("#editUserModal").modal('show')
-		})
-	})
-	//点击关闭
-	$('.red_border').on("click", function(e) {
-		e.preventDefault()
-		$.ajax({
-			url: "${pageContext.request.contextPath}/backend/authority/user/list",
-			dataType: "html"
-		}).done(function(data) {
-			$(".ajax_dom").empty()
-			$(".ajax_dom").html(data)
-		})
-	})
-</script>

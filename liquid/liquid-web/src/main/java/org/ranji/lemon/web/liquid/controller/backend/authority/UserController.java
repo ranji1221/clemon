@@ -1,15 +1,9 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.ranji.lemon.common.core.annotation.SystemControllerLog;
-import org.ranji.lemon.common.core.annotation.SystemControllerPermission;
-import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
@@ -19,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -57,11 +50,23 @@ public class UserController {
 	//@RequiresPermissions("user:add")
 	//@SystemControllerPermission("user:add")
 	@RequestMapping(value = "/add")
-	@SystemControllerLog(description="权限管理-添加用户")
+	@SystemControllerLog(description="权限管理-添加用户跳转")
 	public String addUser() {
 		return "backend/authority/user/add";
 	}
-	
+	@ResponseBody
+	@RequestMapping(value = "/save")
+	@SystemControllerLog(description="权限管理-添加用户")
+	public String saveUser(User newUser) {
+		try {
+			userService.save(newUser);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "{ \"success\" : false }";
+		}
+	}
 //	@SystemControllerPermission("user:list")
 	@RequestMapping(value = "/list")
 	@SystemControllerLog(description="权限管理-用户列表")
@@ -76,32 +81,24 @@ public class UserController {
 		return "backend/authority/user/adds";
 	}
 	
-	//@RequiresPermissions("user:lookuser")
-//	@SystemControllerPermission("user:view")
-	@RequestMapping(value = "/view/{size}/{id}")
-	@SystemControllerLog(description="权限管理-查看用户")
-	public String viewUser(@PathVariable String size,@PathVariable int id) {
-		
-		if("modal".equals(size)){
-			return "backend/authority/user/viewmodal";
-		}else if("max".equals(size)){
-			return "backend/authority/user/view";
-		}
-		return null;
-		
-	}
 	
 //	@SystemControllerPermission("user:edit")
-	@RequestMapping(value = "/edit/{size}")
+	@RequestMapping(value = "/edit")
 	@SystemControllerLog(description="权限管理-更新用户")
-	public String editUser(@PathVariable String size) {
-		if("modal".equals(size)){
-			return "backend/authority/user/editmodal";
-		}else if("max".equals(size)){
-			return "backend/authority/user/edit";
+	@ResponseBody
+	public String editUser(User newUser) {
+		try {
+			User user = userService.find(newUser.getId());
+			user.setUserName(newUser.getUserName());
+			user.setPhone(newUser.getPhone());
+			user.setEmail(newUser.getEmail());
+			userService.update(user);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "{ \"success\" : false }";
 		}
-		return null;
-		
 	}
 	
 //	@SystemControllerPermission("user:auth")
