@@ -17,7 +17,23 @@
 	<properties>
 		<jersey.version>2.25</jersey.version>
 	</properties>
-
+	
+	<!-- 为加载验证码库kaptcha而设置的仓库 -->
+	<repositories>
+		<repository>
+			<id>jahia</id>
+			<name>jahia</name>
+			<url>http://maven.jahia.org/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	
+	
 	<dependencies>
 		<!-- Jersey-service项目 -->
 		<dependency>
@@ -92,6 +108,13 @@
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
+		</dependency>
+		
+		<!-- 验证码框架 -->
+		<dependency>
+		    <groupId>com.google.code.kaptcha</groupId>
+		    <artifactId>kaptcha</artifactId>
+		    <version>2.3</version>
 		</dependency>
 		
 		
