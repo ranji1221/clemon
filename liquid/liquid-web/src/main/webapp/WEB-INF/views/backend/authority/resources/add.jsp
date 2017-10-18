@@ -1,6 +1,31 @@
 ﻿﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
 <script>
+	$('#add_resourcePId').LemonGetList({
+		requestListUrl:'${pageContext.request.contextPath}/backend/authority/resource/listAll',
+		beforeFun:function(data){
+			return getListByTree(data);
+		},
+		generateItemFun:function(index,value){
+			console.log(value)
+			var itemHtml = '';
+			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择资源</option>';}
+			
+			var kongge_str = '';
+			for(var i=0;i<value.level;i++){
+				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			}
+			kongge_str += '|-';
+			
+			itemHtml += '<option  value="'+value.id+'" ';
+			itemHtml += ' >'+kongge_str+value.resourceName+'</option>';
+			return itemHtml;
+		},
+		emptyDataFun : function(){
+			return '<option value="0" '+'>没有数据</option>';
+		}
+	})
 	$("[type='checkbox']").iCheck({
 		checkboxClass: 'icheckbox_flat-blue',
 		increaseArea: '20%' // optional
@@ -171,15 +196,7 @@
 				</div>
 				<label class="col-lg-4 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">父级资源：</label>
 				<div class="col-lg-4 col-md-3 col-sm-3  col-xs-3 form_input">
-					<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select" id="add_resourcePId">
-
-						<option value="0" disabled="disabled">选择父级资源</option>
-						<option value="1">资源列表</option>
-						<option value="2">首页</option>
-						<option value="3">资源列表</option>
-						<option value="4">资源列表</option>
-
-					</select>
+					<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select" id="add_resourcePId"></select>
 				</div>
 				<div class="error_font col-lg-4 col-md-4 col-sm-4 col-xs-4">
 					<!--visible-->
