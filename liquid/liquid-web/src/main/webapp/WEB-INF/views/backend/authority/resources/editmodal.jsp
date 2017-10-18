@@ -16,14 +16,17 @@ function beforeMaxEditResourceModal(){
 beforeMaxEditResourceModal()
 
 function dealDataToModal(data){
-	$("#edit_resourceName").val(data.resourceName);
-	$("#edit_resourceType").html(data.resourceType);
-	$('.select_roleList').LemonGetList({
+	$("#edit_resourceId").val(data.id)
+	$("#edit_resourceName").val(data.resourceName)
+	$("#edit_resourceType").val(data.resourceType)
+	$('.select_resourceList').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/resource/listAll',
 		beforeFun:function(data){
+			console.log(data)
 			return getListByTree(data);
 		},
 		generateItemFun:function(index,value){
+			console.log(value)
 			var itemHtml = '';
 			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择资源</option>';}
 			
@@ -34,23 +37,24 @@ function dealDataToModal(data){
 			kongge_str += '|-';
 			
 			itemHtml += '<option  value="'+value.id+'" ';
-			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
+			itemHtml += ' >'+kongge_str+value.resourceName+'</option>';
 			return itemHtml;
 		},
 		afterFun:function(){
-			//.roleExtendPId
-			if(data.roleExtendPId >= 1){
-				$('#edit_roleExtendPId option').each(function(val){
-					if($(this).attr('value') == data.roleExtendPId){
+			if(data.resourcePId >= 1){
+				$('.select_resourceList option').each(function(val){
+					if($(this).attr('value') == data.resourcePId){
 						$(this).attr('selected','selected');
 					}
 				})
 			}
+		},
+		emptyDataFun : function(){
+			return '<option value="0" '+'>没有数据</option>';
 		}
 	})
 }
 $(document).on("click","#submit_editResource",function(){
-	console.log($("#edit_resourcePId option:selected").val())
 	var tem_str = '';
 	$("#edit_operation input:checked").each(function(){
 		if(!tem_str) {
@@ -59,24 +63,24 @@ $(document).on("click","#submit_editResource",function(){
 			tem_str +=',' + $(this).val();
 		}
 	})
-	/* $.post("${pageContext.request.contextPath}/backend/authority/resource/edit",
+	$.post("${pageContext.request.contextPath}/backend/authority/resource/edit",
 		{
-			id:$("#edit_roleId").val(),
+			id:$("#edit_resourceId").val(),
 			resourceName:$("#edit_resourceName").val(),
 			resourceType:$("#edit_resourceType option:selected").val(),
 			resourcePId:$("#edit_resourcePId option:selected").val(),
-			edit_operation:tem_str
+			operation:tem_str
 		},function(data){
 			if(data.success){
 				removeStorage();
-				roleListInit();
+				resourceListInit();
 				alert("成功啦");
 			}
 			else{
 				alert("失败啦")
 			}
 		}
-	,"json") */
+	,"json")
 }) 
 </script>
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody editSour_modal" tabindex="-1" role="dialog">
@@ -164,6 +168,7 @@ $(document).on("click","#submit_editResource",function(){
 							<label for="resourceName" class=" control-label"><span class="dot">·</span>资源名称：</label>
 						</div>
 						<div class="col-sm-9 col-xs-9 row-lg-h in_input_num">
+							<input type="hidden" id="edit_resourceId" name="resourceId" >
 							<input name="name" type="text" class="form-control bg-grey" id="edit_resourceName" maxlength="12" placeholder="请输入资源名称">
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>-->
@@ -239,7 +244,7 @@ $(document).on("click","#submit_editResource",function(){
 					</div>
 					<div class="form-group">
 						<div class="role_button">
-							<div class="col-xs-6 role_succse">
+							<div class="col-xs-6 role_succse" data-dismiss="modal">
 								<button type="button" class="btn btn-default editSourceSubmit" id="submit_editResource">确定</button>
 							</div>
 							<div class="col-xs-6 role_remove">

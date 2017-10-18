@@ -107,6 +107,8 @@ public class ResourceController {
 			return "{ \"success\" : false }";
 		}
 	}
+	
+	@ResponseBody
 //	@SystemControllerPermission("resource:looksource")
 	@RequestMapping(value = "/edit")
 	@SystemControllerLog(description="权限管理-编辑资源")
