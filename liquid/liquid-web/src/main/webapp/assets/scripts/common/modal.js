@@ -116,6 +116,8 @@ function editRoleModal(data) {
 	var sub = $(".numCtr .icon-minus");
 	var grey = '#bdc3c7';
 	var blue = '#378ef8';
+	$(sub).off("click")
+	$(add).off("click")
 	$(sub).click(function(e) {
 		e.preventDefault();
 		var numVal = parseInt($("#limitNum").val());
