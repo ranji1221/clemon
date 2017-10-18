@@ -98,6 +98,7 @@ public class ResourceController {
 			for(String s : array){
 			 Operation opera = reveseOperation(s);
 			 opera.setResourceId(resource.getId());
+			 operationService.save(opera);
 			}
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
@@ -149,11 +150,12 @@ public class ResourceController {
 		}
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping(value = "/listAll")
-	public String findResource() {
-		List<Resource> resourceList = resourceService.findAll();
-		return JsonUtil.objectToJson(resourceList);
+	public List<Resource> findResource() {
+		List<Resource> resourceList = resourceService.findResourceTree();
+		return resourceList;
 	}
 	
 	@ResponseBody
