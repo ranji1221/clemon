@@ -136,7 +136,7 @@ function editRoleModal(data) {
 		var numVal = parseInt($("#edit_roleMaxNum").val());
 		if(numVal < 10) {
 			numVal++;
-			$("#limitNum").val(numVal);
+			$("#edit_roleMaxNum").val(numVal);
 		}
 		var inputlimitNum = parseInt($(".numCtr input").val());
 		judge(inputlimitNum);
