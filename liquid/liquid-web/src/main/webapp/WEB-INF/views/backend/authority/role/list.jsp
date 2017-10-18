@@ -119,7 +119,8 @@ $(document).on("click", ".roleAuth", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
-	roleAuth(data);
+	roleAuthInit(data);
+	$("#role-authorization").modal('show');
 });
 </script>
 

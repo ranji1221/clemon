@@ -204,4 +204,67 @@ $(document).on("click","#submit_addUser",function(){
 	</form>
 </div>
 	<!--编辑用户最大化结束-->
+<<<<<<< HEAD
 </div>
+=======
+</div>
+<script>
+	//滑块限制字符
+	$(".sliderInput").css("width","0");
+	var minlimitNum=5;
+	$(".minlimitNum").html(minlimitNum);
+	var docu_w = parseInt($(".sliderInput").css("width"));
+	$(".error_box").slider({
+		orientation: "horizontal",
+		range: "min",
+		max:67,
+		value: 67,
+		slide: function(event, ui) {
+			var ui_value = ui.value
+			$(".sliderInput").css("width",ui_value+"%");
+			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10));
+			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
+			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
+			limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
+		}
+	})
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
+	$('[data-toggle="select"]').select2();
+	
+	function limitChangeLength(elm, limitLength) {
+		$(elm).attr("maxLength", limitLength);
+		$(elm).keyup(function() {
+			var length = $(elm).val().length;
+			$(elm).siblings("span").html(limitLength - length);
+		});
+	}
+	limitChangeLength($(".form_input .role"), parseInt($(".minlimitNum").html()));
+	limitChangeLength($(".form_input .phone"), 11)
+	limitChangeLength($(".form_input .emlia"), 15)
+
+	//点击缩小
+	$('.blue_border').on("click", function(e) {
+		e.preventDefault()
+		$.ajax({
+			url: "${pageContext.request.contextPath}/backend/authority/user/list",
+			dataType: "html"
+		}).done(function(data) {
+			$(".ajax_dom").empty()
+			$(".ajax_dom").html(data)
+			$("#editUserModal").modal('show')
+		})
+	})
+	//点击关闭
+	$('.red_border').on("click", function(e) {
+		e.preventDefault()
+		$.ajax({
+			url: "${pageContext.request.contextPath}/backend/authority/user/list",
+			dataType: "html"
+		}).done(function(data) {
+			$(".ajax_dom").empty()
+			$(".ajax_dom").html(data)
+		})
+	})
+</script>
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
