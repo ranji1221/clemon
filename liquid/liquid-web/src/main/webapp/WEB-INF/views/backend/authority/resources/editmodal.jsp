@@ -107,7 +107,12 @@
 							</div>
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select_box">
-								<select name="yilai" data-toggle="select" class="form-control select_roleList" id="edit_resourceType">
+								<select name="yilai" class="form-control select_roleList" >
+									<option disabled selected>请选择资源类型</option>
+									<option value="1">菜单</option>
+									<option value="2">元素</option>		
+									<option value="3">文件</option>
+									<option value="4">操作</option>
 								</select>
 							</div>
 						</div>

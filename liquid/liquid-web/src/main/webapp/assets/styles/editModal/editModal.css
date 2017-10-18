@@ -1043,7 +1043,9 @@ textarea {
 }
 
 .ajax_dom .modal-contentbox .row{
-	margin:0;
+	margin-left:0;
+		margin-right:0;
+	
 }
 .ajax_dom .modal-contentbox .dot{
 	color: #378ef8;
