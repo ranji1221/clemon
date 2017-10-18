@@ -142,8 +142,8 @@
 				<button type="submit" class="btn btn-default">取消</button>
 			</div>
 		</div>
-	</div>
 	</form>
+</div>
 	<!--编辑用户最大化结束-->
 </div>
 <script>

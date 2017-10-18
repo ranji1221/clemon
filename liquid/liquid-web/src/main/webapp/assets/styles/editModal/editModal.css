@@ -291,7 +291,9 @@ textarea {
 	text-align: left;
 	padding-left: 52px;
 }
-
+.modalCon .select_box{
+	padding-top:0.1rem;
+}
 .modalCon .row-lg-h {
 	height: 0.54rem;
 	position: relative;
@@ -398,6 +400,7 @@ textarea {
 	background: #f4f4f4;
 	border-radius: 5px;
 	font-size:0.18rem;
+	max-width:936px;
 }
 
 .modalCon .in_input_num .bg-grey {
@@ -1175,6 +1178,77 @@ textarea {
 
 
 /*Ö£ÁúµÄÑùÊ½*/
+#editSourceModal.bigmodule 
+.editsourcelg .bigmodule {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+}
+
+.editSour_modal.bigmodule .modal-content,
+.editsourcelg .modal-content {
+	padding-left: 0.3rem;
+}
+
+.editSour_modal.bigmodule .modal-content .modal-body,
+.editsourcelg .modal-content .modal-body {
+	padding: 0.9rem 0.7rem 0 1.14rem;
+}
+
+.editSour_modal.bigmodule .modal-content,
+.editSour_modal.bigmodule .modal-dialog.modal-lg {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border-radius: 0;
+	box-shadow: none !important;
+}
+
+.editSour_modal .breadcrumb {
+	display: none;
+}
+
+.editSour_modal .breadcrumb.display_block {
+	display: block;
+}
+
+.editSour_modal .row {
+	margin-left: 0;
+}
+
+.editSour_modal .resources_hearderm{
+	display: none;
+	width: 100%;
+	height: 0.8rem;
+	//line-height:80px;
+	border-bottom: 1px solid #f3f3f3;
+}
+.editsourcelg .resources_hearder {
+	width: 100%;
+	height: 0.8rem;
+	//line-height:80px;
+	border-bottom: 1px solid #f3f3f3;
+}
+.editsourcelg .select_box{
+	margin-left:-0.3rem;
+	width:1.6rem;
+}
+.editSour_modal .resources_hearder.display_block {
+	display: block;
+}
+
+.editSour_modal .resources_hearder .resources_hearde_font,.editsourcelg .resources_hearder .resources_hearde_font{
+	border-left: 3px solid #378ef8;
+	padding-left: 5px;
+	height: 0.23rem;
+	margin-top: 0.27rem;
+	line-height: 0.23rem;
+}
+
+.editSour_modal .resources_hearder .resources_hearde_font span,.editsourcelg .resources_hearder .resources_hearde_font span {
+	font-size: 0.24rem;
+}
 #editSourceModal .select2-choice,
 #editRoleModal .select2-choice ,
 .editsourcelg .select2-choice,
