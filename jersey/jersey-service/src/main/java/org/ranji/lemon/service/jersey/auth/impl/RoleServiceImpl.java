@@ -25,8 +25,8 @@ import org.springframework.stereotype.Service;
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
  * RoleService实现类
- * @author LiJianBo
- * @date 2017-9-14
+ * @author fengjie
+ * @date 2017-10-17
  * @since JDK1.7
  * @version 1.0
  */

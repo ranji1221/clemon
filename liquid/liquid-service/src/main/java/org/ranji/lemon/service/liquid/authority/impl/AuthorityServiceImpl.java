@@ -28,10 +28,6 @@ public class AuthorityServiceImpl implements IAuthorityService{
 	private IUserService userService;
 	@Autowired
 	private IRoleService roleService;
-	@Autowired
-	private IResourceService resourceService;
-	@Autowired
-	private IOperationService operationService;
 
 	
 	private List<Role> roles = new ArrayList<Role>();//存储角色
@@ -81,7 +77,6 @@ public class AuthorityServiceImpl implements IAuthorityService{
 		return operations;
 	}
 	// 查询角色对应操作
-	@Override
 	public List<Operation> findOperationsByRoleId(int roleId){
 		
 		roleOperation = roleService.findOperationByRoleId(roleId);

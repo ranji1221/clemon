@@ -26,8 +26,8 @@ import org.springframework.stereotype.Service;
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
  * UserService实现类
- * @author RanJi
- * @date 2013-10-1
+ * @author fengjie
+ * @date 2017-10-17
  * @since JDK1.7
  * @version 1.0
  */
