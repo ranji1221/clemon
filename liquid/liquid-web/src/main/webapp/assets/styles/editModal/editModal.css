@@ -421,7 +421,7 @@ textarea {
 	
 }
 
-.modalCon #limitNum {
+.modalCon #edit_roleMaxNum {
 	display: inline-block;
 	margin-left: -0.04rem;
 	margin-right: -0.04rem;

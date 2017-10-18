@@ -123,20 +123,20 @@ function editRoleModal(data) {
 	$(add).off("click")
 	$(sub).click(function(e) {
 		e.preventDefault();
-		var numVal = parseInt($("#limitNum").val());
+		var numVal = parseInt($("#edit_roleMaxNum").val());
 		if(numVal > 0) {
 			numVal--;
-			$("#limitNum").val(numVal);
+			$("#edit_roleMaxNum").val(numVal);
 		}
 		var inputlimitNum = parseInt($(".numCtr input").val());
 		judge(inputlimitNum);
 	});
 	$(add).click(function(e) {
 		e.preventDefault();
-		var numVal = parseInt($("#limitNum").val());
+		var numVal = parseInt($("#edit_roleMaxNum").val());
 		if(numVal < 10) {
 			numVal++;
-			$("#limitNum").val(numVal);
+			$("#edit_roleMaxNum").val(numVal);
 		}
 		var inputlimitNum = parseInt($(".numCtr input").val());
 		judge(inputlimitNum);
@@ -144,14 +144,7 @@ function editRoleModal(data) {
 	
 	dealDataToModal(data); 
 	limitChangeLength($(".sliderInput input[type='text']"),12)
-<<<<<<< HEAD
 	$('#editModal').modal('show');
-=======
-	console.log("111")
-	
-	$('#editModal').modal('show');
-
->>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 }
 function editSource(data) {
 	console.log(data)
