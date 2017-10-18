@@ -94,7 +94,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 }
 </script>
 
-<div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
+<div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal  modalToBody" tabindex="-1" role="dialog">
 <div class="modal-contentbox"  maxClassName="editrolelg modalCon active" narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditModal">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">

@@ -1,6 +1,6 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
-<div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
-	<div class="modal-contentbox" maxClassName="editsourcelg modalCon" narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditResourceModal">
+<div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody editSour_modal" tabindex="-1" role="dialog">
+	<div class="modal-contentbox" maxClassName="editsourcelg modalCon " narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditResourceModal">
 	<ol class="breadcrumb breadcrumb_margin">
 		<li>
 			<i class="glyphicon glyphicon-home"></i>
@@ -83,11 +83,11 @@
 						<div class="col-sm-2 col-xs-3 row-lg-h">
 							<label for="resourceName" class=" control-label"><span class="dot">·</span>资源名称：</label>
 						</div>
-						<div class="col-sm-10 col-xs-9 row-lg-h in_input_num">
+						<div class="col-sm-9 col-xs-9 row-lg-h in_input_num">
 							<input name="name" type="text" class="form-control bg-grey" id="edit_resourceName" maxlength="12" placeholder="请输入资源名称">
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>-->
-							<span class="wordNum">12</span>
+							<!-- <span class="wordNum">12</span> -->
 						</div>
 					</div>
 					<div class="form-group">
@@ -106,7 +106,7 @@
 	            </label>
 							</div>
 	
-							<div class="col-xs-4 col-md-6 row-lg-h">
+							<div class="col-xs-4 col-md-6 row-lg-h select_box">
 								<select name="yilai" data-toggle="select" class="form-control select_roleList" id="edit_resourceType">
 								</select>
 							</div>
@@ -117,7 +117,7 @@
 	                <span class="dot">·</span>父级资源：
 	            </label>
 							</div>
-							<div class="col-xs-4 col-md-6 row-lg-h">
+							<div class="col-xs-4 col-md-6 row-lg-h select_box">
 								<select name="fath" data-toggle="select" class=" form-control select_resourceList" id="edit_resourcePName">
 								</select>
 							</div>
@@ -170,7 +170,6 @@
 </div>
 <script>
 function beforeMaxEditResourceModal(){
-	$('[data-toggle="select"]').select2();
 	$(".relateCtl [type='checkbox']").iCheck({
 		checkboxClass: 'icheckbox_flat-blue',
 		increaseArea: '20%' // optional
@@ -182,4 +181,5 @@ function beforeMaxEditResourceModal(){
 		$(".in_input_num span").html(12-val)
 	})
 }
+beforeMaxEditResourceModal()
 </script>
