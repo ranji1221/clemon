@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿﻿<%@ page language="java" pageEncoding="UTF-8" %>
 
 <script>
@@ -21,6 +22,31 @@
 			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
 			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
 			limitChangeLength($(".form_input input"),minlimitNum+parseInt(ui_value/10) );
+=======
+﻿<%@ page language="java" pageEncoding="UTF-8" %>
+
+<script>
+	$("[type='checkbox']").iCheck({
+		checkboxClass: 'icheckbox_flat-blue',
+		increaseArea: '20%' // optional
+	});
+	$(".sliderInput").css("width","0");
+	var minlimitNum=5;
+	$(".minlimitNum").html(minlimitNum);
+//	var docu_w = parseInt($(".sliderInput").css("width"));
+	$(".error_box").slider({
+		orientation: "horizontal",
+		range: "min",
+		value: 70,
+		max:70,
+		slide: function(event, ui) {
+	var ui_value = ui.value
+			$(".sliderInput").css("width",ui_value+"%");
+			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10));
+			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
+			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
+			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 		}
 	})
 	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
@@ -223,4 +249,8 @@
 	</form>
 	<!--编辑资源最大化结束-->
 </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git

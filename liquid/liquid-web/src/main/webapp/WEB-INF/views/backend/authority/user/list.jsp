@@ -10,7 +10,11 @@ function userListInit(){
 	$("#userList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/user/data',
 		useLocalStorage: true,
+<<<<<<< HEAD
+		className_Page:"#page",
+=======
 		 className_Page:"#page",
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 		generateItemFun : function(index,value,data,extend){
 			var phone = value.phone == null ? '无':value.phone ;
 			var email = value.email == null ? '无':value.email ;

@@ -58,11 +58,24 @@ public class ResourceController {
 
 //	@SystemControllerPermission("resource:add")
 	@RequestMapping(value = "/add")
-	@SystemControllerLog(description="权限管理-添加资源")
+	@SystemControllerLog(description="权限管理-添加资源跳转")
 	public String addResources() {
 		return "backend/authority/resources/add";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/save")
+	@SystemControllerLog(description="权限管理-添加资源")
+	public String saveResources(Resource resource) {
+		try {
+			resourceService.save(resource);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "{ \"success\" : false }";
+		}
+	}
 //	@SystemControllerPermission("resource:looksource")
 	@RequestMapping(value = "/view/{request_param}")
 	@SystemControllerLog(description="权限管理-查看资源")

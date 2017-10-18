@@ -113,11 +113,24 @@ public class RoleController {
 	
 	//@SystemControllerPermission("role:add")
 	@RequestMapping(value = "/add")
-	@SystemControllerLog(description="权限管理-添加角色")
+	@SystemControllerLog(description="权限管理-添加角色跳转")
 	public String addRole() {
 		return "backend/authority/role/add";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/save")
+	@SystemControllerLog(description="权限管理-添加角色")
+	public String saveRole(Role newRole) {
+		try {
+			roleService.save(newRole);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "{ \"success\" : false }";
+		}
+	}
 	//@SystemControllerPermission("role:bulkadd")
 	@RequestMapping(value = "/adds")
 	@SystemControllerLog(description="权限管理-批量添加角色")
@@ -141,24 +154,6 @@ public class RoleController {
 		
 	}
 	
-/*	//@SystemControllerPermission("role:bulkadd")
-	@RequestMapping(value = "/edit/{size}/{id}")
-	@SystemControllerLog(description="权限管理-修改角色")
-	public String editRole(@PathVariable String size,@PathVariable int id, HttpSession session) {
-		if(session.getAttribute("role")==null){
-			Role role = roleService.find(id);
-			session.setAttribute("role", role);
-		}
-		List<Role> roleList = roleService.findAll();
-		session.setAttribute("roleList", roleList);
-		if("modal".equals(size)){
-			return "backend/authority/role/editmodal";
-		}else if("max".equals(size)){
-			return "backend/authority/role/edit";
-		}
-		return null;
-		
-	}*/
 	@ResponseBody
 	@RequestMapping(value = "/edit")
 	@SystemControllerLog(description="权限管理-修改角色")

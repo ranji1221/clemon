@@ -92,7 +92,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		}
 	});
 }
-$(document).on("click","#submit",function(){
+$(document).on("click","#submit_editRole",function(){
 	$.post("${pageContext.request.contextPath}/backend/authority/role/edit",
 		{
 			id:$("#edit_roleId").val(),
@@ -279,7 +279,7 @@ $(document).on("click","#submit",function(){
 					<div class="form-group">
 						<div class="role_button">
 							<div class="col-xs-6 role_succse"  data-dismiss="modal">
-								<button type="button" class="btn btn-default editSourceSubmit" id="submit">确定</button>
+								<button type="button" class="btn btn-default editSourceSubmit" id="submit_editRole">确定</button>
 							</div>
 							<div class="col-xs-6 role_remove">
 								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

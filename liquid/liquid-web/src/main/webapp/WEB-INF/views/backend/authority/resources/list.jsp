@@ -66,12 +66,6 @@ function resourceListInit(){
 			 });
    		}
 	})
-	//获取到本地的某条数据 示例代码
-	$(document).on("click", ".roleName", function(e) {
-		var storage_name = $(this).closest('tr').attr('storage_name');
-		var storage_id = $(this).closest('tr').attr('storage_id');
-		console.log(getDataByStorage(storage_name,storage_id));
-	})
 }
 resourceListInit();
 $('.removeBtn').bindDialogs({
@@ -94,7 +88,7 @@ $('.removeBtn').bindDialogs({
 //刷新页面
 $(document).on("click",".renovate",function(){
 	removeStorage();
-	roleListInit();
+	resourceListInit();
 })
 //添加编辑事件
 $(document).on("click", ".editResource", function(e) {
