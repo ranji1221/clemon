@@ -88,9 +88,15 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 
 //角色编辑框 
 function editRoleModal(data) {
+
 	limitChangeLength($(".sliderInput input[type='text']"),12)
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
+	var add = $(".numCtr .icon-plus");
+	var sub = $(".numCtr .icon-minus");
+	var grey = '#bdc3c7';
+	var blue = '#378ef8';
+	judge(maxNum)
 	//加减按钮
 	var limitNum;
 	if(parseInt(maxNum) == 0) {
@@ -112,10 +118,7 @@ function editRoleModal(data) {
 			$(sub).css("background", blue);
 		}
 	}
-	var add = $(".numCtr .icon-plus");
-	var sub = $(".numCtr .icon-minus");
-	var grey = '#bdc3c7';
-	var blue = '#378ef8';
+	
 	$(sub).off("click")
 	$(add).off("click")
 	$(sub).click(function(e) {
@@ -145,6 +148,7 @@ function editRoleModal(data) {
 	console.log("111")
 	
 	$('#editModal').modal('show');
+
 }
 function editSource(data) {
 	console.log(data)
