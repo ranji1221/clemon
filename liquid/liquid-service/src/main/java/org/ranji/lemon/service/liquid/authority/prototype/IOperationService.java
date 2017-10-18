@@ -1,7 +1,10 @@
 package org.ranji.lemon.service.liquid.authority.prototype;
 
+import java.util.List;
+
 import org.ranji.lemon.common.core.service.prototype.IGenericService;
 import org.ranji.lemon.model.liquid.authority.Operation;
+import org.ranji.lemon.model.liquid.authority.Resource;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -27,6 +30,11 @@ import org.ranji.lemon.model.liquid.authority.Operation;
  * @version 1.0
  */
 public interface IOperationService extends IGenericService<Operation, Integer> {
-
+	
+	/**
+	 * 查询所有资源及操作
+	 * @return 操作对象集合
+	 */
+	public List<Resource> findResourceTree();
 
 }

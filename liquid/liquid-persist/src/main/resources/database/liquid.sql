@@ -39,7 +39,7 @@ CREATE TABLE `lemon_liquid_auth_resource` (
   `resourceName` varchar(255) default NULL COMMENT '资源名称',
   `resourceType` varchar(255) default NULL COMMENT '资源类型 1,菜单   2,文件',
   `resourceURL` varchar(255) default NULL COMMENT '资源链接',
-  `resourcePID` int(11) NOT NULL default '0' COMMENT '资源父ID',
+  `resourcePId` int(11) NOT NULL default '0' COMMENT '资源父ID',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 

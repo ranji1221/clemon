@@ -1,6 +1,7 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.ranji.lemon.common.core.annotation.SystemControllerLog;
 import org.ranji.lemon.common.core.pagination.PagerModel;
+import org.ranji.lemon.common.core.util.JsonUtil;
+import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Resource;
+import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.ranji.lemon.service.liquid.authority.prototype.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +52,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ResourceController {
 	@Autowired
 	private IResourceService resourceService;
+	@Autowired
+	private IOperationService operationService;
 	
 //	@SystemControllerPermission("resource:list")
 	@RequestMapping(value = "/list")
@@ -124,7 +130,18 @@ public class ResourceController {
 		}
 	}
 	
-
+	
+	@ResponseBody
+	@RequestMapping(value = "/get/resourceAndOperation")
+	public String findResourceAndOperation() {
+		List<Resource> resourceList = resourceService.findAll();
+		List<Operation> operationList = operationService.findAll();
+		Map <String,Object> map = new HashMap<String,Object>();
+		map.put("resource", resourceList);
+		map.put("operation", operationList);
+		return JsonUtil.toJsonByProperties(map);
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/delete")
 	public String deleteResource(int id) {

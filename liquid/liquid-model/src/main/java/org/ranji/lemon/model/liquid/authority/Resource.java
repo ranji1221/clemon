@@ -38,7 +38,18 @@ public class Resource implements Serializable{
 	private int resourcePId; // 资源父ID
 	private String resourcePName; //资源父名称
 	private List<Resource> list = new ArrayList<Resource>();
+	private List<Operation> operationList = new ArrayList<Operation>();
 	
+	
+	
+	public List<Operation> getOperationList() {
+		return operationList;
+	}
+
+	public void setOperationList(List<Operation> operationList) {
+		this.operationList = operationList;
+	}
+
 	public List<Resource> getList() {
 		return list;
 	}
