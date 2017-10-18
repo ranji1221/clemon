@@ -155,8 +155,8 @@
 	$(".error_box").slider({
 		orientation: "horizontal",
 		range: "min",
-		max:65,
-		value: 1,
+		max:67,
+		value: 67,
 		slide: function(event, ui) {
 			var ui_value = ui.value
 			$(".sliderInput").css("width",ui_value+"%");
