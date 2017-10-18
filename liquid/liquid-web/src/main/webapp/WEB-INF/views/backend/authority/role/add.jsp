@@ -261,8 +261,8 @@ $(document).on("click","#submit_addRole",function(){
 					<button type="button" class="btn btn-default">取消</button>
 				</div>
 			</div>
-	</div>
 	</form>
+	</div>
 	<!--编辑角色最大化结束-->
 </div>
 </div>
