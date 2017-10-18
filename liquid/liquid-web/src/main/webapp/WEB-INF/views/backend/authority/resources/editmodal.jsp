@@ -1,4 +1,84 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
+
+<script>
+function beforeMaxEditResourceModal(){
+	$(".relateCtl [type='checkbox']").iCheck({
+		checkboxClass: 'icheckbox_flat-blue',
+		increaseArea: '20%' // optional
+	});
+	
+	$(".in_input_num span").html(12-$(".in_input_num input").val().length)
+	$(".in_input_num input").on("keyup",function(){
+		var val = $(this).val().length
+		$(".in_input_num span").html(12-val)
+	})
+}
+beforeMaxEditResourceModal()
+
+function dealDataToModal(data){
+	$("#edit_resourceName").val(data.resourceName);
+	$("#edit_resourceType").html(data.resourceType);
+	$('.select_roleList').LemonGetList({
+		requestListUrl:'${pageContext.request.contextPath}/backend/authority/resource/listAll',
+		beforeFun:function(data){
+			return getListByTree(data);
+		},
+		generateItemFun:function(index,value){
+			var itemHtml = '';
+			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择资源</option>';}
+			
+			var kongge_str = '';
+			for(var i=0;i<value.level;i++){
+				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			}
+			kongge_str += '|-';
+			
+			itemHtml += '<option  value="'+value.id+'" ';
+			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
+			return itemHtml;
+		},
+		afterFun:function(){
+			//.roleExtendPId
+			if(data.roleExtendPId >= 1){
+				$('#edit_roleExtendPId option').each(function(val){
+					if($(this).attr('value') == data.roleExtendPId){
+						$(this).attr('selected','selected');
+					}
+				})
+			}
+		}
+	})
+}
+$(document).on("click","#submit_editResource",function(){
+	console.log($("#edit_resourcePId option:selected").val())
+	var tem_str = '';
+	$("#edit_operation input:checked").each(function(){
+		if(!tem_str) {
+			tem_str += $(this).val();
+		}else{
+			tem_str +=',' + $(this).val();
+		}
+	})
+	/* $.post("${pageContext.request.contextPath}/backend/authority/resource/edit",
+		{
+			id:$("#edit_roleId").val(),
+			resourceName:$("#edit_resourceName").val(),
+			resourceType:$("#edit_resourceType option:selected").val(),
+			resourcePId:$("#edit_resourcePId option:selected").val(),
+			edit_operation:tem_str
+		},function(data){
+			if(data.success){
+				removeStorage();
+				roleListInit();
+				alert("成功啦");
+			}
+			else{
+				alert("失败啦")
+			}
+		}
+	,"json") */
+}) 
+</script>
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody editSour_modal" tabindex="-1" role="dialog">
 	<div class="modal-contentbox" maxClassName="editsourcelg modalCon " narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditResourceModal">
 	<ol class="breadcrumb breadcrumb_margin">
@@ -107,7 +187,7 @@
 							</div>
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select_box">
-								<select name="yilai" class="form-control select_roleList" >
+								<select name="yilai" class="form-control select_roleList" id="edit_resourceType">
 									<option disabled selected>请选择资源类型</option>
 									<option value="1">菜单</option>
 									<option value="2">元素</option>		
@@ -123,7 +203,7 @@
 	            </label>
 							</div>
 							<div class="col-xs-4 col-md-6 row-lg-h select_box">
-								<select name="fath" data-toggle="select" class=" form-control select_resourceList" id="edit_resourcePName">
+								<select name="fath" data-toggle="select" class=" form-control select_resourceList" id="edit_resourcePId">
 								</select>
 							</div>
 						</div>
@@ -138,21 +218,21 @@
 	                <span class="dot">·</span>相关操作:
 	            </label>
 						</div>
-						<div class="col-sm-10 col-xs-9 row-lg-h">
+						<div class="col-sm-10 col-xs-9 row-lg-h" id="edit_operation">
 							<div class="col-xs-3 relateCtl">
-								<input name="look" id="sourcecheck" type="checkbox" checked>
+								<input name="edit_operation" id="sourcecheck" type="checkbox" value="1" checked>
 								<label for="sourcecheck">查看</label>
 							</div>
 							<div class="col-xs-3 relateCtl">
-								<input name="change" id="sourceChange" type="checkbox">
+								<input name="edit_operation" id="sourceChange" value="2" type="checkbox">
 								<label for="sourceChange">更改</label>
 							</div>
 							<div class="col-xs-3 relateCtl">
-								<input name="add" id="sourceAdd" type="checkbox">
+								<input name="edit_operation" id="sourceAdd" value="3" type="checkbox">
 								<label for="sourceAdd">增加</label>
 							</div>
 							<div class="col-xs-3 relateCtl">
-								<input name="del" id="sourceDel" type="checkbox">
+								<input name="edit_operation" id="sourceDel" value="4" type="checkbox">
 								<label for="sourceDel">删除</label>
 							</div>
 						</div>
@@ -160,7 +240,7 @@
 					<div class="form-group">
 						<div class="role_button">
 							<div class="col-xs-6 role_succse">
-								<button type="submit" class="btn btn-default editSourceSubmit">确定</button>
+								<button type="button" class="btn btn-default editSourceSubmit" id="submit_editResource">确定</button>
 							</div>
 							<div class="col-xs-6 role_remove">
 								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -173,18 +253,3 @@
 	</div>
 </div>
 </div>
-<script>
-function beforeMaxEditResourceModal(){
-	$(".relateCtl [type='checkbox']").iCheck({
-		checkboxClass: 'icheckbox_flat-blue',
-		increaseArea: '20%' // optional
-	});
-	
-	$(".in_input_num span").html(12-$(".in_input_num input").val().length)
-	$(".in_input_num input").on("keyup",function(){
-		var val = $(this).val().length
-		$(".in_input_num span").html(12-val)
-	})
-}
-beforeMaxEditResourceModal()
-</script>
