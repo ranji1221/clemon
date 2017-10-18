@@ -9,9 +9,8 @@
 <script>
 function resourceListInit(){
 	$("#resourceList").LemonGetList({
-		usePage: true,
 		useLocalStorage: true,
-		pageClassName:"#page",
+		className_Page:"#page",
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
 	    generateItemFun : function(index,value,data,extend){
 	   		var thisType = '';

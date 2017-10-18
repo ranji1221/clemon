@@ -1,5 +1,5 @@
 ﻿﻿<%@ page language="java" pageEncoding="UTF-8" %>
-
+<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script>
 	$("[type='checkbox']").iCheck({
 		checkboxClass: 'icheckbox_flat-blue',
@@ -17,7 +17,7 @@
 		slide: function(event, ui) {
 	var ui_value = ui.value
 			$(".sliderInput").css("width",ui_value+"%");
-			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10)-);
+			$(".minlimitNum").html(minlimitNum+parseInt(ui_value/10)-$(".sliderInput").find("input").val().length);
 			$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0,minlimitNum+parseInt(ui_value/10)))
 			$(".sliderInput").find("input").prop("maxlength",minlimitNum+parseInt(ui_value/10))
 			limitChangeLength($(".form_input input"),minlimitNum+parseInt(ui_value/10) );
@@ -37,11 +37,20 @@
 	limitChangeLength($(".form_input .resources_name"),parseInt($(".minlimitNum").html()))
 	
 	$(document).on("click","#submit_addResource",function(){
-	$.post("${pageContext.request.contextPath}/backend/authority/resource/save",
+		var tem_str = '';
+		$("#add_operation input:checked").each(function(){
+			if(!tem_str) {
+				tem_str += $(this).val();
+			}else{
+				tem_str +=',' + $(this).val();
+			}
+		})
+	 $.post("${pageContext.request.contextPath}/backend/authority/resource/save",
 		{
-			resourcesName:$("#add_resourcesName").val(),
+			resourceName:$("#add_resourceName").val(),
 			resourceType:$("#add_resourceType option:selected").val(),
-			resourcePId:$("#add_resourcePId option:selected").val()
+			resourcePId:$("#add_resourcePId option:selected").val(),
+			operation:tem_str
 		},function(data){
 			if(data.success){
 				removeStorage();
@@ -118,7 +127,7 @@
 					</div>
 					<label class="col-lg-2 col-md-3 col-sm-3 col-xs-3 control-label">资源名称：</label>
 					<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-1 col-sm-offset-0  res_name sliderInput">
-						<input type="text" name="name" maxlength="15" class="form-control resources_name" placeholder="请输入资源名称" id="add_resourcesName">
+						<input type="text" name="name" maxlength="15" class="form-control resources_name" placeholder="请输入资源名称" id="add_resourceName">
 						<span class="minlimitNum">15</span>
 					</div>
 				</div>
@@ -143,11 +152,11 @@
 				<label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">资源类型：</label>
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form_input">
 					<select class="form-control select select-primary select-block mbl" name="yilai" data-toggle="select" id="add_resourceType">
-						<option value="0" disabled="disabled">选择资源类型</option>
-						<option value="1">资源列表</option>
-						<option value="2">首页</option>
-						<option value="3">资源列表</option>
-						<option value="4">资源列表</option>
+						<option disabled selected>请选择资源类型</option>
+						<option value="1">菜单</option>
+						<option value="2">元素</option>		
+						<option value="3">文件</option>
+						<option value="4">操作</option>
 					</select>
 				</div>
 				<div class="error_font col-lg-4 col-md-3 col-sm-4 col-xs-4">
@@ -184,28 +193,28 @@
 				<span></span>
 			</div>
 			<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">相关操作 ：</label>
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 resources_write">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 resources_write" id="add_operation">
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 res_checked">
 					<label>
-                    <input tabindex="2" name="look" type="checkbox"  checked>
+                    <input tabindex="2" name="add_operation" type="checkbox" value="1" checked>
                     <p>查看</p>
                     </label>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3  res_checked">
 					<label>
-                    <input tabindex="2" name="add" type="checkbox"  >
+                    <input tabindex="2" name="add_operation" type="checkbox" value="2"  >
                     <p>增加</p>
                     </label>
 				</div>
 				<div class="col-lg-2 col-md-2  col-sm-3 col-xs-3 res_checked">
 					<label>
-                    <input tabindex="2" name="change" type="checkbox"  >
+                    <input tabindex="2" name="add_operation" type="checkbox" value="3"  >
                     <p>更改</p>
                     </label>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 res_checked">
 					<label>
-                    <input tabindex="2" name="del" type="checkbox" id="input-2" >
+                    <input tabindex="2" name="add_operation" type="checkbox" value="4" >
                     <p>删除</p>
                     </label>
 				</div>
