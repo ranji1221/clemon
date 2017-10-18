@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
+import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Resource;
-import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.persist.liquid.authority.prototype.IResourceDao;
-import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.ranji.lemon.service.liquid.authority.prototype.IResourceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,8 +29,9 @@ public class ResourceServiceImpl extends GenericServiceImpl<Resource, Integer> i
 	//将集合转化为树形结构
 	private List<Resource> listToTree(List<Resource> roles){
 		List<Resource> resourceTrees = new ArrayList<Resource>();
+			//System.out.println(JsonUtil.objectToJson(roles));
 		for (Resource res : roles) {
-            if(res.getResourcePId() == -1){
+            if(res.getResourcePId() == -1 || res.getResourcePId() == 0){
             	resourceTrees.add(res);
             	}
 	        for (Resource r : roles) {

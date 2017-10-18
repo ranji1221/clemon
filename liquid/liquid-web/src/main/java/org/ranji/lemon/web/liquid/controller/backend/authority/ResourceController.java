@@ -98,6 +98,7 @@ public class ResourceController {
 			for(String s : array){
 			 Operation opera = reveseOperation(s);
 			 opera.setResourceId(resource.getId());
+			 operationService.save(opera);
 			}
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
