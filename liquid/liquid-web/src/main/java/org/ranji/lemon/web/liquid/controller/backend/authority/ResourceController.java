@@ -56,6 +56,24 @@ public class ResourceController {
 	@Autowired
 	private IOperationService operationService;
 	
+	public Operation reveseOperation(String s){
+		Operation operation = new Operation();
+		if("1".equals(s)){
+			operation.setDisplayName("查看");
+			operation.setOperationName("view");
+		}else if("2".equals(s)){
+			operation.setDisplayName("增加");
+			operation.setOperationName("add");
+		}else if("3".equals(s)){
+			operation.setDisplayName("编辑");
+			operation.setOperationName("edit");
+		}else if("4".equals(s)){
+			operation.setDisplayName("删除");
+			operation.setOperationName("delete");
+		}
+		return operation;
+	}
+	
 //	@SystemControllerPermission("resource:list")
 	@RequestMapping(value = "/list")
 	@SystemControllerLog(description="权限管理-资源列表")
@@ -74,8 +92,13 @@ public class ResourceController {
 	@RequestMapping(value = "/save")
 	@SystemControllerLog(description="权限管理-添加资源")
 	public String saveResources(Resource resource, @RequestParam("operation") String operation) {
+		String[] array  = operation.split(",");
 		try {
 			resourceService.save(resource);
+			for(String s : array){
+			 Operation opera = reveseOperation(s);
+			 opera.setResourceId(resource.getId());
+			}
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			// TODO: handle exception
