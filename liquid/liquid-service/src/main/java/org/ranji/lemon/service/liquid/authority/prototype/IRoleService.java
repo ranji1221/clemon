@@ -83,7 +83,4 @@ public interface IRoleService extends IGenericService<Role, Integer>{
 	 public List<Role> findRoleTree();
 	
 	
-	
-	
-	
 }

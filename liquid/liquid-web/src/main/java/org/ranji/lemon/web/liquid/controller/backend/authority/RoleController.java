@@ -141,7 +141,7 @@ public class RoleController {
 		
 	}
 	
-	//@SystemControllerPermission("role:bulkadd")
+/*	//@SystemControllerPermission("role:bulkadd")
 	@RequestMapping(value = "/edit/{size}/{id}")
 	@SystemControllerLog(description="权限管理-修改角色")
 	public String editRole(@PathVariable String size,@PathVariable int id, HttpSession session) {
@@ -158,12 +158,18 @@ public class RoleController {
 		}
 		return null;
 		
-	}
+	}*/
 	@ResponseBody
 	@RequestMapping(value = "/edit")
 	@SystemControllerLog(description="权限管理-修改角色")
-	public String edit(Role role, HttpSession session) {
+	public String edit(Role newRole,HttpSession session) {
 		try {
+			Role role = roleService.find(newRole.getId());
+			role.setDisplayName(newRole.getDisplayName());
+			role.setRoleExtendPId(newRole.getRoleExtendPId());
+			role.setRoleMaxNum(newRole.getRoleMaxNum());
+			role.setRemarks(newRole.getRemarks());
+			role.setRoleRelyId(newRole.getRoleRelyId());
 			roleService.update(role);
 			return "{ \"success\" : true }";
 		} catch (Exception e) {

@@ -1,6 +1,8 @@
 package org.ranji.lemon.model.liquid.authority;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -35,8 +37,16 @@ public class Resource implements Serializable{
 	private String resourceURL; // 资源URL
 	private int resourcePId; // 资源父ID
 	private String resourcePName; //资源父名称
+	private List<Resource> list = new ArrayList<Resource>();
 	
-	
+	public List<Resource> getList() {
+		return list;
+	}
+
+	public void setList(List<Resource> list) {
+		this.list = list;
+	}
+
 	public int getId() {
 		return id;
 	}

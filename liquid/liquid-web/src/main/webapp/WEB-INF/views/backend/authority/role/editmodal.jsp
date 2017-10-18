@@ -7,9 +7,10 @@
 
 function dealDataToModal(data){
 	//获取到本地的某条数据 示例代码
-	$("[name='edit_roleName']").val(data.displayName);
-	$("[name='edit_roleMaxNum']").val(data.roleMaxNum);
-	
+	$("#edit_roleId").val(data.id);
+	$("#edit_displayName").val(data.displayName);
+	$("#edit_roleMaxNum").val(data.roleMaxNum);
+	$("#edit_remarks").val(data.remarks);
 	$('.select_roleList').LemonGetList({
 		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
 		beforeFun:function(data){
@@ -25,7 +26,7 @@ function dealDataToModal(data){
 			}
 			kongge_str += '|-';
 			
-			itemHtml += '<option  name="'+value.id+'" ';
+			itemHtml += '<option  value="'+value.id+'" ';
 			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
 			return itemHtml;
 		},
@@ -33,8 +34,8 @@ function dealDataToModal(data){
 			
 			//.roleExtendPId
 			if(data.roleExtendPId >= 1){
-				$('#edit_parentRole option').each(function(val){
-					if($(this).attr('name') == data.roleExtendPId){
+				$('#edit_roleExtendPId option').each(function(val){
+					if($(this).attr('value') == data.roleExtendPId){
 						$(this).attr('selected','selected');
 					}
 				})
@@ -42,12 +43,11 @@ function dealDataToModal(data){
 			
 			if(data.roleRelyId >= 1){
 				$('#edit_roleRelyId option').each(function(val){
-					if($(this).attr('name') == data.roleRelyId){
+					if($(this).attr('value') == data.roleRelyId){
 						$(this).attr('selected','selected');
 					}
 				})
 			}
-			
 		}
 	})
 }
@@ -78,7 +78,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		var url = $(el).attr("url")
 		var ajax_dom = $(".ajax_dom")
 		if($(el).attr('data')) {
-			window.location.reload()
+			
 		} else {
 			if(url){
 				$.ajax({
@@ -92,9 +92,30 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		}
 	});
 }
+$(document).on("click","#submit",function(){
+	$.post("${pageContext.request.contextPath}/backend/authority/role/edit",
+		{
+			id:$("#edit_roleId").val(),
+			displayName:$("#edit_displayName").val(),
+			roleMaxNum:$("#edit_roleMaxNum").val(),
+			remarks:$("#edit_remarks").val(),
+			roleExtendPId:$("#edit_roleExtendPId option:selected").val(),
+			roleRelyId:$("#edit_roleRelyId option:selected").val()
+		},function(data){
+			if(data.success){
+				removeStorage();
+				roleListInit();
+				alert("成功啦");
+			}
+			else{
+				alert("失败啦")
+			}
+		}
+	,"json")
+}) 
 </script>
 
-<div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal modalToBody" tabindex="-1" role="dialog">
+<div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal  modalToBody" tabindex="-1" role="dialog">
 <div class="modal-contentbox"  maxClassName="editrolelg modalCon active" narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditModal">
 	<!-- 放大后的导航 -->
 	<ol class="breadcrumb breadcrumb_margin">
@@ -176,7 +197,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 				</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal flatUi" id="editRole" action="${pageContext.request.contextPath}/backend/authority/role/edit" method="post">
+				<form class="form-horizontal flatUi" id="editRole">
 					<div class="form-group has-feedback">
 						<div class="col-xs-12 roleNameError text-right row-xs-h">
 							<!--不要输入特殊符号-->
@@ -184,9 +205,9 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 						<div class="col-xs-3 col-sm-2 row-lg-h">
 							<label for="roleName" class=" control-label"><span class="dot">·</span>角色名称：</label>
 						</div>
-						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active">
-							<input type="hidden" name="id" id="roleId">
-							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" name="edit_roleName" id="roleName" placeholder="请输入角色名称">
+						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active" >
+							<input type="hidden" name="roleId" id="edit_roleId">
+							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" id="edit_displayName" placeholder="请输入角色名称">
 							<span class="minlimitNum">12</span>
 							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
 							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
@@ -216,7 +237,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 							</div>
 	
 							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="fath" data-toggle="select" class=" form-control select_roleList" id="edit_parentRole">
+								<select name="fath" data-toggle="select" class=" form-control select_roleList" id="edit_roleExtendPId">
 								</select>
 							</div>
 						</div>
@@ -241,7 +262,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 						</div>
 						<div class="col-xs-2 row-lg-h numCtr">
 							<a href="" class=" icon-minus text-center reduce"></a>
-							<input readonly class="form-control" id="limitNum" name="roleMaxNum" type="text"/>
+							<input readonly class="form-control" id="edit_roleMaxNum" type="text"/>
 							<a href="" class="icon-plus text-center add active"></a>
 						</div>
 					</div>
@@ -251,14 +272,14 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 	                <span class="dot">·</span>备注：</label>
 						</div>
 						<div class="col-xs-9 col-sm-10 textarea-h ">
-							<textarea name="edit_remarks" class="form-control bg-grey active" id="remark" cols="30" rows="5" placeholder="请输入备注"></textarea>
+							<textarea class="form-control bg-grey active" id="edit_remarks" cols="30" rows="5" placeholder="请输入备注"></textarea>
 						</div>
 	
 					</div>
 					<div class="form-group">
 						<div class="role_button">
-							<div class="col-xs-6 role_succse">
-								<button type="submit" class="btn btn-default editSourceSubmit">确定</button>
+							<div class="col-xs-6 role_succse"  data-dismiss="modal">
+								<button type="button" class="btn btn-default editSourceSubmit" id="submit">确定</button>
 							</div>
 							<div class="col-xs-6 role_remove">
 								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

@@ -9,28 +9,28 @@ $(function() {
 	var lookSourceUrl = "backend/authority/resource/view/modal";
 	const maxLimitNum = 10;
 
-	function editSource(this_nid) {
-		$.ajax({
-			dataType: "html",
-			url: editSourceUrl,
-			async: true,
-			success: function(data) {
-
-				$("#editSourceModal").html(data);
-				$(".modal-content").attr("n_id", $(this_nid).attr("n_id"))
-				$('#editSourceModal').modal('show');
-				$(".modal-content .editSource").attr("n_id", $(this_nid).attr("n_id"))
-			},
-			error: function(data) {
-				console.log(data);
-			}
-		});
-	}
-	$(document).on("click", ".editSource", function(e) {
-		e.preventDefault();
-		
-		editSource($(this));
-	});
+//	function editSource(this_nid) {
+//		$.ajax({
+//			dataType: "html",
+//			url: editSourceUrl,
+//			async: true,
+//			success: function(data) {
+//
+//				$("#editSourceModal").html(data);
+//				$(".modal-content").attr("n_id", $(this_nid).attr("n_id"))
+//				$('#editSourceModal').modal('show');
+//				$(".modal-content .editSource").attr("n_id", $(this_nid).attr("n_id"))
+//			},
+//			error: function(data) {
+//				console.log(data);
+//			}
+//		});
+//	}
+//	$(document).on("click", ".editSource", function(e) {
+//		e.preventDefault();
+//		
+//		editSource($(this));
+//	});
 
 	/*function lookRoleModal(id) {
 		$.ajax({

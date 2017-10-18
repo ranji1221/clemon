@@ -55,7 +55,7 @@ public class UserController {
 	private IAuthorityService authService;
 	
 	//@RequiresPermissions("user:add")
-	@SystemControllerPermission("user:add")
+	//@SystemControllerPermission("user:add")
 	@RequestMapping(value = "/add")
 	@SystemControllerLog(description="权限管理-添加用户")
 	public String addUser() {
