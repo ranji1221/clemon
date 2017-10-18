@@ -3,6 +3,7 @@ package org.ranji.lemon.service.liquid.authority.prototype;
 import java.util.List;
 
 import org.ranji.lemon.common.core.service.prototype.IGenericService;
+import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Resource;
 
 /**
@@ -37,5 +38,11 @@ public interface IResourceService extends IGenericService<Resource, Integer> {
 	 * @return 操作id集合
 	 */
 	public List<Integer> findROsByResourceId(int resourceId);
+	
+	/**
+	 * 查询全部资源，树形结构
+	 * @return 资源
+	 */
+	 public List<Resource> findResourceTree();
 
 }

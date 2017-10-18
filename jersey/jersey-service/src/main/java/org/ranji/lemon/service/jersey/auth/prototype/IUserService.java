@@ -22,9 +22,9 @@ import org.ranji.lemon.model.jersey.auth.User;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * Authority模块中的IUserService接口类
- * @author RanJi
- * @date 2013-10-1
+ * Auth模块中的IUserService接口类
+ * @author fengjie
+ * @date 2017-10-17
  * @since JDK1.7
  * @version 1.0
  */
