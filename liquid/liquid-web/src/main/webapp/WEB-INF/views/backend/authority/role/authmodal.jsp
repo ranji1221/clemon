@@ -1,9 +1,91 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<script>
+function roleAuthFun(){
+	console.log('this is roleAuthFun');
+}
+function roleAuthInit(data){
+	$("#auth_roleName").val(data.roleName);
+	var url = '${pageContext.request.contextPath}/backend/authority/role/getOperation';
+	var request_data = {"roleId":data.id};
+	$.post(url,request_data,function(respond_data){
+		//渲染页面
+		createTreePlug(".role-authorization-jstree",respond_data);
+	})
 
+}
+//渲染树插件
+function createTreePlug(className,data){
+	console.log(data)
+	var tree_data = [];
+	for(var i=0;i<data.length;i++){
+		var tem_item = {};
+		tem_item.id = data[i].id;
+		if(data[i].operationPId <= 0){
+			tem_item.parent = '#';
+		}else{
+			tem_item.parent = data[i].operationPId;	
+		}
+		
+		tem_item.text = data[i].operationName;
+		
+		tem_item.state = {};
+		tem_item.state.selected = true;
+		//if(!data[i].state) 
+			tem_item.state.disabled = true;
+		
+		tem_item.state.opened = true;
+		tree_data.push(tem_item);
+			
+	}
+	console.log(tree_data);
+	$(className).jstree({
+		'core' : {
+			'themes':{'icons':false},
+	        'data' : tree_data
+	       /* [
+		        {"id":"1","parent":"#","text":"研发部"},
+		        {"id":"2","parent":"1","text":"UI设计师","state":{"selected":true,"disabled" : true}},
+		        {"id":"3","parent":"1","text":"前端工程师","state":{"selected":true,"disable":false}},
+		        {"id":"4","parent":"1","text":"PHP工程师","state":{"selected":true}},
+		        {"id":"5","parent":"1","text":"JAVA工程师",},
+		        {"id":"6","parent":"1","text":"PHP工程师",},
+		        {"id":"7","parent":"1","text":"PHP工程师",},
+		        {"id":"8","parent":"#","text":"研发部2"},
+		        {"id":"9","parent":"8","text":"UI设计师","state":{"selected":true}},
+		        {"id":"10","parent":"8","text":"前端工程师","state":{"selected":true}},
+		        {"id":"11","parent":"8","text":"PHP工程师","state":{"selected":true}},
+		        {"id":"12","parent":"8","text":"JAVA工程师",},
+		        {"id":"13","parent":"8","text":"PHP工程师",},
+		        {"id":"14","parent":"8","text":"PHP工程师",},
+		        {"id":"15","parent":"#","text":"研发部3"},
+		        {"id":"16","parent":"15","text":"UI设计师","state":{"selected":true}},
+		        {"id":"17","parent":"15","text":"前端工程师","state":{"selected":true}},
+		        {"id":"18","parent":"15","text":"PHP工程师","state":{"selected":true}},
+		        {"id":"19","parent":"15","text":"JAVA工程师",},
+		        {"id":"20","parent":"15","text":"PHP工程师",},
+		        {"id":"21","parent":"15","text":"PHP工程师",},
+		        {"id":"22","parent":"#","text":"研发部4"},
+		        {"id":"23","parent":"22","text":"UI设计师","state":{"selected":true}},
+		        {"id":"24","parent":"22","text":"前端工程师","state":{"selected":true}},
+		        {"id":"25","parent":"22","text":"PHP工程师","state":{"selected":true}},
+		        {"id":"26","parent":"22","text":"JAVA工程师",},
+		        {"id":"27","parent":"22","text":"PHP工程师",},
+		        {"id":"28","parent":"22","text":"PHP工程师",},
+	      	]*/
+	    },
+		"plugins": ["checkbox"],
+		"checkbox": {
+			"keep_selected_style": false,
+			'cascade_to_disabled':false,
+			// 'tie_selection':false,
+		},
+	});
+}
+</script>
 <!-- 角色授权 -->
 <!-- Modal -->
 <div class="modal fade modalToBody" id="role-authorization" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-contentbox" maxClassName="role-authorizationlg" narrowClassName="#role-authorization">
+	<div class="modal-contentbox" maxClassName="role-authorizationlg" narrowClassName="#role-authorization" beforeMaxFunName="roleAuthFun">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content" >
 				<ol class="breadcrumb">
