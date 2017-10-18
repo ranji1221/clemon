@@ -108,26 +108,21 @@ public class ResourceController {
 		}
 	}
 //	@SystemControllerPermission("resource:looksource")
-	@RequestMapping(value = "/view/{request_param}")
-	@SystemControllerLog(description="权限管理-查看资源")
-	public String viewSource(@PathVariable String request_param) {
-		if("modal".equals(request_param)){
-			return "backend/authority/resources/viewmodal";
-		}else if("max".equals(request_param)){
-			return "backend/authority/resources/view";
+	@RequestMapping(value = "/edit")
+	@SystemControllerLog(description="权限管理-编辑资源")
+	public String editResource(Resource newResource, @RequestParam("operation") String operation) {
+		try {
+			Resource resource = resourceService.find(newResource.getId());
+			resource.setResourceName(newResource.getResourceName());
+			resource.setResourceType(newResource.getResourceType());
+			resource.setResourcePId(newResource.getResourcePId());
+			resourceService.update(resource);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "{ \"success\" : false }";
 		}
-		return null;
-	}
-//	@SystemControllerPermission("resource:looksource")
-	@RequestMapping(value = "/edit/{request_param}")
-	@SystemControllerLog(description="权限管理-查看资源")
-	public String editSource(@PathVariable String request_param) {
-		if("modal".equals(request_param)){
-			return "backend/authority/resources/editmodal";
-		}else if("max".equals(request_param)){
-			return "backend/authority/resources/edit";
-		}
-		return null;
 	}	
 	
 	//@SystemControllerPermission("resource:list")
@@ -155,6 +150,12 @@ public class ResourceController {
 		}
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/listAll")
+	public String findResource() {
+		List<Resource> resourceList = resourceService.findAll();
+		return JsonUtil.objectToJson(resourceList);
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/get/resourceAndOperation")
