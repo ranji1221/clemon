@@ -178,6 +178,7 @@ public class RoleController {
 	
 	//@SystemControllerPermission("role:bulkadd")
 	@RequestMapping(value = "/auth")
+	@ResponseBody
 	@SystemControllerLog(description="权限管理-给角色分配资源")
 	public String authRole(int roleId, String operations) {
 		try{
