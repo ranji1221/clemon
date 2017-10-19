@@ -38,7 +38,7 @@
 		})
 		$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
 		$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
-		$('[data-toggle="select"]').select2();
+
 
 		function limitChangeLength(elm, limitLength) {
 			$(elm).attr("maxLength", limitLength);
@@ -105,7 +105,6 @@ function createRoleList(){
 		afterFun:function(){
 			//.roleExtendPId
 			/* 下拉框样式 */
-			$('[data-toggle="select"]').select2();
 		}
 	})
 }

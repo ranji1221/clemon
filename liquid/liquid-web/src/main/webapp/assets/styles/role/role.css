@@ -138,6 +138,9 @@
         padding: 0; }
         .container-fluid .role_content .role_fath .fath_select .form_input .select {
           min-width: 0;
+          margin-top:0.13rem;
+          border:1px solid #ccc;
+          height:34px;
           width: 100%;
           min-width: 121px; }
           .container-fluid .role_content .role_fath .fath_select .form_input .select .select2-choice {
