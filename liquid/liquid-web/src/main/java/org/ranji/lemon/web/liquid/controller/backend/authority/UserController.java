@@ -1,6 +1,9 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.ranji.lemon.common.core.annotation.SystemControllerLog;
@@ -138,17 +141,23 @@ public class UserController {
 		}
 	}
 
-/*	@ResponseBody
+	@ResponseBody
 	@RequestMapping(value = "/deleteAll")
-	public String multiDelete(@RequestParam("ids[]") Integer[] ids) {
+	@SystemControllerLog(description="权限管理-删除多个用户")
+	public String deteteAllUser(String user_ids) {
 		try {
-			userService.deleteByIDS(Arrays.asList(ids));
+			String[] array  = user_ids.split(",");
+			List <Integer> arrays = new ArrayList<Integer>();
+			for(String s: array){
+				arrays.add(Integer.parseInt(s));
+			};
+			userService.deleteByIDS(arrays);
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
 		}
-	}*/
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/get/{id}")

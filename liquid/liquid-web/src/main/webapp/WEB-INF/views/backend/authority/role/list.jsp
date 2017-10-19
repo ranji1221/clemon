@@ -81,7 +81,7 @@ $(document).on('ifChecked','#checkall', function(event){
   	$('.tablewrap input').iCheck('uncheck')
 });
 
-$('.removeAllBtn').bindDialogs({
+$('.role_removeAllBtn').bindDialogs({
 	content : '你确定删除这些角色吗？',
 	name_successBtn : 'deleteAllBtn',
 	name_cancelBtn : 'cancelAllBtn',
@@ -248,7 +248,7 @@ $(document).on("click", ".roleAuth", function(e) {
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
-				<span class="removeAllBtn">
+				<span class="role_removeAllBtn">
 					<img src="${pageContext.request.contextPath}/img/sys/icons2.png" alt="">
 					删除
 				</span>

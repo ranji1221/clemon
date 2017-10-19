@@ -76,6 +76,34 @@ $(document).on('ifChecked','#checkall', function(event){
 	$(document).on('ifUnchecked', '#checkall',function(event){
   	$('.tablewrap input').iCheck('uncheck')
 });
+
+$('.user_removeAllBtn').bindDialogs({
+	content : '你确定删除这些用户吗？',
+	name_successBtn : 'deleteAllBtn',
+	name_cancelBtn : 'cancelAllBtn',
+	success:function(){
+		var str="";
+	  	$(".tablewrap input:checked").each(function(i,v){
+	  		if($(this).closest('tr').attr("user_id")){
+		  	str+=$(this).closest('tr').attr("user_id")+","
+	  		}
+	  		
+	  	})
+	  	str = str.substring(0,str.length-1)
+		$.post("${pageContext.request.contextPath}/backend/authority/user/deleteAll",{
+			user_ids:str,
+		},function(data){
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				userListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
+			}
+		},'json');
+	}
+})
+
 $('.removeBtn').bindDialogs({
 	content : '你确定删除这个用户吗？',
 	success:function(handle){
@@ -96,7 +124,7 @@ $('.removeBtn').bindDialogs({
 //刷新页面
 $(document).on("click",".renovate",function(){
 	removeStorage();
-	roleListInit();
+	userListInit();
 })
 //添加编辑事件
 $(document).on("click", ".editUser", function(e) {
@@ -222,7 +250,7 @@ $(document).on("click", ".userAuth", function(e) {
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
-				<span  class="removeBtn">
+				<span  class="user_removeAllBtn">
 					<img src="${pageContext.request.contextPath}/img/sys/icons2.png" alt="">
 					删除
 				</span>

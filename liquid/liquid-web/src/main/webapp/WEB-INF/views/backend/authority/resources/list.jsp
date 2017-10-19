@@ -78,9 +78,36 @@ $('.tablewrap input').iCheck({
 $(document).on('ifChecked','#checkall', function(event){
   	$('.tablewrap input').iCheck('check')
 });
-	$(document).on('ifUnchecked', '#checkall',function(event){
+$(document).on('ifUnchecked', '#checkall',function(event){
   	$('.tablewrap input').iCheck('uncheck')
 });
+
+$('.resource_removeAllBtn').bindDialogs({
+	content : '你确定删除这些资源吗？',
+	name_successBtn : 'deleteAllBtn',
+	name_cancelBtn : 'cancelAllBtn',
+	success:function(){
+		var str="";
+	  	$(".tablewrap input:checked").each(function(i,v){
+	  		if($(this).closest('tr').attr("resource_id")){
+		  	str+=$(this).closest('tr').attr("resource_id")+","
+	  		}
+	  		
+	  	})
+	  	str = str.substring(0,str.length-1)
+		$.post("${pageContext.request.contextPath}/backend/authority/resource/deleteAll",{
+			resource_ids:str,
+		},function(data){
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				resourceListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
+			}
+		},'json');
+	}
+})
 $('.removeBtn').bindDialogs({
 	content : '你确定删除这个用户吗？',
 	success:function(handle){
@@ -213,7 +240,7 @@ $(document).on("click", ".viewResource", function(e) {
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
-                <span  class="removeBtn">
+                <span  class="resource_removeAllBtn">
 					<img src="${pageContext.request.contextPath}/img/sys/icons2.png" alt="">
 					删除
 				</span>

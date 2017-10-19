@@ -1,5 +1,6 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,4 +163,23 @@ public class ResourceController {
 			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteAll")
+	@SystemControllerLog(description="权限管理-删除多个资源")
+	public String deteteAllResource(String resource_ids) {
+		try {
+			String[] array  = resource_ids.split(",");
+			List <Integer> arrays = new ArrayList<Integer>();
+			for(String s: array){
+				arrays.add(Integer.parseInt(s));
+			};
+			resourceService.deleteByIDS(arrays);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
+		}
+	}
+
 }
