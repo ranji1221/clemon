@@ -14,7 +14,11 @@ $(function(){
 			name_successBtn : 'successBtn',
 			name_cancelBtn : 'cancelBtn',
 			success:function(){},
-			cancel:function(){}
+			cancel:function(){},
+			beforeFun:function(){
+				return true;
+			}
+			
 		};
 		var this_obj = $.extend(defaults,params);
 		$(document).on("click",".viewRole,.role_editRole,.removeBtn,.roleAuth",function(){
@@ -24,27 +28,30 @@ $(function(){
 		$(document).on("click."+_this.selector,_this.selector, function(e) {
 			lastClickElement = this;
 			e.stopPropagation();
-			e.preventDefault();		
-			$('#removeModal .modal').modal('show');
-			$("#removeModal .modal-body").html(
+			e.preventDefault();	
+			if(this_obj.beforeFun()){
+				$('#removeModal .modal').modal('show');
+				$("#removeModal .modal-body").html(
+					'<div class="row">'+
+					   ' <div class="col-xs-4">'+
+				       ' <div class="trashImg text-right">'+
+				           ' <img src="'+this_obj.modalTypeImg+'" alt="">'+
+				        '</div>'+
+				   ' </div>'+
+				    '<div class="col-xs-8 info">'+
+				        '<h3>'+this_obj.content+'</h3>'+
+				        '<p>'+this_obj.prompt+'</p>'+
+				    '</div>'+
+				'</div>'+
 				'<div class="row">'+
-				   ' <div class="col-xs-4">'+
-			       ' <div class="trashImg text-right">'+
-			           ' <img src="'+this_obj.modalTypeImg+'" alt="">'+
-			        '</div>'+
-			   ' </div>'+
-			    '<div class="col-xs-8 info">'+
-			        '<h3>'+this_obj.content+'</h3>'+
-			        '<p>'+this_obj.prompt+'</p>'+
-			    '</div>'+
-			'</div>'+
-			'<div class="row">'+
-			    '<div class="col-xs-8 col-xs-offset-4">'+
-			    	'<button type="button" class="btn modalBtn delBtn '+this_obj.name_successBtn+'" >确定</button>'+
-			    	'<button type="button" class="btn modalBtn closeBtn '+this_obj.name_cancelBtn+'" >取消</button>'+
-			    '</div>'+
-			'</div>'
-			);
+				    '<div class="col-xs-8 col-xs-offset-4">'+
+				    	'<button type="button" class="btn modalBtn delBtn '+this_obj.name_successBtn+'" >确定</button>'+
+				    	'<button type="button" class="btn modalBtn closeBtn '+this_obj.name_cancelBtn+'" >取消</button>'+
+				    '</div>'+
+				'</div>'
+				);	
+			}
+			
 			
 		});
 		$('#removeModal').on("click."+this_obj.name_successBtn,'.'+this_obj.name_successBtn, function(e) {

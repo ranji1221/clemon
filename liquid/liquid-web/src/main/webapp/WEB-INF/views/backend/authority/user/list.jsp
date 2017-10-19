@@ -81,6 +81,13 @@ $('.user_removeAllBtn').bindDialogs({
 	content : '你确定删除这些用户吗？',
 	name_successBtn : 'deleteAllBtn',
 	name_cancelBtn : 'cancelAllBtn',
+	beforeFun:function(){
+		if($(".tablewrap input:checked").length){
+			return true;
+		}else{
+			return false;
+		}
+	},
 	success:function(){
 		var str="";
 	  	$(".tablewrap input:checked").each(function(i,v){
