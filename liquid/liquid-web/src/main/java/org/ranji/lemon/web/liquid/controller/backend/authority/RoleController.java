@@ -180,9 +180,9 @@ public class RoleController {
 	@RequestMapping(value = "/auth")
 	@ResponseBody
 	@SystemControllerLog(description="权限管理-给角色分配资源")
-	public String authRole(int roleId, String operations) {
+	public String authRole(int roleId, String operationIds) {
 		try{
-			String[] str = operations.split(",");
+			String[] str = operationIds.split(",");
 			List<Integer> list = new ArrayList<Integer>();
 			for(String s :str){
 				list.add(Integer.parseInt(s));
