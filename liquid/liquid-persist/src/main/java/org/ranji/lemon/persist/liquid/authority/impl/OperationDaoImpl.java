@@ -31,6 +31,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OperationDaoImpl extends GenericDaoImpl<Operation, Integer> implements IOperationDao {
 
+	@Override
+	public void deleteAllByResourceId(int resourceId) {
+		sqlSessionTemplate.delete(typeNameSpace + ".deleteAllByResourceId", resourceId);
+	}
+
 	
 
 }

@@ -31,6 +31,11 @@
 		delete from lemon_liquid_auth_operation
 	</delete>
 	
+	<!-- 删除全部操作根据资源id  -->
+	<delete id="deleteAllByResourceId"  parameterType="int">
+		delete from lemon_liquid_auth_operation where resourceId = #{resourceId}
+	</delete>
+	
 	<!-- 删除操作集 -->
 	<delete id="deleteByIDs" parameterType="List">
 		delete from lemon_liquid_auth_operation where id in

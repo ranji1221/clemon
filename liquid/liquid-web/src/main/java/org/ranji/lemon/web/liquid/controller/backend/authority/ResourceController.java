@@ -12,11 +12,11 @@ import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Resource;
+import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.ranji.lemon.service.liquid.authority.prototype.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,26 +54,10 @@ public class ResourceController {
 	@Autowired
 	private IResourceService resourceService;
 	@Autowired
+	private IAuthorityService autoService;
+	@Autowired
 	private IOperationService operationService;
-	
-	public Operation reveseOperation(String s){
-		Operation operation = new Operation();
-		if("1".equals(s)){
-			operation.setDisplayName("查看");
-			operation.setOperationName("view");
-		}else if("2".equals(s)){
-			operation.setDisplayName("增加");
-			operation.setOperationName("add");
-		}else if("3".equals(s)){
-			operation.setDisplayName("编辑");
-			operation.setOperationName("edit");
-		}else if("4".equals(s)){
-			operation.setDisplayName("删除");
-			operation.setOperationName("delete");
-		}
-		return operation;
-	}
-	
+		
 //	@SystemControllerPermission("resource:list")
 	@RequestMapping(value = "/list")
 	@SystemControllerLog(description="权限管理-资源列表")
@@ -94,12 +78,7 @@ public class ResourceController {
 	public String saveResources(Resource resource, @RequestParam("operation") String operation) {
 		String[] array  = operation.split(",");
 		try {
-			resourceService.save(resource);
-			for(String s : array){
-			 Operation opera = reveseOperation(s);
-			 opera.setResourceId(resource.getId());
-			 operationService.save(opera);
-			}
+			autoService.saveResourceAndOperation(resource, array);
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -114,11 +93,12 @@ public class ResourceController {
 	@SystemControllerLog(description="权限管理-编辑资源")
 	public String editResource(Resource newResource, @RequestParam("operation") String operation) {
 		try {
+			String [] array = operation.split(",");
 			Resource resource = resourceService.find(newResource.getId());
 			resource.setResourceName(newResource.getResourceName());
 			resource.setResourceType(newResource.getResourceType());
 			resource.setResourcePId(newResource.getResourcePId());
-			resourceService.update(resource);
+			autoService.updateResourceAndOperation(resource, array);
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			// TODO: handle exception

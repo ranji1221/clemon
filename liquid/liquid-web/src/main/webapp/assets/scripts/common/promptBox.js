@@ -21,7 +21,11 @@ $(function(){
 			$(".remove_alert").detach()
 })
 		//去 后台 请求数据
+<<<<<<< HEAD
 		$(document).on("click."+_this.selector,_this.selector, function(e) {
+=======
+		$(document).on("click.remove_click",_this.selector, function(e) {
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 			
 			lastClickElement = this;
 			e.stopPropagation();

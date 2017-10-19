@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.model.liquid.authority.Operation;
+import org.ranji.lemon.model.liquid.authority.Resource;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.model.liquid.authority.User;
 import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
@@ -28,6 +29,10 @@ public class AuthorityServiceImpl implements IAuthorityService{
 	private IUserService userService;
 	@Autowired
 	private IRoleService roleService;
+	@Autowired
+	private IResourceService resourceService;
+	@Autowired
+	private IOperationService operationService;
 
 	
 	private List<Role> roles = new ArrayList<Role>();//存储角色
@@ -35,9 +40,10 @@ public class AuthorityServiceImpl implements IAuthorityService{
 	private List<Operation> operations= new ArrayList<Operation>(); //存储用户操集合
 	private List<Operation> roleOperation = new ArrayList<Operation>(); //存储角色集合
 	
+	
 	@Override
 	public List<Role> userFindRole() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -119,6 +125,67 @@ public class AuthorityServiceImpl implements IAuthorityService{
 			e.printStackTrace();
 			return "{ \"total\" : 0, \"rows\" : [] }";
 		}
+	}
+	//保存资源操作集
+	@Override
+	public void saveResourceAndOperation(Resource resource,String []array){
+		resourceService.save(resource);
+		int resourceId = resource.getId();
+		saveOperation(array,resourceId);
+	}
+	//更新资源操作集
+	@Override
+	public void updateResourceAndOperation(Resource resource,String []array){
+		resourceService.update(resource);
+		int resourceId = resource.getId();
+		operationService.deleteAllByResourceId(resourceId);
+		saveOperation(array,resourceId);
+	}
+	//保存操作集合
+	private void saveOperation(String []array, int resourceId){
+		int id = -1;  //根id
+		for(String  s: array){
+			if("1".equals(s)){
+				Operation o = reveseOperation(s);
+				o.setOperationPId(id);
+				o.setResourceId(resourceId);
+				operationService.save(o);
+				id = o.getId();
+				for(String s1 : array){
+					if(!"1".equals(s1)){
+						Operation o1 = reveseOperation(s1);
+						o1.setOperationPId(id);
+						o1.setResourceId(resourceId);
+						operationService.save(o1);
+					}
+				}
+				break;
+			}else{
+				continue;
+			}
+		}
+	}
+	//将数字转化为对应的资源对象
+	private Operation reveseOperation(String s){
+		Operation operation = new Operation();
+		if("1".equals(s)){
+			operation.setDisplayName("查看");
+			operation.setOperationName("view");
+			operation.setOperationURL("/view");
+		}else if("2".equals(s)){
+			operation.setDisplayName("增加");
+			operation.setOperationName("add");
+			operation.setOperationURL("/add");
+		}else if("3".equals(s)){
+			operation.setDisplayName("编辑");
+			operation.setOperationName("edit");
+			operation.setOperationURL("/edit");
+		}else if("4".equals(s)){
+			operation.setDisplayName("删除");
+			operation.setOperationName("delete");
+			operation.setOperationURL("/delete");
+		}
+		return operation;
 	}
 }
 
