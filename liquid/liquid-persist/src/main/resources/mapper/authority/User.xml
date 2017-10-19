@@ -26,6 +26,14 @@
 		delete from lemon_liquid_auth_user_role where userId = #{userId}
 	</delete>
 	
+	<!-- 删除用户集 -->
+	<delete id="deleteByIDs" parameterType="List">
+		delete from lemon_liquid_auth_user where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
 	<!-- 查询某个用户 -->
 	<select id="find" parameterType="int" resultType="User">
 		select * from lemon_liquid_auth_user where id = #{id}
