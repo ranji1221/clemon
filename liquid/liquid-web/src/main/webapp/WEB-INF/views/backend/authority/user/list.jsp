@@ -58,10 +58,24 @@ function userListInit(){
 			    labelHover : true, 
 			  	cursor : false,
 			 });
+			$('#checkall').iCheck('uncheck')
    		}
 	})
 }
 userListInit();
+//复选框
+$('.tablewrap input').iCheck({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue',
+    labelHover : true, 
+  	cursor : false,
+ });
+$(document).on('ifChecked','#checkall', function(event){
+  	$('.tablewrap input').iCheck('check')
+});
+	$(document).on('ifUnchecked', '#checkall',function(event){
+  	$('.tablewrap input').iCheck('uncheck')
+});
 $('.removeBtn').bindDialogs({
 	content : '你确定删除这个用户吗？',
 	success:function(handle){
