@@ -2,8 +2,10 @@ package org.ranji.lemon.service.liquid.authority.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ranji.lemon.common.core.pagination.PagerModel;
@@ -53,13 +55,20 @@ public class AuthorityServiceImpl implements IAuthorityService{
 		List<Role> list = userService.findRoleByUserId(userId);
 			for(Role r:list){
 				roles.add(r);
-				int id = r.getRoleExtendPId();
-				if(id>=0){
-				 List<Role> r1=findRolesByRoleId(id);
-				 roles.addAll(r1);
+				int pid = r.getRoleExtendPId();
+				if(pid>=0){
+				 List<Role> r1=findRolesByRoleId(pid);
 				}
 			}
-		return roles;
+			//集合去重
+			Set<Role> set = new  HashSet<Role>(); 
+	        List<Role> newList = new ArrayList<Role>(); 
+	         for (Role r:roles) {
+	            if(set.add(r)){
+	                newList.add(r);
+	            }
+	        }
+		return newList;
 	}
 	// 递归查询角色
 	private List<Role> findRolesByRoleId(int roleId){

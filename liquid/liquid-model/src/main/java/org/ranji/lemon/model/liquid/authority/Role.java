@@ -128,4 +128,22 @@ public class Role implements Serializable{
 	public void setRoleMaxNum(int roleMaxNum) {
 		this.roleMaxNum = roleMaxNum;
 	}
+	//重写对象比较规则
+	@Override
+	public boolean equals(Object obj) {  
+        if (this == obj)      //传入的对象就是它自己，如s.equals(s)；肯定是相等的；  
+            return true;   
+        if (obj == null)     //如果传入的对象是空，肯定不相等  
+            return false;  
+        if (getClass() != obj.getClass())  //如果不是同一个类型的，如Studnet类和Animal类，  
+                                           //也不用比较了，肯定是不相等的  
+            return false;  
+        Role other = (Role) obj;       
+        if (id == 0) {  
+            if (other.id!= 0)  
+                return false;  
+        } else if (id!=other.getId())   //如果id属性相等，则相等  
+            return false;  
+        return true;  
+    }  
 }
