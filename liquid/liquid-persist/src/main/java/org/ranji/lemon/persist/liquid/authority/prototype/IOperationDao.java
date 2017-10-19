@@ -28,6 +28,11 @@ import org.ranji.lemon.model.liquid.authority.Operation;
  */
 
 public interface IOperationDao extends IGenericDao<Operation, Integer> {
-
+	
+	/**
+	 * 根据资源id删除操作集
+	 * @param resourceId 资源id
+	 */
+	public void deleteAllByResourceId(int resourceId);
 
 }

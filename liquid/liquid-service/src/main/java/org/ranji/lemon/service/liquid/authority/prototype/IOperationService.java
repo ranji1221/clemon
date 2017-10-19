@@ -36,5 +36,12 @@ public interface IOperationService extends IGenericService<Operation, Integer> {
 	 * @return 操作对象集合
 	 */
 	public List<Resource> findResourceTree();
+	
+
+	/**
+	 * 根据资源id删除操作集
+	 * @param resourceId 资源id
+	 */
+	public void deleteAllByResourceId(int resourceId);
 
 }

@@ -93,11 +93,12 @@ public class ResourceController {
 	@SystemControllerLog(description="权限管理-编辑资源")
 	public String editResource(Resource newResource, @RequestParam("operation") String operation) {
 		try {
+			String [] array = operation.split(",");
 			Resource resource = resourceService.find(newResource.getId());
 			resource.setResourceName(newResource.getResourceName());
 			resource.setResourceType(newResource.getResourceType());
 			resource.setResourcePId(newResource.getResourcePId());
-			resourceService.update(resource);
+			autoService.updateResourceAndOperation(resource, array);
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			// TODO: handle exception

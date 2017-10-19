@@ -126,15 +126,20 @@ public class AuthorityServiceImpl implements IAuthorityService{
 			return "{ \"total\" : 0, \"rows\" : [] }";
 		}
 	}
-	
+	//保存资源操作集
 	@Override
 	public void saveResourceAndOperation(Resource resource,String []array){
 		resourceService.save(resource);
 		int resourceId = resource.getId();
 		saveOperation(array,resourceId);
 	}
+	//更新资源操作集
+	@Override
 	public void updateResourceAndOperation(Resource resource,String []array){
 		resourceService.update(resource);
+		int resourceId = resource.getId();
+		operationService.deleteAllByResourceId(resourceId);
+		saveOperation(array,resourceId);
 	}
 	//保存操作集合
 	private void saveOperation(String []array, int resourceId){

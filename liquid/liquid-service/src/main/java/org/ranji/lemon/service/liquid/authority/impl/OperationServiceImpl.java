@@ -8,6 +8,7 @@ import java.util.List;
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Resource;
+import org.ranji.lemon.persist.liquid.authority.prototype.IOperationDao;
 import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.ranji.lemon.service.liquid.authority.prototype.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class OperationServiceImpl extends GenericServiceImpl<Operation, Integer>
 			}
 		}
 		return resourceList;
+	}
+
+	@Override
+	public void deleteAllByResourceId(int resourceId) {
+		((IOperationDao)dao).deleteAllByResourceId(resourceId);
 	}
 }
