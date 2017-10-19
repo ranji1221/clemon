@@ -76,7 +76,7 @@ public class ChineseText extends Configurable implements TextProducer{
                 bytes[1] = (byte) (Integer.parseInt(strL, 16));  
   
                 try {  
-                    firstWord = new String(bytes, "GB2312");  
+                    firstWord = new String(bytes, "GBK");  
                 } catch (UnsupportedEncodingException e) {  
                     e.printStackTrace();  
                 }  
