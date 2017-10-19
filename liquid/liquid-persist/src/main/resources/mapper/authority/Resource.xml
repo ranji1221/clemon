@@ -45,7 +45,7 @@
 			<if test="resourceName != null and resourceName != ''">resourceName = #{resourceName},</if>
 			<if test="resourceType != null and resourceType != ''">resourceType = #{resourceType},</if>
 			<if test="resourceURL != null and resourceURL != ''">resourceURL = #{resourceURL},</if>
-			<if test="resourcePID != null and resourcePID != ''">type = #{type},</if>
+			<if test="resourcePId != null and resourcePId != ''">resourcePId = #{resourcePId},</if>
 		</set>
 		where id = #{id}
 	</update>

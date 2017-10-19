@@ -1,7 +1,8 @@
 package org.ranji.lemon.service.jersey.auth.impl;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
 import org.ranji.lemon.model.jersey.auth.User;
@@ -34,6 +35,8 @@ import org.springframework.stereotype.Service;
 @Service("JerseyUserServiceImpl") //-- 为解决其他项目中也有项目的类名，则利用@Autowired自动注入冲突的问题
 public class UserServiceImpl extends GenericServiceImpl<User, Integer> implements IUserService {
 	
+	
+	
 	@Override
 	public void save(User entity) {
 		entity.setPassword(new DefaultPasswordService().encryptPassword(entity.getPassword()));
@@ -61,6 +64,16 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 	@Override
 	public List<Integer> findUserAndRolesByUserId(int userId) {
 		return ((IUserDao) dao).findUserRolesRelationByUserId(userId);
+	}
+	
+	@Override
+	public User findByUserName(String userName) {
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("username", userName);
+		List<User> users = dao.findAll(params);
+		User user = null;
+		if(users!=null && users.size()>0) user = users.get(0);
+		return user;
 	}
 
 }

@@ -21,6 +21,14 @@
 		delete from lemon_liquid_auth_role_operation where roleId = #{roleId} and operationId = #{operationId}
 	</delete>
 	
+	<!-- 删除角色集 -->
+	<delete id="deleteByIDs" parameterType="List">
+		delete from lemon_liquid_auth_role where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
 	<!-- 根据角色id删除角色和操作的对应关系 -->
 	<delete id="deleteRoleAndOperationsRelationByRoleId" parameterType="int">
 		delete from lemon_liquid_auth_role_operation where roleId = #{roleId}

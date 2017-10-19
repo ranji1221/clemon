@@ -30,7 +30,7 @@
 			slide: function(event, ui) {
 				var ui_value = ui.value
 				$(".sliderInput").css("width",  ui_value+"%");
-				$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
+				$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10)-$(".sliderInput").find("input").val().length);
 				$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
 				$(".sliderInput").find("input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
 				limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
@@ -38,7 +38,7 @@
 		})
 		$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
 		$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
-		$('[data-toggle="select"]').select2();
+
 
 		function limitChangeLength(elm, limitLength) {
 			$(elm).attr("maxLength", limitLength);
@@ -105,7 +105,6 @@ function createRoleList(){
 		afterFun:function(){
 			//.roleExtendPId
 			/* 下拉框样式 */
-			$('[data-toggle="select"]').select2();
 		}
 	})
 }
@@ -127,8 +126,9 @@ $(document).on("click","#submit_addRole",function(){
 					url:"${pageContext.request.contextPath}/backend/authority/role/list"
 				}).done(function(data){
 					$(data).appendTo($(".ajax_dom"))
+					$('.alertArea').showAlert({content:'添加成功'});
 				})
-				alert("成功啦");
+			
 			}
 			else{
 				alert("失败啦")

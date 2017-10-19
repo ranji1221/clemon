@@ -9,9 +9,8 @@
 <script>
 function resourceListInit(){
 	$("#resourceList").LemonGetList({
-		usePage: true,
 		useLocalStorage: true,
-		pageClassName:"#page",
+		className_Page:"#page",
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/resource/data',
 	    generateItemFun : function(index,value,data,extend){
 	   		var thisType = '';
@@ -64,10 +63,58 @@ function resourceListInit(){
 			    labelHover : true, 
 			  	cursor : false,
 			 });
+			$('#checkall').iCheck('uncheck')
    		}
 	})
 }
 resourceListInit();
+//复选框
+$('.tablewrap input').iCheck({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue',
+    labelHover : true, 
+  	cursor : false,
+ });
+$(document).on('ifChecked','#checkall', function(event){
+  	$('.tablewrap input').iCheck('check')
+});
+$(document).on('ifUnchecked', '#checkall',function(event){
+  	$('.tablewrap input').iCheck('uncheck')
+});
+
+$('.resource_removeAllBtn').bindDialogs({
+	content : '你确定删除这些资源吗？',
+	name_successBtn : 'deleteAllBtn',
+	name_cancelBtn : 'cancelAllBtn',
+	beforeFun:function(){
+		if($(".tablewrap input:checked").length){
+			return true;
+		}else{
+			return false;
+		}
+	},
+	success:function(){
+		var str="";
+	  	$(".tablewrap input:checked").each(function(i,v){
+	  		if($(this).closest('tr').attr("resource_id")){
+		  	str+=$(this).closest('tr').attr("resource_id")+","
+	  		}
+	  		
+	  	})
+	  	str = str.substring(0,str.length-1)
+		$.post("${pageContext.request.contextPath}/backend/authority/resource/deleteAll",{
+			resource_ids:str,
+		},function(data){
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				resourceListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
+			}
+		},'json');
+	}
+})
 $('.removeBtn').bindDialogs({
 	content : '你确定删除这个用户吗？',
 	success:function(handle){
@@ -85,6 +132,7 @@ $('.removeBtn').bindDialogs({
 		},'json');
 	}
 });
+
 //刷新页面
 $(document).on("click",".renovate",function(){
 	removeStorage();
@@ -199,7 +247,7 @@ $(document).on("click", ".viewResource", function(e) {
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
-                <span  class="removeBtn">
+                <span  class="resource_removeAllBtn">
 					<img src="${pageContext.request.contextPath}/img/sys/icons2.png" alt="">
 					删除
 				</span>

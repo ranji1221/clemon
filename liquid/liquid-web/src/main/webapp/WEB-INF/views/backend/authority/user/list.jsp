@@ -10,11 +10,7 @@ function userListInit(){
 	$("#userList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/authority/user/data',
 		useLocalStorage: true,
-<<<<<<< HEAD
 		className_Page:"#page",
-=======
-		 className_Page:"#page",
->>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 		generateItemFun : function(index,value,data,extend){
 			var phone = value.phone == null ? '无':value.phone ;
 			var email = value.email == null ? '无':value.email ;
@@ -62,10 +58,59 @@ function userListInit(){
 			    labelHover : true, 
 			  	cursor : false,
 			 });
+			$('#checkall').iCheck('uncheck')
    		}
 	})
 }
 userListInit();
+//复选框
+$('.tablewrap input').iCheck({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue',
+    labelHover : true, 
+  	cursor : false,
+ });
+$(document).on('ifChecked','#checkall', function(event){
+  	$('.tablewrap input').iCheck('check')
+});
+	$(document).on('ifUnchecked', '#checkall',function(event){
+  	$('.tablewrap input').iCheck('uncheck')
+});
+
+$('.user_removeAllBtn').bindDialogs({
+	content : '你确定删除这些用户吗？',
+	name_successBtn : 'deleteAllBtn',
+	name_cancelBtn : 'cancelAllBtn',
+	beforeFun:function(){
+		if($(".tablewrap input:checked").length){
+			return true;
+		}else{
+			return false;
+		}
+	},
+	success:function(){
+		var str="";
+	  	$(".tablewrap input:checked").each(function(i,v){
+	  		if($(this).closest('tr').attr("user_id")){
+		  	str+=$(this).closest('tr').attr("user_id")+","
+	  		}
+	  		
+	  	})
+	  	str = str.substring(0,str.length-1)
+		$.post("${pageContext.request.contextPath}/backend/authority/user/deleteAll",{
+			user_ids:str,
+		},function(data){
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				userListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
+			}
+		},'json');
+	}
+})
+
 $('.removeBtn').bindDialogs({
 	content : '你确定删除这个用户吗？',
 	success:function(handle){
@@ -86,7 +131,7 @@ $('.removeBtn').bindDialogs({
 //刷新页面
 $(document).on("click",".renovate",function(){
 	removeStorage();
-	roleListInit();
+	userListInit();
 })
 //添加编辑事件
 $(document).on("click", ".editUser", function(e) {
@@ -212,7 +257,7 @@ $(document).on("click", ".userAuth", function(e) {
 					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
 					刷新
 				</span>
-				<span  class="removeBtn">
+				<span  class="user_removeAllBtn">
 					<img src="${pageContext.request.contextPath}/img/sys/icons2.png" alt="">
 					删除
 				</span>

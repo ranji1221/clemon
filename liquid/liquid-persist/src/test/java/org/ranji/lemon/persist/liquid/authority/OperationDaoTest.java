@@ -81,6 +81,10 @@ public class OperationDaoTest {
 	public void testDelete(){
 		operationDao.delete(4);
 	}
+	@Test
+	public void testDeleteResourceId(){
+		operationDao.deleteAllByResourceId(3);
+	}
 	//测试删除操作
 	@Test
 	public void testDeleteAll(){

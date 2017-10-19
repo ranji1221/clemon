@@ -1,5 +1,6 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +13,13 @@ import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.common.core.util.JsonUtil;
 import org.ranji.lemon.model.liquid.authority.Operation;
 import org.ranji.lemon.model.liquid.authority.Resource;
+import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
 import org.ranji.lemon.service.liquid.authority.prototype.IOperationService;
 import org.ranji.lemon.service.liquid.authority.prototype.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -53,8 +55,10 @@ public class ResourceController {
 	@Autowired
 	private IResourceService resourceService;
 	@Autowired
+	private IAuthorityService autoService;
+	@Autowired
 	private IOperationService operationService;
-	
+		
 //	@SystemControllerPermission("resource:list")
 	@RequestMapping(value = "/list")
 	@SystemControllerLog(description="权限管理-资源列表")
@@ -72,9 +76,10 @@ public class ResourceController {
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	@SystemControllerLog(description="权限管理-添加资源")
-	public String saveResources(Resource resource) {
+	public String saveResources(Resource resource, @RequestParam("operation") String operation) {
+		String[] array  = operation.split(",");
 		try {
-			resourceService.save(resource);
+			autoService.saveResourceAndOperation(resource, array);
 			return "{ \"success\" : true }";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -82,27 +87,25 @@ public class ResourceController {
 			return "{ \"success\" : false }";
 		}
 	}
+	
+	@ResponseBody
 //	@SystemControllerPermission("resource:looksource")
-	@RequestMapping(value = "/view/{request_param}")
-	@SystemControllerLog(description="权限管理-查看资源")
-	public String viewSource(@PathVariable String request_param) {
-		if("modal".equals(request_param)){
-			return "backend/authority/resources/viewmodal";
-		}else if("max".equals(request_param)){
-			return "backend/authority/resources/view";
+	@RequestMapping(value = "/edit")
+	@SystemControllerLog(description="权限管理-编辑资源")
+	public String editResource(Resource newResource, @RequestParam("operation") String operation) {
+		try {
+			String [] array = operation.split(",");
+			Resource resource = resourceService.find(newResource.getId());
+			resource.setResourceName(newResource.getResourceName());
+			resource.setResourceType(newResource.getResourceType());
+			resource.setResourcePId(newResource.getResourcePId());
+			autoService.updateResourceAndOperation(resource, array);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return "{ \"success\" : false }";
 		}
-		return null;
-	}
-//	@SystemControllerPermission("resource:looksource")
-	@RequestMapping(value = "/edit/{request_param}")
-	@SystemControllerLog(description="权限管理-查看资源")
-	public String editSource(@PathVariable String request_param) {
-		if("modal".equals(request_param)){
-			return "backend/authority/resources/editmodal";
-		}else if("max".equals(request_param)){
-			return "backend/authority/resources/edit";
-		}
-		return null;
 	}	
 	
 	//@SystemControllerPermission("resource:list")
@@ -132,6 +135,13 @@ public class ResourceController {
 	
 	
 	@ResponseBody
+	@RequestMapping(value = "/listAll")
+	public List<Resource> findResource() {
+		List<Resource> resourceList = resourceService.findResourceTree();
+		return resourceList;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/get/resourceAndOperation")
 	public String findResourceAndOperation() {
 		List<Resource> resourceList = resourceService.findAll();
@@ -153,4 +163,23 @@ public class ResourceController {
 			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteAll")
+	@SystemControllerLog(description="权限管理-删除多个资源")
+	public String deteteAllResource(String resource_ids) {
+		try {
+			String[] array  = resource_ids.split(",");
+			List <Integer> arrays = new ArrayList<Integer>();
+			for(String s: array){
+				arrays.add(Integer.parseInt(s));
+			};
+			resourceService.deleteByIDS(arrays);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"success\" : false, \"msg\" : \"操作失败\" }";
+		}
+	}
+
 }

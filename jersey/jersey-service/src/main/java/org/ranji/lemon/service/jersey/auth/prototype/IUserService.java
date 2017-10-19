@@ -29,7 +29,14 @@ import org.ranji.lemon.model.jersey.auth.User;
  * @version 1.0
  */
 public interface IUserService extends IGenericService<User, Integer> {
-
+	
+	/**
+	 * 依靠用户名查询用户
+	 * @param userName
+	 * @return
+	 */
+	public User findByUserName(String userName);
+	
 	/**
 	 * 存储用户-角色的对应
 	 * @param userId 用户id

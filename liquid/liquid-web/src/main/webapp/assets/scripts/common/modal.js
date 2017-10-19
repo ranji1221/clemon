@@ -147,11 +147,7 @@ function editRoleModal(data) {
 	$('#editModal').modal('show');
 }
 function editSource(data) {
-	console.log(data)
-	$("#edit_resourceName").val(data.resourceName);
-	$("#edit_resourceType").html(data.resourceType);
-	//$("#edit_resourcePName").html(data.resourcePName);
-	//$("#view_operationName").html(data.operationName);
+	dealDataToModal(data);
 	$("#editModal").modal('show');
 }
 //用户编辑框

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ranji.lemon.common.core.util.JsonUtil;
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -105,6 +107,10 @@ public class Resource implements Serializable{
 	public void setResourcePName(String resourcePName) {
 		this.resourcePName = resourcePName;
 	}
-	
+
+	@Override
+	public String toString() {
+		return JsonUtil.objectToJson(this);
+	}
 
 }

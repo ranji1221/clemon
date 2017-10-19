@@ -14,6 +14,7 @@
 			classpath:config/spring-jersey.xml
 			classpath:config/spring-flowable.xml
 			classpath:config/spring-shiro.xml
+			classpath:config/spring-captcha.xml
 		</param-value>
 	</context-param>
 	
