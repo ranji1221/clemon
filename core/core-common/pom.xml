@@ -105,13 +105,13 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
-		
-		<!-- C3P0 -->
-		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-		</dependency>
 	
+		<!-- 计划用Druid连接池替换掉C3P0连接池，效率更加高效 -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
