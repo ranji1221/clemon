@@ -32,6 +32,7 @@
 				/js/** = anon
 				/fonts/** = anon
 				/common/** = anon
+				/druid/** = anon
 				/** = authc
 			</value>
 		</property>
