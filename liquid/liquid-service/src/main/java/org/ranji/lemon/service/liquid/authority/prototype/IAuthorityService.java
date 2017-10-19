@@ -3,6 +3,7 @@ package org.ranji.lemon.service.liquid.authority.prototype;
 import java.util.List;
 
 import org.ranji.lemon.model.liquid.authority.Operation;
+import org.ranji.lemon.model.liquid.authority.Resource;
 import org.ranji.lemon.model.liquid.authority.Role;
 import org.ranji.lemon.model.liquid.authority.User;
 
@@ -61,4 +62,12 @@ public interface IAuthorityService {
 	 * @return 操作集合
 	 */
 	public List<Operation> findOperationsByRoleId(int roleId);
+	
+	/**
+	 * 保存资源操作相关内容
+	 * @param resource 资源对象
+	 * @param array 操作字符集
+	 * 
+	 */
+	public void saveResourceAndOperation(Resource resource,String []array);
 }

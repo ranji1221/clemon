@@ -62,6 +62,13 @@ public class ResourceDaoTest {
 	public void testDeleteResource(){
 		resourceDao.delete(2);
 	}
+	@Test
+	public void testDeleteResourceByIds(){
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(1);
+		list.add(3);
+		resourceDao.deleteByIDS(list);
+	}
 	//测试查找资源
 	@Test
 	public void testFind(){
