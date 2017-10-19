@@ -1,5 +1,7 @@
 package org.ranji.lemon.web.liquid.controller.backend.authority;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,16 +187,34 @@ public class RoleController {
 		}
 		return null;
 	}
-		@ResponseBody
-		@RequestMapping(value = "/delete")
-		@SystemControllerLog(description="权限管理-删除角色")
-		public String deleteRole(int id) {
-			try {
-				roleService.delete(id);
-				return "{ \"success\" : true }";
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "{ \"success\" : false }";
-			}
+	@ResponseBody
+	@RequestMapping(value = "/delete")
+	@SystemControllerLog(description="权限管理-删除角色")
+	public String deleteRole(int id) {
+		try {
+			roleService.delete(id);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"success\" : false }";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteAll")
+	@SystemControllerLog(description="权限管理-删除多个角色")
+	public String deleteAllRole(String role_ids) {
+		try {
+			String[] array  = role_ids.split(",");
+			List <Integer> arrays = new ArrayList<Integer>();
+			for(String s: array){
+				arrays.add(Integer.parseInt(s));
+			};
+			roleService.deleteByIDS(arrays);
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"success\" : false }";
+		}
+	}
 }
