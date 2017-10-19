@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<td align="right">validateCode</td>
-					<td align="left">
+					<td colspan="2" align="left">
 						<input type="text" id="captcha" name="captcha" maxlength="4" />  
 						<img src="captcha" onclick="this.src='captcha?d='+new Date().getTime()"/>  
 					</td>
