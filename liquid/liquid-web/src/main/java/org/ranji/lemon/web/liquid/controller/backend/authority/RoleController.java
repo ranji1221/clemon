@@ -177,15 +177,20 @@ public class RoleController {
 	}
 	
 	//@SystemControllerPermission("role:bulkadd")
-	@RequestMapping(value = "/auth/{size}")
+	@RequestMapping(value = "/auth")
 	@SystemControllerLog(description="权限管理-给角色分配资源")
-	public String authRole(@PathVariable String size) {
-		if("modal".equals(size)){
-			return "backend/authority/role/authmodal";
-		}else if("max".equals(size)){
-			return "backend/authority/role/auth";
+	public String authRole(int roleId, String operations) {
+		try{
+			String[] str = operations.split(",");
+			List<Integer> list = new ArrayList<Integer>();
+			for(String s :str){
+				list.add(Integer.parseInt(s));
+			}
+			authService.authRole(roleId, list);
+			return "{ \"success\" : true }";
+		}catch(Exception e){
+			return "{ \"success\" : false }";
 		}
-		return null;
 	}
 	@ResponseBody
 	@RequestMapping(value = "/delete")

@@ -100,7 +100,14 @@ public class AuthorityServiceImpl implements IAuthorityService{
 		}
 		return roleOperation;
 	}
-
+	// 角色授权
+	@Override
+	public void authRole(int roleId, List <Integer> array){
+		roleService.deleteRoleAndOperationsRelationByRoleId(roleId); //删除角色与操作关系集
+		for(Integer i : array){
+			roleService.saveRoleAndOperationRelation(roleId, i); //保存角色操作关系
+		}
+	}
 	@Override
 	public String findAllUserInduleRoles(String params) {
 		try {
@@ -187,6 +194,7 @@ public class AuthorityServiceImpl implements IAuthorityService{
 		}
 		return operation;
 	}
+	
 }
 
 

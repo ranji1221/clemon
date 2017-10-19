@@ -78,4 +78,11 @@ public interface IAuthorityService {
 	 * 
 	 */
 	public void updateResourceAndOperation(Resource resource,String []array);
+	/**
+	 * 角色授权
+	 * @param roleId 角色id
+	 * @param list 操作id集
+	 * 
+	 */
+	public void authRole(int roleId, List<Integer> list);
 }
