@@ -126,8 +126,9 @@ $(document).on("click","#submit_addRole",function(){
 					url:"${pageContext.request.contextPath}/backend/authority/role/list"
 				}).done(function(data){
 					$(data).appendTo($(".ajax_dom"))
+					$('.alertArea').showAlert({content:'添加成功'});
 				})
-				alert("成功啦");
+			
 			}
 			else{
 				alert("失败啦")

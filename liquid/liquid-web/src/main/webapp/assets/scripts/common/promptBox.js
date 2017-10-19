@@ -15,10 +15,12 @@ $(function(){
 			cancel:function(){}
 		};
 		var this_obj = $.extend(defaults,params);
-		
+		$(document).on("click",".viewRole,.role_editRole,.removeBtn,.roleAuth",function(){
+			$(".remove_alert").detach()
+})
 		//去 后台 请求数据
 		$(document).on("click.remove_click",_this.selector, function(e) {
-			$(".remove_alert").detach()
+			
 			lastClickElement = this;
 			e.stopPropagation();
 			e.preventDefault();		

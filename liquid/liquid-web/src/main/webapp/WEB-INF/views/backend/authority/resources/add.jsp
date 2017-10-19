@@ -85,7 +85,7 @@
 				}).done(function(data){
 					$(data).appendTo($(".ajax_dom"))
 				})
-				alert("成功啦");
+				$('.alertArea').showAlert({content:'添加成功'});
 			}
 			else{
 				alert("失败啦")
