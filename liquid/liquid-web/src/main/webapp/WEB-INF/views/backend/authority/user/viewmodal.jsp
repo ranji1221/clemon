@@ -40,26 +40,10 @@
             			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  narrowAction">
                 			<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />
             			</div>
-            			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
-                			<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-	                		<div class="hidmission">
-								<span class="icon-eye-open icon-slidenav"></span>
-								<p url="./pages/user/look" mintype='2'>查看用户</p>
-								<span class="iconfont icon-chuyidong1 del"></span>
-							</div>
-            			</div>
         			</div>
     			</div>
 				<div class="modal-header">
 					<div class="pull-right">
-						<a href="javascript:;"  data-dismiss="modal" class="minus module_minimize">
-							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-							<div class="hidmission">
-								<span class="icon-eye-open icon-slidenav"></span>
-									<p class="lookUser" mintype='1'>查看用户</p>
-								<span class="iconfont icon-chuyidong1 del"></span>
-							</div>
-						</a>
 						<a href="javascript:;" class="enlargeAction">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png"/>
 						</a>

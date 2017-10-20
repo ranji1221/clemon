@@ -162,29 +162,11 @@ $(document).on("click","#submit_editRole",function(){
 	
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />
 					</div>
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
-						<!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
-						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-						<div class="hidmission">
-						<span class="icon-pencil icon-slidenav"></span>
-						<p>角色编辑</p>
-						<span class="iconfont icon-chuyidong1 del"></span>
-					</div>
-					</div>
 				</div>
 			</div>
 		
 			<div class="modal-header">
 				<div class="pull-right">
-					<a href="javascript:;" data-dismiss="modal" class="minus module_minimize">
-						<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-						<div class="hidmission">
-							<span class="icon-pencil icon-slidenav"></span>
-							<p class="editRole" >编辑角色</p>
-							<span class="iconfont icon-chuyidong1 del"></span>
-						</div>
-	
-					</a>
 					<a href="javascript:;" class="enlargeAction">
 						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" />
 					</a>

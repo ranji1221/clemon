@@ -87,14 +87,6 @@ $('#resSubmit').on('click',function(){
 				<div class="titleaut">
 					<p>角色授权</p>
 					<div class="btns">
-						<a href="javascript:;" class="min module_minimize" data-dismiss="modal">
-							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
-							<div class="hidmission">
-								<span class="icon-key icon-slidenav"></span>
-								<p class='role-aut' mintype='1'>角色授权</p>
-								<span class="iconfont icon-chuyidong1 del"></span>
-							</div>
-						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
 						<a href="javascript:;" class="maxrole enlargeAction" data-dismiss="modal">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
@@ -107,14 +99,6 @@ $('#resSubmit').on('click',function(){
 				<div class="titleautlg">
 					<p>角色授权</p>
 					<div class="btns">
-						<a href="javascript:;" class="min dom_minimize" data-dismiss="modal">
-							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
-							<div class="hidmission">
-								<span class="icon-key icon-slidenav"></span>
-								<p mintype='2'>角色授权</p>
-								<span class="iconfont icon-chuyidong1 del"></span>
-							</div>
-						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
 						<a href="javascript:;" class="maxrole narrowAction" data-dismiss="modal">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
