@@ -4,24 +4,20 @@
 var is_first_into_page = true;
 
 function roleAuthInit(data){
-	$("#auth_roleName").val(data.roleName);
+	$("#auth_roleName").val(data.roleName).attr('role_id',data.id);
 	createTreePlug('.role-authorization',data);
-
 }
 //渲染树插件
 function createTreePlug(className,data){
-	getResourceAndOperationData();
 	var url = '${pageContext.request.contextPath}/backend/authority/role/getOperation';
 	var request_data = {"roleId":data.id};
-	if(!is_first_into_page){
-		$(className).jstree("destroy");
-	}
+	if(!is_first_into_page){ $(className).jstree("destroy"); }
 	is_first_into_page = false;
 	$(className).jstree({
 		'core' : {
 			'themes':{'icons':false,"responsive":false},
 	        'data' : function (obj, callback) {
-	        	var resourceAndOperationData = getResourceAndOperationData();
+	        	var resourceAndOperationData = jsTree_getResourceAndOperationData();
 		        $.ajax({
 		            type: "POST",
 		            url:url,
@@ -49,9 +45,82 @@ function createTreePlug(className,data){
 }
 //提交编辑数据
 $('#resSubmit').on('click',function(){
-	$result = jsTree_getSelectedOperationIds('.role-authorization');
-	console.log($result);
+	var request_data = {};
+	request_data.roleId = $("#auth_roleName").attr('role_id');
+	request_data.operationIds = jsTree_getSelectedOperationIds('.role-authorization');
+	var url = '${pageContext.request.contextPath}/backend/authority/role/auth';
+	$.post(url,request_data,function(data){
+		if(data.success == true) {
+			$('.alertArea').showAlert({content:'授权成功'});
+		}else{
+			$('.alertArea').showAlert({content:'授权失败',type:'danger'});
+		}
+	},'json');
 })
+//与树插件有关的操作
+//获取资源和操作的树结构
+function getResourceAndOperationData(){
+	var resourceAndOperationData = getStorage('resourceAndOperationData');
+	if(resourceAndOperationData){
+		return resourceAndOperationData;
+	}else{
+        $.ajax({
+            type: "POST",
+            url:"backend/authority/resource/get/resourceAndOperation",
+            dataType:"json",
+            async: false,
+            success:function(data) {
+            	setStorage('resourceAndOperationData',data);
+            	return data;
+            },
+            error:function(){
+            	console.log('获取资源和操作的请求地址错误!:'+url);
+            }
+        });
+	}
+}
+function jsTree_getResourceAndOperationData(){
+   	data = jsTree_DealRequest(getResourceAndOperationData());
+   	jsonarray = jsTree_DealTreeData(data);
+   	return jsonarray;
+}
+function jsTree_DealRequest(data){
+	var operation = data.operation;
+	var resource = data.resource;
+	for(var i=0;i<resource.length;i++){
+		resource[i].id = 'r_'+resource[i].id;
+		resource[i].type='resource';
+		if(resource[i].resourcePId > 0) resource[i].resourcePId = 'r_'+resource[i].resourcePId;
+	}
+	for(var i=0;i<operation.length;i++){
+		var tem_data = {};
+		tem_data.type='operation';
+		tem_data.id = 'o_'+operation[i].id;
+		tem_data.resourceName = operation[i].operationName;
+		tem_data.resourcePId = 'r_'+operation[i].resourceId;
+		resource.push(tem_data);
+	}
+	return resource;
+}
+function jsTree_DealTreeData(data){
+	var tree_data = [];
+	for(var i=0;i<data.length;i++){
+		tree_data.push(createJsTreeItem(data[i].id,data[i].resourcePId,data[i].resourceName));
+	}
+	return tree_data;
+}
+function jsTree_selectedOperation(resourceAndOperationData,selectedOperationData){
+	for(var i=0;i<selectedOperationData.length;i++){
+		for(var j=0;j<resourceAndOperationData.length;j++){
+			if( 'o_'+selectedOperationData[i].id == resourceAndOperationData[j].id){
+				resourceAndOperationData[j].state.selected = true;
+				if(!selectedOperationData[i].state) resourceAndOperationData[j].state.disabled = true;
+				continue;
+			}
+		}
+	}
+	return resourceAndOperationData;
+}
 </script>
 <!-- 角色授权 -->
 <!-- Modal -->
@@ -87,14 +156,6 @@ $('#resSubmit').on('click',function(){
 				<div class="titleaut">
 					<p>角色授权</p>
 					<div class="btns">
-						<a href="javascript:;" class="min module_minimize" data-dismiss="modal">
-							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
-							<div class="hidmission">
-								<span class="icon-key icon-slidenav"></span>
-								<p class='role-aut' mintype='1'>角色授权</p>
-								<span class="iconfont icon-chuyidong1 del"></span>
-							</div>
-						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
 						<a href="javascript:;" class="maxrole enlargeAction" data-dismiss="modal">
 							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
@@ -107,18 +168,7 @@ $('#resSubmit').on('click',function(){
 				<div class="titleautlg">
 					<p>角色授权</p>
 					<div class="btns">
-						<a href="javascript:;" class="min dom_minimize" data-dismiss="modal">
-							<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
-							<div class="hidmission">
-								<span class="icon-key icon-slidenav"></span>
-								<p mintype='2'>角色授权</p>
-								<span class="iconfont icon-chuyidong1 del"></span>
-							</div>
-						</a>
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
-						<a href="javascript:;" class="maxrole narrowAction" data-dismiss="modal">
-							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
-						</a>
 						<a href="javascript:;" class="zclose closeAction">
 							<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 						</a>

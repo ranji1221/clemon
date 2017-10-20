@@ -69,81 +69,7 @@
 		return listData;
 	}
 	
-	//获取资源和操作的树结构
-	function getResourceAndOperationData(){
-		var resourceAndOperationData = getStorage('resourceAndOperationData');
-		if(resourceAndOperationData){
-			return resourceAndOperationData;
-		}else{
-	        $.ajax({
-	            type: "POST",
-	            url:"backend/authority/resource/get/resourceAndOperation",
-	            dataType:"json",
-	            async: false,
-	            success:function(data) {
-	            	data = jsTree_DealRequest(data);
-	            	jsonarray = jsTree_DealTreeData(data);
-	            	setStorage('resourceAndOperationData',jsonarray);
-	            	return jsonarray;
-	            },
-	            error:function(){
-	            	console.log('获取资源和操作的请求地址错误!:'+url);
-	            }
-	        });
-		}
-	}
-	function jsTree_DealRequest(data){
-		var operation = data.operation;
-		var resource = data.resource;
-		for(var i=0;i<resource.length;i++){
-			resource[i].id = 'r_'+resource[i].id;
-			resource[i].type='resource';
-			if(resource[i].resourcePId > 0) resource[i].resourcePId = 'r_'+resource[i].resourcePId;
-		}
-		for(var i=0;i<operation.length;i++){
-			var tem_data = {};
-			tem_data.type='operation';
-			tem_data.id = 'o_'+operation[i].id;
-			tem_data.resourceName = operation[i].operationName;
-			tem_data.resourcePId = 'r_'+operation[i].resourceId;
-			resource.push(tem_data);
-		}
-		return resource;
-	}
-	function jsTree_DealTreeData(data){
-		var tree_data = [];
-		for(var i=0;i<data.length;i++){
-			var tem_item = {};
-			tem_item.id = data[i].id;
-			if(data[i].resourcePId <= 0){
-				tem_item.parent = '#';
-			}else{
-				tem_item.parent = data[i].resourcePId;	
-			}
-			
-			tem_item.text = data[i].resourceName;
-			
-			tem_item.state = {};
-			//tem_item.state.selected = true;
-			//if(!data[i].state) tem_item.state.disabled = true;
-			
-			tem_item.state.opened = true;
-			tree_data.push(tem_item);
-		}
-		return tree_data;
-	}
-	function jsTree_selectedOperation(resourceAndOperationData,selectedOperationData){
-		for(var i=0;i<selectedOperationData.length;i++){
-			for(var j=0;j<resourceAndOperationData.length;j++){
-				if( 'o_'+selectedOperationData[i].id == resourceAndOperationData[j].id){
-					resourceAndOperationData[j].state.selected = true;
-					if(!selectedOperationData[i].state) resourceAndOperationData[j].state.disabled = true;
-					continue;
-				}
-			}
-		}
-		return resourceAndOperationData;
-	}
+	//jstree的公共方法
 	function jsTree_getSelectedOperationIds(class_name){
 		var treeResult = $(class_name).jstree(true).get_checked([]);
 		var new_treeData = '';
@@ -161,4 +87,52 @@
 			}
 		}
 		return new_treeData;
+	}
+	function jsTree_getSelectedNodes(class_name){
+		var treeResult = $(class_name).jstree(true).get_checked([]);
+		var new_treeData = '';
+		for(var i=0;i<treeResult.length;i++){
+			var id = treeResult[i].id;
+			if(new_treeData){
+				new_treeData += ','+id;
+			}else{ 
+				new_treeData = id;
+			}
+		}
+		return new_treeData;
+	}
+	function createJsTreeItem(id,pid,name,is_selected,not_disable){
+		var tem_item = {};
+		tem_item.id = id;
+		if(pid <= 0){
+			tem_item.parent = '#';
+		}else{
+			tem_item.parent = pid;	
+		}
+		tem_item.text = name;
+		tem_item.state = {
+			'opened' : true,
+		};
+		if(is_selected){
+			tem_item.state.selected = true;
+		}else{
+			tem_item.state.selected = false;
+		}
+		if(not_disable){
+			tem_item.state.disabled = true;
+		}else{
+			tem_item.state.disabled = false;
+		}
+		return tem_item;
+	}
+	function selectJsTree(old_jsTree,new_jsTree){
+		for(var i=0;i<new_jsTree.length;i++){
+			for(var j=0;j<old_jsTree.length;j++){
+				if(old_jsTree[j].id == new_jsTree[i].id){
+					old_jsTree[j].state.selected = new_jsTree[i].state.selected;
+					old_jsTree[j].state.disabled = new_jsTree[i].state.disabled;
+				}
+			}
+		}
+		return old_jsTree;
 	}
