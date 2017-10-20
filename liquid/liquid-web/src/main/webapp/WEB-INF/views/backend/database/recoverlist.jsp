@@ -1,6 +1,56 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <script src="${pageContext.request.contextPath}/js/database/recoverlist.js"></script>
-	
+<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+<script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
+
+<script type="text/javascript">
+function recoverListInit(){
+$("#recoversList").LemonGetList({
+		useLocalStorage : true,
+	    requestListUrl : '${pageContext.request.contextPath}/backend/database/backup/data',
+	    className_Page : "#page",
+	    generateItemFun : function(index,value,data,extend){
+			var tr_data = '<tr listid='+ value.id+extend +' recover_id='+ value.id + extend +'>' +
+					'<td title='+ value.infoName +'>' +
+						value.infoName +
+					'</td>' +
+					'<td title='+ value.createTime +'>' +
+						value.createTime +
+					'</td>' +
+					'<td title="823KB">' +
+						'823KB' +
+					'</td>' +
+					'<td title='+value.remarks+' class="remarks">' +
+						value.remarks +
+					'</td>' +
+					'<td>' +
+						'<span class="glyphicon glyphicon-log-in iconact leading"></span>' +
+					'</td>' + 
+					'<td>' +
+						'<span class="icon-trash iconact removeBtn redtrash"></span>' +
+					'</td> '+
+				'</tr>';
+	       	return tr_data; 
+   		},
+
+   		emptyDataFun:function(){
+   			return "<tr><td style='width:100%' colspan='6'><span class='center text-center' style='display:inline-block;width:100%;'>没有查找到数据!</span></td></tr>";
+   		},
+   	/* 	initFun : function(){
+   			_this = this;
+   			$('.nav-search #list_search_btn').on('click',function(){
+   				//刷新当前对象
+   				_this.getData({
+   					'params':JSON.stringify({
+   						'rNameLike' : $('.nav-search #list_search_str').val()
+   					})
+   				},true);
+   			})
+   		} */
+	})
+}
+recoverListInit();	
+</script>
 <div class="rolelist recoverlist">
 	<ol class="breadcrumb">
 	    <li>
@@ -64,7 +114,7 @@
 					<th>删除</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id = "recoversList">
 				<tr listid='01'>
 					<td title="xxx数据库">
 						xxx数据库
