@@ -18,47 +18,34 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
 	});
 }
-//关闭处理 
-$(document).on("click",'.edit_red_border', function(e) {
-	$(this).closest('.modal-contentbox').remove();
-	$(this).closest('.modal-contentbox').appendTo('#editModal');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
+
+$("#editModal").on("shown.bs.modal", function() {
+	var max_role = $(this).find(".edit_external_link")
+	max_role.on("click", function(e) {
+		e.preventDefault()
+		e.stopPropagation()
+		var minlimitNum = 5;
+$(".minlimitNum").html(minlimitNum);
+$(".error_box").slider({
+	orientation: "horizontal",
+	range: "min",
+	max: 70,
+	value: 70,
+	slide: function(event, ui) {
+		var ui_value = ui.value
+		$(".sliderInput").css("width", ui_value+"%");
+		$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
+		$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
+		$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
+		limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 	}
 })
-//最小化隐藏
-	
-
-	$("#editModal").on("shown.bs.modal", function() {
-		var max_role = $(this).find(".edit_external_link")
-		max_role.on("click", function(e) {
-			e.preventDefault()
-			e.stopPropagation()
-			var minlimitNum = 5;
-	$(".minlimitNum").html(minlimitNum);
-	$(".error_box").slider({
-		orientation: "horizontal",
-		range: "min",
-		max: 70,
-		value: 70,
-		slide: function(event, ui) {
-			var ui_value = ui.value
-			$(".sliderInput").css("width", ui_value+"%");
-			$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
-			$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-			$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
-			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-		}
-	})
 			
 $(".sliderInput").css("width", $(".error_box").slider("value")+"%");
 $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
 		
 		$(this).closest('.modal').modal('hide')
 			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
-//				$(".roleNameBox").removeClass("width_active")
-//				$("#remark").removeClass("active")
-//				$('.maxNumView').addClass("width_block")
 			$(".editrolelg").addClass("active")
 			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
 			$('.ajax_dom').show(0)
@@ -237,3 +224,11 @@ $(document).on("click",'.closeAction', function(e) {
 		$('.ajax_dom').hide()
 	}
 })
+//限制输入字符
+function limitChangeLength(elm, limitLength) {
+	$(elm).attr("maxLength", limitLength);
+	$(elm).keydown(function() {
+		var length = $(elm).val().length;
+		$(elm).siblings(".wordNum").html(limitLength - length);
+	});
+}

@@ -1,6 +1,3 @@
-/**
- * Created by gu on 2017/9/13.
- */
 $(window).ready(function() {
 	var funcItems = $("#funcNav .func-item");
 	var funcNav = $("funcNav");

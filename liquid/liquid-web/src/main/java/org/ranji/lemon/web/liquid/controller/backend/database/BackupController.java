@@ -1,22 +1,8 @@
 package org.ranji.lemon.web.liquid.controller.backend.database;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.ranji.lemon.common.core.annotation.SystemControllerLog;
-import org.ranji.lemon.model.liquid.authority.User;
-import org.ranji.lemon.service.liquid.authority.prototype.IAuthorityService;
-import org.ranji.lemon.service.liquid.authority.prototype.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
