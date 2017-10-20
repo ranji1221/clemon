@@ -22,7 +22,7 @@ public class BackupUtil {
 	 * @return 路径String
 	 */
 	public static String getAbsolutePath(String databaseName, HttpSession session) {
-		return session.getServletContext().getRealPath("/") + "backup/" + databaseName;
+		return session.getServletContext().getRealPath("/") + "backup" + databaseName;
 	}
 	
 	/**
@@ -32,13 +32,13 @@ public class BackupUtil {
 	 * @return 路径String
 	 */
 	public static String getRelativePath(String databaseName, HttpSession session) {
-		return "backup/" + databaseName;
+		return "backup" + databaseName;
 	}
 	
 	/**
 	 * 自定义方式重命名sql文件
 	 * @param fileName 原文件名
-	 * @return 新文件名（当前时间+4位随机数+扩展名：201703091011581104.png）
+	 * @return 新文件名（当前时间+4位随机数+扩展名：201703091011581104.sql）
 	 */
 	public static String rename(String type) {
 		// 获取4位随机数字符串
