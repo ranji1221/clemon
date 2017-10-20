@@ -37,9 +37,7 @@
            				<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction">
             				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
             			</div>
-            			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1  role_hearde_this_icon  narrowAction">
-                			<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="" />
-            			</div>
+            		
         			</div>
     			</div>
 				<div class="modal-header">
