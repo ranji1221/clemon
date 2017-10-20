@@ -170,10 +170,13 @@ $(document).on("click","#submit_addRole",function(){
 			<span>添加角色</span>
 		</div>
 		<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-
+			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
+				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
+				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
+			</div>
 		</div>
 	</div>
-	<div class="row role_content form_content" u_id="2" n_id="-1">
+	<div class="row role_content form_content">
 		<form action="" id="jjjj">
 			<div class="row role_form ">
 				<div class="form-horizontal col-lg-12 col-md-9 col-sm-9 col-xs-12">

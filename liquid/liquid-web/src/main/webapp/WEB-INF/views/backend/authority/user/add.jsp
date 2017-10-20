@@ -93,11 +93,6 @@ $(document).on("click","#submit_addUser",function(){
 				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 			</div>
-
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
-				<!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
-				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-			</div>
 		</div>
 	</div>
 	<div class="row user_content form_content" u_id="3" n_id="-1">

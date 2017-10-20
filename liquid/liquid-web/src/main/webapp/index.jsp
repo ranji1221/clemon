@@ -310,44 +310,22 @@
 							</ul>
 						</ul>
 						<li>
-							<div class="iconfont icon-gerenzhongxin icon-slidenav"></div>
-							<p>个人中心</p>
+							<div class="iconfont icon-shujukuguanli icon-slidenav"></div>
+							<p>数据库管理</p>
 							<span class="iconfont icon-icon"></span>
 							<div class="rightborder"></div>
 							<div class="rightarrow"></div>
 						</li>
 						<ul>
-							<li>
-								<div class="iconfont icon-jiaoseguanli icon-slidenav"></div>
-								<p>角色管理</p>
-								<span class="iconfont icon-icon"></span>
+							<li url=''>
+								<div class="iconfont icon-beifenshujuku icon-slidenav"></div>
+								<p>备份数据库</p>
+								<!-- <span class="iconfont icon-icon"></span> -->
 							</li>
-							<ul>
-								<li url='./pages/role/rolelist.html'>
-									<div class="iconfont icon-liebiao3 icon-slidenav"></div>
-									<p>角色列表</p>
-									<div class="hoverline"></div>
-								</li>
-								<li>
-									<div class="iconfont icon-tianjia icon-slidenav"></div>
-									<p>添加角色</p>
-									<div class="hoverline"></div>
-								</li>
-								<li>
-									<div class="iconfont icon-piliangtianjia icon-slidenav"></div>
-									<p>批量添加角色</p>
-									<div class="hoverline"></div>
-								</li>
-							</ul>
-							<li>
-								<div class="iconfont icon-yonghuguanli icon-slidenav"></div>
-								<p>用户管理</p>
-								<span class="iconfont icon-icon"></span>
-							</li>
-							<li>
-								<div class="iconfont icon-ziyuanguanli icon-slidenav"></div>
-								<p>资源管理</p>
-								<span class="iconfont icon-icon"></span>
+							<li url=''>
+								<div class="iconfont icon-shuju-yihuifu icon-slidenav"></div>
+								<p>恢复数据库</p>
+								<!-- <span class="iconfont icon-icon"></span> -->
 							</li>
 						</ul>
 						<li>
@@ -805,7 +783,6 @@
 			<script src="${pageContext.request.contextPath}/js/raphael/morris.js"></script>
 			<script src="${pageContext.request.contextPath}/js/index/index.js"></script>
 			<script src="${pageContext.request.contextPath}/js/common/promptBox.js"></script>
-			<div class="minbox" style="display:none;"></div>
 	</body>
 
 </html>

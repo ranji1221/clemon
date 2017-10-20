@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="${pageContext.request.contextPath}/js/role/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>

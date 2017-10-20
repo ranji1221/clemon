@@ -5,7 +5,6 @@
 						"common/icheck/icheck.js",
 						"js/index/getDom.js",
 						"css/editModal/editModal.css",
-						"js/editModal/editModal.js",
 						"common/vakata-jstree/dist/themes/default/style.min.css",
 						"common/vakata-jstree/dist/jstree.min.js",
 						"js/pagination/simplePagination.css",

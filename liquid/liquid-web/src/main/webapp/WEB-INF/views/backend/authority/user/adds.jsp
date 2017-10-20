@@ -1,6 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<script src="${pageContext.request.contextPath}/js/user/adds.js"></script>
-
 <div class="bulkaddroles">
 	<ol class="breadcrumb">
 	    <li>

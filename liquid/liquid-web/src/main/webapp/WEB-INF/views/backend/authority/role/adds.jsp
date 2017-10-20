@@ -1,7 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 
-<script src="${pageContext.request.contextPath}/js/role/adds.js"></script>
-
 <div class="bulkaddroles">
 	<ol class="breadcrumb">
 	    <li>
@@ -28,14 +26,6 @@
 	<div class="titlezl">
 		<p>批量添加角色</p>
 		<div class="btns">
-			<a href="javascript:;" class="min dom_minimize">
-				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
-				<div class="hidmission">
-					<span class="iconfont icon-piliangtianjia icon-slidenav"></span>
-					<p url="${pageContext.request.contextPath}/backend/authority/role/adds">批量添加角色</p>
-					<span class="iconfont icon-chuyidong1 del"></span>
-				</div>
-			</a>
 			<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal">
 				<img src="./img/sys/modal3.png" alt="">
 			</a> -->

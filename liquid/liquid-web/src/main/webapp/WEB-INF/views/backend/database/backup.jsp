@@ -1,0 +1,146 @@
+﻿<%@ page language="java" pageEncoding="UTF-8" %>
+<div class="modal-contentbox">
+
+<ol class="breadcrumb breadcrumb_margin">
+	<li>
+		<i class="glyphicon glyphicon-home"></i>
+		<a href="#" data="2" url="home">首页</a>
+	</li>
+	<li>
+		<a href="#" url="./pages/database/recoverlist">数据库管理</a>
+	</li>
+	<li class="active">备份数据库</li>
+	<div class="nav-search" id="nav-search">
+		<form class="form-search">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="搜索你想找到的...">
+				<span class="input-group-btn">
+			        <button class="btn btn-default" type="button">
+						<img src="./assets/images/sys/iconsearch.png" alt="">
+			        </button>
+			        </span>
+			</div>
+			<!-- /input-group -->
+		</form>
+	</div>
+</ol>
+<div class="container-fluid backupEasy">
+	<div class="alert alert-danger">
+		<i class="glyphicon glyphicon-hand-right"></i>
+
+		温馨提示：备份数据库不在本地，请重新寻找中
+
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</div>
+
+	<!--编辑角色最大化开始-->
+	<div class="row role_hearder database_hearder">
+		<div class="col-xs-5 role_hearde_font">
+			<span>备份数据库</span>
+		</div>
+		<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
+			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
+            	
+            	<img src="./assets/images/sys/modal1.png" alt="" />
+                <!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
+            </div>
+            
+            <div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
+                <!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
+                <img src="./assets/images/sys/modal2.png" alt="" />
+                <div class="hidmission">
+					<span class="iconfont icon-beifenshujuku icon-slidenav"></span>
+					<p url="./pages/database/backup" u_id="5" n_id="-1" mintype='3'>备份数据库</p>
+					<span class="iconfont icon-chuyidong1 del"></span>
+				</div>
+            </div>
+		</div>
+	</div>
+	<div class="row role_content form_content" u_id="5" n_id="-1">
+		<form action="" > 
+			<div class="row role_form ">
+				<div class="form-horizontal col-xs-12">
+					<div class="form-group ">
+						<div class="col-xs-1 form_clire  text-center">
+							<span></span>
+						</div>
+						<label class="col-md-2 col-sm-3 col-xs-3 control-label">备份文件名：</label>
+						<div class="col-xs-8 col-md-7 form_input">
+							<input type="text" name="name" class="form-control " placeholder="请输入文件名..." style="padding: 0;">
+						</div>
+						<div class="col-md-1 col-xs-12 proinfo">
+							<!--<span class="glyphicon glyphicon-ok"></span>
+							<span>输入正确</span>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row role_max_number fath_select fath_select">
+				<div class="col-xs-1 form_clire  text-center">
+					<span></span>
+				</div>
+				<label class="col-lg-3 col-md-4 col-xs-5  control-label subsectionLabel">分卷备份，文件长度限制 ：</label>
+				<div class="col-lg-2 col-md-3 col-xs-4 max_number_add">
+					<select class="form-control select" name="fileSize" data-toggle="select">
+
+							<option value="0">2048kb</option>
+							<option value="1">2048kb</option>
+							<option value="2">2048kb</option>
+							<option value="3">2048kb</option>
+							<option value="4">2048kb</option>
+							<option  value="5">2048kb</option>
+							<option  value="6">2048kb</option>
+							<option  value="7">2048kb</option>
+							<option  value="8">2048kb</option>
+							<option  value="9">2048kb</option>
+
+					</select>
+				</div>
+			</div>
+			<div class="row role_remarks">
+				<div class="col-xs-1 form_clire  text-center">
+					<span></span>
+				</div>
+				<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">备注 ：</label>
+				<div class="col-xs-8 col-md-7 role_write">
+					<textarea  id="" placeholder="请输备注..." name="beizhu"></textarea>
+				</div>
+				<div class="col-md-2 col-xs-12 proinfo">
+					<!--<span class="glyphicon glyphicon-ok"></span>
+					<span>输入正确</span>-->
+				</div>
+			</div>
+			<div class="row role_remarks role_button">
+				<div class="col-xs-1 form_clire  text-center">
+					<span></span>
+				</div>
+				<div class="col-xs-11 col-md-9 role_succse">
+					<button type="submit" name="beizhu" class="btn btn-default startBackup">开始备份</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--编辑角色最大化结束-->
+</div>
+
+</div>
+<script>
+	$(function() {
+		$('[data-toggle="select"]').select2();
+		// 关闭按钮
+	    $('.backupEasy .red_border').on('click',function(){
+			$(this).closest('.modal-contentbox').remove();
+			if(!$('.ajax_dom').html()){
+				$('.ajax_dom').hide()
+			}
+	    })
+		// 最小化隐藏
+		$('.backupEasy .dom_minimize').on('click',function(){
+			$(this).closest(".modal-contentbox").prependTo($(".minbox"));
+			if(!$('.ajax_dom').html()){
+				$('.ajax_dom').hide()
+			}
+	    })
+	})
+</script>

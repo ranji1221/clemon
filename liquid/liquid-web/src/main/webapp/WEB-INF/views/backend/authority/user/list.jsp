@@ -1,6 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<!-- <link rel="stylesheet" href="./assets/styles/rolelist/rolelistREM.css" /> -->
-<script src="${pageContext.request.contextPath}/js/user/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
