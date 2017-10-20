@@ -22,20 +22,20 @@
 	
 	<!-- 查询备份信息 -->
 	<select id="find" parameterType="int" resultType="BackupDatabaseInfo">
-		select * from lemon_liquid_database_backupInfo where id = #{id}
+		select * from lemon_liquid_database_backupInfo where id = #{id} 
 	</select>
 	
 	<!-- 查询全部备份 -->
 	<select id="findAll" resultType="BackupDatabaseInfo" parameterType="Map">
-		select * from lemon_liquid_database_backupInfo
+		select * from lemon_liquid_database_backupInfo ORDER BY createTime desc
 		<include refid="paramsSQL"/>
 	</select>
 	
-	<!-- 分页查询用户 -->
+	<!-- 分页查询备份 -->
 	<select id="findPaginated" resultType="BackupDatabaseInfo" parameterType="Map">
 		select * from lemon_liquid_database_backupInfo
 		<include refid="paramsSQL"/>
-		 limit #{offset}, #{limit}
+		 ORDER BY createTime desc  limit #{offset}, #{limit} 
 	</select>
 	
 	<select id="getTotalOfItems" parameterType="Map" resultType="int">
@@ -43,7 +43,7 @@
 		<include refid="paramsSQL"/>
 	</select>
 	
-	<!-- 修个某条日志 -->
+	<!-- 修个某条备份 -->
 	<update id="update" parameterType="BackupDatabaseInfo">
 		update lemon_liquid_database_backupInfo
 		<set>
