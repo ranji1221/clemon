@@ -48,20 +48,24 @@ public class BackupController {
 	private IBackupDatabaseService backupService;
 	
 	
+	@RequestMapping(value = "/backup")
+	@SystemControllerLog(description="数据库管理-备份数据库跳转")
+	public String backup() {
+		return "backend/database/backup";
+	}
+	
+	@RequestMapping(value = "/recoverlist")
+	@SystemControllerLog(description="数据库管理-恢复数据库跳转")
+	public String recoverlist() {
+		return "backend/database/recoverlist";
+	}
+	
 	@RequestMapping(value = "/listAll")
 	@SystemControllerLog(description="数据库管理-查看备份数据列表")
 	@ResponseBody
 	public List<BackupDatabaseInfo> listAllRole() {
 		List <BackupDatabaseInfo> backupList = backupService.findAll();
 		return backupList;
-	}
-	
-	@RequestMapping(value = "/backup")
-	@SystemControllerLog(description="数据库管理-备份数据库")
-	@ResponseBody
-	public String backup() {
-		
-		return null;
 	}
 	
 	@SystemControllerLog(description="数据库管理-角色列表")
