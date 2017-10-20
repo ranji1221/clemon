@@ -20,4 +20,11 @@ public interface IBackupDatabaseService extends IGenericService<BackupDatabaseIn
 	 * 
 	 */
 	public void backup(String path) throws IOException;
+	
+	/**
+	 * 数据库还原
+	 * @param path 备份文件存储路径
+	 * 
+	 */
+	public void recover(String path) throws IOException;
 }

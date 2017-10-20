@@ -188,14 +188,6 @@ $('.user_auth_submit').on('click',function(){
 					<div class="titleaut">
 						<p>用户授权</p>
 						<div class="btns">
-							<a href="javascript:;" class="min module_minimize" data-dismiss="modal">
-								<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="">
-								<div class="hidmission">
-									<span class="icon-key icon-slidenav"></span>
-									<p class='user-aut' mintype='1'>用户授权</p>
-									<span class="iconfont icon-chuyidong1 del"></span>
-								</div>
-							</a>
 							<a href="javascript:;" class="maxuser enlargeAction">
 								<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
 							</a>

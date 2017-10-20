@@ -1,7 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8" %>
-<!-- <link rel="stylesheet" href="./assets/styles/rolelist/rolelistREM.css" /> -->
-
-<script src="${pageContext.request.contextPath}/js/user/list.js"></script>
+﻿﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
@@ -145,6 +142,8 @@ $(document).on("click", ".editResource", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	var class_name =  $("#editModal").find(".modal-contentbox").attr("maxClassName")
+	$("#editModal").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name)
 	editSource(data);
 });
 //添加查看事件
@@ -154,6 +153,9 @@ $(document).on("click", ".viewResource", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	var class_name =  $("#viewModal").find(".modal-contentbox").attr("maxClassName")
+	$("#viewModal").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name)
+	
 	viewSource(data);
 });
 </script>
@@ -194,7 +196,7 @@ $(document).on("click", ".viewResource", function(e) {
         <table class="table ">
             <thead>
             <tr>
-                <th style="width:0.8rem">
+                <th style="width:0.8rem     padding-left: 0.45rem; ">
                     <label for="checkall">
                         <input  type="checkbox" name="layout" id="checkall" >
                     </label>

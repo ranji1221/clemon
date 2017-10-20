@@ -174,8 +174,14 @@ function viewSource(data) {
 */
 function userAuth(data) {
 	$("#auth_userName").val(data.userName);
+<<<<<<< HEAD
 
 }
+=======
+ 
+}
+
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 //关闭
 $(document).on("click",'.closeAction', function(e) {
 	$(this).closest('.modal-contentbox').remove();

@@ -130,16 +130,6 @@
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
 				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
 			</div>
-
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
-				<!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
-				<img src="${pageContext.request.contextPath}/img/sys/modal2.png" alt="" />
-				<div class="hidmission">
-					<span class="icon-pencil icon-slidenav"></span>
-					<p url="${pageContext.request.contextPath}/backend/authority/resource/add">添加资源</p>
-					<span class="iconfont icon-chuyidong1 del"></span>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="row resources_content form_content" u_id="1" n_id="-1">

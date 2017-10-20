@@ -5,7 +5,6 @@
 						"common/icheck/icheck.js",
 						"js/index/getDom.js",
 						"css/editModal/editModal.css",
-						"js/editModal/editModal.js",
 						"common/vakata-jstree/dist/themes/default/style.min.css",
 						"common/vakata-jstree/dist/jstree.min.js",
 						"js/pagination/simplePagination.css",
@@ -21,8 +20,7 @@
 						"css/role/view.css",
 						"css/database/progress.css",
 						"js/database/progress.js",
-						"css/database/backup.css",
-						"css/database/backupComplex.css"
+						"css/database/backup.css"
 						
 						]
 		$.each(arr,function(i,v){

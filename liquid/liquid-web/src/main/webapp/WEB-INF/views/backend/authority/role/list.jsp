@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="${pageContext.request.contextPath}/js/role/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
@@ -150,6 +149,8 @@ $(document).on("click", ".role_editRole", function(e) {
 		//var editRole_id=$(this).closest('tr').attr('listid');
 		//editRole(editRole_id);
 	}
+	var class_name =  $("#editModal").find(".modal-contentbox").attr("maxClassName")
+	$("#editModal").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name)
 	editRoleModal(data);
 });
 //添加查看事件
@@ -159,6 +160,9 @@ $(document).on("click", ".viewRole", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	//添加页面和加样式
+	var class_name =  $("#viewModal").find(".modal-contentbox").attr("maxClassName")
+	$("#viewModal").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name)
 	viewRole(data);
 });
 //添加查看角色授权事件
@@ -168,8 +172,9 @@ $(document).on("click", ".roleAuth", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	var class_name =  $("#role-authorization").find(".modal-contentbox").attr("maxClassName")
+	$("#role-authorization").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name)
 	roleAuthInit(data);
-	$("#role-authorization").modal('show');
 });
 </script>
 
