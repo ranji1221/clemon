@@ -424,15 +424,8 @@
 					<li>
 						<div class="iconfont icon-shouhui btn-fold"></div>
 					</li>
-					<li>
-						<div class="iconfont icon-caidan5555 btn-mission"></div>
-					</li>
-					<div class="mission">
-						<h3>任务&nbsp;&nbsp;&nbsp;————————</h3>
-						<ol>
-							
-						</ol>
-					</div>
+					
+					
 				</ul>
 			</aside>
 			<!-- 左侧面滑动导航菜单结束 -->
