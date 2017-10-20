@@ -100,9 +100,6 @@ $('#resSubmit').on('click',function(){
 					<p>角色授权</p>
 					<div class="btns">
 						<!-- <a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4"> -->
-						<a href="javascript:;" class="maxrole narrowAction" data-dismiss="modal">
-							<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
-						</a>
 						<a href="javascript:;" class="zclose closeAction">
 							<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 						</a>

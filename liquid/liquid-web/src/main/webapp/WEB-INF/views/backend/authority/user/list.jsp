@@ -138,6 +138,8 @@ $(document).on("click", ".editUser", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	var class_name =  $("#editModal").find(".modal-contentbox").attr("maxClassName")
+	$("#editModal").find(".modal-contentbox").appendTo(".ajax_dom").addClass("editrolelg modalCon active")
 	editUserModal(data);
 });
 //添加查看事件
@@ -147,6 +149,8 @@ $(document).on("click", ".viewUser", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	var class_name =  $("#viewModal").find(".modal-contentbox").attr("maxClassName")
+	$("#viewModal").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name)
 	viewUser(data);
 });
 //添加查看用户授权事件
@@ -156,6 +160,8 @@ $(document).on("click", ".userAuth", function(e) {
 	var storage_name = $(this).closest('tr').attr('storage_name');
 	var storage_id = $(this).closest('tr').attr('storage_id');
 	var data = getDataByStorage(storage_name,storage_id);
+	var class_name =  $("#user-authorization").find(".modal-contentbox").attr("maxClassName")
+	$("#user-authorization").find(".modal-contentbox").appendTo(".ajax_dom").addClass(class_name).attr("id",class_name)
 	userAuth(data);
 });
 </script>

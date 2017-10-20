@@ -45,9 +45,7 @@
 					<div class="titleautlg">
 						<p>用户授权</p>
 						<div class="btns">
-							<a href="javascript:;" class="maxuser narrowAction">
-								<img src="${pageContext.request.contextPath}/img/sys/modal3.png" alt="">
-							</a>
+							
 							<a href="javascript:;" class="zclose  closeAction" data-dismiss="modal">
 								<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 							</a>
