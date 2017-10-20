@@ -1,5 +1,6 @@
 package org.ranji.lemon.web.liquid.controller.backend.database;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -72,10 +73,12 @@ public class BackupController {
 			//命名文件
 			String sqlName = BackupUtil.rename("sql");
 			// 获取存储路径
-			String absolutePath = BackupUtil.getAbsolutePath("/lemon", session); //绝对地址
-			String relativePath = BackupUtil.getRelativePath("/lemon", session); //相对地址
-			backupService.backup(absolutePath + "/" + sqlName);
-			backup.setPath(relativePath + "/" + sqlName);
+			String absolutePath = BackupUtil.getAbsolutePath("\\lemon", session); //绝对地址
+			String relativePath = BackupUtil.getRelativePath("\\lemon", session); //相对地址
+			backupService.backup(absolutePath + "\\" + sqlName);
+			backup.setPath(relativePath + "\\" + sqlName);
+			File file = new File(absolutePath + "\\" + sqlName);
+			backup.setFileSize(file.length());
 			backupService.save(backup);
 			return "{ \"success\" : true }";
 		} catch (IOException e) {
@@ -91,7 +94,7 @@ public class BackupController {
 		try {
 			BackupDatabaseInfo backupInfo = backupService.find(id);
 			// 获取存储路径
-			String absolutePath = BackupUtil.getAbsolutePath("/", session); //绝对地址
+			String absolutePath = BackupUtil.getAbsolutePath("\\", session); //绝对地址
 			String path = backupInfo.getPath(); //相对地址
 			backupService.recover(absolutePath + path); //还原数据库操作
 			return "{ \"success\" : true }";

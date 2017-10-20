@@ -3,8 +3,8 @@
 <mapper namespace="org.ranji.lemon.model.liquid.database.BackupDatabaseInfo">
 
 	<insert id="save" parameterType="BackupDatabaseInfo" keyProperty="id" useGeneratedKeys="true">
-		insert into lemon_liquid_database_backupInfo (guid, createTime,updateTime,infoName,path,remark) 
-		values (#{guid}, #{createTime},#{updateTime},#{infoName},#{path},#{remark})
+		insert into lemon_liquid_database_backupInfo (guid, createTime,updateTime,infoName,path,remark,fileSize) 
+		values (#{guid}, #{createTime},#{updateTime},#{infoName},#{path},#{remark},#{fileSize})
 	</insert>
 	
 	<!-- 删除某条备份信息 -->

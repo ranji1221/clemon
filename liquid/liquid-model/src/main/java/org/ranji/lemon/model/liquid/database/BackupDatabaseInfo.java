@@ -1,5 +1,7 @@
 package org.ranji.lemon.model.liquid.database;
 
+import java.text.NumberFormat;
+
 import org.ranji.lemon.common.core.model.AbstractModel;
 import org.ranji.lemon.common.core.util.JsonUtil;
 
@@ -34,7 +36,27 @@ public class BackupDatabaseInfo extends AbstractModel{
 	private String infoName;    //备份名
 	private String path;		//备份路径
 	private String remark;		//备注
+	private String fileSize;    //文件大小
 	
+	
+	public String getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(long size) {
+		NumberFormat nf=NumberFormat.getNumberInstance() ; 
+		nf.setMaximumFractionDigits(2);
+		if(size<1024){
+			fileSize =nf.format(size) +"B";
+		}else if(size<1024*1024){
+			this.fileSize =nf.format(size/1024.0) + "KB";
+		}else if(size<1024*1024*1024){
+			this.fileSize = nf.format(size/1024.0 * 1024) + "MB";
+		}else if(size<1024*1024*1024*1024){
+			this.fileSize = nf.format(size/1024.0 * 1024 * 1024) + "GB";
+		}	
+	}
+
 	public BackupDatabaseInfo(){
 		
 	}
