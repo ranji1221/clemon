@@ -63,29 +63,6 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="row role_max_number fath_select fath_select">
-				<div class="col-xs-1 form_clire  text-center">
-					<span></span>
-				</div>
-				<label class="col-lg-3 col-md-4 col-xs-5  control-label subsectionLabel">分卷备份，文件长度限制 ：</label>
-				<div class="col-lg-2 col-md-3 col-xs-4 max_number_add">
-					<select class="form-control select" name="fileSize" data-toggle="select">
-
-							<option value="0">2048kb</option>
-							<option value="1">2048kb</option>
-							<option value="2">2048kb</option>
-							<option value="3">2048kb</option>
-							<option value="4">2048kb</option>
-							<option  value="5">2048kb</option>
-							<option  value="6">2048kb</option>
-							<option  value="7">2048kb</option>
-							<option  value="8">2048kb</option>
-							<option  value="9">2048kb</option>
-
-					</select>
-				</div>
-			</div>
 			<div class="row role_remarks">
 				<div class="col-xs-1 form_clire  text-center">
 					<span></span>

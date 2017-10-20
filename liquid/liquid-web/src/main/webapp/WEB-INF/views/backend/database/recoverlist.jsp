@@ -10,12 +10,15 @@ $("#recoversList").LemonGetList({
 	    requestListUrl : '${pageContext.request.contextPath}/backend/database/backup/data',
 	    className_Page : "#page",
 	    generateItemFun : function(index,value,data,extend){
+	    	var newDate = new Date()
+	    	newDate.setTime(value.createTime)
+	    	var createTime = newDate.format('yyyy-MM-dd hh:mm:ss'); 
 			var tr_data = '<tr listid='+ value.id+extend +' recover_id='+ value.id + extend +'>' +
 					'<td title='+ value.infoName +'>' +
 						value.infoName +
 					'</td>' +
 					'<td title='+ value.createTime +'>' +
-						value.createTime +
+						createTime +
 					'</td>' +
 					'<td title="823KB">' +
 						'823KB' +
@@ -50,6 +53,11 @@ $("#recoversList").LemonGetList({
 	})
 }
 recoverListInit();	
+//刷新页面	
+$(document).on("click",".renovate",function(){
+	removeStorage();
+	recoverListInit();
+});
 </script>
 <div class="rolelist recoverlist">
 	<ol class="breadcrumb">
@@ -115,320 +123,14 @@ recoverListInit();
 				</tr>
 			</thead>
 			<tbody id = "recoversList">
-				<tr listid='01'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='02'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
-				</tr>
-				<tr listid='03'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='04'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
-				</tr>
-				<tr listid='05'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='06'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='07'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='08'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='09'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='10'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='11'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='12'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='13'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='14'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
-				<tr listid='15'>
-					<td title="xxx数据库">
-						xxx数据库
-					</td>
-					<td title="2017/01/01">
-						2017/01/01
-					</td>
-					<td title="823KB">
-						823KB
-					</td>
-					<td title="查看备注" class='remarks'>
-						查看备注
-					</td>
-					<td>
-						<span class="glyphicon glyphicon-log-in iconact leading"></span>
-					</td>
-					<td>
-						<span class="icon-trash iconact removeBtn redtrash"></span>
-					</td>
-				</tr>
 			</tbody>
 		</table>
-		<div class="tfoot2">
+		<div class="tfoot">
+			<div class="btns">
+				<span class="renovate">
+					<img src="${pageContext.request.contextPath}/img/sys/icons1.png" alt="">
+					刷新
+				</span>
+			</div>
 		</div>
 	</div>

@@ -317,7 +317,7 @@
 							<div class="rightarrow"></div>
 						</li>
 						<ul>
-							<li url='${pageContext.request.contextPath}/backend/database/backup/backup'>
+							<li url='${pageContext.request.contextPath}/backend/database/backup/backupJump'>
 								<div class="iconfont icon-beifenshujuku icon-slidenav"></div>
 								<p>备份数据库</p>
 							</li>
