@@ -7,7 +7,7 @@
 		<a href="#" data="2" url="home">首页</a>
 	</li>
 	<li>
-		<a href="#" url="./pages/database/recoverlist">数据库管理</a>
+		<a href="#">数据库管理</a>
 	</li>
 	<li class="active">备份数据库</li>
 	<div class="nav-search" id="nav-search">
@@ -16,7 +16,7 @@
 				<input type="text" class="form-control" placeholder="搜索你想找到的...">
 				<span class="input-group-btn">
 			        <button class="btn btn-default" type="button">
-						<img src="./assets/images/sys/iconsearch.png" alt="">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
 			        </button>
 			        </span>
 			</div>
@@ -41,18 +41,8 @@
 		<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
 			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
             	
-            	<img src="./assets/images/sys/modal1.png" alt="" />
+            	<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
                 <!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
-            </div>
-            
-            <div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 role_hearde_this_icon green_border dom_minimize">
-                <!--<a href=""><span class="small_icon glyphicon green_back">-</span></a>-->
-                <img src="./assets/images/sys/modal2.png" alt="" />
-                <div class="hidmission">
-					<span class="iconfont icon-beifenshujuku icon-slidenav"></span>
-					<p url="./pages/database/backup" u_id="5" n_id="-1" mintype='3'>备份数据库</p>
-					<span class="iconfont icon-chuyidong1 del"></span>
-				</div>
             </div>
 		</div>
 	</div>
@@ -69,8 +59,6 @@
 							<input type="text" name="name" class="form-control " placeholder="请输入文件名..." style="padding: 0;">
 						</div>
 						<div class="col-md-1 col-xs-12 proinfo">
-							<!--<span class="glyphicon glyphicon-ok"></span>
-							<span>输入正确</span>-->
 						</div>
 					</div>
 				</div>
@@ -107,8 +95,6 @@
 					<textarea  id="" placeholder="请输备注..." name="beizhu"></textarea>
 				</div>
 				<div class="col-md-2 col-xs-12 proinfo">
-					<!--<span class="glyphicon glyphicon-ok"></span>
-					<span>输入正确</span>-->
 				</div>
 			</div>
 			<div class="row role_remarks role_button">
@@ -131,13 +117,6 @@
 		// 关闭按钮
 	    $('.backupEasy .red_border').on('click',function(){
 			$(this).closest('.modal-contentbox').remove();
-			if(!$('.ajax_dom').html()){
-				$('.ajax_dom').hide()
-			}
-	    })
-		// 最小化隐藏
-		$('.backupEasy .dom_minimize').on('click',function(){
-			$(this).closest(".modal-contentbox").prependTo($(".minbox"));
 			if(!$('.ajax_dom').html()){
 				$('.ajax_dom').hide()
 			}

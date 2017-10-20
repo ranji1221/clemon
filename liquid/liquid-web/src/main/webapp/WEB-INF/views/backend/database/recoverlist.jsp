@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
-<script src="./assets/scripts/database/recoverlist.js"></script>
+<script src="${pageContext.request.contextPath}/js/database/recoverlist.js"></script>
 	
 <div class="rolelist recoverlist">
 	<ol class="breadcrumb">
@@ -17,7 +17,7 @@
 			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
 			        <span class="input-group-btn">
 			        <button class="btn btn-default" type="button">
-						<img src="./assets/images/sys/iconsearch.png" alt="">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
 			        </button>
 			        </span>
 			    </div><!-- /input-group -->
@@ -58,10 +58,6 @@
 					</th>
 					<th>
 						备注
-						<!-- <span class="sort">
-							<i class="glyphicon glyphicon-triangle-top"></i>
-							<i class="glyphicon glyphicon-triangle-bottom"></i>
-						</span> -->
 					</th>
 					<!-- <th style="width:0.6rem">查看</th> -->
 					<th style="width:0.6rem">导入</th>
@@ -82,18 +78,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='02'>
 					<td title="xxx数据库">
@@ -134,18 +124,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='04'>
 					<td title="xxx数据库">
@@ -186,18 +170,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='06'>
 					<td title="xxx数据库">
@@ -212,18 +190,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='07'>
 					<td title="xxx数据库">
@@ -238,18 +210,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='08'>
 					<td title="xxx数据库">
@@ -264,18 +230,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='09'>
 					<td title="xxx数据库">
@@ -290,18 +250,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='10'>
 					<td title="xxx数据库">
@@ -316,18 +270,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='11'>
 					<td title="xxx数据库">
@@ -342,18 +290,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='12'>
 					<td title="xxx数据库">
@@ -368,18 +310,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='13'>
 					<td title="xxx数据库">
@@ -394,18 +330,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='14'>
 					<td title="xxx数据库">
@@ -420,18 +350,12 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 				<tr listid='15'>
 					<td title="xxx数据库">
@@ -446,53 +370,15 @@
 					<td title="查看备注" class='remarks'>
 						查看备注
 					</td>
-					<!-- <td>
-						<span class="icon-eye-open iconact lookRole"></span>
-					</td> -->
 					<td>
 						<span class="glyphicon glyphicon-log-in iconact leading"></span>
 					</td>
 					<td>
 						<span class="icon-trash iconact removeBtn redtrash"></span>
 					</td>
-					<!-- <td>
-						<span class="icon-key iconact"></span>
-					</td> -->
 				</tr>
 			</tbody>
 		</table>
 		<div class="tfoot2">
-			<!-- <div class="btns">
-				<span class="newPro" url="./pages/role/add.html">
-					<img src="./assets/images/sys/icons4.png" alt="">
-					新建
-				</span>
-				<span>
-					<img src="./assets/images/sys/icons1.png" alt="">
-					刷新
-				</span>
-				<span class="removeBtn redtrash">
-					<img src="./assets/images/sys/icons2.png" alt="">
-					删除
-				</span>
-			</div> -->
-			<div class="pagination">
-				<a href="javascript:;" class="pre"></a>
-				<a href="javascript:;" class="page">1</a>
-				<a href="javascript:;" class="page active">2</a>
-				<a href="javascript:;" class="page">3</a>
-				<a href="javascript:;" class="page">4</a>
-				<a href="javascript:;" class="page">5</a>
-				<a href="javascript:;" class="page">6</a>
-				<a href="javascript:;" class="page">7</a>
-				<a href="javascript:;" class="shot">···</a>
-				<a href="javascript:;" class="page">46</a>
-				<a href="javascript:;" class="page">47</a>
-				<a href="javascript:;" class="next"></a>
-				<span>跳转到</span>
-				<input type="text">
-				<span>页</span>
-				<button class="search">GO</button>
-			</div>
 		</div>
 	</div>

@@ -317,15 +317,13 @@
 							<div class="rightarrow"></div>
 						</li>
 						<ul>
-							<li url=''>
+							<li url='${pageContext.request.contextPath}/backend/database/backup/backup'>
 								<div class="iconfont icon-beifenshujuku icon-slidenav"></div>
 								<p>备份数据库</p>
-								<!-- <span class="iconfont icon-icon"></span> -->
 							</li>
-							<li url=''>
+							<li url='${pageContext.request.contextPath}/backend/database/backup/recoverlist'>
 								<div class="iconfont icon-shuju-yihuifu icon-slidenav"></div>
 								<p>恢复数据库</p>
-								<!-- <span class="iconfont icon-icon"></span> -->
 							</li>
 						</ul>
 						<li>

@@ -20,8 +20,7 @@
 						"css/role/view.css",
 						"css/database/progress.css",
 						"js/database/progress.js",
-						"css/database/backup.css",
-						"css/database/backupComplex.css"
+						"css/database/backup.css"
 						
 						]
 		$.each(arr,function(i,v){
