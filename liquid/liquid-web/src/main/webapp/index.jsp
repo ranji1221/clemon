@@ -805,7 +805,6 @@
 			<script src="${pageContext.request.contextPath}/js/raphael/morris.js"></script>
 			<script src="${pageContext.request.contextPath}/js/index/index.js"></script>
 			<script src="${pageContext.request.contextPath}/js/common/promptBox.js"></script>
-			<div class="minbox" style="display:none;"></div>
 	</body>
 
 </html>
