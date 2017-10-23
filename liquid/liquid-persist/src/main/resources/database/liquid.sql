@@ -130,3 +130,23 @@ CREATE TABLE `lemon_liquid_log_systemlog` (
   `userName` varchar(255) collate utf8_bin default NULL COMMENT '用户名称',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=557 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Table structure for `lemon_liquid_database_backupinfo`
+-- ----------------------------
+DROP TABLE IF EXISTS `lemon_liquid_database_backupinfo`;
+CREATE TABLE `lemon_liquid_database_backupinfo` (
+  `id` int(11) unsigned NOT NULL auto_increment COMMENT '备份数据库id',
+  `guid` varchar(255) collate utf8_bin NOT NULL,
+  `createTime` datetime default NULL COMMENT '创建时间',
+  `updateTime` datetime default NULL COMMENT '更新时间',
+  `infoName` varchar(255) collate utf8_bin default NULL COMMENT '备份名称',
+  `path` varchar(255) collate utf8_bin default NULL COMMENT '备份路径',
+  `remark` varchar(255) collate utf8_bin default NULL COMMENT '备注',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of lemon_liquid_database_backupinfo
+-- ----------------------------
+

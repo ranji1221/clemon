@@ -104,6 +104,32 @@ public class BackupController {
 		}
 	}
 	
+	@RequestMapping(value = "/delete")
+	@SystemControllerLog(description="数据库管理-删除数据库")
+	@ResponseBody
+	public String delete(int id,HttpSession session) {
+		try {
+			BackupDatabaseInfo backupInfo = backupService.find(id);
+			// 获取存储路径
+			String absolutePath = BackupUtil.getAbsolutePath("\\", session); //绝对地址
+			String path = backupInfo.getPath(); //相对地址
+			File file = new File(absolutePath + path);
+			if(!file.exists()){
+				return "{ \"success\" : false, \"msg\" : \"文件不存在\"}";
+			}else {
+				if (file.isFile()&&file.delete()){
+					//file.delete();  //删除文件
+					backupService.delete(id); //删除记录
+					return "{ \"success\" : true , \"msg\" : \"删除成功\"}";
+				}
+			}	
+			return "{ \"success\" : true }";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "{ \"success\" : false }";
+		}
+	}
+	
 	@RequestMapping(value = "/listAll")
 	@SystemControllerLog(description="数据库管理-查看备份数据列表")
 	@ResponseBody
