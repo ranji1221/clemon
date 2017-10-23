@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
+<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script type="text/javascript">
+$("#btn").click(function(){
 	$.post("${pageContext.request.contextPath}/backend/database/backup/backup",{
 		infoName:$("#infoName").val(),
 		remark:$("#remark").val(),
@@ -7,18 +9,20 @@
 		if(data.success){
 			removeStorage();
 			$(".ajax_dom").empty()
-			$.ajax({
-				url:"${pageContext.request.contextPath}/backend/backup/backup/list"
+			/* $.ajax({
+				url:"${pageContext.request.contextPath}/backend/database/backup/backupJump"
 			}).done(function(data){
 				$(data).appendTo($(".ajax_dom"))
 				$('.alertArea').showAlert({content:'备份成功'});
-			})
+			}) */
+			alert("备份成功")
 		
 		}
 		else{
 			alert("失败啦")
 		}
-	},'json');
+	},'json'); 
+})	
 </script>
 <div class="modal-contentbox">
 
@@ -100,7 +104,7 @@
 					<span></span>
 				</div>
 				<div class="col-xs-11 col-md-9 role_succse">
-					<button type="submit" name="beizhu" class="btn btn-default startBackup">开始备份</button>
+					<button id = "btn" type="button" name="beizhu" class="btn btn-default startBackup">开始备份</button>
 				</div>
 			</div>
 		</form>

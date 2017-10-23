@@ -26,7 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * Authority模块中的SystemLogService测试类
+ * Authority模块中的DatabaseService测试类
  * @author LiJianBo
  * @date 2017-9-21
  * @since JDK1.7

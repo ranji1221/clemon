@@ -2,6 +2,7 @@
 <script src="${pageContext.request.contextPath}/js/database/recoverlist.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/LemonGetList.js"></script>
+<script src="${pageContext.request.contextPath}/js/pagination/jquery.simplePagination.js"></script>
 
 <script type="text/javascript">
 function recoverListInit(){
@@ -23,8 +24,8 @@ $("#recoversList").LemonGetList({
 					'<td title="823KB">' +
 						'823KB' +
 					'</td>' +
-					'<td title='+value.remarks+' class="remarks">' +
-						value.remarks +
+					'<td title='+value.remark+' class="remarks">' +
+						value.remark +
 					'</td>' +
 					'<td>' +
 						'<span class="glyphicon glyphicon-log-in iconact leading"></span>' +
@@ -57,6 +58,23 @@ recoverListInit();
 $(document).on("click",".renovate",function(){
 	removeStorage();
 	recoverListInit();
+});
+$('.removeBtn').bindDialogs({
+	content : '你确定删除这个数据库吗？',
+	success:function(handle){
+		var recoverId = $(handle).closest('tr').attr('recover_id');
+		$.post("${pageContext.request.contextPath}/backend/database/backup/delete",{
+			id:recoverId,
+		},function(data){
+			if(data.success == true) {
+				$('.alertArea').showAlert({content:'删除成功'});
+				removeStorage();
+				recoverListInit();
+			}else{
+				$('.alertArea').showAlert({content:'删除失败',type:'danger'});
+			}
+		},'json');
+	}
 });
 </script>
 <div class="rolelist recoverlist">
