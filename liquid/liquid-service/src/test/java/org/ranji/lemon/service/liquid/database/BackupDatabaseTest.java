@@ -1,5 +1,6 @@
 package org.ranji.lemon.service.liquid.database;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
@@ -25,7 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * See the License for the specific language governing permissions and limitations under the License.
  * Copyright [2017] [RanJi] [Email-jiran1221@163.com]
  * 
- * Authority模块中的SystemLogService测试类
+ * Authority模块中的DatabaseService测试类
  * @author LiJianBo
  * @date 2017-9-21
  * @since JDK1.7
@@ -42,6 +43,7 @@ public class BackupDatabaseTest {
 	@Test
 	public void testBackup() throws IOException{
 		backupDatabase.backup("d:\\lemon.sql");
+		System.out.println(new File("d:\\lemon.sql").length());
 	}
 	//测试还原数据库
 	@Test
