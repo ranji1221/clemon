@@ -1,4 +1,25 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
+<script type="text/javascript">
+	$.post("${pageContext.request.contextPath}/backend/database/backup/backup",{
+		infoName:$("#infoName").val(),
+		remark:$("#remark").val(),
+	},function(data){
+		if(data.success){
+			removeStorage();
+			$(".ajax_dom").empty()
+			$.ajax({
+				url:"${pageContext.request.contextPath}/backend/backup/backup/list"
+			}).done(function(data){
+				$(data).appendTo($(".ajax_dom"))
+				$('.alertArea').showAlert({content:'备份成功'});
+			})
+		
+		}
+		else{
+			alert("失败啦")
+		}
+	},'json');
+</script>
 <div class="modal-contentbox">
 
 <ol class="breadcrumb breadcrumb_margin">
@@ -56,7 +77,7 @@
 						</div>
 						<label class="col-md-2 col-sm-3 col-xs-3 control-label">备份文件名：</label>
 						<div class="col-xs-8 col-md-7 form_input">
-							<input type="text" name="name" class="form-control " placeholder="请输入文件名..." style="padding: 0;">
+							<input type="text" id="infoName" name="name" class="form-control " placeholder="请输入文件名..." style="padding: 0;">
 						</div>
 						<div class="col-md-1 col-xs-12 proinfo">
 						</div>
@@ -69,7 +90,7 @@
 				</div>
 				<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">备注 ：</label>
 				<div class="col-xs-8 col-md-7 role_write">
-					<textarea  id="" placeholder="请输备注..." name="beizhu"></textarea>
+					<textarea  id="remark" placeholder="请输备注..." name="beizhu"></textarea>
 				</div>
 				<div class="col-md-2 col-xs-12 proinfo">
 				</div>
