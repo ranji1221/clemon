@@ -22,7 +22,7 @@ public class BackupUtil {
 	 * @return 路径String
 	 */
 	public static String getAbsolutePath(String databaseName, HttpSession session) {
-		return session.getServletContext().getRealPath("/") + "backup" + databaseName;
+		return session.getServletContext().getRealPath("/") + "backup/" + databaseName;
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class BackupUtil {
 	 * @return 路径String
 	 */
 	public static String getRelativePath(String databaseName, HttpSession session) {
-		return "backup" + databaseName;
+		return "backup/" + databaseName;
 	}
 	
 	/**

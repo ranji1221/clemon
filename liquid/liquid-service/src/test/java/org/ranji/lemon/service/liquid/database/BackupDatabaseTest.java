@@ -1,5 +1,6 @@
 package org.ranji.lemon.service.liquid.database;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
@@ -42,6 +43,7 @@ public class BackupDatabaseTest {
 	@Test
 	public void testBackup() throws IOException{
 		backupDatabase.backup("d:\\lemon.sql");
+		System.out.println(new File("d:\\lemon.sql").length());
 	}
 	//测试还原数据库
 	@Test
