@@ -20,8 +20,10 @@
 						"css/role/view.css",
 						"css/database/progress.css",
 						"js/database/progress.js",
-						"css/database/backup.css"
-						
+						"css/database/backup.css",
+						"css/role/editnew.css",
+						"common/bootstrapvalidator/js/bootstrapValidator.js",
+						"common/bootstrapvalidator/css/bootstrapValidator.css"
 						]
 		$.each(arr,function(i,v){
 			if(v.substring(v.length-3) == "css"){

@@ -11,11 +11,11 @@ $(function(){
 //滑块 
 function limitChangeLength(elm, limitLength) {
 	$(elm).attr("maxLength", limitLength);
-	$(elm).siblings("span").html($(elm).attr("maxlength") - $(elm).val().length);
+	$(elm).siblings(".limitlength").html($(elm).attr("maxlength") - $(elm).val().length);
 	$(elm).keyup(function() {
 		var length = $(elm).val().length;
 		
-		$(elm).siblings("span").html($(elm).attr("maxlength") - length);
+		$(elm).siblings(".limitlength").html($(elm).attr("maxlength") - length);
 	});
 }
 
@@ -79,8 +79,8 @@ function editRoleModal(data) {
 	limitChangeLength($(".sliderInput input[type='text']"),12)
 	var maxNum = data.roleMaxNum;
 	var maxLimitNum = 10;
-	var add = $(".numCtr .icon-plus");
-	var sub = $(".numCtr .icon-minus");
+	var add = $(".numCtr .add");
+	var sub = $(".numCtr .reduce ");
 	var grey = '#bdc3c7';
 	var blue = '#378ef8';
 	judge(maxNum)

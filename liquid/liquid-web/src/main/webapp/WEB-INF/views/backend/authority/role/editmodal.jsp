@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-
+<<script  src="${pageContext.request.contextPath}/js/validate/validate.js "></script>
 <script type="text/javascript">
 
 function dealDataToModal(data){
@@ -116,161 +116,179 @@ $(document).on("click","#submit_editRole",function(){
 </script>
 
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal  modalToBody" tabindex="-1" role="dialog">
-<div class="modal-contentbox"  maxClassName="editrolelg modalCon active" narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditModal">
-	<!-- 放大后的导航 -->
-	<ol class="breadcrumb breadcrumb_margin">
-		<li>
-			<i class="glyphicon glyphicon-home"></i>
-			<a href="#" data="2" url="home">首页</a>
-		</li>
-		<li>
-			<a href="#" url="${pageContext.request.contextPath}/backend/authority/role/list">角色管理</a>
-		</li>
-		<li>
-			<a href="">角色列表</a>
-		</li>
-		<li class="active">角色编辑</li>
-		<div class="nav-search" id="nav-search">
+
+<div class="maxcontainer editpage modal-contentbox" >
+	<ol class="breadcrumb">
+	    <li>
+	    	<i class="glyphicon glyphicon-home"></i>
+	    	<a href="#" data="2" url="home">首页</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">角色管理</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">角色列表</a>
+	    </li>
+	    <li class="active">编辑角色</li>
+    	<div class="nav-search" id="nav-search">
 			<form class="form-search">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="搜索你想找到的...">
-					<span class="input-group-btn">
-				        <button class="btn btn-default" type="button">
-							<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
-				        </button>
-				        </span>
-				</div>
-				<!-- /input-group -->
+			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
+			        <span class="input-group-btn">
+			        <button class="btn btn-default" type="button">
+						<img src="./assets/images/sys/iconsearch.png" alt="">
+			        </button>
+			        </span>
+			    </div><!-- /input-group -->
 			</form>
 		</div>
 	</ol>
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content" u_id="2">
-		<!--  页面中的红色提示框-->
-		<div class="alert alert-danger">
-				<i class="glyphicon glyphicon-hand-right"></i> 温馨提示：此页面展示角色查看操作。单击右方x号，可以关闭此条提示语！
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			</div>
-		<!--  放大后的头部-->
-		<div class="row role_hearder">
-				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 role_hearde_font">
-					<span>角色编辑</span>
-				</div>
-				<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-					<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction" data-dismiss="modal">
 	
-						<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-						<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
-					</div>
+	<div class="title">
+		<p>编辑角色</p>
+		<div class="btns">
+			<!-- <a href="javascript:;" class="min dom_minimize">
+				<img src="./assets/images/sys/modal2.png" alt="">
+				<div class="hidmission">
+					<span class="icon-key icon-slidenav"></span>
+					<p url='./pages/role/role-authorizationlg'>编辑角色</p>
+					<span class="iconfont icon-chuyidong1 del"></span>
 				</div>
-			</div>
-		
-			<div class="modal-header">
-				<div class="pull-right">
-					<a href="javascript:;" class="enlargeAction">
-						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" />
-					</a>
-					<a href="javascript:;" class="remove" data-dismiss="modal">
-						<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-					</a>
-				</div>
-				<h4 class="modal-title">
-					<span>|</span><b>编辑角色</b>
-				</h4>
-			</div>
-			<div class="modal-body">
-				<form class="form-horizontal flatUi" id="editRole">
-					<div class="form-group has-feedback">
-						<div class="col-xs-12 roleNameError text-right row-xs-h">
-							<!--不要输入特殊符号-->
-						</div>
-						<div class="col-xs-3 col-sm-2 row-lg-h">
-							<label for="roleName" class=" control-label"><span class="dot">·</span>角色名称：</label>
-						</div>
-						<div class="col-xs-9 col-sm-10 row-lg-h roleNameBox sliderInput width_active" >
-							<input type="hidden" name="roleId" id="edit_roleId">
-							<input type="text" class="form-control bg-grey2  form_input" maxlength="12" id="edit_displayName" placeholder="请输入角色名称">
-							<span class="minlimitNum">12</span>
-							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
-							<!--<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>-->
-						</div>
-					</div>
-					<!--滑块-->
-					<div class="row role_content_error_xian">
-					<div class="error_xian col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
-						<div class="col-lg-2 col-md-3 col-xs-4"></div>
-						<div class="error_box col-lg-5 col-md-7 col-sm-6 col-xs-6"></div>
-					</div>
-				</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="col-sm-5 col-xs-6 row-xs-h parentRoleError text-right">
-								<!--您还未选择父级角色-->
-							</div>
-							<div class="col-sm-5 col-xs-6 row-xs-h relyRoleError text-right">
-								<!--你还未选择依赖角色-->
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-12 col-xs-12  row-lg-h fath_select">
-							<div class="col-md-5 col-sm-2 col-xs-3 l-pd r-pd">
-								<label for="sourceType" class="control-label">
-	                <span class="dot">·</span>父级角色：
-	            </label>
-							</div>
-	
-							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="fath" data-toggle="select" class=" form-control select_roleList" id="edit_roleExtendPId">
-								</select>
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-12 col-xs-12 row-lg-h fath_select">
-							<div class="col-md-5 col-sm-2 col-xs-3  l-pd col-md-offset-1 r-pd">
-								<label for="parentRole" class="control-label">
-	                <span class="dot">·</span>依赖角色：
-	            </label>
-							</div>
-							<div class="col-xs-4 col-md-6 row-lg-h select-l-pd">
-								<select name="yilai" data-toggle="select" class="form-control select_roleList" id="edit_roleRelyId">
-								</select>
-							</div>
-						</div>
-	
-					</div>
-					<div class="form-group">
-						<div class="col-sm-3 col-xs-4 row-lg-h maxNumView">
-							<label class="control-label" for="limitNum">
-	                <span class="dot">·</span>最大限制用户数
-	            </label>
-						</div>
-						<div class="col-xs-2 row-lg-h numCtr">
-							<a href="" class=" icon-minus text-center reduce"></a>
-							<input readonly class="form-control" id="edit_roleMaxNum" type="text"/>
-							<a href="" class="icon-plus text-center add active"></a>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-3 col-sm-2 remarkBox">
-							<label class="control-label" for="remark">
-	                <span class="dot">·</span>备注：</label>
-						</div>
-						<div class="col-xs-9 col-sm-10 textarea-h ">
-							<textarea class="form-control bg-grey active" id="edit_remarks" cols="30" rows="5" placeholder="请输入备注"></textarea>
-						</div>
-	
-					</div>
-					<div class="form-group">
-						<div class="role_button">
-							<div class="col-xs-6 role_succse"  data-dismiss="modal">
-								<button type="button" class="btn btn-default editSourceSubmit" id="submit_editRole">确定</button>
-							</div>
-							<div class="col-xs-6 role_remove">
-								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+			</a>
+			<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
+				<img src="./assets/images/sys/modal3.png" alt="">
+			</a> -->
+			<a href="javascript:;" class="zclose" data-dismiss="modal">
+				<img src="./assets/images/sys/modal1.png" alt="">
+			</a>
 		</div>
 	</div>
+	<div class="form_content">
+		<form class="form-role-editlg newform">
+			<div class="formhead">青柠云后台管理系统</div>
+		  	<div class="form-group input">
+		    	<label for="" >角色名称：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax form_input sliderInput">
+				    	<input type="text" class="form-control rolenameinput" placeholder="请输入角色名称" name='username'>
+				    	<span class="limitlength">15</span>
+				    	<span class="errormessage errormessage-role-edit-name">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group select">
+		    	<label for="" >父级角色：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
+
+							<option value="0" disabled="disabled">选择父级角色</option>
+							<option value="1">角色列表</option>
+							<option value="2">首页</option>
+							<option value="3">角色列表</option>
+							<option value="4">角色列表</option>
+
+						</select>
+				    	<span class="errormessage errormessage-role-edit-fath">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group select">
+		    	<label for="" >依赖角色：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="yilai">
+
+							<option value="0" disabled="disabled">选择依赖角色</option>
+							<option value="1">角色列表</option>
+							<option value="2">首页</option>
+							<option value="3">角色列表</option>
+							<option value="4">角色列表</option>
+
+						</select>
+				    	<span class="errormessage errormessage-role-edit-yilai">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group number">
+		    	<label for="" >最大限制用户数：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax row-lg-h numCtr">
+				    	<a class="reduce active">
+							-
+						</a>
+						<div class="input">
+							<input type="text" id="edit_roleMaxNum" readonly value='0'  name="max_num">
+						</div>
+						<a class="add">
+							+
+						</a>
+				    	<span class="errormessage errormessage-role-edit-num">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group textarea">
+		    	<label for="" >备注：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<textarea name="beizhu" id="" placeholder="请输入备注"></textarea>
+				    	<span class="errormessage errormessage-role-edit-num">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		 <!--<div class="form-group tree">
+		    	<label for="" >角色授权：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<header>
+							<label for="checkallRoleaut">
+								<input  type="checkbox" name="checkallaut" class="checkallRoleaut">
+								选中全部
+							</label>
+							<label for='slidedownallRoleaut'>
+								<input  type="checkbox" name="slidedownallaut" class="slidedownallRoleaut">
+								展开全部
+							</label>
+							<label class="prompt visible-md visible-lg">
+								温馨小提示：此
+								<input  type="checkbox" name="disabled" checked disabled>
+								为您的上级权限您无权更改
+							</label>
+						</header>
+						<div class="treezl">
+							<div class="role-authorization">
+							
+							</div>
+						</div>
+			    	
+				    	<label class="prompt visible-sm visible-xs">
+							温馨小提示：此
+							<input  type="checkbox" name="disabled" checked disabled>
+							为您的上级权限您无权更改
+						</label>
+			  	
+				    	<span class="errormessage errormessage-role-edit-aut">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>   -->
+		  	<div class="btnbox">
+				<button type="button" class="btn btn-default submitbtn-role-edit" disabled>确定</button>
+				<button type="button" class="btn btn-default">取消</button>
+		  	</div>
+		</form>
 	</div>
+	
+</div>
 </div>
