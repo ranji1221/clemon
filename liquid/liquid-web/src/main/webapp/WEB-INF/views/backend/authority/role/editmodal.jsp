@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
-<<script  src="${pageContext.request.contextPath}/js/validate/validate.js "></script>
+<script  src="${pageContext.request.contextPath}/js/validate/validate.js "></script>
 <script type="text/javascript">
 
 function dealDataToModal(data){
@@ -136,7 +136,7 @@ $(document).on("click","#submit_editRole",function(){
 			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
 			        <span class="input-group-btn">
 			        <button class="btn btn-default" type="button">
-						<img src="./assets/images/sys/iconsearch.png" alt="">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
 			        </button>
 			        </span>
 			    </div><!-- /input-group -->
@@ -159,7 +159,7 @@ $(document).on("click","#submit_editRole",function(){
 				<img src="./assets/images/sys/modal3.png" alt="">
 			</a> -->
 			<a href="javascript:;" class="zclose" data-dismiss="modal">
-				<img src="./assets/images/sys/modal1.png" alt="">
+				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 			</a>
 		</div>
 	</div>
@@ -278,11 +278,11 @@ $(document).on("click","#submit_editRole",function(){
 						</label>
 			  	
 				    	<span class="errormessage errormessage-role-edit-aut">
-			    		<!-- 您输入了特殊符号！ -->
+			    		
 			    		</span>
 		    		</div>
 		    	</div>
-		  	</div>   -->
+		  	</div>    -->
 		  	<div class="btnbox">
 				<button type="button" class="btn btn-default submitbtn-role-edit" disabled>确定</button>
 				<button type="button" class="btn btn-default">取消</button>

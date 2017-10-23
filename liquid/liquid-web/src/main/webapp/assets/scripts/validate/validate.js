@@ -240,7 +240,7 @@ $(function(){
         },
         fields: {
         	// 此处认真核对验证表单的name值
-            sourcename: {//input对应的name值
+        	username: {//input对应的name值
                 container: '.errormessage-source-edit-name',//显示错误提示的容器选择器
                 validators: {
                     notEmpty: {

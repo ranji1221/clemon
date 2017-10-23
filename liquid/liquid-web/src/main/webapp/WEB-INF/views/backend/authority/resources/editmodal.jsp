@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
-
+<script  src="${pageContext.request.contextPath}/js/validate/validate.js "></script>
 <script>
 function beforeMaxEditResourceModal(){
 	$(".relateCtl [type='checkbox']").iCheck({
@@ -7,10 +7,10 @@ function beforeMaxEditResourceModal(){
 		increaseArea: '20%' // optional
 	});
 	
-	$(".in_input_num span").html(12-$(".in_input_num input").val().length)
+	$(".in_input_num .limitlength").html(12-$(".in_input_num input").val().length)
 	$(".in_input_num input").on("keyup",function(){
 		var val = $(this).val().length
-		$(".in_input_num span").html(12-val)
+		$(".in_input_num .limitlength").html(12-val)
 	})
 }
 beforeMaxEditResourceModal()
@@ -84,157 +84,124 @@ $(document).on("click","#submit_editResource",function(){
 }) 
 </script>
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg modalToBody editSour_modal" tabindex="-1" role="dialog">
-	<div class="modal-contentbox" maxClassName="editsourcelg modalCon " narrowClassName="#editModal" beforeMaxFunName="beforeMaxEditResourceModal">
-	<ol class="breadcrumb breadcrumb_margin">
-		<li>
-			<i class="glyphicon glyphicon-home"></i>
-			<a href="#" data="2" url="home">首页</a>
-		</li>
-		<li>
-			<a href="#" url="${pageContext.request.contextPath}/backend/authority/resources/list">资源管理</a>
-		</li>
-		<li class="active">编辑资源</li>
-		<div class="nav-search" id="nav-search">
+<div class="maxcontainer editpage modal-contentbox" >
+	<ol class="breadcrumb">
+	    <li>
+	    	<i class="glyphicon glyphicon-home"></i>
+	    	<a href="#" data="2" url="home">首页</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">用户管理</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">用户列表</a>
+	    </li>
+	    <li class="active">编辑用户</li>
+    	<div class="nav-search" id="nav-search">
 			<form class="form-search">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="搜索你想找到的...">
-					<span class="input-group-btn">
-				        <button class="btn btn-default" type="button">
-							<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
-				        </button>
-				        </span>
-				</div>
-				<!-- /input-group -->
+			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
+			        <span class="input-group-btn">
+			        <button class="btn btn-default" type="button">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
+			        </button>
+			        </span>
+			    </div><!-- /input-group -->
 			</form>
 		</div>
 	</ol>
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content" u_id="1">
-			<div class="modal-header">
-				<div class="pull-right">
-					
-					<a href="javascript:;" class="enlargeAction">
-						<img src="${pageContext.request.contextPath}/img/sys/modal3.png" />
-					</a>
-					<a href="javascript:;" class="remove" data-dismiss="modal">
-						<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-					</a>
-				</div>
-				<h4 class="modal-title">
-								<span>|</span><b>编辑资源</b>
-							</h4>
-			</div>
-			<div class="row resources_hearder">
-			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 resources_hearde_font">
-				<span>编辑资源</span>
-			</div>
-			<div class="pull-right col-lg-2 col-md-2 col-sm-3 col-xs-4 role_hearde_icon">
-				<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon closeAction">
 	
-					<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-					<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
-				</div>
-			
-			</div>
-		</div>
-			
-			<div class="modal-body">
-				<form class="form-horizontal">
-					<div class="form-group has-feedback">
-						<div class="col-xs-12 roleNameError text-right row-xs-h">
-							<!--不要输入特殊符号-->
-						</div>
-						<div class="col-sm-2 col-xs-3 row-lg-h">
-							<label for="resourceName" class=" control-label"><span class="dot">·</span>资源名称：</label>
-						</div>
-						<div class="col-sm-9 col-xs-9 row-lg-h in_input_num">
-							<input type="hidden" id="edit_resourceId" name="resourceId" >
-							<input name="name" type="text" class="form-control bg-grey" id="edit_resourceName" maxlength="12" placeholder="请输入资源名称">
-							<!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
-							<!--<span class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>-->
-							<!-- <span class="wordNum">12</span> -->
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="col-sm-5 col-xs-6 row-xs-h parentRoleError text-right">
-								<!--您还未选择资源类型-->
-							</div>
-							<div class="col-sm-5 col-xs-6 row-xs-h relyRoleError text-right">
-								<!--你还未选择父级资源资源-->
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-12 col-xs-12  row-lg-h fath_select ">
-							<div class="col-md-5 col-sm-2 col-xs-3 l-pd r-pd">
-								<label for="sourceType" class="control-label">
-	                <span class="dot">·</span>资源类型：
-	            </label>
-							</div>
-	
-							<div class="col-xs-4 col-md-6 row-lg-h select_box">
-								<select name="yilai" class="form-control select_roleList" id="edit_resourceType">
-									<option disabled selected>请选择资源类型</option>
-									<option value="1">菜单</option>
-									<option value="2">元素</option>		
-									<option value="3">文件</option>
-									<option value="4">操作</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-12 col-xs-12 row-lg-h fath_select ">
-							<div class="col-md-5 col-sm-2 col-xs-3  l-pd col-md-offset-1 r-pd">
-								<label for="parentRole" class="control-label">
-	                <span class="dot">·</span>父级资源：
-	            </label>
-							</div>
-							<div class="col-xs-4 col-md-6 row-lg-h select_box">
-								<select name="fath" data-toggle="select" class=" form-control select_resourceList" id="edit_resourcePId">
-								</select>
-							</div>
-						</div>
-	
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12 roleNameError text-right row-xs-h">
-							<!--不要输入特殊符号-->
-						</div>
-						<div class="col-sm-2 col-xs-3 row-lg-h">
-							<label class="control-label">
-	                <span class="dot">·</span>相关操作:
-	            </label>
-						</div>
-						<div class="col-sm-10 col-xs-9 row-lg-h" id="edit_operation">
-							<div class="col-xs-3 relateCtl">
-								<input name="edit_operation" id="sourcecheck" type="checkbox" value="1" checked>
-								<label for="sourcecheck">查看</label>
-							</div>
-							<div class="col-xs-3 relateCtl">
-								<input name="edit_operation" id="sourceChange" value="2" type="checkbox">
-								<label for="sourceChange">更改</label>
-							</div>
-							<div class="col-xs-3 relateCtl">
-								<input name="edit_operation" id="sourceAdd" value="3" type="checkbox">
-								<label for="sourceAdd">增加</label>
-							</div>
-							<div class="col-xs-3 relateCtl">
-								<input name="edit_operation" id="sourceDel" value="4" type="checkbox">
-								<label for="sourceDel">删除</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="role_button">
-							<div class="col-xs-6 role_succse" data-dismiss="modal">
-								<button type="button" class="btn btn-default editSourceSubmit" id="submit_editResource">确定</button>
-							</div>
-							<div class="col-xs-6 role_remove">
-								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+	<div class="title">
+		<p>编辑资源</p>
+		<div class="btns"> 
+			<a href="javascript:;" class="zclose" data-dismiss="modal">
+				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
+			</a>
 		</div>
 	</div>
+	<div class="form_content">
+		<form class="form-source-editlg newform">
+			<div class="formhead">青柠云后台管理系统</div>
+		  	<div class="form-group input">
+		    	<label for="" >资源名称：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax in_input_num">
+				    	<input type="text" class="form-control rolenameinput" placeholder="请输入用户名称" maxlength="12" name='username'>
+				    	<span class="limitlength">15</span>
+				    	<span class="errormessage errormessage-source-edit-name">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group select">
+		    	<label for="" >资源类型：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
+
+							<option value="0" disabled="disabled">请选择资源类型</option>
+							<option value="1">菜单</option>
+							<option value="2">元素</option>
+							<option value="3">文件</option>
+							<option value="4">操作</option>
+
+						</select>
+				    	<span class="errormessage errormessage-role-edit-fath">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	 	<div class="form-group select">
+		    	<label for="" >父级资源：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
+
+							<option value="0" disabled="disabled">选择资源</option>
+							<option value="1"></option>
+							<option value="2"></option>
+							<option value="3"></option>
+							<option value="4"></option>
+
+						</select>
+				    	<span class="errormessage errormessage-role-edit-fath">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group phone">
+		    	<label for="" >相关操作：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<div class="col-xs-3 relateCtl">
+							<input name="look" id="sourcecheck" type="checkbox" checked>
+							<label for="sourcecheck">查看</label>
+						</div>
+						<div class="col-xs-3 relateCtl">
+							<input name="change" id="sourceChange" type="checkbox">
+							<label for="sourceChange">更改</label>
+						</div>
+						<div class="col-xs-3 relateCtl">
+							<input name="add" id="sourceAdd" type="checkbox">
+							<label for="sourceAdd">增加</label>
+						</div>
+						<div class="col-xs-3 relateCtl">
+							<input name="del" id="sourceDel" type="checkbox">
+							<label for="sourceDel">删除</label>
+						</div>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="btnbox">
+				<button type="button" class="btn btn-default submitbtn-role-edit" disabled>确定</button>
+				<button type="button" class="btn btn-default">取消</button>
+		  	</div>
+		</form>
+	</div>
+	
 </div>
+
 </div>

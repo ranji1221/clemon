@@ -210,7 +210,7 @@ form.newform .inputwrapper .inputwrappermax{
 form.newform .input .inputwrapper{
 	padding-right:2.5rem;
 }
-form.newform .input .inputwrapper .inputwrappermax{
+form.newform .input .inputwrapper .inputwrappermax,form.newform .email .inputwrapper .inputwrappermax,form.newform .phone .inputwrapper .inputwrappermax{
 	max-width:7rem;
 }
 form.newform .select .inputwrapper .inputwrappermax{
@@ -309,6 +309,9 @@ form.newform .btnbox{
 	padding:0.66rem 0 0.56rem;
 	border-top:1px dashed rgb(221, 221, 221);
 	text-align: center;
+	border-left:1px solid rgb(221,221,221);
+	border-right:1px solid rgb(221,221,221);
+	background-color:white;
 }
 form.newform .btnbox button.btn:active:focus{
 	outline: none;
