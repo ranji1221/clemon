@@ -96,8 +96,13 @@ public class BackupController {
 			// 获取存储路径
 			String absolutePath = BackupUtil.getAbsolutePath("\\", session); //绝对地址
 			String path = backupInfo.getPath(); //相对地址
-			backupService.recover(absolutePath + path); //还原数据库操作
-			return "{ \"success\" : true }";
+			File file = new File(absolutePath + path);
+			if(!file.exists()){
+				return "{ \"success\" : false, \"msg\" : \"文件不存在\"}";
+			}else{
+				backupService.recover(absolutePath + path); //还原数据库操作
+				return "{ \"success\" : true }";
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "{ \"success\" : false }";
