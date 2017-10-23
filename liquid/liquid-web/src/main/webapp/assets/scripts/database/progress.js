@@ -1,5 +1,4 @@
 $(function(){
-	console.log('progress')
 	// 进度条容器
 	var progress_box=$('#leading-progress .progressbox')
 	// 进度条

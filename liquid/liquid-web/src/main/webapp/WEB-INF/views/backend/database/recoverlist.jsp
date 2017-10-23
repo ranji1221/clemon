@@ -14,15 +14,15 @@ $("#recoversList").LemonGetList({
 	    	var newDate = new Date()
 	    	newDate.setTime(value.createTime)
 	    	var createTime = newDate.format('yyyy-MM-dd hh:mm:ss'); 
-			var tr_data = '<tr listid='+ value.id+extend +' recover_id='+ value.id + extend +'>' +
+			var tr_data = '<tr listid='+ value.id+extend +' recover_id='+ value.id +'>' +
 					'<td title='+ value.infoName +'>' +
 						value.infoName +
 					'</td>' +
 					'<td title='+ value.createTime +'>' +
 						createTime +
 					'</td>' +
-					'<td title="823KB">' +
-						'823KB' +
+					'<td title='+ value.fileSize +'>' +
+						value.fileSize +
 					'</td>' +
 					'<td title='+value.remark+' class="remarks">' +
 						value.remark +
