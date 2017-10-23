@@ -673,7 +673,7 @@ textarea {
 }
 
 .editRole_modal.bigmodule .modal-content .modal-body,.ajax_dom .modal-contentbox .modal-content .modal-body{
-	padding: 0.9rem 0.7rem 0 1.14rem;
+	
 }
 
 .editRole_modal.bigmodule .modal-content,.ajax_dom .modal-contentbox .modal-content,
@@ -1070,15 +1070,14 @@ textarea {
 .modal-contentbox .user_hearder,
 .modal-contentbox .role_hearder{
     width: 100%;
-    height: 0.8rem;
-    border-bottom: 1px solid rgba(213, 213, 213, 1); 
+    height: 0.6rem; 
 }
 .modal-contentbox .user_hearder .user_hearde_font,
 .modal-contentbox .role_hearder .role_hearde_font {
 	border-left: 3px solid #378ef8;
 	padding-left: 5px;
 	height: 0.23rem;
-	margin-top: 0.27rem;
+	margin-top: 0.17rem;
 	line-height: 0.23rem; 
 }
 .modal-contentbox .user_hearder .user_hearde_font span ,
@@ -1172,8 +1171,7 @@ textarea {
 }
 .ajax_dom .looklg .role_hearder {
     width: 100%;
-    height: 0.8rem;
-    border-bottom: 1px solid #dcdcdc;
+    height: 0.6rem;
 }
 
 
@@ -1319,4 +1317,95 @@ textarea {
 }
 #lookLogModal >.modal-contentbox{
 	width:10rem;
+}
+
+/*放大后的页面*/
+.ajax_dom .modal-content .alert-danger{
+padding-left:0.32rem;
+height:0.65rem;
+	margin-bottom:0;
+	margin-top:0.2rem;
+	margin-bottom:0.1rem;
+	font-size:0.14rem;
+	color:black;
+}
+.ajax_dom .modal-content .alert-danger i{
+	font-size:0.24rem;
+	color:black;
+	    vertical-align: text-bottom;
+	    margin-right:0.1rem;
+}
+.ajax_dom .modal-content .alert-danger button{
+	opacity: 1;
+}
+.ajax_dom .modal-content .alert-danger button span{
+	font-size:0.3rem;
+	color:black;
+}
+.ajax_dom .modal-body .modal_body_title{
+	padding-left:0.45rem;
+	background-color:#f2f2f4;
+	height:0.6rem;
+	border:1px solid #dddddd;
+	border-bottom:1px dashed #dddddd;
+
+}	
+.ajax_dom .modal-body .modal_body_title h3{
+	font-size:0.24rem;
+		line-height:0.6rem;
+	height:100%;
+}
+
+
+.ajax_dom .looklg .modal-body {
+    margin-right:0;
+    padding: 0.43rem 0.25rem; 
+    padding-left:0;
+    padding-right:0;
+    padding-top:0;
+}
+.ajax_dom .looklg .modal-body table {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	text-align: right;
+	table-layout: fixed; 
+}
+.ajax_dom .looklg .modal-body table .remarks td{
+	    white-space: normal;
+    text-overflow: unset;
+    word-break: normal;
+}
+.ajax_dom .looklg .modal-body table tr{
+	height:0.6rem;
+	border-bottom:1px dashed #ddd;
+	text-align:left;
+}
+.ajax_dom .looklg .modal-body table tr td {
+	font-size: 0.18rem;
+	height:0.6rem;
+	line-height:0.6rem;
+	padding:0;
+	color: #333333;	
+	overflow: hidden;
+	white-space: nowrap;
+	border-top:none;
+	text-overflow: ellipsis;
+	word-break: keep-all; 
+}
+.ajax_dom .looklg .modal-body table tr td.error {
+	color: rgb(255,100,100);
+}
+.ajax_dom .looklg .modal-body table tr td:nth-child(1) {
+	border-left:none;
+	background-color:#fbfbfb;
+	padding-left:0.7rem;
+	padding-right: 0.40rem; 
+}
+.ajax_dom .looklg .modal-body table tr td:nth-child(2) {
+	text-align: left;
+	border-left: 1px dashed #ddd;
+	font-size:0.16rem;
+	color:#666666;
+	padding-left: 0.52rem; 
 }

@@ -29,6 +29,11 @@
 				</div>
 			</ol>
 			<div class="modal-content">
+			<!--  页面中的红色提示框-->
+			<div class="alert alert-danger">
+				<i class="glyphicon glyphicon-hand-right"></i> 温馨提示：此页面展示用户查看操作。单击右方x号，可以关闭此条提示语！
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
 				<div class="row role_hearder">
         			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 role_hearde_font">
             			<span>查看用户</span>
@@ -54,7 +59,10 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<table class="table table-striped">
+				<div class="row modal_body_title">
+					<h3>青柠云后台管理系统</h3>
+				</div>
+					<table class="table ">
 						<tr>
 							<td class="col-lg-2">用户名称</td>
 							<td id="view_userName">马小米</td>
