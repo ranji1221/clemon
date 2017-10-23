@@ -143,6 +143,7 @@ CREATE TABLE `lemon_liquid_database_backupinfo` (
   `infoName` varchar(255) collate utf8_bin default NULL COMMENT '备份名称',
   `path` varchar(255) collate utf8_bin default NULL COMMENT '备份路径',
   `remark` varchar(255) collate utf8_bin default NULL COMMENT '备注',
+  `fileSize` varchar(255) collate utf8_bin default NULL COMMENT '文件大小',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
