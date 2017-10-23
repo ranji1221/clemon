@@ -126,7 +126,7 @@ $(document).on("click","#submit_editResource",function(){
 		    	<label for="" >资源名称：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax in_input_num">
-				    	<input type="text" class="form-control rolenameinput" placeholder="请输入用户名称" maxlength="12" name='username'>
+				    	<input type="text" class="form-control rolenameinput" placeholder="请输入资源名称" maxlength="12" name='username'>
 				    	<span class="limitlength">15</span>
 				    	<span class="errormessage errormessage-source-edit-name">
 			    		<!-- 您输入了特殊符号！ -->
