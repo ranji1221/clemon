@@ -2,6 +2,8 @@ package org.ranji.lemon.service.liquid.database;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +44,10 @@ public class BackupDatabaseTest {
 	//测试备份数据库
 	@Test
 	public void testBackup() throws IOException{
-		backupDatabase.backup("d:\\lemon.sql");
+		List<String> tables = new ArrayList<String>();
+		tables.add("lemon_liquid_database_backupinfo");
+		tables.add("lemon_liquid_log_systemlog");
+		backupDatabase.backup("d:\\lemon.sql",tables);
 		System.out.println(new File("d:\\lemon.sql").length());
 	}
 	//测试还原数据库

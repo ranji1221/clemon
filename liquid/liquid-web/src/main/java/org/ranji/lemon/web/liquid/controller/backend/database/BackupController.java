@@ -2,6 +2,7 @@ package org.ranji.lemon.web.liquid.controller.backend.database;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,10 @@ public class BackupController {
 			// 获取存储路径
 			String absolutePath = BackupUtil.getAbsolutePath("lemon", session); //绝对地址
 			String relativePath = BackupUtil.getRelativePath("lemon", session); //相对地址
-			backupService.backup(absolutePath + "/" + sqlName);
+			List<String> tables = new ArrayList<String>();
+			tables.add("lemon_liquid_database_backupinfo");
+			tables.add("lemon_liquid_log_systemlog");
+			backupService.backup(absolutePath + "/" + sqlName, tables);
 			backup.setPath(relativePath + "/" + sqlName);
 			File file = new File(absolutePath + "/" + sqlName);
 			backup.setFileSize(file.length());

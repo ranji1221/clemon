@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.List;
 import java.util.ResourceBundle;
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
 import org.ranji.lemon.model.liquid.database.BackupDatabaseInfo;
@@ -24,13 +25,17 @@ public class BackupDatabaseServiceImpl extends GenericServiceImpl<BackupDatabase
 	//private static String dbName;     //数据库名
 		
 	@Override
-	public void backup(String path) throws IOException{
+	public void backup(String path,List<String> table) throws IOException{
 		initVariableByProperties();
 		Runtime runtime = Runtime.getRuntime();
 		//-u后面是用户名，-p是密码-p后面最好不要有空格，-family是数据库的名字
-		String cmd = "cmd /c mysqldump -h "+ hostIP +" -u "+ userName +" -p"+ password +" --set-charset=UTF8 lemon";
-		System.out.println(cmd);
-		Process process = runtime.exec(cmd);
+		String cmd = "cmd /c mysqldump --single-transaction -h "+ hostIP +" -u "+ userName +" -p"+ password +" --set-charset=UTF8 lemon ";
+		StringBuffer sbf = new StringBuffer();
+		for(String s : table){//排除的表
+			sbf.append("--ignore-table =lemon."+s);
+		}
+		System.out.println(cmd + sbf);
+		Process process = runtime.exec(cmd + sbf);
 		InputStream inputStream = process.getInputStream();//得到输入流，写成.sql文件
 		InputStreamReader reader = new InputStreamReader(inputStream,"utf-8");
 		BufferedReader br = new BufferedReader(reader);
