@@ -146,6 +146,11 @@ $(document).on("click","#submit_editRole",function(){
 	</ol>
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content" u_id="2">
+		<!--  页面中的红色提示框-->
+		<div class="alert alert-danger">
+				<i class="glyphicon glyphicon-hand-right"></i> 温馨提示：此页面展示角色查看操作。单击右方x号，可以关闭此条提示语！
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
 		<!--  放大后的头部-->
 		<div class="row role_hearder">
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 role_hearde_font">
