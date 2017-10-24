@@ -4,41 +4,20 @@
 <script>
 (function($) {
 	$(function() {
-		if($(".input input").text() == 10) {
+		if($(".input_num input").text() == 10) {
 
 			$(".add").removeClass("active")
 			$(".reduce").addClass("active")
-		} else if($(".input input").text() == 0) {
-			$(".add").addClass("active")
+		} else if($(".input_num input").text() == 0) {
 			$(".reduce").removeClass("active")
+			$(".add").addClass("active")
 
 		} else {
 			$(".add").addClass("active")
 			$(".reduce").addClass("active")
 
 		}
-		//拖拽问题
-		$(".sliderInput").css("width", "0");
-		var minlimitNum = 5;
-		$(".minlimitNum").html(minlimitNum);
-//		var docu_w = parseInt($(".sliderInput").css("width"));
-		$(".error_box").slider({
-			orientation: "horizontal",
-			range: "min",
-			max: 72,
-			value: 72,
-			slide: function(event, ui) {
-				var ui_value = ui.value
-				$(".sliderInput").css("width",  ui_value+"%");
-				$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10)-$(".sliderInput").find("input").val().length);
-				$(".sliderInput").find("input").val($(".sliderInput").find("input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-				$(".sliderInput").find("input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
-				limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-			}
-		})
-		$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-		$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))
-
+		
 
 		function limitChangeLength(elm, limitLength) {
 			$(elm).attr("maxLength", limitLength);
@@ -53,7 +32,7 @@
 		$(".reduce").click(function(e) {
 
 			e.preventDefault();
-			var numVal = $(".input input").val();
+			var numVal = $(".input_num input").val();
 			if(numVal == 1) {
 				$(".add").addClass("active")
 				$(".reduce").removeClass("active")
@@ -62,17 +41,17 @@
 				//					alert(1)
 				$(".add").addClass("active")
 				numVal--;
-				$(".input input").val(numVal);
+				$(".input_num input").val(numVal);
 			}
 		});
 		$(".add").click(function(e) {
 			e.preventDefault();
-			var numVal = $(".input input").val();
+			var numVal = $(".input_num input").val();
 			if(numVal < 10) {
 				numVal++;
 				$(".add").addClass("active")
 				$(".reduce").addClass("active")
-				$(".input input").val(numVal);
+				$(".input_num input").val(numVal);
 			}
 			if(numVal == 10) {
 				$(".reduce").addClass("active")
@@ -162,110 +141,178 @@ $(document).on("click","#submit_addRole",function(){
 		</form>
 	</div>
 </ol>
-<div class="container-fluid">
+<div class="maxcontainer editpage modal-contentbox" >
+	<ol class="breadcrumb">
+	    <li>
+	    	<i class="glyphicon glyphicon-home"></i>
+	    	<a href="#" data="2" url="home">首页</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">角色管理</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">角色列表</a>
+	    </li>
+	    <li class="active">添加角色</li>
+    	<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<div class="input-group">
+			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
+			        <span class="input-group-btn">
+			        <button class="btn btn-default" type="button">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
+			        </button>
+			        </span>
+			    </div><!-- /input-group -->
+			</form>
+		</div>
+	</ol>
+	
+	<div class="title">
+		<p>添加角色</p>
+		<div class="btns">
+			<!-- <a href="javascript:;" class="min dom_minimize">
+				<img src="./assets/images/sys/modal2.png" alt="">
+				<div class="hidmission">
+					<span class="icon-key icon-slidenav"></span>
+					<p url='./pages/role/role-authorizationlg'>编辑角色</p>
+					<span class="iconfont icon-chuyidong1 del"></span>
+				</div>
+			</a>
+			<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
+				<img src="./assets/images/sys/modal3.png" alt="">
+			</a> 
+			<a href="javascript:;" class="zclose edit_red_border" data-dismiss="modal">
+				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
+			</a>-->
+		</div>
+	</div>
+	<div class="form_content">
+		<form class="form-role-editlg newform">
+			<div class="formhead">青柠云后台管理系统</div>
+		  	<div class="form-group input">
+		    	<label for="" >角色名称：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax form_input sliderInput">
+				    	<input type="text" class="form-control rolenameinput" placeholder="请输入角色名称" name='username'>
+				    	<span class="limitlength">15</span>
+				    	<span class="errormessage errormessage-role-edit-name">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group select">
+		    	<label for="" >父级角色：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
 
-	<!--编辑角色最大化开始-->
-	<div class="row role_hearder link_xian">
-		<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 role_hearde_font">
-			<span>添加角色</span>
-		</div>
-		<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
-				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
-				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-			</div>
-		</div>
-	</div>
-	<div class="row role_content form_content">
-		<form action="" id="jjjj">
-			<div class="row role_form ">
-				<div class="form-horizontal col-lg-12 col-md-9 col-sm-9 col-xs-12">
-					<div class="form-group ">
-						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-							<span></span>
-						</div>
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-3 control-label">角色名称：</label>
-						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6 form_input  col-md-offset-0 col-sm-offset-1 role_name sliderInput">
-							<input type="text" maxlength="15" class="form-control " placeholder="请输入角色名称" id="add_displayName">
-							<span class="minlimitNum">15</span>
-						</div>
-					</div>
-				</div>
-				<div class="error_font col-lg-3 col-md-3 col-sm-3 col-xs-3">
-					<!--visible-->
-					<span class="error_icon icon-exclamation-sign"></span>
-					<span>您输入了特殊符号！</span>
-				</div>
-			</div>
-			<div class="row role_content_error_xian display_block">
-				<div class="error_xian col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
-					<div class="col-lg-3 col-md-3 col-xs-4"></div>
-					<div class="error_box col-lg-5 col-md-7 col-sm-6 col-xs-6"></div>
-				</div>
-			</div>
-			<ul class="row role_fath">
-				<li class="col-lg-7 col-md-12 col-sm-12 col-xs-12 fath_select">
-					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-						<span></span>
-					</div>
-					<label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">父级角色：</label>
-					<div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 form_input">
-						<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select" id="add_roleExtendPId">
+							<option value="0" disabled="disabled">选择父级角色</option>
+							<option value="1">角色列表</option>
+							<option value="2">首页</option>
+							<option value="3">角色列表</option>
+							<option value="4">角色列表</option>
+
 						</select>
-					</div>
-					<div class="error_font col-lg-4 col-md-4 col-sm-4 col-xs-4">
-						<!--visible-->
-						<span class="error_icon icon-exclamation-sign"></span>
-						<span>您还未选择依赖角色</span>
-					</div>
-				</li>
-				<li class="col-lg-5 col-md-12 col-sm-12 col-xs-12 fath_select">
-					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-						<span></span>
-					</div>
-					<label class="col-lg-4 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">依赖角色：</label>
-					<div class="col-lg-4 col-md-2 col-sm-2 col-xs-2 form_input">
-						<select class="form-control select select-primary select-block mbl" name="yilai" data-toggle="select" id="add_roleRelyId">
+				    	<span class="errormessage errormessage-role-edit-fath">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group select">
+		    	<label for="" >依赖角色：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="yilai">
+
+							<option value="0" disabled="disabled">选择依赖角色</option>
+							<option value="1">角色列表</option>
+							<option value="2">首页</option>
+							<option value="3">角色列表</option>
+							<option value="4">角色列表</option>
+
 						</select>
-					</div>
-				</li>
-			</ul>
-			<div class="row role_max_number">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-					<span></span>
-				</div>
-				<label class="col-lg-2 col-md-3 col-sm-3 col-xs-3 control-label">最大限制用户数 ：</label>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 max_number_add">
-					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 reduce active">
-						<a href=""><span>-</span></a>
-					</div>
-					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 input">
-						<input type="text" readonly value="0" name="max_num" id="add_roleMaxNum">
-					</div>
-					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 add">
-						<a href=""><span>+</span></a>
-					</div>
-				</div>
-			</div>
-			<div class="row role_remarks">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-					<span></span>
-				</div>
-				<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">备注 ：</label>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 role_write">
-					<textarea id="" placeholder="请输入备注" name="beizhu" id="add_remarks"></textarea>
-				</div>
-			</div>
-			<div class="row role_button">
-				<div class=" col-md-6 col-lg-6 col-sm-6 col-xs-6 role_succse">
-					<button type="button" class="btn btn-default" id="submit_addRole">确认</button>
-				</div>
-				<div class=" col-md-4 col-lg-4 col-sm-4 col-xs-6 role_remove">
-					<button type="button" class="btn btn-default">取消</button>
-				</div>
-			</div>
-	</form>
+				    	<span class="errormessage errormessage-role-edit-yilai">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group number">
+		    	<label for="" >最大限制用户数：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax row-lg-h numCtr">
+				    	<a class=" reduce ">
+							-
+						</a>
+						<div class="input_num input">
+							<input type="text" id="edit_roleMaxNum" readonly value='0'  name="max_num">
+						</div>
+						<a class="add active">
+							+
+						</a>
+				    	<span class="errormessage errormessage-role-edit-num">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group textarea">
+		    	<label for="" >备注：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<textarea name="beizhu" id="" placeholder="请输入备注"></textarea>
+				    	<span class="errormessage errormessage-role-edit-num">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		 <!--<div class="form-group tree">
+		    	<label for="" >角色授权：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<header>
+							<label for="checkallRoleaut">
+								<input  type="checkbox" name="checkallaut" class="checkallRoleaut">
+								选中全部
+							</label>
+							<label for='slidedownallRoleaut'>
+								<input  type="checkbox" name="slidedownallaut" class="slidedownallRoleaut">
+								展开全部
+							</label>
+							<label class="prompt visible-md visible-lg">
+								温馨小提示：此
+								<input  type="checkbox" name="disabled" checked disabled>
+								为您的上级权限您无权更改
+							</label>
+						</header>
+						<div class="treezl">
+							<div class="role-authorization">
+							
+							</div>
+						</div>
+			    	
+				    	<label class="prompt visible-sm visible-xs">
+							温馨小提示：此
+							<input  type="checkbox" name="disabled" checked disabled>
+							为您的上级权限您无权更改
+						</label>
+			  	
+				    	<span class="errormessage errormessage-role-edit-aut">
+			    		
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>    -->
+		  	<div class="btnbox">
+				<button type="button" class="btn btn-default submitbtn-role-edit" disabled>确定</button>
+				<button type="button" class="btn btn-default">取消</button>
+		  	</div>
+		</form>
 	</div>
-	<!--编辑角色最大化结束-->
+	
 </div>
 </div>

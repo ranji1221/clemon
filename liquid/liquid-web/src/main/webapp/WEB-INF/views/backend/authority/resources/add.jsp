@@ -118,125 +118,123 @@
 		</form>
 	</div>
 </ol>
-<div class="container-fluid">
-	<!--编辑资源最大化开始-->
-	<div class="row resources_hearder">
-		<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 resources_hearde_font">
-			<span>添加资源</span>
+<div class="maxcontainer editpage modal-contentbox" >
+	<ol class="breadcrumb">
+	    <li>
+	    	<i class="glyphicon glyphicon-home"></i>
+	    	<a href="#" data="2" url="home">首页</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">用户管理</a>
+	    </li>
+	    <li>
+	    	<a href="#" url="./pages/role/rolelist">用户列表</a>
+	    </li>
+	    <li class="active">编辑用户</li>
+    	<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<div class="input-group">
+			        <input type="text" class="form-control" placeholder="搜索你想找到的...">
+			        <span class="input-group-btn">
+			        <button class="btn btn-default" type="button">
+						<img src="${pageContext.request.contextPath}/img/sys/iconsearch.png" alt="">
+			        </button>
+			        </span>
+			    </div><!-- /input-group -->
+			</form>
 		</div>
-		<div class="pull-right col-lg-2 col-md-3 col-sm-4 col-xs-4 role_hearde_icon">
-			<div class="pull-right col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 role_hearde_this_icon red_border">
+	</ol>
+	
+	<div class="title">
+		<p>编辑资源</p>
+		<div class="btns"> 
+			<!-- <a href="javascript:;" class="zclose" data-dismiss="modal">
+				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
+			</a> -->
+		</div>
+	</div>
+	<div class="form_content">
+		<form class="form-source-editlg newform">
+			<div class="formhead">青柠云后台管理系统</div>
+		  	<div class="form-group input">
+		    	<label for="" >资源名称：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax in_input_num">
+				    	<input type="text" class="form-control rolenameinput" placeholder="请输入资源名称" maxlength="12" name='username'>
+				    	<span class="limitlength">15</span>
+				    	<span class="errormessage errormessage-source-edit-name">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group select">
+		    	<label for="" >资源类型：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
 
-				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="" />
-				<!--<a href=""><span class="glyphicon glyphicon-remove red_back"></span></a>-->
-			</div>
-		</div>
-	</div>
-	<div class="row resources_content form_content" u_id="1" n_id="-1">
-		<form action="">
-		<div class="row resources_form">
-			<div action="" class="form-horizontal col-lg-8 col-md-8 col-sm-9 col-xs-12">
-				<div class="form-group">
-					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-						<span></span>
-					</div>
-					<label class="col-lg-2 col-md-3 col-sm-3 col-xs-3 control-label">资源名称：</label>
-					<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6 form_input col-lg-offset-1 col-md-offset-1 col-sm-offset-0  res_name sliderInput">
-						<input type="text" name="name" maxlength="15" class="form-control resources_name" placeholder="请输入资源名称" id="add_resourceName">
-						<span class="minlimitNum">15</span>
-					</div>
-				</div>
-			</div>
-			<div class="error_font col-lg-3 col-md-3 col-sm-3 col-xs-3">
-				<!--visible-->
-				<span class="error_icon icon-exclamation-sign"></span>
-				<span>您输入了特殊符号！</span>
-			</div>
-		</div>
-		<div class="row role_content_error_xian display_block">
-			<div class="error_xian col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
-				<div class="col-lg-3 col-md-3 col-xs-4"></div>
-				<div class="error_box col-lg-5 col-md-7 col-sm-6 col-xs-6"></div>
-			</div>
-		</div>
-		<ul class="row resources_fath">
-			<li class="col-lg-7 col-md-12 col-sm-12 col-xs-12 fath_select">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-					<span></span>
-				</div>
-				<label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">资源类型：</label>
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form_input">
-					<select class="form-control select select-primary select-block mbl" name="yilai" data-toggle="select" id="add_resourceType">
-						<option disabled selected>请选择资源类型</option>
-						<option value="1">菜单</option>
-						<option value="2">元素</option>		
-						<option value="3">文件</option>
-						<option value="4">操作</option>
-					</select>
-				</div>
-				<div class="error_font col-lg-4 col-md-3 col-sm-4 col-xs-4">
-					<!--visible-->
-					<span class="error_icon icon-exclamation-sign"></span>
-					<span>您还未选择依赖资源</span>
-				</div>
-			</li>
-			<li class="col-lg-5 col-md-12 col-xs-12 fath_select">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-					<span></span>
-				</div>
-				<label class="col-lg-4 col-md-3 col-sm-3 col-xs-3 control-label fath_select_font">父级资源：</label>
-				<div class="col-lg-4 col-md-3 col-sm-3  col-xs-3 form_input">
-					<select class="form-control select select-primary select-block mbl" name="fath" data-toggle="select" id="add_resourcePId"></select>
-				</div>
-				<div class="error_font col-lg-4 col-md-4 col-sm-4 col-xs-4">
-					<!--visible-->
-					<span class="error_icon icon-exclamation-sign"></span>
-					<span>您还未选择依赖资源</span>
-				</div>
-			</li>
-		</ul>
-		<div class="row resources_remarks">
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form_clire  text-center">
-				<span></span>
-			</div>
-			<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 control-label">相关操作 ：</label>
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 resources_write" id="add_operation">
-				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 res_checked">
-					<label>
-                    <input tabindex="2" name="add_operation" type="checkbox" value="1" checked>
-                    <p>查看</p>
-                    </label>
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3  res_checked">
-					<label>
-                    <input tabindex="2" name="add_operation" type="checkbox" value="2"  >
-                    <p>增加</p>
-                    </label>
-				</div>
-				<div class="col-lg-2 col-md-2  col-sm-3 col-xs-3 res_checked">
-					<label>
-                    <input tabindex="2" name="add_operation" type="checkbox" value="3"  >
-                    <p>更改</p>
-                    </label>
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 res_checked">
-					<label>
-                    <input tabindex="2" name="add_operation" type="checkbox" value="4" >
-                    <p>删除</p>
-                    </label>
-				</div>
-			</div>
-		</div>
-		<div class="row role_button">
-			<div class=" col-sm-6 col-md-4 col-md-6 col-lg-6 col-xs-6 role_succse">
-				<button type="button" class="btn btn-default" id="submit_addResource">确认</button>
-			</div>
-			<div class=" col-sm-4 col-md-4 col-lg-4 col-xs-4 role_remove">
+							<option value="0" disabled="disabled">请选择资源类型</option>
+							<option value="1">菜单</option>
+							<option value="2">元素</option>
+							<option value="3">文件</option>
+							<option value="4">操作</option>
+
+						</select>
+				    	<span class="errormessage errormessage-role-edit-fath">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	 	<div class="form-group select">
+		    	<label for="" >父级资源：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
+
+							<option value="0" disabled="disabled">选择资源</option>
+							<option value="1"></option>
+							<option value="2"></option>
+							<option value="3"></option>
+							<option value="4"></option>
+
+						</select>
+				    	<span class="errormessage errormessage-role-edit-fath">
+			    		<!-- 您输入了特殊符号！ -->
+			    		</span>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="form-group phone">
+		    	<label for="" >相关操作：</label>
+		    	<div class="inputwrapper">
+		    		<div class="inputwrappermax">
+				    	<div class="col-xs-3 relateCtl">
+							<input name="look" id="sourcecheck" type="checkbox" checked>
+							<label for="sourcecheck">查看</label>
+						</div>
+						<div class="col-xs-3 relateCtl">
+							<input name="change" id="sourceChange" type="checkbox">
+							<label for="sourceChange">更改</label>
+						</div>
+						<div class="col-xs-3 relateCtl">
+							<input name="add" id="sourceAdd" type="checkbox">
+							<label for="sourceAdd">增加</label>
+						</div>
+						<div class="col-xs-3 relateCtl">
+							<input name="del" id="sourceDel" type="checkbox">
+							<label for="sourceDel">删除</label>
+						</div>
+		    		</div>
+		    	</div>
+		  	</div>
+		  	<div class="btnbox">
+				<button type="button" class="btn btn-default submitbtn-role-edit" disabled>确定</button>
 				<button type="button" class="btn btn-default">取消</button>
-			</div>
-		</div>
-	</form>
+		  	</div>
+		</form>
 	</div>
-	<!--编辑资源最大化结束-->
+	
 </div>
-</div>
+

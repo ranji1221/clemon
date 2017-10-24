@@ -110,11 +110,15 @@ $(document).on("click","#submit_editResource",function(){
 			</form>
 		</div>
 	</ol>
-	
+	<!--  页面中的红色提示框-->
+	<div class="alert alert-danger">
+		<i class="glyphicon glyphicon-hand-right"></i> 温馨提示：此页面展示角色查看操作。单击右方x号，可以关闭此条提示语！
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</div>
 	<div class="title">
 		<p>编辑资源</p>
 		<div class="btns"> 
-			<a href="javascript:;" class="zclose" data-dismiss="modal">
+			<a href="javascript:;" class="zclose edit_external_link" data-dismiss="modal">
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 			</a>
 		</div>

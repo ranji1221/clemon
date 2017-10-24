@@ -7,7 +7,14 @@ $(function(){
  * 编辑模态框
  * @returns
  */
-
+//关闭处理 
+$(document).on("click",'.edit_red_border', function(e) {
+	$(this).closest('.modal-contentbox').remove();
+	$(this).closest('.modal-contentbox').appendTo('#editModal');
+	if(!$('.ajax_dom').html()){
+		$('.ajax_dom').hide()
+	}
+})
 //滑块 
 function limitChangeLength(elm, limitLength) {
 	$(elm).attr("maxLength", limitLength);
@@ -19,37 +26,14 @@ function limitChangeLength(elm, limitLength) {
 	});
 }
 
-$("#editModal").on("shown.bs.modal", function() {
-	var max_role = $(this).find(".edit_external_link")
+//编辑中的关闭
+	var max_role = $(document).find(".edit_external_link")
+	console.log(max_role)
 	max_role.on("click", function(e) {
 		e.preventDefault()
 		e.stopPropagation()
-		var minlimitNum = 5;
-$(".minlimitNum").html(minlimitNum);
-$(".error_box").slider({
-	orientation: "horizontal",
-	range: "min",
-	max: 70,
-	value: 70,
-	slide: function(event, ui) {
-		var ui_value = ui.value
-		$(".sliderInput").css("width", ui_value+"%");
-		$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
-		$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-		$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
-		limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-	}
-})
-			
-$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
-		
-		$(this).closest('.modal').modal('hide')
-			$(this).closest('.modal-contentbox').addClass('editrolelg modalCon')
-			$(".editrolelg").addClass("active")
-			$(this).closest('.modal-contentbox').appendTo($(".ajax_dom"))
+			$(this).closest('.modal-contentbox').appendTo($("#editModal"))
 			$('.ajax_dom').show(0)
-			
 		$('.breadcrumb').on("click", function(e) {
 			var el = e.target || window.event
 			e.preventDefault()
@@ -71,7 +55,7 @@ $(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 
 		});
 	
 	});
-});
+
 
 //角色编辑框 
 function editRoleModal(data) {
@@ -173,7 +157,7 @@ function viewSource(data) {
 * 查看用户授权模态框
 */
 function userAuth(data) {
-	$("#auth_userName").val(data.userName);
+	$("#auth_userName").val(data.userName);}
 //关闭
 $(document).on("click",'.closeAction', function(e) {
 	$(this).closest('.modal-contentbox').remove();
@@ -195,4 +179,4 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings(".wordNum").html(limitLength - length);
 	});
 }
-}
+

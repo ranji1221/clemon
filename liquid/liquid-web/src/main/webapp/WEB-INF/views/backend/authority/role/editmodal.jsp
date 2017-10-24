@@ -52,25 +52,6 @@ function dealDataToModal(data){
 	})
 }
 function beforeMaxEditModal(){
-	var minlimitNum = 5;
-	$(".minlimitNum").html(minlimitNum);
-	$(".error_box").slider({
-		orientation: "horizontal",
-		range: "min",
-		max: 70,
-		value: 70,
-		slide: function(event, ui) {
-			var ui_value = ui.value
-			$(".sliderInput").css("width", ui_value+"%");
-			$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
-			$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
-			$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
-			limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
-		}
-	})
-			
-$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
-$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
 
 	$('.breadcrumb').on("click", function(e) {
 		var el = e.target || window.event
@@ -143,7 +124,11 @@ $(document).on("click","#submit_editRole",function(){
 			</form>
 		</div>
 	</ol>
-	
+	<!--  页面中的红色提示框-->
+	<div class="alert alert-danger">
+		<i class="glyphicon glyphicon-hand-right"></i> 温馨提示：此页面展示角色查看操作。单击右方x号，可以关闭此条提示语！
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</div>
 	<div class="title">
 		<p>编辑角色</p>
 		<div class="btns">
@@ -158,7 +143,7 @@ $(document).on("click","#submit_editRole",function(){
 			<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
 				<img src="./assets/images/sys/modal3.png" alt="">
 			</a> -->
-			<a href="javascript:;" class="zclose" data-dismiss="modal">
+			<a href="javascript:;" class="zclose edit_external_link" data-dismiss="modal">
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 			</a>
 		</div>
