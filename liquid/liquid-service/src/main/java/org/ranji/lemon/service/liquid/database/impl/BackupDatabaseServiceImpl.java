@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
@@ -22,17 +23,19 @@ public class BackupDatabaseServiceImpl extends GenericServiceImpl<BackupDatabase
 	private static String hostIP;     //数据库IP地址
 	private static String userName;	  //数据库用户名
 	private static String password;   //数据库密码
-	//private static String dbName;     //数据库名
+	private static String dbName;     //数据库名
+	private static List<String> tables  ; //排除的数据表
 		
 	@Override
-	public void backup(String path,List<String> table) throws IOException{
-		initVariableByProperties();
+	public void backup(String path) throws IOException{
+		initVariableByProperties(); //获取数据库信息
+		removeTable();  //获取移除表信息
 		Runtime runtime = Runtime.getRuntime();
 		//-u后面是用户名，-p是密码-p后面最好不要有空格，-family是数据库的名字
-		String cmd = "cmd /c mysqldump --single-transaction -h "+ hostIP +" -u "+ userName +" -p"+ password +" --set-charset=UTF8 lemon ";
+		String cmd = "cmd /c mysqldump --single-transaction -h "+ hostIP +" -u "+ userName +" -p"+ password +" --set-charset=UTF8 "+dbName;
 		StringBuffer sbf = new StringBuffer();
-		for(String s : table){//排除的表
-			sbf.append("--ignore-table =lemon."+s);
+		for(String s : tables){//排除的表
+			sbf.append(" --ignore-table ="+dbName+"."+s);
 		}
 		System.out.println(cmd + sbf);
 		Process process = runtime.exec(cmd + sbf);
@@ -90,6 +93,14 @@ public class BackupDatabaseServiceImpl extends GenericServiceImpl<BackupDatabase
 		//获取IP地址
 		hostIP = url.split("/")[2].split(":")[0];
 	}
-	
-	
+	/**
+	 * 获取相应数据库备份数据（通过properties文件获取）
+	 * @throws IOException 
+	 */
+	private void removeTable()throws IOException{
+		ResourceBundle resource = ResourceBundle.getBundle("config/database");
+		dbName = resource.getString("database");
+		String table = resource.getString("remove.table");
+		tables = Arrays.asList(table.split(",")); 
+	}
 }

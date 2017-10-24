@@ -44,15 +44,16 @@ public class BackupDatabaseTest {
 	//测试备份数据库
 	@Test
 	public void testBackup() throws IOException{
-		List<String> tables = new ArrayList<String>();
-		tables.add("lemon_liquid_database_backupinfo");
-		tables.add("lemon_liquid_log_systemlog");
-		backupDatabase.backup("d:\\lemon.sql",tables);
+		backupDatabase.backup("d:\\lemon.sql");
 		System.out.println(new File("d:\\lemon.sql").length());
 	}
 	//测试还原数据库
 	@Test
 	public void testRecover() throws IOException{
 		backupDatabase.recover("d:\\lemon.sql");
+	}
+	@Test
+	public void testRead() throws IOException{
+		
 	}
 }

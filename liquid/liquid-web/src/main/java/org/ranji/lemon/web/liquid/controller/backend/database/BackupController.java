@@ -76,10 +76,7 @@ public class BackupController {
 			// 获取存储路径
 			String absolutePath = BackupUtil.getAbsolutePath("lemon", session); //绝对地址
 			String relativePath = BackupUtil.getRelativePath("lemon", session); //相对地址
-			List<String> tables = new ArrayList<String>();
-			tables.add("lemon_liquid_database_backupinfo");
-			tables.add("lemon_liquid_log_systemlog");
-			backupService.backup(absolutePath + "/" + sqlName, tables);
+			backupService.backup(absolutePath + "/" + sqlName);
 			backup.setPath(relativePath + "/" + sqlName);
 			File file = new File(absolutePath + "/" + sqlName);
 			backup.setFileSize(file.length());
