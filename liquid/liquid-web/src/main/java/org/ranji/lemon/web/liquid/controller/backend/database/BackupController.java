@@ -2,7 +2,6 @@ package org.ranji.lemon.web.liquid.controller.backend.database;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,7 @@ import org.ranji.lemon.common.core.annotation.SystemControllerLog;
 import org.ranji.lemon.common.core.pagination.PagerModel;
 import org.ranji.lemon.common.liquid.util.BackupUtil;
 import org.ranji.lemon.model.liquid.database.BackupDatabaseInfo;
+import org.ranji.lemon.model.liquid.database.ProgressSingleton;
 import org.ranji.lemon.service.liquid.database.prototype.IBackupDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -101,10 +101,24 @@ public class BackupController {
 			if(!file.exists()){
 				return "{ \"success\" : false, \"msg\" : \"文件不存在\"}";
 			}else{
-				backupService.recover(absolutePath); //还原数据库操作
+				backupService.recover(absolutePath,session); //还原数据库操作
 				return "{ \"success\" : true }";
 			} 
 		} catch (IOException e) {
+			e.printStackTrace();
+			return "{ \"success\" : false}";
+		}
+	}
+	@RequestMapping(value = "/progressBar")
+	@ResponseBody
+	public String doProgress(HttpSession session) {
+		try {
+			Object size = ProgressSingleton.get(session.getId()+"Size");  
+		    size = size == null ? 100 : size;
+		    Object progress = ProgressSingleton.get(session.getId()+"Progress");  
+		    progress = progress == null ? 0 : progress;   		
+				return "{ \"success\" : true, \"info\" : [\"size\" :"+size+",\"progress\" :"+progress+"] }";
+		} catch (Exception e) {
 			e.printStackTrace();
 			return "{ \"success\" : false }";
 		}

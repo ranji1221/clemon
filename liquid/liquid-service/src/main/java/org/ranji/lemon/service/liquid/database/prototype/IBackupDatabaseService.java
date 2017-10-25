@@ -1,10 +1,11 @@
 package org.ranji.lemon.service.liquid.database.prototype;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.ranji.lemon.common.core.service.prototype.IGenericService;
 import org.ranji.lemon.model.liquid.database.BackupDatabaseInfo;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * 数据库备份服务接口类
@@ -26,5 +27,5 @@ public interface IBackupDatabaseService extends IGenericService<BackupDatabaseIn
 	 * @param path 备份文件存储路径
 	 * 
 	 */
-	public void recover(String path) throws IOException;
+	public void recover(String path,HttpSession session) throws IOException;
 }
