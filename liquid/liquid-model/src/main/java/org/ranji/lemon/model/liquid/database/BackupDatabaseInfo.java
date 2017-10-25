@@ -37,13 +37,20 @@ public class BackupDatabaseInfo extends AbstractModel{
 	private String path;		//备份路径
 	private String remark;		//备注
 	private String fileSize;    //文件大小
-	
+
+	public BackupDatabaseInfo(){
+		
+	}
 	
 	public String getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(long size) {
+	public void setFileSize(String size) {
+		this.fileSize =size;
+	}
+	
+	public void setFileSizeSave(long size){
 		NumberFormat nf=NumberFormat.getNumberInstance() ; 
 		nf.setMaximumFractionDigits(2);
 		if(size<1024){
@@ -55,10 +62,6 @@ public class BackupDatabaseInfo extends AbstractModel{
 		}else if(size<1024*1024*1024*1024){
 			this.fileSize = nf.format(size/1024.0 * 1024 * 1024) + "GB";
 		}	
-	}
-
-	public BackupDatabaseInfo(){
-		
 	}
 	
 	public String getInfoName() {

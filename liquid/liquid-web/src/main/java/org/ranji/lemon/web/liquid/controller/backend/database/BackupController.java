@@ -79,7 +79,7 @@ public class BackupController {
 			backupService.backup(absolutePath + "/" + sqlName);
 			backup.setPath(relativePath + "/" + sqlName);
 			File file = new File(absolutePath + "/" + sqlName);
-			backup.setFileSize(file.length());
+			backup.setFileSizeSave(file.length());
 			backupService.save(backup);
 			return "{ \"success\" : true }";
 		} catch (IOException e) {
