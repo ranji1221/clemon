@@ -74,18 +74,13 @@ public class BackupDatabaseServiceImpl extends GenericServiceImpl<BackupDatabase
 		//文件进度长度  
         long progress = 0; 
 		String str = null;
-		StringBuffer sb = new StringBuffer();
+		OutputStreamWriter writer = new OutputStreamWriter(outputStream,"utf-8");
 		while((str = br.readLine()) != null){
 			progress = progress + str.length();  
             //向单例哈希表写入进度  
             ProgressSingleton.put(session.getId()+"Progress", progress);  
-			sb.append(str+"\r\n");
-			
+			writer.write(str+"\r\n");
 		}
-		str = sb.toString();
-		//System.out.println(str);
-		OutputStreamWriter writer = new OutputStreamWriter(outputStream,"utf-8");
-		writer.write(str);
 		ProgressSingleton.remove(session.getId()+"Size");  
         ProgressSingleton.remove(session.getId()+"Progress");  
 		writer.flush();

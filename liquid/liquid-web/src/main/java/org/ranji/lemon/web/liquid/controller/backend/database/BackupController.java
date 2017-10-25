@@ -117,7 +117,7 @@ public class BackupController {
 		    size = size == null ? 100 : size;
 		    Object progress = ProgressSingleton.get(session.getId()+"Progress");  
 		    progress = progress == null ? 0 : progress;   		
-				return "{ \"success\" : true, \"info\" : [\"size\" :"+size+",\"progress\" :"+progress+"] }";
+				return "{ \"success\" : true, \"info\" : [{\"size\" :"+size+",\"progress\" :"+progress+"}] }";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "{ \"success\" : false }";

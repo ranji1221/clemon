@@ -18,17 +18,15 @@ $(function(){
 	})
 	function doProgress(){
 		leading = setInterval(function(){
-			$.post("backend/database/backup/progressBar",{},function(data){
+		$.post("backend/database/backup/progressBar",{},function(data){
 				if(data.success){
-					console.info(data.info)
-					percentage = parseInt((data.info.progress / data.info.size) * 100);
+					percentage = parseInt((data.info[0].progress / data.info[0].size) * 100);
 					progress_bar.width(percentage+'%');
 					pro_text.html(percentage+'%')
 				}
 			},'json')
 		},200)
-	}	
-	
+	}		
 	$('div.tablewrap').on('click','.leading',function(){
 		// 进度模态框展示时启动动画
 		$('#leading-progress').on('shown.bs.modal', function (e) {
@@ -41,7 +39,6 @@ $(function(){
 				id:gid,
 			},function(data){
 				if(data.success){
-					console.info('wert');
 					 //上传完成，清除循环事件
 	                clearInterval(leading);
 	                //将进度更新至100%
@@ -50,6 +47,11 @@ $(function(){
 					pro_text.html(percentage+'%')
 					progress_box.fadeOut(function(){
 						leading_res_success.fadeIn()
+					})
+				}else{
+					 clearInterval(leading);
+					 progress_box.fadeOut(function(){
+						 leading_res_error.fadeIn()
 					})
 				}
 			},'json')

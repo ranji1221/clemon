@@ -3,10 +3,10 @@ package org.ranji.lemon.service.liquid.database;
 import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.http.HttpSession;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.ranji.lemon.common.core.util.JsonUtil;
+import org.ranji.lemon.model.liquid.database.BackupDatabaseInfo;
 import org.ranji.lemon.service.liquid.database.prototype.IBackupDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -44,8 +44,10 @@ public class BackupDatabaseTest {
 	//测试备份数据库
 	@Test
 	public void testBackup() throws IOException{
+		long start = System.currentTimeMillis();
 		backupDatabase.backup("d:\\lemon.sql");
 		System.out.println(new File("d:\\lemon.sql").length());
+		System.out.println(System.currentTimeMillis()-start  +"    +++++++++++++++++++++++++++");
 	}
 	//测试还原数据库
 	@Test
@@ -53,7 +55,9 @@ public class BackupDatabaseTest {
 		//backupDatabase.recover("d:\\lemon.sql");
 	}
 	@Test
-	public void testRead() throws IOException{
-		
+	public void testFind() throws IOException{
+		BackupDatabaseInfo info=backupDatabase.find(2);
+		System.out.println(JsonUtil.objectToJson(info));
+		//BackupDatabaseInfo info = new BackupDatabaseInfo();
 	}
 }
