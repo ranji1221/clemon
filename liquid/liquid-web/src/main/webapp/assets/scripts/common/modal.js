@@ -7,14 +7,7 @@ $(function(){
  * 编辑模态框
  * @returns
  */
-//关闭处理 
-$(document).on("click",'.edit_red_border', function(e) {
-	$(this).closest('.modal-contentbox').remove();
-	$(this).closest('.modal-contentbox').appendTo('#editModal');
-	if(!$('.ajax_dom').html()){
-		$('.ajax_dom').hide()
-	}
-})
+
 //滑块 
 function limitChangeLength(elm, limitLength) {
 	$(elm).attr("maxLength", limitLength);
@@ -25,36 +18,6 @@ function limitChangeLength(elm, limitLength) {
 		$(elm).siblings(".limitlength").html($(elm).attr("maxlength") - length);
 	});
 }
-
-//编辑中的关闭
-	var max_role = $(document).find(".edit_external_link")
-	console.log(max_role)
-	max_role.on("click", function(e) {
-		e.preventDefault()
-		e.stopPropagation()
-			$(this).closest('.modal-contentbox').appendTo($("#editModal"))
-			$('.ajax_dom').show(0)
-		$('.breadcrumb').on("click", function(e) {
-			var el = e.target || window.event
-			e.preventDefault()
-			var url = $(el).attr("url")
-			var ajax_dom = $(".ajax_dom")
-			if($(el).attr('data')) {
-				window.location.reload()
-			} else {
-				if(url){
-					$.ajax({
-						url: url + ".html",
-						dataType: "html"
-					}).done(function(data) {
-						ajax_dom.empty()
-						ajax_dom.html(data)
-					})
-				}
-			}
-		});
-	
-	});
 
 
 //角色编辑框 
@@ -157,16 +120,13 @@ function viewSource(data) {
 * 查看用户授权模态框
 */
 function userAuth(data) {
-	$("#auth_userName").val(data.userName);}
+	$("#auth_userName").val(data.userName);
+}
 //关闭
 $(document).on("click",'.closeAction', function(e) {
 	$(this).closest('.modal-contentbox').remove();
 	var class_name = $(this).closest('.modal-contentbox').attr('narrowClassName')
 	$(this).closest('.modal-contentbox').appendTo(class_name);
-	var maxClassName = $(this).closest('.modal-contentbox').attr('maxClassName')
-	if(maxClassName){
-		$(this).closest('.modal-contentbox').removeClass(maxClassName)
-	}
 	if(!$('.ajax_dom').html()){
 		$('.ajax_dom').hide()
 	}

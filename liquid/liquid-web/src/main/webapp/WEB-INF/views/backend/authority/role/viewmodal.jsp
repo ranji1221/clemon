@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="viewModal" class="modalCon modal fade bs-example-modal-lg modalToBody" tabindex="-1" role="dialog">
-	<div class="modal-contentbox" maxClassName="looklg" narrowClassName="#viewModal">
+	<div class="modal-contentbox" narrowClassName="#viewModal">
 		<ol class="breadcrumb breadcrumb_margin">
 		    <li>
 		    	<i class="glyphicon glyphicon-home"></i>

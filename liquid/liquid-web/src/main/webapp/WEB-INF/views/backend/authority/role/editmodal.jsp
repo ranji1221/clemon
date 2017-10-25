@@ -4,101 +4,118 @@
 <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 <script  src="${pageContext.request.contextPath}/js/validate/validate.js "></script>
 <script type="text/javascript">
-
-function dealDataToModal(data){
-	//获取到本地的某条数据 示例代码
-	$("#edit_roleId").val(data.id);
-	$("#edit_displayName").val(data.displayName);
-	$("#edit_roleMaxNum").val(data.roleMaxNum);
-	$("#edit_remarks").val(data.remarks);
-	$('.select_roleList').LemonGetList({
-		requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
-		beforeFun:function(data){
-			return getListByTree(data);
-		},
-		generateItemFun:function(index,value){
-			var itemHtml = '';
-			if(index == 0 ){ itemHtml += '<option value="0" '+'>选择角色</option>';}
-			
-			var kongge_str = '';
-			for(var i=0;i<value.level;i++){
-				kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+	function dealDataToModal(data){
+		//获取到本地的某条数据 示例代码
+		$("#edit_roleId").val(data.id);
+		$("#edit_displayName").val(data.displayName);
+		$("#edit_roleMaxNum").val(data.roleMaxNum);
+		$("#edit_remarks").val(data.remarks);
+		$('.select_roleList').LemonGetList({
+			requestListUrl:'${pageContext.request.contextPath}/backend/authority/role/listAll',
+			beforeFun:function(data){
+				return getListByTree(data);
+			},
+			generateItemFun:function(index,value){
+				var itemHtml = '';
+				if(index == 0 ){ itemHtml += '<option value="0" '+'>选择角色</option>';}
+				
+				var kongge_str = '';
+				for(var i=0;i<value.level;i++){
+					kongge_str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				}
+				kongge_str += '|-';
+				
+				itemHtml += '<option  value="'+value.id+'" ';
+				itemHtml += ' >'+kongge_str+value.roleName+'</option>';
+				return itemHtml;
+			},
+			afterFun:function(){
+				
+				//.roleExtendPId
+				if(data.roleExtendPId >= 1){
+					$('#edit_roleExtendPId option').each(function(val){
+						if($(this).attr('value') == data.roleExtendPId){
+							$(this).attr('selected','selected');
+						}
+					})
+				}
+				
+				if(data.roleRelyId >= 1){
+					$('#edit_roleRelyId option').each(function(val){
+						if($(this).attr('value') == data.roleRelyId){
+							$(this).attr('selected','selected');
+						}
+					})
+				}
 			}
-			kongge_str += '|-';
-			
-			itemHtml += '<option  value="'+value.id+'" ';
-			itemHtml += ' >'+kongge_str+value.roleName+'</option>';
-			return itemHtml;
-		},
-		afterFun:function(){
-			
-			//.roleExtendPId
-			if(data.roleExtendPId >= 1){
-				$('#edit_roleExtendPId option').each(function(val){
-					if($(this).attr('value') == data.roleExtendPId){
-						$(this).attr('selected','selected');
-					}
-				})
+		})
+	}
+	function beforeMaxEditModal(){
+		var minlimitNum = 5;
+		$(".minlimitNum").html(minlimitNum);
+		$(".error_box").slider({
+			orientation: "horizontal",
+			range: "min",
+			max: 70,
+			value: 70,
+			slide: function(event, ui) {
+				var ui_value = ui.value
+				$(".sliderInput").css("width", ui_value+"%");
+				$(".minlimitNum").html(minlimitNum + parseInt(ui_value / 10));
+				$(".sliderInput").find("input.form_input").val($(".sliderInput").find("input.form_input").val().slice(0, minlimitNum + parseInt(ui_value / 10)))
+				$(".sliderInput").find("input.form_input").prop("maxlength", minlimitNum + parseInt(ui_value / 10))
+				limitChangeLength($(".form_input input"), parseInt($(".minlimitNum").html()));
 			}
-			
-			if(data.roleRelyId >= 1){
-				$('#edit_roleRelyId option').each(function(val){
-					if($(this).attr('value') == data.roleRelyId){
-						$(this).attr('selected','selected');
-					}
-				})
+		})
+				
+	$(".sliderInput").css("width", $(".error_box").slider("value")+"%");
+	$(".minlimitNum").html(minlimitNum + parseInt($(".error_box").slider("value") / 10))	
+	
+		$('.breadcrumb').on("click", function(e) {
+			var el = e.target || window.event
+			e.preventDefault()
+			var url = $(el).attr("url")
+			var ajax_dom = $(".ajax_dom")
+			if($(el).attr('data')) {
+				
+			} else {
+				if(url){
+					$.ajax({
+						url: url + ".html",
+						dataType: "html"
+					}).done(function(data) {
+						ajax_dom.empty()
+						ajax_dom.html(data)
+					})
+				}
 			}
-		}
-	})
-}
-function beforeMaxEditModal(){
-
-	$('.breadcrumb').on("click", function(e) {
-		var el = e.target || window.event
-		e.preventDefault()
-		var url = $(el).attr("url")
-		var ajax_dom = $(".ajax_dom")
-		if($(el).attr('data')) {
-			
-		} else {
-			if(url){
-				$.ajax({
-					url: url + ".html",
-					dataType: "html"
-				}).done(function(data) {
-					ajax_dom.empty()
-					ajax_dom.html(data)
-				})
+		});
+	}
+	$(document).on("click","#submit_editRole",function(){
+		$.post("${pageContext.request.contextPath}/backend/authority/role/edit",
+			{
+				id:$("#edit_roleId").val(),
+				displayName:$("#edit_displayName").val(),
+				roleMaxNum:$("#edit_roleMaxNum").val(),
+				remarks:$("#edit_remarks").val(),
+				roleExtendPId:$("#edit_roleExtendPId option:selected").val(),
+				roleRelyId:$("#edit_roleRelyId option:selected").val()
+			},function(data){
+				if(data.success){
+					removeStorage();
+					roleListInit();
+					alert("成功啦");
+				}
+				else{
+					alert("失败啦")
+				}
 			}
-		}
-	});
-}
-$(document).on("click","#submit_editRole",function(){
-	$.post("${pageContext.request.contextPath}/backend/authority/role/edit",
-		{
-			id:$("#edit_roleId").val(),
-			displayName:$("#edit_displayName").val(),
-			roleMaxNum:$("#edit_roleMaxNum").val(),
-			remarks:$("#edit_remarks").val(),
-			roleExtendPId:$("#edit_roleExtendPId option:selected").val(),
-			roleRelyId:$("#edit_roleRelyId option:selected").val()
-		},function(data){
-			if(data.success){
-				removeStorage();
-				roleListInit();
-				alert("成功啦");
-			}
-			else{
-				alert("失败啦")
-			}
-		}
-	,"json")
-}) 
+		,"json")
+	}) 
 </script>
 
 <div id="editModal" class="modalCon modal fade bs-example-modal-lg editRole_modal  modalToBody" tabindex="-1" role="dialog">
-
-<div class="maxcontainer editpage modal-contentbox" >
+	<div class="maxcontainer editpage modal-contentbox" narrowClassName="#editModal">
 	<ol class="breadcrumb">
 	    <li>
 	    	<i class="glyphicon glyphicon-home"></i>
@@ -143,7 +160,7 @@ $(document).on("click","#submit_editRole",function(){
 			<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
 				<img src="./assets/images/sys/modal3.png" alt="">
 			</a> -->
-			<a href="javascript:;" class="zclose edit_external_link" data-dismiss="modal">
+			<a href="javascript:;" class="zclose closeAction" data-dismiss="modal">
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 			</a>
 		</div>
@@ -155,7 +172,8 @@ $(document).on("click","#submit_editRole",function(){
 		    	<label for="" >角色名称：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax form_input sliderInput">
-				    	<input type="text" class="form-control rolenameinput" placeholder="请输入角色名称" name='username'>
+		    			<input type="hidden" name="roleId" id="edit_roleId">
+				    	<input type="text" class="form-control rolenameinput" placeholder="请输入角色名称" id="edit_displayName">
 				    	<span class="limitlength">15</span>
 				    	<span class="errormessage errormessage-role-edit-name">
 			    		<!-- 您输入了特殊符号！ -->
@@ -167,14 +185,7 @@ $(document).on("click","#submit_editRole",function(){
 		    	<label for="" >父级角色：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax">
-				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="fath">
-
-							<option value="0" disabled="disabled">选择父级角色</option>
-							<option value="1">角色列表</option>
-							<option value="2">首页</option>
-							<option value="3">角色列表</option>
-							<option value="4">角色列表</option>
-
+						<select name="fath" data-toggle="select" class="form-control select select-primary select-block mbl" id="edit_roleExtendPId">
 						</select>
 				    	<span class="errormessage errormessage-role-edit-fath">
 			    		<!-- 您输入了特殊符号！ -->
@@ -186,14 +197,7 @@ $(document).on("click","#submit_editRole",function(){
 		    	<label for="" >依赖角色：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax">
-				    	<select class="form-control select select-primary select-block mbl" data-toggle="select" name="yilai">
-
-							<option value="0" disabled="disabled">选择依赖角色</option>
-							<option value="1">角色列表</option>
-							<option value="2">首页</option>
-							<option value="3">角色列表</option>
-							<option value="4">角色列表</option>
-
+						<select name="yilai" data-toggle="select" class="form-control select select-primary select-block mbl" id="edit_roleRelyId">
 						</select>
 				    	<span class="errormessage errormessage-role-edit-yilai">
 			    		<!-- 您输入了特殊符号！ -->
@@ -224,7 +228,7 @@ $(document).on("click","#submit_editRole",function(){
 		    	<label for="" >备注：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax">
-				    	<textarea name="beizhu" id="" placeholder="请输入备注"></textarea>
+				    	<textarea name="beizhu" id="edit_remarks" placeholder="请输入备注"></textarea>
 				    	<span class="errormessage errormessage-role-edit-num">
 			    		<!-- 您输入了特殊符号！ -->
 			    		</span>
