@@ -1,6 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <script>
-
+//关闭按钮
+$(".zclose").on("click",function(){
+	//role-authorization
+	$(this).closest(".modal-contentbox").appendTo("#role-authorization")
+})
 var is_first_into_page = true;
 
 function roleAuthInit(data){
@@ -177,7 +181,11 @@ function jsTree_selectedOperation(resourceAndOperationData,selectedOperationData
 			<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
 				<img src="./assets/images/sys/modal3.png" alt="">
 			</a> -->
+<<<<<<< HEAD
 			<a href="javascript:;" class="zclose closeAction" data-dismiss="modal">
+=======
+			<a href="javascript:;" class="zclose" data-dismiss="modal">
+>>>>>>> branch 'master' of https://github.com/ranji1221/clemon.git
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 			</a>
 		</div>

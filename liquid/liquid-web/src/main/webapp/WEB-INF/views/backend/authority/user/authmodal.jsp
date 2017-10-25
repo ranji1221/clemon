@@ -1,5 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <script>
+//关闭按钮
+$(".zclose").on("click",function(){
+	$(this).closest(".modal-contentbox").appendTo("#user-authorization")
+})
 /**
 * 查看用户授权模态框
 */
@@ -208,7 +212,7 @@ $('.user_auth_submit').on('click',function(){
 			<a href="javascript:;" class="maxrole" data-dismiss="modal" u_id="4">
 				<img src="./assets/images/sys/modal3.png" alt="">
 			</a> -->
-			<a href="javascript:;" class="zclose edit_external_link" data-dismiss="modal">
+			<a href="javascript:;" class="zclose" data-dismiss="modal">
 				<img src="${pageContext.request.contextPath}/img/sys/modal1.png" alt="">
 			</a>
 		</div>
@@ -217,7 +221,7 @@ $('.user_auth_submit').on('click',function(){
 		<form class="form-role-editlg newform">
 			<div class="formhead">青柠云后台管理系统</div>
 		  	<div class="form-group input">
-		    	<label for="" >角色名称：</label>
+		    	<label for="" >用户名称：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax form_input sliderInput">
 				    	<input type="text" class="form-control rolenameinput" id="auth_roleName" placeholder="请输入角色名称" name='username' disabled>
@@ -229,7 +233,7 @@ $('.user_auth_submit').on('click',function(){
 		    	</div>
 		  	</div>
 		 <div class="form-group tree">
-		    	<label for="" >角色授权：</label>
+		    	<label for="" >用户授权：</label>
 		    	<div class="inputwrapper">
 		    		<div class="inputwrappermax">
 				    	<header>

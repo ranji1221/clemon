@@ -2,8 +2,8 @@ package org.ranji.lemon.service.liquid.database;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +50,7 @@ public class BackupDatabaseTest {
 	//测试还原数据库
 	@Test
 	public void testRecover() throws IOException{
-		backupDatabase.recover("d:\\lemon.sql");
+		//backupDatabase.recover("d:\\lemon.sql");
 	}
 	@Test
 	public void testRead() throws IOException{

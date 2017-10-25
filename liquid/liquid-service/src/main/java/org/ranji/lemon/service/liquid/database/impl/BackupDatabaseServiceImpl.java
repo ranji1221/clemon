@@ -12,8 +12,12 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.servlet.http.HttpSession;
+
 import org.ranji.lemon.common.core.service.impl.GenericServiceImpl;
 import org.ranji.lemon.model.liquid.database.BackupDatabaseInfo;
+import org.ranji.lemon.model.liquid.database.ProgressSingleton;
 import org.ranji.lemon.service.liquid.database.prototype.IBackupDatabaseService;
 import org.springframework.stereotype.Repository;
 
@@ -35,8 +39,9 @@ public class BackupDatabaseServiceImpl extends GenericServiceImpl<BackupDatabase
 		String cmd = "cmd /c mysqldump --single-transaction -h "+ hostIP +" -u "+ userName +" -p"+ password +" --set-charset=UTF8 "+dbName;
 		StringBuffer sbf = new StringBuffer();
 		for(String s : tables){//排除的表
-			sbf.append(" --ignore-table ="+dbName+"."+s);
+			sbf.append(" --ignore-table="+dbName+"."+s);
 		}
+		//sbf.append(" --ignore-table=lemon.lemon_liquid_log_systemlog");
 		System.out.println(cmd + sbf);
 		Process process = runtime.exec(cmd + sbf);
 		InputStream inputStream = process.getInputStream();//得到输入流，写成.sql文件
@@ -59,21 +64,30 @@ public class BackupDatabaseServiceImpl extends GenericServiceImpl<BackupDatabase
 	}
 	
 	@Override
-	public void recover(String path) throws IOException {
+	public void recover(String path,HttpSession session) throws IOException {
 		initVariableByProperties();  //初始化数据库连接
 		Runtime runtime = Runtime.getRuntime();
 		Process process = runtime.exec("cmd /c mysql -h "+ hostIP +" -u "+ userName +" -p"+ password +" --default-character-set=utf8 lemon");
 		OutputStream outputStream = process.getOutputStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+		ProgressSingleton.put(session.getId()+"Size", new File(path).length());   //记录文件大小
+		//文件进度长度  
+        long progress = 0; 
 		String str = null;
 		StringBuffer sb = new StringBuffer();
 		while((str = br.readLine()) != null){
+			progress = progress + str.length();  
+            //向单例哈希表写入进度  
+            ProgressSingleton.put(session.getId()+"Progress", progress);  
 			sb.append(str+"\r\n");
+			
 		}
 		str = sb.toString();
-		System.out.println(str);
+		//System.out.println(str);
 		OutputStreamWriter writer = new OutputStreamWriter(outputStream,"utf-8");
 		writer.write(str);
+		ProgressSingleton.remove(session.getId()+"Size");  
+        ProgressSingleton.remove(session.getId()+"Progress");  
 		writer.flush();
 		outputStream.close();
 		br.close();
